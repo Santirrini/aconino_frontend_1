@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Jose%20Diaz/Documents/aconino_frontend/src/app/%28payload%29/layout.tsx"],"sourcesContent":["import config from '@payload-config'\r\nimport '@payloadcms/next/css'\r\nimport { RootLayout } from '@payloadcms/next/layouts'\r\nimport React from 'react'\r\n\r\nexport const metadata = {\r\n    title: 'Payload Admin',\r\n}\r\n\r\ntype Args = {\r\n    children: React.ReactNode\r\n}\r\n\r\nconst Layout = ({ children }: Args) => {\r\n    return (\r\n        <RootLayout config={config}>\r\n            {children}\r\n        </RootLayout>\r\n    )\r\n}\r\n\r\nexport default Layout\r\n"],"names":[],"mappings":";;;;;;;;;;;;AAEA;;;;;;;;;AAGO,MAAM,WAAW;IACpB,OAAO;AACX;AAMA,MAAM,SAAS,CAAC,EAAE,QAAQ,EAAQ;IAC9B,qBACI,8OAAC,sLAAU;QAAC,QAAQ;kBACf;;;;;;AAGb;uCAEe"}}]
+}
