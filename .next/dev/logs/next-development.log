@@ -7798,3 +7798,5 @@ It can also happen if the client has a browser extension installed which messes 
       ...
 
 [00:17:36.602] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:19:23.046] Server  ERROR   TypeError: fetch failed
+[00:19:23.147] Server  ERROR   TypeError: fetch failed
