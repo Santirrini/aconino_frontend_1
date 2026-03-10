@@ -2,6 +2,7 @@ import config from '@payload-config'
 import { RootPage } from '@payloadcms/next/views'
 import React from 'react'
 import type { Metadata } from 'next'
+import { importMap } from '../importMap'
 
 type Args = {
     params: Promise<{
@@ -19,7 +20,7 @@ export const generateMetadata = async ({ params, searchParams }: Args): Promise<
 }
 
 const Page = async ({ params, searchParams }: Args) => {
-    return <RootPage config={config} params={params} searchParams={searchParams} />
+    return <RootPage config={config} params={params} searchParams={searchParams} importMap={importMap} />
 }
 
 export default Page
