@@ -59,4 +59,18 @@ export default function AboutSection({ acf }: AboutSectionProps) {
                         {title}
                     </h2>
 
-        
+                    <p className="text-gray-500 mb-8 leading-relaxed max-w-lg">
+                        {description}
+                    </p>
+
+                    <Link href={ctaLink} className="inline-block bg-primary text-white font-bold tracking-wider text-sm px-8 py-4 rounded-full hover:bg-secondary transition-colors">
+                        {ctaText}
+                    </Link>
+                </div>
+            </div>
+
+            {/* Very faint background illustration */}
+            <div className="absolute right-0 bottom-0 opacity-5 pointer-events-none z-0 w-1/2 h-full bg-[url('https://www.transparenttextures.com/patterns/skulls.png')] bg-no-repeat bg-right-bottom bg-contain" />
+        </section>
+    );
+}

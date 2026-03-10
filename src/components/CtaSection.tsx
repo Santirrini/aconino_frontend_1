@@ -29,4 +29,10 @@ export default function CtaSection({ acf }: CtaSectionProps) {
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-10 tracking-tight">
                     35 años apoyando la inclusión
                 </h2>
-                <Link href={ctaLink} className="inline-block bg-accent text-white font-bold tracking-wider text-sm px-10 py-4 rounded-full hov
+                <Link href={ctaLink} className="inline-block bg-accent text-white font-bold tracking-wider text-sm px-10 py-4 rounded-full hover:bg-white hover:text-primary transition-colors shadow-lg shadow-accent/20">
+                    {ctaText}
+                </Link>
+            </div>
+        </section>
+    );
+}
