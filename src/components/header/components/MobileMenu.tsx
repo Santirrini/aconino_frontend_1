@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronDown, FaHeart } from "react-icons/fa";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface SubLink {
   name: string;
@@ -27,11 +28,25 @@ interface MobileMenuProps {
 
 export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, toggleExpanded }: MobileMenuProps) {
   const pathname = usePathname();
+  const [currentHash, setCurrentHash] = useState("");
+
+  useEffect(() => {
+    const handleHashChange = () => setCurrentHash(window.location.hash);
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
     try {
       const urlObj = new URL(href, "http://localhost"); 
-      return pathname === urlObj.pathname;
+      const matchesPath = pathname === urlObj.pathname;
+      if (urlObj.hash) {
+        return matchesPath && currentHash === urlObj.hash;
+      }
+      if (matchesPath && currentHash !== "") return false; 
+      return matchesPath;
     } catch {
       return false;
     }

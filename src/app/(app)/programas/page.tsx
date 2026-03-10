@@ -11,13 +11,50 @@ const iconMap: Record<string, React.ReactNode> = {
     'user': <FaUser />,
 };
 
+const defaultPrograms = [
+    {
+        id: 'default-1',
+        title: "Apoyo a dificultades en el aprendizaje a niños",
+        description: "de 3 a 14 años. Programa terapéutico de apoyo a las actividades escolares para potencializar las habilidades motoras, cognitivas y de lenguaje.",
+        slug: "apoyo-aprendizaje",
+        ageRange: "3-14 años",
+        featuredImage: null,
+    },
+    {
+        id: 'default-2',
+        title: "Protocolo Intensivo Pediasuit Niños y jóvenes",
+        description: "de 2 a 18 años. Protocolo Pediasuit es un programa terapéutico intensivo para apoyar el desarrollo sicomotor a través de la estimulación de sistemas multisensoriales.",
+        slug: "pediasuit",
+        ageRange: "2-18 años",
+        featuredImage: null,
+    },
+    {
+        id: 'default-3',
+        title: "Atención temprana",
+        description: "de 0 a 3 años. Programa terapéutico integral para apoyar el desarrollo sicomotor a través de la estimulación temprana y adecuada de sistemas multisensoriales.",
+        slug: "atencion-temprana",
+        ageRange: "0-3 años",
+        featuredImage: null,
+    },
+    {
+        id: 'default-4',
+        title: "Visión a niños y jóvenes",
+        description: "de 3 a 18 años. Programa terapéutico integral para apoyar el desarrollo sicomotor y evitar en lo posible la aparición de patrones atípicos.",
+        slug: "atencion-ninos-jovenes",
+        ageRange: "3-18 años",
+        featuredImage: null,
+    }
+];
+
 export default async function ProgramasPage() {
     const payload = await getPayload({ config: configPromise });
 
-    const { docs: programs } = await payload.find({
+    const { docs: fetchedPrograms } = await payload.find({
         collection: "programs-pages",
         sort: "createdAt",
     });
+
+    const programs = (fetchedPrograms && fetchedPrograms.length > 0) ? fetchedPrograms : defaultPrograms;
 
     return (
         <main className="min-h-screen bg-white">
@@ -43,7 +80,7 @@ export default async function ProgramasPage() {
             {/* Programs List */}
             <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {programs.map((program, index) => {
+                    {programs.map((program: any, index: number) => {
                         const isEven = index % 2 === 0;
                         const imageUrl = program.featuredImage && typeof program.featuredImage === 'object'
                             ? program.featuredImage.url
@@ -51,9 +88,9 @@ export default async function ProgramasPage() {
 
                         return (
                             <div
-                                key={program.id}
+                                key={program.id || index}
                                 id={program.slug}
-                                className={`flex flex-col lg:flex-row items-center gap-12 mb-32 last:mb-0 ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"
+                                className={`scroll-mt-40 flex flex-col lg:flex-row items-center gap-12 mb-32 last:mb-0 ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"
                                     }`}
                             >
                                 {/* Image Section */}
@@ -113,7 +150,7 @@ export default async function ProgramasPage() {
                 </div>
             </section>
 
-            {/* Floating CTA or Footer simple */}
+            {/* Floating CTA */}
             <section className="bg-primary py-20 text-center text-white">
                 <h3 className="text-3xl font-bold mb-8">¿Quieres saber más sobre nuestros programas?</h3>
                 <Link

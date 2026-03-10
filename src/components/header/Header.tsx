@@ -39,13 +39,13 @@ export default function Header({ navData }: HeaderProps) {
     },
     {
       name: "Programas",
-      href: "#",
+      href: "/programas",
       hasDropdown: true,
       subLinks: [
-        { name: "Atención Temprana 0-3 Años", href: "/programas/atencion-temprana-0-3-anos" },
-        { name: "Atención A Niños Y Jóvenes 3-18 Años", href: "/programas/atencion-a-ninos-y-jovenes-3-18-anos" },
-        { name: "Apoyo A Dificultades En El Aprendizaje", href: "/programas/apoyo-a-dificultades-en-el-aprendizaje" },
-        { name: "Protocolo Intensivo Pediasuit", href: "/programas/protocolo-intensivo-pediasuit" },
+        { name: "Atención Temprana 0-3 Años", href: "/programas#atencion-temprana" },
+        { name: "Atención A Niños Y Jóvenes 3-18 Años", href: "/programas#atencion-ninos-jovenes" },
+        { name: "Apoyo A Dificultades En El Aprendizaje", href: "/programas#apoyo-aprendizaje" },
+        { name: "Protocolo Intensivo Pediasuit", href: "/programas#pediasuit" },
       ]
     },
     { name: "Apóyanos", href: "/apoyanos" },

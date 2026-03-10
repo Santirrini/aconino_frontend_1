@@ -43,7 +43,7 @@ export default function ProgramsSection({ programs }: ProgramsSectionProps) {
         }
     ];
 
-    const displayPrograms = programs || defaultPrograms;
+    const displayPrograms = (programs && programs.length > 0) ? programs : defaultPrograms;
 
     const containerVariants = {
         hidden: {},

@@ -41,7 +41,7 @@ export default async function RootLayout({
                 ...link,
                 subLinks: collectionItems.docs.map((doc: any) => ({
                     name: doc.title,
-                    href: `${prefix}/${doc.slug}`,
+                    href: link.collectionSource === 'programs-pages' ? `/programas#${doc.slug}` : `${prefix}/${doc.slug}`,
                 }))
             };
         }

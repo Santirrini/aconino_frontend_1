@@ -118,8 +118,17 @@ export const HomePage: GlobalConfig = {
               name: 'description',
               type: 'textarea',
             },
+            {
+              name: 'slug',
+              type: 'text',
+              required: true,
+              admin: {
+                description: 'Debe coincidir con un slug de la colección Programs (ej: pediasuit)',
+              },
+            },
           ],
         },
+
       ],
     },
     {
