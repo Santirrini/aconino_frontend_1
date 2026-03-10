@@ -1,3 +1,0 @@
-module.exports=[50645,a=>{a.n(a.i(27572))},43619,a=>{a.n(a.i(79962))},13718,a=>{a.n(a.i(85523))},18198,a=>{a.n(a.i(45518))},60168,a=>{"use strict";var b=a.i(7997);function c(){return(0,b.jsxs)("div",{className:"min-h-[50vh] p-8 pb-20 sm:p-20 bg-white dark:bg-gray-800 rounded-lg shadow mt-8",children:[(0,b.jsx)("h2",{className:"text-2xl font-bold mb-4 text-primary",children:"Bienvenidos al Nuevo Frontend"}),(0,b.jsx)("p",{className:"text-lg text-gray-700 dark:text-gray-300",children:"Estamos construyendo el nuevo frontend dinámico usando Next.js (App Router) y la API Headless de WordPress. El código ya está configurado con Tailwind CSS y TypeScript."})]})}a.s(["default",()=>c])}];
-
-//# sourceMappingURL=_a11b82c4._.js.map
