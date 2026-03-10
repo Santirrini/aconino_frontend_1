@@ -1,0 +1,14 @@
+import NosotrosHero from "@/components/quienes-somos/NosotrosHero";
+import NosotrosIntro from "@/components/quienes-somos/NosotrosIntro";
+import NosotrosMission from "@/components/quienes-somos/NosotrosMission";
+import NosotrosVision from "@/components/quienes-somos/NosotrosVision";
+import NosotrosHistory from "@/components/quienes-somos/NosotrosHistory";
+import NosotrosFundadores from "@/components/quienes-somos/NosotrosFundadores";
+import NosotrosSemillas from "@/components/quienes-somos/NosotrosSemillas";
+import NosotrosJuntaPhoto from "@/components/quienes-somos/NosotrosJuntaPhoto";
+import NosotrosJuntaRoles from "@/components/quienes-somos/NosotrosJuntaRoles";
+import NosotrosEquipo from "@/components/quienes-somos/NosotrosEquipo";
+
+export const metadata = {
+    title: "Quiénes Somos - Aconiño",
+    description: "Conoce más sobre la Asociación Aconiño, nuestra misi
