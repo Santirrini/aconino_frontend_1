@@ -7865,3 +7865,22 @@ It can also happen if the client has a browser extension installed which messes 
 [00:22:19.370] Server  ERROR   TypeError: fetch failed
 [00:22:19.406] Server  ERROR   TypeError: fetch failed
 [00:22:19.447] Server  ERROR   TypeError: fetch failed
+[00:22:55.721] Server  ERROR   TypeError: fetch failed
+[00:22:55.755] Server  ERROR   TypeError: fetch failed
+[00:22:55.786] Server  ERROR   TypeError: fetch failed
+[00:22:55.810] Server  ERROR   TypeError: fetch failed
+[00:22:55.832] Server  ERROR   TypeError: fetch failed
+[00:22:55.856] Server  ERROR   TypeError: fetch failed
+[00:22:56.086] Server  ERROR   TypeError: fetch failed
+[00:22:56.106] Server  ERROR   TypeError: fetch failed
+[00:22:56.132] Server  ERROR   TypeError: fetch failed
+[00:22:56.158] Server  ERROR   TypeError: fetch failed
+[00:22:56.180] Server  ERROR   TypeError: fetch failed
+[00:22:56.441] Server  ERROR   TypeError: fetch failed
+[00:22:56.688] Server  ERROR   TypeError: fetch failed
+[00:22:56.722] Server  ERROR   TypeError: fetch failed
+[00:22:56.761] Server  ERROR   TypeError: fetch failed
+[00:22:56.807] Server  ERROR   TypeError: fetch failed
+[00:22:58.838] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
+[00:22:58.843] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
+[00:22:58.847] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
