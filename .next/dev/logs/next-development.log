@@ -7601,3 +7601,11 @@ https://nextjs.org/docs/messages/module-not-found
 [00:13:53.240] Server  LOG     No new imports found, skipping writing import map
 [00:14:08.822] Server  LOG     Generating import map
 [00:14:08.829] Server  LOG     No new imports found, skipping writing import map
+[00:15:06.660] Server  LOG     Generating import map
+[00:15:07.127] Server  LOG     No new imports found, skipping writing import map
+[00:15:07.825] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
+[00:15:07.829] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
+[00:15:07.832] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
+[00:15:07.884] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
+[00:15:07.887] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
+[00:15:07.890] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/gms-trust-vp.jpg" 403

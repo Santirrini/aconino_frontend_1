@@ -33,6 +33,7 @@ export default function NewsSection({ posts }: NewsSectionProps) {
                             const dateObj = new Date(post.date);
                             const day = dateObj.getDate();
                             const month = dateObj.toLocaleDateString("es-ES", { month: "short" }).toUpperCase();
+                            const featuredImageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || `https://via.placeholder.com/400x300/e2e8f0/0c2070?text=Noticia+${post.id}`;
 
                             return (
                                 <article key={post.id} className="min-w-[300px] w-[350px] shrink-0 snap-start bg-white shadow-lg border border-gray-100 flex flex-col relative group">
@@ -40,7 +41,7 @@ export default function NewsSection({ posts }: NewsSectionProps) {
                                     {/* Thumbnail Placeholder */}
                                     <div className="relative w-full h-64 bg-gray-200 overflow-hidden">
                                         <Image
-                                            src={`https://via.placeholder.com/400x300/e2e8f0/0c2070?text=Noticia+${post.id}`}
+                                            src={featuredImageUrl}
                                             alt={post.title.rendered}
                                             fill
                                             className="object-cover group-hover:scale-105 transition-transform duration-500"

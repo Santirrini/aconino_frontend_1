@@ -727,6 +727,7 @@ function NewsSection({ posts }) {
                         const month = dateObj.toLocaleDateString("es-ES", {
                             month: "short"
                         }).toUpperCase();
+                        const featuredImageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || `https://via.placeholder.com/400x300/e2e8f0/0c2070?text=Noticia+${post.id}`;
                         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("article", {
                             className: "min-w-[300px] w-[350px] shrink-0 snap-start bg-white shadow-lg border border-gray-100 flex flex-col relative group",
                             children: [
@@ -734,13 +735,13 @@ function NewsSection({ posts }) {
                                     className: "relative w-full h-64 bg-gray-200 overflow-hidden",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
-                                            src: `https://via.placeholder.com/400x300/e2e8f0/0c2070?text=Noticia+${post.id}`,
+                                            src: featuredImageUrl,
                                             alt: post.title.rendered,
                                             fill: true,
                                             className: "object-cover group-hover:scale-105 transition-transform duration-500"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/NewsSection.tsx",
-                                            lineNumber: 42,
+                                            lineNumber: 43,
                                             columnNumber: 41
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -751,7 +752,7 @@ function NewsSection({ posts }) {
                                                     children: day
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/NewsSection.tsx",
-                                                    lineNumber: 51,
+                                                    lineNumber: 52,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -759,19 +760,19 @@ function NewsSection({ posts }) {
                                                     children: month
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/NewsSection.tsx",
-                                                    lineNumber: 52,
+                                                    lineNumber: 53,
                                                     columnNumber: 45
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/NewsSection.tsx",
-                                            lineNumber: 50,
+                                            lineNumber: 51,
                                             columnNumber: 41
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/NewsSection.tsx",
-                                    lineNumber: 41,
+                                    lineNumber: 42,
                                     columnNumber: 37
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -785,7 +786,7 @@ function NewsSection({ posts }) {
                                                     children: "Asociación Aconiño"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/NewsSection.tsx",
-                                                    lineNumber: 59,
+                                                    lineNumber: 60,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -793,20 +794,20 @@ function NewsSection({ posts }) {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["FaRegCommentDots"], {}, void 0, false, {
                                                             fileName: "[project]/src/components/NewsSection.tsx",
-                                                            lineNumber: 60,
+                                                            lineNumber: 61,
                                                             columnNumber: 113
                                                         }, this),
                                                         " 0 Comments"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/NewsSection.tsx",
-                                                    lineNumber: 60,
+                                                    lineNumber: 61,
                                                     columnNumber: 45
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/NewsSection.tsx",
-                                            lineNumber: 58,
+                                            lineNumber: 59,
                                             columnNumber: 41
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -814,7 +815,7 @@ function NewsSection({ posts }) {
                                             children: post.title.rendered
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/NewsSection.tsx",
-                                            lineNumber: 63,
+                                            lineNumber: 64,
                                             columnNumber: 41
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -824,7 +825,7 @@ function NewsSection({ posts }) {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/NewsSection.tsx",
-                                            lineNumber: 67,
+                                            lineNumber: 68,
                                             columnNumber: 41
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -838,31 +839,31 @@ function NewsSection({ posts }) {
                                                         children: "»"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/NewsSection.tsx",
-                                                        lineNumber: 74,
+                                                        lineNumber: 75,
                                                         columnNumber: 49
                                                     }, this),
                                                     " READ MORE"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/NewsSection.tsx",
-                                                lineNumber: 73,
+                                                lineNumber: 74,
                                                 columnNumber: 45
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/NewsSection.tsx",
-                                            lineNumber: 72,
+                                            lineNumber: 73,
                                             columnNumber: 41
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/NewsSection.tsx",
-                                    lineNumber: 57,
+                                    lineNumber: 58,
                                     columnNumber: 37
                                 }, this)
                             ]
                         }, post.id, true, {
                             fileName: "[project]/src/components/NewsSection.tsx",
-                            lineNumber: 38,
+                            lineNumber: 39,
                             columnNumber: 33
                         }, this);
                     }) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -870,7 +871,7 @@ function NewsSection({ posts }) {
                         children: "No se encontraron noticias recientes."
                     }, void 0, false, {
                         fileName: "[project]/src/components/NewsSection.tsx",
-                        lineNumber: 82,
+                        lineNumber: 83,
                         columnNumber: 25
                     }, this)
                 }, void 0, false, {
