@@ -1255,32 +1255,26 @@ function NosotrosFundadores() {
             image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop"
         }
     ];
-    const containerVariants = {
-        hidden: {},
-        visible: {
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
-    };
-    const itemVariants = {
-        hidden: {
-            opacity: 0,
-            y: 20,
-            scale: 0.95
-        },
-        visible: {
-            opacity: 1,
-            y: 0,
-            scale: 1,
+    const FounderCard = ({ founder, delay })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+            initial: {
+                opacity: 0,
+                y: 20,
+                scale: 0.95
+            },
+            whileInView: {
+                opacity: 1,
+                y: 0,
+                scale: 1
+            },
+            viewport: {
+                once: true,
+                margin: "-50px"
+            },
             transition: {
                 duration: 0.5,
+                delay,
                 ease: "easeOut"
-            }
-        }
-    };
-    const FounderCard = ({ founder })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-            variants: itemVariants,
+            },
             className: "flex flex-col items-center group cursor-pointer",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1292,12 +1286,12 @@ function NosotrosFundadores() {
                         className: "object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110"
                     }, void 0, false, {
                         fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                        lineNumber: 42,
+                        lineNumber: 36,
                         columnNumber: 17
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                    lineNumber: 41,
+                    lineNumber: 35,
                     columnNumber: 13
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -1305,20 +1299,20 @@ function NosotrosFundadores() {
                     children: founder.name
                 }, void 0, false, {
                     fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                    lineNumber: 49,
+                    lineNumber: 43,
                     columnNumber: 13
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "h-[2px] w-6 bg-gray-200 mt-3 group-hover:bg-accent group-hover:w-12 transition-all duration-300"
                 }, void 0, false, {
                     fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                    lineNumber: 50,
+                    lineNumber: 44,
                     columnNumber: 13
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-            lineNumber: 40,
+            lineNumber: 28,
             columnNumber: 9
         }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1329,7 +1323,7 @@ function NosotrosFundadores() {
                 className: "absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                lineNumber: 57,
+                lineNumber: 51,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1359,7 +1353,7 @@ function NosotrosFundadores() {
                                         className: "h-[2px] bg-accent w-12"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                                        lineNumber: 68,
+                                        lineNumber: 62,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1367,20 +1361,20 @@ function NosotrosFundadores() {
                                         children: "Quienes iniciaron todo"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                                        lineNumber: 69,
+                                        lineNumber: 63,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "h-[2px] bg-accent w-12"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                                        lineNumber: 70,
+                                        lineNumber: 64,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                                lineNumber: 67,
+                                lineNumber: 61,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1392,82 +1386,70 @@ function NosotrosFundadores() {
                                         children: "Fundadores"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                                        lineNumber: 73,
+                                        lineNumber: 67,
                                         columnNumber: 34
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                                lineNumber: 72,
+                                lineNumber: 66,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                        lineNumber: 60,
+                        lineNumber: 54,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex flex-col gap-16 md:gap-24 items-center",
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-                                variants: containerVariants,
-                                initial: "hidden",
-                                whileInView: "visible",
-                                viewport: {
-                                    once: true,
-                                    margin: "-50px"
-                                },
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "flex flex-wrap justify-center gap-10 md:gap-16 lg:gap-20",
                                 children: foundersRow1.map((founder, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(FounderCard, {
-                                        founder: founder
+                                        founder: founder,
+                                        delay: idx * 0.1
                                     }, idx, false, {
                                         fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                                        lineNumber: 87,
+                                        lineNumber: 75,
                                         columnNumber: 29
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                                lineNumber: 79,
+                                lineNumber: 73,
                                 columnNumber: 21
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-                                variants: containerVariants,
-                                initial: "hidden",
-                                whileInView: "visible",
-                                viewport: {
-                                    once: true,
-                                    margin: "-50px"
-                                },
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "flex flex-wrap justify-center gap-10 md:gap-16 lg:gap-20",
                                 children: foundersRow2.map((founder, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(FounderCard, {
-                                        founder: founder
+                                        founder: founder,
+                                        delay: idx * 0.1
                                     }, idx, false, {
                                         fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                                        lineNumber: 100,
+                                        lineNumber: 82,
                                         columnNumber: 29
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                                lineNumber: 92,
+                                lineNumber: 80,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                        lineNumber: 77,
+                        lineNumber: 71,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-                lineNumber: 59,
+                lineNumber: 53,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/quienes-somos/NosotrosFundadores.tsx",
-        lineNumber: 55,
+        lineNumber: 49,
         columnNumber: 9
     }, this);
 }

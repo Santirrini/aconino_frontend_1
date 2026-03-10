@@ -24,20 +24,14 @@ export default function NosotrosFundadores() {
         { name: "Rosana Bonilla", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" },
     ];
 
-    const containerVariants = {
-        hidden: {},
-        visible: {
-            transition: { staggerChildren: 0.1 }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20, scale: 0.95 },
-        visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: "easeOut" as const } }
-    };
-
-    const FounderCard = ({ founder }: { founder: Founder }) => (
-        <motion.div variants={itemVariants} className="flex flex-col items-center group cursor-pointer">
+    const FounderCard = ({ founder, delay }: { founder: Founder, delay: number }) => (
+        <motion.div 
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay, ease: "easeOut" }}
+            className="flex flex-col items-center group cursor-pointer"
+        >
             <div className="relative w-28 h-28 md:w-36 md:h-36 mb-6 rounded-full overflow-hidden border-[6px] border-white shadow-lg group-hover:shadow-2xl group-hover:border-accent group-hover:-translate-y-2 transition-all duration-300">
                 <Image
                     src={founder.image}
@@ -76,30 +70,18 @@ export default function NosotrosFundadores() {
 
                 <div className="flex flex-col gap-16 md:gap-24 items-center">
                     {/* First Row */}
-                    <motion.div 
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-50px" }}
-                        className="flex flex-wrap justify-center gap-10 md:gap-16 lg:gap-20"
-                    >
+                    <div className="flex flex-wrap justify-center gap-10 md:gap-16 lg:gap-20">
                         {foundersRow1.map((founder, idx) => (
-                            <FounderCard key={idx} founder={founder} />
+                            <FounderCard key={idx} founder={founder} delay={idx * 0.1} />
                         ))}
-                    </motion.div>
+                    </div>
                     
                     {/* Second Row */}
-                    <motion.div 
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-50px" }}
-                        className="flex flex-wrap justify-center gap-10 md:gap-16 lg:gap-20"
-                    >
+                    <div className="flex flex-wrap justify-center gap-10 md:gap-16 lg:gap-20">
                         {foundersRow2.map((founder, idx) => (
-                            <FounderCard key={idx} founder={founder} />
+                            <FounderCard key={idx} founder={founder} delay={idx * 0.1} />
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>

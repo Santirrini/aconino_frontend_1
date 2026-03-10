@@ -466,3 +466,50 @@ It can also happen if the client has a browser extension installed which messes 
 [00:25:51.179] Browser WARN    Image with src "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
 [00:25:52.302] Browser WARN    Image with src "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
 [00:26:10.881] Browser WARN    Image with src "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1968&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:28:36.049] Server  LOG     ✓ Compiled in 98ms
+[00:33:08.399] Server  LOG     ✓ Compiled in 508ms
+[00:36:40.925] Server  LOG     Generating import map
+[00:36:41.091] Server  LOG     No new imports found, skipping writing import map
+[00:36:42.278] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:36:42.829] Server  ERROR   ⨯ "upstream image response failed for" "https://images.unsplash.com/photo-1473451159981-d13eb22d2f78?q=80&w=200&auto=format&fit=crop" 404
+[00:36:42.844] Server  ERROR   ⨯ "upstream image response failed for" "https://images.unsplash.com/photo-1601000676450-9bb32dce30eb?q=80&w=200&auto=format&fit=crop" 404
+[00:36:42.847] Server  ERROR   ⨯ "upstream image response failed for" "https://images.unsplash.com/photo-1541818167362-dcc7ae6a2e88?q=80&w=200&auto=format&fit=crop" 404
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1968&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=2127&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.667] Browser WARN    Image with src "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:36:43.814] Server  ERROR   ⨯ "upstream image response failed for" "https://images.unsplash.com/photo-1513904677712-4aa82dce6961?q=80&w=200&auto=format&fit=crop" 404
+[00:36:48.713] Browser WARN    Image with src "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:36:49.204] Browser WARN    Image with src "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:38:18.399] Server  LOG     ✓ Compiled in 144ms
+[00:41:49.917] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:41:50.337] Server  ERROR   TypeError: fetch failed
+[00:41:57.417] Server  ERROR   ⨯ "upstream image response failed for" "https://images.unsplash.com/photo-1601000676450-9bb32dce30eb?q=80&w=200&auto=format&fit=crop" 404
+[00:41:57.472] Server  ERROR   ⨯ "upstream image response failed for" "https://images.unsplash.com/photo-1541818167362-dcc7ae6a2e88?q=80&w=200&auto=format&fit=crop" 404
+[00:41:57.495] Server  ERROR   ⨯ "upstream image response failed for" "https://images.unsplash.com/photo-1513904677712-4aa82dce6961?q=80&w=200&auto=format&fit=crop" 404
+[00:41:57.515] Server  ERROR   ⨯ "upstream image response failed for" "https://images.unsplash.com/photo-1473451159981-d13eb22d2f78?q=80&w=200&auto=format&fit=crop" 404
+[00:43:05.566] Server  ERROR   TypeError: fetch failed
+[00:43:06.364] Server  ERROR   TypeError: fetch failed
+[00:43:08.482] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
+[00:43:08.486] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
+[00:43:08.490] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
+[00:43:08.496] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
+[00:43:08.501] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
+[00:43:09.121] Server  ERROR   TypeError: fetch failed
+[00:43:10.442] Server  ERROR   TypeError: fetch failed
+[00:43:10.478] Server  ERROR   TypeError: fetch failed
+[00:43:10.505] Server  ERROR   TypeError: fetch failed
+[00:43:10.539] Server  ERROR   TypeError: fetch failed
