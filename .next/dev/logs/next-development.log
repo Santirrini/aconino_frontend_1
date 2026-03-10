@@ -7884,3 +7884,90 @@ It can also happen if the client has a browser extension installed which messes 
 [00:22:58.838] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
 [00:22:58.843] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
 [00:22:58.847] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
+[00:23:59.449] Server  ERROR   TypeError: fetch failed
+[00:23:59.460] Server  ERROR   TypeError: fetch failed
+[00:23:59.471] Server  ERROR   TypeError: fetch failed
+[00:23:59.533] Server  ERROR   TypeError: fetch failed
+[00:23:59.543] Server  ERROR   TypeError: fetch failed
+[00:23:59.561] Server  ERROR   TypeError: fetch failed
+[00:23:59.604] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
+[00:23:59.605] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
+[00:23:59.606] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
+[00:23:59.636] Server  ERROR   TypeError: fetch failed
+[00:23:59.646] Server  ERROR   TypeError: fetch failed
+[00:23:59.659] Server  ERROR   TypeError: fetch failed
+[00:23:59.671] Server  ERROR   TypeError: fetch failed
+[00:23:59.684] Server  ERROR   TypeError: fetch failed
+[00:23:59.687] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
+[00:23:59.773] Server  ERROR   TypeError: fetch failed
+[00:23:59.784] Server  ERROR   TypeError: fetch failed
+[00:23:59.788] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
+[00:23:59.804] Server  ERROR   TypeError: fetch failed
+[00:23:59.806] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
+[00:23:59.818] Server  ERROR   TypeError: fetch failed
+[00:23:59.887] Server  ERROR   TypeError: fetch failed
+[00:24:01.451] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:24:03.274] Server  ERROR   TypeError: fetch failed
+[00:24:03.445] Server  ERROR   TypeError: fetch failed
+[00:24:03.448] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:24:03.661] Browser WARN    Image with src "https://via.placeholder.com/600x450/e2e8f0/0c2070?text=Foto+Equipo+Aconiño" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:24:04.821] Server  ERROR   TypeError: fetch failed
+[00:24:10.666] Server  ERROR   TypeError: fetch failed
+[00:24:11.218] Server  ERROR   TypeError: fetch failed
+[00:24:11.230] Server  ERROR   TypeError: fetch failed
+[00:24:11.240] Server  ERROR   TypeError: fetch failed
+[00:24:11.252] Server  ERROR   TypeError: fetch failed
+[00:25:54.475] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:26:08.639] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:26:10.715] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:26:11.095] Server  ERROR   TypeError: fetch failed
+[00:26:11.107] Server  ERROR   TypeError: fetch failed
+[00:26:14.459] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:26:16.205] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:26:16.609] Server  ERROR   TypeError: fetch failed
+[00:26:16.622] Server  ERROR   TypeError: fetch failed
+[00:26:17.520] Server  ERROR   TypeError: fetch failed
+[00:26:18.373] Server  ERROR   TypeError: fetch failed
+[00:26:18.428] Server  ERROR   TypeError: fetch failed
+[00:26:18.441] Server  ERROR   TypeError: fetch failed
+[00:26:18.452] Server  ERROR   TypeError: fetch failed
+[00:26:18.464] Server  ERROR   TypeError: fetch failed
+[00:26:44.009] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:26:45.794] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:26:46.184] Server  ERROR   TypeError: fetch failed
+[00:26:46.197] Server  ERROR   TypeError: fetch failed
+[00:26:46.210] Server  ERROR   TypeError: fetch failed
+[00:26:48.887] Server  ERROR   TypeError: fetch failed
+[00:26:48.946] Server  ERROR   TypeError: fetch failed
+[00:26:48.957] Server  ERROR   TypeError: fetch failed
+[00:26:48.967] Server  ERROR   TypeError: fetch failed
+[00:26:48.980] Server  ERROR   TypeError: fetch failed
+[00:27:18.411] Server  LOG     Generating import map
+[00:27:18.419] Server  LOG     No new imports found, skipping writing import map
+[00:27:18.938] Server  LOG     ✓ Compiled in 297ms
+[00:27:20.202] Server  ERROR   TypeError: fetch failed
+[00:27:20.231] Server  ERROR   TypeError: fetch failed
+[00:27:20.257] Server  ERROR   TypeError: fetch failed
+[00:27:20.384] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
+[00:27:20.387] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
+[00:27:20.436] Server  ERROR   TypeError: fetch failed
+[00:27:20.450] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/gms-trust-vp.jpg" 403
+[00:27:20.488] Server  ERROR   TypeError: fetch failed
+[00:27:20.496] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
+[00:27:20.502] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
+[00:27:20.507] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
+[00:27:20.674] Server  ERROR   TypeError: fetch failed
+[00:27:20.699] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:27:20.740] Server  ERROR   TypeError: fetch failed
+[00:27:20.774] Server  ERROR   TypeError: fetch failed
+[00:27:21.295] Browser WARN    Image with src "https://via.placeholder.com/600x450/e2e8f0/0c2070?text=Foto+Equipo+Aconiño" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:27:21.295] Browser WARN    Image with src "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:27:21.295] Browser WARN    Image with src "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:27:21.295] Browser WARN    Image with src "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:27:21.295] Browser WARN    Image with src "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:27:21.295] Browser WARN    Image with src "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:27:21.295] Browser WARN    Image with src "https://aconino.org/wp-content/uploads/2023/11/gms-trust-vp.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:27:21.295] Browser WARN    Image with src "https://via.placeholder.com/200/ffffff/0c2070?text=Logo+1" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:27:21.295] Browser WARN    Image with src "https://via.placeholder.com/200/ffffff/0c2070?text=Logo+2" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:27:21.295] Browser WARN    Image with src "https://via.placeholder.com/200/ffffff/0c2070?text=Logo+3" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:27:21.295] Browser WARN    Image with src "https://via.placeholder.com/200/ffffff/0c2070?text=Logo+4" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
