@@ -795,6 +795,10 @@
     display: inline-flex;
   }
 
+  .aspect-\[2\/1\] {
+    aspect-ratio: 2;
+  }
+
   .aspect-\[3\/4\] {
     aspect-ratio: 3 / 4;
   }
@@ -1258,6 +1262,11 @@
     border-bottom-width: 4px;
   }
 
+  .border-b-8 {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 8px;
+  }
+
   .border-l {
     border-left-style: var(--tw-border-style);
     border-left-width: 1px;
@@ -1541,6 +1550,10 @@
 
   .object-center {
     object-position: center;
+  }
+
+  .object-top {
+    object-position: top;
   }
 
   .p-2 {
@@ -2545,6 +2558,12 @@
   @media (min-width: 48rem) {
     .md\:aspect-\[3\/1\] {
       aspect-ratio: 3;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:aspect-\[21\/9\] {
+      aspect-ratio: 21 / 9;
     }
   }
 

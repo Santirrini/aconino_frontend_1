@@ -458,3 +458,16 @@ It can also happen if the client has a browser extension installed which messes 
 [00:20:20.592] Server  LOG     ✓ Compiled in 731ms
 [00:20:21.126] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [00:20:22.051] Server  LOG     ✓ Compiled in 342ms
+[00:20:51.049] Server  LOG     ✓ Compiled in 160ms
+[00:21:38.453] Server  ERROR   TypeError: fetch failed
+[00:21:39.946] Server  ERROR   TypeError: fetch failed
+[00:21:41.538] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
+[00:21:41.544] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
+[00:21:41.551] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
+[00:21:41.558] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
+[00:21:41.570] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
+[00:21:42.787] Server  ERROR   TypeError: fetch failed
+[00:21:44.421] Server  ERROR   TypeError: fetch failed
+[00:21:44.457] Server  ERROR   TypeError: fetch failed
+[00:21:44.490] Server  ERROR   TypeError: fetch failed
+[00:21:44.531] Server  ERROR   TypeError: fetch failed

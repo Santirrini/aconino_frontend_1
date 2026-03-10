@@ -11,4 +11,22 @@ import NosotrosEquipo from "@/components/quienes-somos/NosotrosEquipo";
 
 export const metadata = {
     title: "Quiénes Somos - Aconiño",
-    description: "Conoce más sobre la Asociación Aconiño, nuestra misi
+    description: "Conoce más sobre la Asociación Aconiño, nuestra misión, visión e historia impulsando la neurorehabilitación infantil en Colombia.",
+};
+
+export default function QuienesSomosPage() {
+    return (
+        <main className="min-h-screen bg-transparent">
+            <NosotrosHero />
+            <NosotrosIntro />
+            <NosotrosMission />
+            <NosotrosVision />
+            <NosotrosHistory />
+            <NosotrosFundadores />
+            <NosotrosSemillas />
+            <NosotrosJuntaPhoto />
+            <NosotrosJuntaRoles />
+            <NosotrosEquipo />
+        </main>
+    );
+}
