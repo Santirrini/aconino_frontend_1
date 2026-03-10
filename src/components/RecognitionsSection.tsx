@@ -1,6 +1,26 @@
 import Image from "next/image";
 
-export default function RecognitionsSection() {
+interface RecognitionItem {
+    title: string;
+    meta: string;
+    imageUrl?: string;
+    description?: string;
+}
+
+interface RecognitionsSectionProps {
+    recognitions?: RecognitionItem[];
+}
+
+export default function RecognitionsSection({ recognitions }: RecognitionsSectionProps) {
+    const defaultRecognitions: RecognitionItem[] = [
+        { title: "Fundación Bolívar Davivienda", meta: "Noviembre de 2017" },
+        { title: "Comisión Segunda Constitucional", meta: "Diciembre de 2025" },
+        { title: "Compensar", meta: "Noviembre 2017" },
+        { title: "Concejo de Bogotá", meta: "Cruz de Oro" }
+    ];
+
+    const displayRecognitions = recognitions || defaultRecognitions;
+
     return (
         <section className="w-full py-16 md:py-24 bg-gray-50 relative overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-4 md:px-8 text-center relative z-10">
@@ -15,24 +35,22 @@ export default function RecognitionsSection() {
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-                    {/* Placeholder content mimicking the diplomas */}
-                    {[
-                        { title: "Fundación Bolívar Davivienda", meta: "Noviembre de 2017" },
-                        { title: "Comisión Segunda Constitucional", meta: "Diciembre de 2025" },
-                        { title: "Compensar", meta: "Noviembre 2017" },
-                        { title: "Concejo de Bogotá", meta: "Cruz de Oro" }
-                    ].map((award, idx) => (
-                        <div key={idx} className="bg-white p-8 shadow-sm hover:shadow-xl transition-shadow border-4 border-gray-100 flex flex-col items-center text-center">
-                            <div className="w-24 h-24 relative mb-6">
-                                <Image src={`https://via.placeholder.com/150/ffffff/0c2070?text=Logo+${idx + 1}`} alt="Premio" fill className="object-contain" />
+                    {displayRecognitions.map((award, idx) => {
+                        const imgUrl = award.imageUrl || `https://via.placeholder.com/150/ffffff/0c2070?text=Logo+${idx + 1}`;
+                        const desc = award.description || "Certifica que la Asociación Centro de Atención para Niños ha demostrado excelencia...";
+                        return (
+                            <div key={idx} className="bg-white p-8 shadow-sm hover:shadow-xl transition-shadow border-4 border-gray-100 flex flex-col items-center text-center">
+                                <div className="w-24 h-24 relative mb-6">
+                                    <Image src={imgUrl} alt="Premio" fill className="object-contain" />
+                                </div>
+                                <h4 className="font-bold text-sm text-gray-900 mb-4">{award.title}</h4>
+                                <p className="text-xs text-gray-500">
+                                    {desc}
+                                </p>
+                                <span className="font-bold text-xs mt-4 text-gray-400">{award.meta}</span>
                             </div>
-                            <h4 className="font-bold text-sm text-gray-900 mb-4">{award.title}</h4>
-                            <p className="text-xs text-gray-500">
-                                Certifica que la Asociación Centro de Atención para Niños ha demostrado excelencia...
-                            </p>
-                            <span className="font-bold text-xs mt-4 text-gray-400">{award.meta}</span>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
 
             </div>

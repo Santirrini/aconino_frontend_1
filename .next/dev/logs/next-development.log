@@ -7609,3 +7609,192 @@ https://nextjs.org/docs/messages/module-not-found
 [00:15:07.884] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
 [00:15:07.887] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
 [00:15:07.890] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/gms-trust-vp.jpg" 403
+[00:15:30.599] Server  LOG     Generating import map
+[00:15:30.605] Server  LOG     No new imports found, skipping writing import map
+[00:15:53.075] Server  LOG     Generating import map
+[00:15:53.081] Server  LOG     No new imports found, skipping writing import map
+[00:16:23.129] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:23.145] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
+[00:16:23.147] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
+[00:16:23.149] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
+[00:16:23.153] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
+[00:16:23.155] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
+[00:16:23.288] Browser WARN    Image with src "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:16:23.288] Browser WARN    Image with src "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:16:23.288] Browser WARN    Image with src "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:16:23.288] Browser WARN    Image with src "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:16:23.288] Browser WARN    Image with src "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:16:23.565] Server  ERROR   TypeError: fetch failed
+[00:16:23.580] Server  ERROR   TypeError: fetch failed
+[00:16:23.596] Server  ERROR   TypeError: fetch failed
+[00:16:23.612] Server  ERROR   TypeError: fetch failed
+[00:16:23.631] Server  ERROR   TypeError: fetch failed
+[00:16:23.644] Server  ERROR   TypeError: fetch failed
+[00:16:23.783] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/gms-trust-vp.jpg" 403
+[00:16:26.978] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:56.278] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:56.634] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <div className="gutter gut..." ref={undefined}>
+      <ix>
+      ...
+        <Ou draggable={{...}} onClick={function onClick} pills={[...]}>
+          <Vr className="pill-selector" ids={[...]} onDragEnd={function onDragEnd}>
+            <DndContext collisionDetection={function closestCenter} id="_R_mkql7in..." onDragEnd={function h} ...>
+              <p2 id="_R_mkql7in..." items={[...]}>
+                <div className="pill-selector" ref={function useNodeRef.useCallback[setNodeRef]}>
+                  <yt alignIcon="left" aria-checked={true} className="pill-selec..." draggable={true} icon={<EP>} ...>
+                    <m$ alignIcon="left" aria-checked={true} className="pill-selec..." draggable={true} icon={<EP>} ...>
+                      <gS alignIcon="left" aria-checked={true} className="pill-selec..." draggable={true} icon={<EP>} ...>
+                        <button
+                          onMouseDown={function useSyntheticListeners.useMemo}
+                          onTouchStart={function useSyntheticListeners.useMemo}
+                          onKeyDown={function useSyntheticListeners.useMemo}
+                          role="button"
+                          tabIndex={0}
+                          aria-disabled={false}
+                          aria-pressed={undefined}
+                          aria-roledescription="sortable"
++                         aria-describedby="_R_mkql7inebn5ripkr9etb_"
+-                         aria-describedby="_R_2qjakuatpesneb6jd9etb_"
+                          style={{transform:null}}
+                          ref={function}
+                          aria-checked={true}
+                          aria-controls={undefined}
+                          aria-expanded={undefined}
+                          aria-label={undefined}
+                          className="pill pill--style-light pill--size-small pill-selector__pill pill-selector__pill--..."
+                          disabled={true}
+                          href={null}
+                          id="email"
+                          onClick={function Ou.useMemo[n]}
+                          type="button"
+                        >
+                  <yt alignIcon="left" aria-checked={true} className="pill-selec..." draggable={true} icon={<EP>} ...>
+                    <m$ alignIcon="left" aria-checked={true} className="pill-selec..." draggable={true} icon={<EP>} ...>
+                      <gS alignIcon="left" aria-checked={true} className="pill-selec..." draggable={true} icon={<EP>} ...>
+                        <button
+                          onMouseDown={function useSyntheticListeners.useMemo}
+                          onTouchStart={function useSyntheticListeners.useMemo}
+                          onKeyDown={function useSyntheticListeners.useMemo}
+                          role="button"
+                          tabIndex={0}
+                          aria-disabled={false}
+                          aria-pressed={undefined}
+                          aria-roledescription="sortable"
++                         aria-describedby="_R_mkql7inebn5ripkr9etb_"
+-                         aria-describedby="_R_2qjakuatpesneb6jd9etb_"
+                          style={{transform:null}}
+                          ref={function}
+                          aria-checked={true}
+                          aria-controls={undefined}
+                          aria-expanded={undefined}
+                          aria-label={undefined}
+                          className="pill pill--style-light pill--size-small pill-selector__pill pill-selector__pill--..."
+                          disabled={true}
+                          href={null}
+                          id="updatedAt"
+                          onClick={function Ou.useMemo[n]}
+                          type="button"
+                        >
+                  <yt alignIcon="left" aria-checked={true} className="pill-selec..." draggable={true} icon={<EP>} ...>
+                    <m$ alignIcon="left" aria-checked={true} className="pill-selec..." draggable={true} icon={<EP>} ...>
+                      <gS alignIcon="left" aria-checked={true} className="pill-selec..." draggable={true} icon={<EP>} ...>
+                        <button
+                          onMouseDown={function useSyntheticListeners.useMemo}
+                          onTouchStart={function useSyntheticListeners.useMemo}
+                          onKeyDown={function useSyntheticListeners.useMemo}
+                          role="button"
+                          tabIndex={0}
+                          aria-disabled={false}
+                          aria-pressed={undefined}
+                          aria-roledescription="sortable"
++                         aria-describedby="_R_mkql7inebn5ripkr9etb_"
+-                         aria-describedby="_R_2qjakuatpesneb6jd9etb_"
+                          style={{transform:null}}
+                          ref={function}
+                          aria-checked={true}
+                          aria-controls={undefined}
+                          aria-expanded={undefined}
+                          aria-label={undefined}
+                          className="pill pill--style-light pill--size-small pill-selector__pill pill-selector__pill--..."
+                          disabled={true}
+                          href={null}
+                          id="createdAt"
+                          onClick={function Ou.useMemo[n]}
+                          type="button"
+                        >
+                  <yt alignIcon="left" aria-checked={true} className="pill-selec..." draggable={true} icon={<EP>} id="id" ...>
+                    <m$ alignIcon="left" aria-checked={true} className="pill-selec..." draggable={true} icon={<EP>} ...>
+                      <gS alignIcon="left" aria-checked={true} className="pill-selec..." draggable={true} icon={<EP>} ...>
+                        <button
+                          onMouseDown={function useSyntheticListeners.useMemo}
+                          onTouchStart={function useSyntheticListeners.useMemo}
+                          onKeyDown={function useSyntheticListeners.useMemo}
+                          role="button"
+                          tabIndex={0}
+                          aria-disabled={false}
+                          aria-pressed={undefined}
+                          aria-roledescription="sortable"
++                         aria-describedby="_R_mkql7inebn5ripkr9etb_"
+-                         aria-describedby="_R_2qjakuatpesneb6jd9etb_"
+                          style={{transform:null}}
+                          ref={function}
+                          aria-checked={true}
+                          aria-controls={undefined}
+                          aria-expanded={undefined}
+                          aria-label={undefined}
+                          className="pill pill--style-light pill--size-small pill-selector__pill pill-selector__pill--..."
+                          disabled={true}
+                          href={null}
+                          id="id"
+                          onClick={function Ou.useMemo[n]}
+                          type="button"
+                        >
+              ...
+              ...
+      <div className="collection...">
+        <zu>
+          <div className="table-wrap">
+            <TC columns={[...]} data={[...]}>
+              <div className="table">
+                <table cellPadding="0" cellSpacing="0">
+                  <thead>
+                  <tbody>
+                    <tr className="row-1" data-id={1}>
+                      <td className="cell-_select">
+                        <dte rowData={{id:1, ...}}>
+                          <go checked={false} className="select-row..." onToggle={function u}>
+                            <div className="select-row...">
+                              <div className="checkbox-i...">
+                                <input
+                                  aria-label=""
+                                  aria-labelledby={undefined}
+                                  checked={false}
+                                  disabled={true}
++                                 id="_R_3l4ql7inebn5ripkr9etb_"
+-                                 id="_R_ekjakuatpesneb6jd9etb_"
+                                  name={undefined}
+                                  onChange={function u}
+                                  ref={undefined}
+                                  required={undefined}
+                                  title={undefined}
+                                  type="checkbox"
+                                >
+                                ...
+                              ...
+                      ...
+      ...
+
+[00:17:36.602] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

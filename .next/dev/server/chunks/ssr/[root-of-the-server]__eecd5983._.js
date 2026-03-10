@@ -364,8 +364,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$ico
 ;
 ;
 ;
-function ProgramsSection() {
-    const programs = [
+function ProgramsSection({ programs }) {
+    const defaultPrograms = [
         {
             title: "Apoyo a dificultades en el aprendizaje a niños",
             desc: "de 3 a 14 años. Programa terapéutico de...",
@@ -373,7 +373,7 @@ function ProgramsSection() {
                 className: "text-4xl text-secondary"
             }, void 0, false, {
                 fileName: "[project]/src/components/ProgramsSection.tsx",
-                lineNumber: 9,
+                lineNumber: 19,
                 columnNumber: 19
             }, this)
         },
@@ -384,7 +384,7 @@ function ProgramsSection() {
                 className: "text-4xl text-secondary"
             }, void 0, false, {
                 fileName: "[project]/src/components/ProgramsSection.tsx",
-                lineNumber: 14,
+                lineNumber: 24,
                 columnNumber: 19
             }, this)
         },
@@ -395,7 +395,7 @@ function ProgramsSection() {
                 className: "text-4xl text-accent"
             }, void 0, false, {
                 fileName: "[project]/src/components/ProgramsSection.tsx",
-                lineNumber: 19,
+                lineNumber: 29,
                 columnNumber: 19
             }, this)
         },
@@ -406,11 +406,12 @@ function ProgramsSection() {
                 className: "text-4xl text-accent"
             }, void 0, false, {
                 fileName: "[project]/src/components/ProgramsSection.tsx",
-                lineNumber: 24,
+                lineNumber: 34,
                 columnNumber: 19
             }, this)
         }
     ];
+    const displayPrograms = programs || defaultPrograms;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         className: "w-full py-16 bg-gray-50 relative overflow-hidden",
         children: [
@@ -430,20 +431,20 @@ function ProgramsSection() {
                                             children: "Aconino"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ProgramsSection.tsx",
-                                            lineNumber: 37,
+                                            lineNumber: 49,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "h-px bg-accent w-16"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ProgramsSection.tsx",
-                                            lineNumber: 38,
+                                            lineNumber: 50,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/ProgramsSection.tsx",
-                                    lineNumber: 36,
+                                    lineNumber: 48,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -451,7 +452,7 @@ function ProgramsSection() {
                                     children: "Nuestros Programas"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ProgramsSection.tsx",
-                                    lineNumber: 40,
+                                    lineNumber: 52,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -459,18 +460,18 @@ function ProgramsSection() {
                                     children: "Programa terapéutico integral para apoyar el desarrollo psicomotor."
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ProgramsSection.tsx",
-                                    lineNumber: 43,
+                                    lineNumber: 55,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/ProgramsSection.tsx",
-                            lineNumber: 35,
+                            lineNumber: 47,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "w-full lg:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6",
-                            children: programs.map((prog, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            children: displayPrograms.map((prog, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "bg-white border-b-4 border-white hover:border-accent transition-colors duration-300 shadow-sm hover:shadow-lg p-8 flex flex-col group relative",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -478,7 +479,7 @@ function ProgramsSection() {
                                             children: prog.title
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ProgramsSection.tsx",
-                                            lineNumber: 52,
+                                            lineNumber: 64,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -486,7 +487,7 @@ function ProgramsSection() {
                                             children: prog.desc
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ProgramsSection.tsx",
-                                            lineNumber: 53,
+                                            lineNumber: 65,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -494,10 +495,16 @@ function ProgramsSection() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "text-secondary group-hover:text-accent transition-colors",
-                                                    children: prog.icon
+                                                    children: prog.icon || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["FaGraduationCap"], {
+                                                        className: "text-4xl text-secondary"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/ProgramsSection.tsx",
+                                                        lineNumber: 69,
+                                                        columnNumber: 55
+                                                    }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/ProgramsSection.tsx",
-                                                    lineNumber: 56,
+                                                    lineNumber: 68,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -506,48 +513,48 @@ function ProgramsSection() {
                                                     children: "»"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/ProgramsSection.tsx",
-                                                    lineNumber: 59,
+                                                    lineNumber: 71,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/ProgramsSection.tsx",
-                                            lineNumber: 55,
+                                            lineNumber: 67,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, idx, true, {
                                     fileName: "[project]/src/components/ProgramsSection.tsx",
-                                    lineNumber: 51,
+                                    lineNumber: 63,
                                     columnNumber: 29
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/src/components/ProgramsSection.tsx",
-                            lineNumber: 49,
+                            lineNumber: 61,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/ProgramsSection.tsx",
-                    lineNumber: 33,
+                    lineNumber: 45,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/ProgramsSection.tsx",
-                lineNumber: 30,
+                lineNumber: 42,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute inset-0 z-0 bg-opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/always-grey.png')] mix-blend-multiply opacity-10"
             }, void 0, false, {
                 fileName: "[project]/src/components/ProgramsSection.tsx",
-                lineNumber: 70,
+                lineNumber: 82,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/ProgramsSection.tsx",
-        lineNumber: 29,
+        lineNumber: 41,
         columnNumber: 9
     }, this);
 }
@@ -903,7 +910,26 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-rsc] (ecmascript)");
 ;
 ;
-function RecognitionsSection() {
+function RecognitionsSection({ recognitions }) {
+    const defaultRecognitions = [
+        {
+            title: "Fundación Bolívar Davivienda",
+            meta: "Noviembre de 2017"
+        },
+        {
+            title: "Comisión Segunda Constitucional",
+            meta: "Diciembre de 2025"
+        },
+        {
+            title: "Compensar",
+            meta: "Noviembre 2017"
+        },
+        {
+            title: "Concejo de Bogotá",
+            meta: "Cruz de Oro"
+        }
+    ];
+    const displayRecognitions = recognitions || defaultRecognitions;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         className: "w-full py-16 md:py-24 bg-gray-50 relative overflow-hidden",
         children: [
@@ -918,20 +944,20 @@ function RecognitionsSection() {
                                 children: "Aconino"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/RecognitionsSection.tsx",
-                                lineNumber: 9,
+                                lineNumber: 29,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "h-px bg-accent w-16"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/RecognitionsSection.tsx",
-                                lineNumber: 10,
+                                lineNumber: 30,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/RecognitionsSection.tsx",
-                        lineNumber: 8,
+                        lineNumber: 28,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -939,87 +965,74 @@ function RecognitionsSection() {
                         children: "Nuestros Reconocimientos"
                     }, void 0, false, {
                         fileName: "[project]/src/components/RecognitionsSection.tsx",
-                        lineNumber: 13,
+                        lineNumber: 33,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative",
-                        children: [
-                            {
-                                title: "Fundación Bolívar Davivienda",
-                                meta: "Noviembre de 2017"
-                            },
-                            {
-                                title: "Comisión Segunda Constitucional",
-                                meta: "Diciembre de 2025"
-                            },
-                            {
-                                title: "Compensar",
-                                meta: "Noviembre 2017"
-                            },
-                            {
-                                title: "Concejo de Bogotá",
-                                meta: "Cruz de Oro"
-                            }
-                        ].map((award, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        children: displayRecognitions.map((award, idx)=>{
+                            const imgUrl = award.imageUrl || `https://via.placeholder.com/150/ffffff/0c2070?text=Logo+${idx + 1}`;
+                            const desc = award.description || "Certifica que la Asociación Centro de Atención para Niños ha demostrado excelencia...";
+                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "bg-white p-8 shadow-sm hover:shadow-xl transition-shadow border-4 border-gray-100 flex flex-col items-center text-center",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "w-24 h-24 relative mb-6",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
-                                            src: `https://via.placeholder.com/150/ffffff/0c2070?text=Logo+${idx + 1}`,
+                                            src: imgUrl,
                                             alt: "Premio",
                                             fill: true,
                                             className: "object-contain"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/RecognitionsSection.tsx",
-                                            lineNumber: 27,
-                                            columnNumber: 33
+                                            lineNumber: 44,
+                                            columnNumber: 37
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/RecognitionsSection.tsx",
-                                        lineNumber: 26,
-                                        columnNumber: 29
+                                        lineNumber: 43,
+                                        columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
                                         className: "font-bold text-sm text-gray-900 mb-4",
                                         children: award.title
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/RecognitionsSection.tsx",
-                                        lineNumber: 29,
-                                        columnNumber: 29
+                                        lineNumber: 46,
+                                        columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "text-xs text-gray-500",
-                                        children: "Certifica que la Asociación Centro de Atención para Niños ha demostrado excelencia..."
+                                        children: desc
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/RecognitionsSection.tsx",
-                                        lineNumber: 30,
-                                        columnNumber: 29
+                                        lineNumber: 47,
+                                        columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "font-bold text-xs mt-4 text-gray-400",
                                         children: award.meta
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/RecognitionsSection.tsx",
-                                        lineNumber: 33,
-                                        columnNumber: 29
+                                        lineNumber: 50,
+                                        columnNumber: 33
                                     }, this)
                                 ]
                             }, idx, true, {
                                 fileName: "[project]/src/components/RecognitionsSection.tsx",
-                                lineNumber: 25,
-                                columnNumber: 25
-                            }, this))
+                                lineNumber: 42,
+                                columnNumber: 29
+                            }, this);
+                        })
                     }, void 0, false, {
                         fileName: "[project]/src/components/RecognitionsSection.tsx",
-                        lineNumber: 17,
+                        lineNumber: 37,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/RecognitionsSection.tsx",
-                lineNumber: 6,
+                lineNumber: 26,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1031,18 +1044,18 @@ function RecognitionsSection() {
                     className: "object-cover grayscale"
                 }, void 0, false, {
                     fileName: "[project]/src/components/RecognitionsSection.tsx",
-                    lineNumber: 42,
+                    lineNumber: 60,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/RecognitionsSection.tsx",
-                lineNumber: 41,
+                lineNumber: 59,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/RecognitionsSection.tsx",
-        lineNumber: 5,
+        lineNumber: 25,
         columnNumber: 9
     }, this);
 }

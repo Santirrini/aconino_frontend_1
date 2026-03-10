@@ -1,8 +1,18 @@
 import Link from "next/link";
 import { FaGraduationCap } from "react-icons/fa"; // Using generic icons for now
 
-export default function ProgramsSection() {
-    const programs = [
+interface ProgramItem {
+    title: string;
+    desc: string;
+    icon?: React.ReactNode;
+}
+
+interface ProgramsSectionProps {
+    programs?: ProgramItem[];
+}
+
+export default function ProgramsSection({ programs }: ProgramsSectionProps) {
+    const defaultPrograms = [
         {
             title: "Apoyo a dificultades en el aprendizaje a niños",
             desc: "de 3 a 14 años. Programa terapéutico de...",
@@ -24,6 +34,8 @@ export default function ProgramsSection() {
             icon: <FaGraduationCap className="text-4xl text-accent" />
         }
     ];
+
+    const displayPrograms = programs || defaultPrograms;
 
     return (
         <section className="w-full py-16 bg-gray-50 relative overflow-hidden">
@@ -47,14 +59,14 @@ export default function ProgramsSection() {
 
                     {/* Right Column Cards */}
                     <div className="w-full lg:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {programs.map((prog, idx) => (
+                        {displayPrograms.map((prog, idx) => (
                             <div key={idx} className="bg-white border-b-4 border-white hover:border-accent transition-colors duration-300 shadow-sm hover:shadow-lg p-8 flex flex-col group relative">
                                 <h3 className="text-lg font-bold text-primary mb-4 min-h-[56px]">{prog.title}</h3>
                                 <p className="text-sm text-gray-400 mb-8 flex-1">{prog.desc}</p>
 
                                 <div className="flex items-center justify-between mt-auto">
                                     <div className="text-secondary group-hover:text-accent transition-colors">
-                                        {prog.icon}
+                                        {prog.icon || <FaGraduationCap className="text-4xl text-secondary" />}
                                     </div>
                                     <Link href="/programas" className="w-10 h-10 bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-secondary hover:text-white transition-colors">
                                         &raquo;
