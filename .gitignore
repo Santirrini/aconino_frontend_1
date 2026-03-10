@@ -18,6 +18,14 @@ media/
 # misc
 .DS_Store
 *.pem
+build_output.txt
+categories.md
+media.md
+post.md
+wp_son.md
+check-programs.ts
+tsconfig.tsbuildinfo
+next-env.d.ts
 
 # debug
 npm-debug.log*
@@ -30,7 +38,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
