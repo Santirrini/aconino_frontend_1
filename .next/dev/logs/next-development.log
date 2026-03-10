@@ -384,3 +384,16 @@ It can also happen if the client has a browser extension installed which messes 
 [00:16:46.850] Server  LOG     No new imports found, skipping writing import map
 [00:16:49.004] Server  LOG     Generating import map
 [00:16:49.069] Server  LOG     No new imports found, skipping writing import map
+[00:20:36.648] Server  LOG     ✓ Compiled in 125ms
+[00:21:47.294] Server  ERROR   TypeError: fetch failed
+[00:21:48.188] Server  ERROR   TypeError: fetch failed
+[00:21:53.346] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
+[00:21:53.349] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
+[00:21:53.352] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
+[00:21:53.355] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
+[00:21:53.359] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
+[00:21:55.158] Server  ERROR   TypeError: fetch failed
+[00:21:55.310] Server  ERROR   TypeError: fetch failed
+[00:21:55.342] Server  ERROR   TypeError: fetch failed
+[00:21:55.396] Server  ERROR   TypeError: fetch failed
+[00:21:55.600] Server  ERROR   TypeError: fetch failed

@@ -8,7 +8,7 @@ export default function NosotrosAdmin() {
         {
             title: "DIRECTORA EJECUTIVA",
             name: "Bertha Brunal Soto",
-            desc: "Fisioterapeuta pediátrica egresada del Instituto Mexicano de Rehabilitación y la Universidad Nacional de Colombia, con entrenamiento en Neurodesarrollo en el Centro Bobath de Londres, curso avanzado de bebés certificado por la Asociación Europea de Neurodesarrollo y entrenada por la Asociación Americana de Neurodesarrollo. con más de 30 años de experiencia en el tratamiento de niños, directora y fundadora de Asociación Aconiño desde hace 30 años."
+            desc: "Fisioterapeuta pediátrica egresada del Instituto Mexicano de Rehabilitación y la Universidad Nacional de Colombia, con entrenamiento en Neurodesarrollo en el Centro Bobath de Londres, curso avanzado de bebés certificado por la Asociación Europea de Neurodesarrollo y entrenada por la Asociación Americana de Neurodesarrollo. Con más de 30 años de experiencia en el tratamiento de niños, directora y fundadora de Asociación Aconiño."
         },
         {
             title: "SUBDIRECTORA ADMINISTRATIVA Y FINANCIERA",
@@ -48,11 +48,11 @@ export default function NosotrosAdmin() {
     };
 
     return (
-        <section className="bg-gray-900 relative overflow-hidden py-24 md:py-32">
-            {/* Texture overlay */}
-            <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/always-grey.png')] mix-blend-overlay"></div>
-            
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+        <section className="bg-gray-50 relative overflow-hidden pt-24 pb-32 md:pt-32 md:pb-48">
+            {/* Texture overlay & Decorative Background */}
+            <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/always-grey.png')] mix-blend-overlay pointer-events-none"></div>
+            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+            <div className="absolute bottom-20 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] translate-y-1/2 translate-x-1/4 pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <motion.div 
@@ -64,10 +64,10 @@ export default function NosotrosAdmin() {
                 >
                     <div className="flex items-center justify-center gap-4 mb-4">
                         <div className="h-[2px] bg-accent w-12"></div>
-                        <span className="text-sm font-bold text-gray-400 tracking-widest uppercase">Gestión</span>
+                        <span className="text-sm font-bold text-gray-400 tracking-widest uppercase">Gestión y Liderazgo</span>
                         <div className="h-[2px] bg-accent w-12"></div>
                     </div>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white drop-shadow-sm">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary drop-shadow-sm">
                         Equipo Administrativo
                     </h2>
                 </motion.div>
@@ -77,31 +77,31 @@ export default function NosotrosAdmin() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24"
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative z-10"
                 >
                     {/* Left Column */}
                     <div className="flex flex-col gap-12">
                         {/* Directora Ejecutiva */}
-                        <motion.div variants={itemVariants} className="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 hover:border-accent/50 transition-all duration-500">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="bg-accent p-3 rounded-xl shadow-lg shadow-accent/20">
-                                    <FaUserShield className="text-primary text-lg" />
+                        <motion.div variants={itemVariants} className="group bg-white p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl border-b-4 border-transparent hover:border-accent transition-all duration-500 transform hover:-translate-y-2">
+                            <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
+                                <div className="bg-primary/5 p-4 rounded-2xl group-hover:bg-accent group-hover:text-white transition-colors duration-300 w-fit">
+                                    <FaUserShield className="text-primary group-hover:text-white text-xl md:text-2xl transition-colors" />
                                 </div>
-                                <h4 className="text-accent font-black text-xs md:text-sm tracking-widest uppercase">{adminRoles[0].title}</h4>
+                                <h4 className="text-gray-400 font-black text-xs md:text-sm tracking-widest uppercase">{adminRoles[0].title}</h4>
                             </div>
-                            <h5 className="text-white font-extrabold text-2xl md:text-3xl mb-4">{adminRoles[0].name}</h5>
-                            <p className="text-gray-300 text-base leading-relaxed text-justify font-medium">
+                            <h5 className="text-primary font-extrabold text-2xl md:text-3xl mb-4 leading-tight">{adminRoles[0].name}</h5>
+                            <p className="text-gray-600 text-base leading-relaxed text-justify">
                                 {adminRoles[0].desc}
                             </p>
                         </motion.div>
 
                         {/* Coordinadoras */}
-                        <motion.div variants={itemVariants} className="group pl-4 border-l-2 border-white/10 hover:border-accent transition-colors duration-300">
-                            <h4 className="text-white/60 font-black text-xs tracking-widest uppercase mb-4">{adminRoles[2].title}</h4>
+                        <motion.div variants={itemVariants} className="group pl-6 border-l-4 border-gray-200 hover:border-accent transition-colors duration-300">
+                            <h4 className="text-gray-400 font-black text-xs tracking-widest uppercase mb-4">{adminRoles[2].title}</h4>
                             <div className="space-y-4">
                                 {adminRoles[2].names?.map((name, i) => (
-                                    <h5 key={i} className="text-white font-bold text-lg md:text-xl flex items-center gap-3">
-                                        <FaChevronRight className="text-accent text-sm" />
+                                    <h5 key={i} className="text-primary font-bold text-lg md:text-xl flex items-center gap-3 group-hover:text-secondary transition-colors">
+                                        <FaChevronRight className="text-accent text-sm opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
                                         {name}
                                     </h5>
                                 ))}
@@ -109,10 +109,10 @@ export default function NosotrosAdmin() {
                         </motion.div>
 
                         {/* Revisor Fiscal */}
-                        <motion.div variants={itemVariants} className="group pl-4 border-l-2 border-white/10 hover:border-accent transition-colors duration-300">
-                            <h4 className="text-white/60 font-black text-xs tracking-widest uppercase mb-2">{adminRoles[4].title}</h4>
-                            <h5 className="text-white font-bold text-lg md:text-xl flex items-center gap-3">
-                                <FaChevronRight className="text-accent text-sm" />
+                        <motion.div variants={itemVariants} className="group pl-6 border-l-4 border-gray-200 hover:border-accent transition-colors duration-300">
+                            <h4 className="text-gray-400 font-black text-xs tracking-widest uppercase mb-3">{adminRoles[4].title}</h4>
+                            <h5 className="text-primary font-bold text-lg md:text-xl flex items-center gap-3 group-hover:text-secondary transition-colors">
+                                <FaChevronRight className="text-accent text-sm opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
                                 {adminRoles[4].name}
                             </h5>
                         </motion.div>
@@ -121,35 +121,45 @@ export default function NosotrosAdmin() {
                     {/* Right Column */}
                     <div className="flex flex-col gap-12 lg:pt-8">
                         {/* Subdirectora */}
-                        <motion.div variants={itemVariants} className="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 hover:border-accent/50 transition-all duration-500">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="bg-white/10 p-3 rounded-xl group-hover:bg-accent transition-colors duration-300">
-                                    <FaUserShield className="text-white group-hover:text-primary text-lg transition-colors" />
+                        <motion.div variants={itemVariants} className="group bg-white p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl border-b-4 border-transparent hover:border-accent transition-all duration-500 transform hover:-translate-y-2">
+                            <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
+                                <div className="bg-primary/5 p-4 rounded-2xl group-hover:bg-accent group-hover:text-white transition-colors duration-300 w-fit">
+                                    <FaUserShield className="text-primary group-hover:text-white text-xl md:text-2xl transition-colors" />
                                 </div>
-                                <h4 className="text-white/80 font-black text-xs md:text-sm tracking-widest uppercase group-hover:text-accent transition-colors">{adminRoles[1].title}</h4>
+                                <h4 className="text-gray-400 font-black text-xs md:text-sm tracking-widest uppercase">{adminRoles[1].title}</h4>
                             </div>
-                            <h5 className="text-white font-extrabold text-2xl md:text-3xl">{adminRoles[1].name}</h5>
+                            <h5 className="text-primary font-extrabold text-2xl md:text-3xl leading-tight">{adminRoles[1].name}</h5>
                         </motion.div>
 
                         {/* Contadora */}
-                        <motion.div variants={itemVariants} className="group pl-4 border-l-2 border-white/10 hover:border-accent transition-colors duration-300 mt-4">
-                            <h4 className="text-white/60 font-black text-xs tracking-widest uppercase mb-2">{adminRoles[3].title}</h4>
-                            <h5 className="text-white font-bold text-lg md:text-xl flex items-center gap-3">
-                                <FaChevronRight className="text-accent text-sm" />
+                        <motion.div variants={itemVariants} className="group pl-6 border-l-4 border-gray-200 hover:border-accent transition-colors duration-300 mt-4">
+                            <h4 className="text-gray-400 font-black text-xs tracking-widest uppercase mb-3">{adminRoles[3].title}</h4>
+                            <h5 className="text-primary font-bold text-lg md:text-xl flex items-center gap-3 group-hover:text-secondary transition-colors">
+                                <FaChevronRight className="text-accent text-sm opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
                                 {adminRoles[3].name}
                             </h5>
                         </motion.div>
 
                         {/* Revisor Fiscal Suplente */}
-                        <motion.div variants={itemVariants} className="group pl-4 border-l-2 border-white/10 hover:border-accent transition-colors duration-300 lg:mt-auto">
-                            <h4 className="text-white/60 font-black text-xs tracking-widest uppercase mb-2">{adminRoles[5].title}</h4>
-                            <h5 className="text-white font-bold text-lg md:text-xl flex items-center gap-3">
-                                <FaChevronRight className="text-accent text-sm" />
+                        <motion.div variants={itemVariants} className="group pl-6 border-l-4 border-gray-200 hover:border-accent transition-colors duration-300 lg:mt-auto">
+                            <h4 className="text-gray-400 font-black text-xs tracking-widest uppercase mb-3">{adminRoles[5].title}</h4>
+                            <h5 className="text-primary font-bold text-lg md:text-xl flex items-center gap-3 group-hover:text-secondary transition-colors">
+                                <FaChevronRight className="text-accent text-sm opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
                                 {adminRoles[5].name}
                             </h5>
                         </motion.div>
                     </div>
                 </motion.div>
+            </div>
+
+            {/* Visual Separator: Wave transitioning to the dark footer */}
+            <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0 pointer-events-none">
+                <svg className="relative block w-full h-[60px] md:h-[120px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path 
+                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.26,192.4,103.5,237.93,91.68,280.9,74.5,321.39,56.44Z" 
+                        className="fill-[#1b2b65]" 
+                    />
+                </svg>
             </div>
         </section>
     );

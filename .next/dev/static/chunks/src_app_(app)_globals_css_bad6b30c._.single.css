@@ -572,6 +572,10 @@
     bottom: calc(var(--spacing) * 10);
   }
 
+  .bottom-20 {
+    bottom: calc(var(--spacing) * 20);
+  }
+
   .-left-4 {
     left: calc(var(--spacing) * -4);
   }
@@ -927,6 +931,10 @@
     height: 40vh;
   }
 
+  .h-\[60px\] {
+    height: 60px;
+  }
+
   .h-\[60vh\] {
     height: 60vh;
   }
@@ -1067,6 +1075,10 @@
     width: 500px;
   }
 
+  .w-\[600px\] {
+    width: 600px;
+  }
+
   .w-fit {
     width: fit-content;
   }
@@ -1163,8 +1175,18 @@
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
 
+  .translate-x-1\/4 {
+    --tw-translate-x: calc(1 / 4 * 100%);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+
   .-translate-y-1\/2 {
     --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+
+  .translate-y-1\/2 {
+    --tw-translate-y: calc(1 / 2 * 100%);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
 
@@ -1431,6 +1453,11 @@
     border-left-width: 2px;
   }
 
+  .border-l-4 {
+    border-left-style: var(--tw-border-style);
+    border-left-width: 4px;
+  }
+
   .border-accent {
     border-color: var(--color-accent);
   }
@@ -1441,6 +1468,10 @@
 
   .border-gray-100 {
     border-color: var(--color-gray-100);
+  }
+
+  .border-gray-200 {
+    border-color: var(--color-gray-200);
   }
 
   .border-primary {
@@ -1917,6 +1948,10 @@
     background-repeat: no-repeat;
   }
 
+  .fill-\[\#1b2b65\] {
+    fill: #1b2b65;
+  }
+
   .fill-current {
     fill: currentColor;
   }
@@ -2043,6 +2078,10 @@
 
   .pt-6 {
     padding-top: calc(var(--spacing) * 6);
+  }
+
+  .pt-24 {
+    padding-top: calc(var(--spacing) * 24);
   }
 
   .pt-32 {
@@ -3210,6 +3249,12 @@
   }
 
   @media (min-width: 48rem) {
+    .md\:h-\[120px\] {
+      height: 120px;
+    }
+  }
+
+  @media (min-width: 48rem) {
     .md\:h-\[140px\] {
       height: 140px;
     }
@@ -3284,6 +3329,12 @@
   @media (min-width: 48rem) {
     .md\:flex-row {
       flex-direction: row;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:items-center {
+      align-items: center;
     }
   }
 
@@ -3406,6 +3457,18 @@
   @media (min-width: 48rem) {
     .md\:pt-24 {
       padding-top: calc(var(--spacing) * 24);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:pt-32 {
+      padding-top: calc(var(--spacing) * 32);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:pb-48 {
+      padding-bottom: calc(var(--spacing) * 48);
     }
   }
 

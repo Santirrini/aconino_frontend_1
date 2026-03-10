@@ -2373,7 +2373,7 @@ function NosotrosAdmin() {
         {
             title: "DIRECTORA EJECUTIVA",
             name: "Bertha Brunal Soto",
-            desc: "Fisioterapeuta pediátrica egresada del Instituto Mexicano de Rehabilitación y la Universidad Nacional de Colombia, con entrenamiento en Neurodesarrollo en el Centro Bobath de Londres, curso avanzado de bebés certificado por la Asociación Europea de Neurodesarrollo y entrenada por la Asociación Americana de Neurodesarrollo. con más de 30 años de experiencia en el tratamiento de niños, directora y fundadora de Asociación Aconiño desde hace 30 años."
+            desc: "Fisioterapeuta pediátrica egresada del Instituto Mexicano de Rehabilitación y la Universidad Nacional de Colombia, con entrenamiento en Neurodesarrollo en el Centro Bobath de Londres, curso avanzado de bebés certificado por la Asociación Europea de Neurodesarrollo y entrenada por la Asociación Americana de Neurodesarrollo. Con más de 30 años de experiencia en el tratamiento de niños, directora y fundadora de Asociación Aconiño."
         },
         {
             title: "SUBDIRECTORA ADMINISTRATIVA Y FINANCIERA",
@@ -2426,17 +2426,24 @@ function NosotrosAdmin() {
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "bg-gray-900 relative overflow-hidden py-24 md:py-32",
+        className: "bg-gray-50 relative overflow-hidden pt-24 pb-32 md:pt-32 md:pb-48",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/always-grey.png')] mix-blend-overlay"
+                className: "absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/always-grey.png')] mix-blend-overlay pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
                 lineNumber: 53,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"
+                className: "absolute top-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/2 pointer-events-none"
+            }, void 0, false, {
+                fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
+                lineNumber: 54,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute bottom-20 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] translate-y-1/2 translate-x-1/4 pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
                 lineNumber: 55,
@@ -2474,7 +2481,7 @@ function NosotrosAdmin() {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "text-sm font-bold text-gray-400 tracking-widest uppercase",
-                                        children: "Gestión"
+                                        children: "Gestión y Liderazgo"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
                                         lineNumber: 67,
@@ -2494,7 +2501,7 @@ function NosotrosAdmin() {
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                className: "text-4xl md:text-5xl lg:text-6xl font-black text-white drop-shadow-sm",
+                                className: "text-4xl md:text-5xl lg:text-6xl font-black text-primary drop-shadow-sm",
                                 children: "Equipo Administrativo"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
@@ -2515,22 +2522,22 @@ function NosotrosAdmin() {
                             once: true,
                             margin: "-50px"
                         },
-                        className: "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24",
+                        className: "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative z-10",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "flex flex-col gap-12",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                         variants: itemVariants,
-                                        className: "group bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 hover:border-accent/50 transition-all duration-500",
+                                        className: "group bg-white p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl border-b-4 border-transparent hover:border-accent transition-all duration-500 transform hover:-translate-y-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center gap-3 mb-6",
+                                                className: "flex flex-col md:flex-row md:items-center gap-4 mb-6",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "bg-accent p-3 rounded-xl shadow-lg shadow-accent/20",
+                                                        className: "bg-primary/5 p-4 rounded-2xl group-hover:bg-accent group-hover:text-white transition-colors duration-300 w-fit",
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaUserShield"], {
-                                                            className: "text-primary text-lg"
+                                                            className: "text-primary group-hover:text-white text-xl md:text-2xl transition-colors"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
                                                             lineNumber: 88,
@@ -2542,7 +2549,7 @@ function NosotrosAdmin() {
                                                         columnNumber: 33
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                        className: "text-accent font-black text-xs md:text-sm tracking-widest uppercase",
+                                                        className: "text-gray-400 font-black text-xs md:text-sm tracking-widest uppercase",
                                                         children: adminRoles[0].title
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
@@ -2556,7 +2563,7 @@ function NosotrosAdmin() {
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h5", {
-                                                className: "text-white font-extrabold text-2xl md:text-3xl mb-4",
+                                                className: "text-primary font-extrabold text-2xl md:text-3xl mb-4 leading-tight",
                                                 children: adminRoles[0].name
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
@@ -2564,7 +2571,7 @@ function NosotrosAdmin() {
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-gray-300 text-base leading-relaxed text-justify font-medium",
+                                                className: "text-gray-600 text-base leading-relaxed text-justify",
                                                 children: adminRoles[0].desc
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
@@ -2579,10 +2586,10 @@ function NosotrosAdmin() {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                         variants: itemVariants,
-                                        className: "group pl-4 border-l-2 border-white/10 hover:border-accent transition-colors duration-300",
+                                        className: "group pl-6 border-l-4 border-gray-200 hover:border-accent transition-colors duration-300",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                className: "text-white/60 font-black text-xs tracking-widest uppercase mb-4",
+                                                className: "text-gray-400 font-black text-xs tracking-widest uppercase mb-4",
                                                 children: adminRoles[2].title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
@@ -2592,10 +2599,10 @@ function NosotrosAdmin() {
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "space-y-4",
                                                 children: adminRoles[2].names?.map((name, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h5", {
-                                                        className: "text-white font-bold text-lg md:text-xl flex items-center gap-3",
+                                                        className: "text-primary font-bold text-lg md:text-xl flex items-center gap-3 group-hover:text-secondary transition-colors",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaChevronRight"], {
-                                                                className: "text-accent text-sm"
+                                                                className: "text-accent text-sm opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
                                                                 lineNumber: 104,
@@ -2621,10 +2628,10 @@ function NosotrosAdmin() {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                         variants: itemVariants,
-                                        className: "group pl-4 border-l-2 border-white/10 hover:border-accent transition-colors duration-300",
+                                        className: "group pl-6 border-l-4 border-gray-200 hover:border-accent transition-colors duration-300",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                className: "text-white/60 font-black text-xs tracking-widest uppercase mb-2",
+                                                className: "text-gray-400 font-black text-xs tracking-widest uppercase mb-3",
                                                 children: adminRoles[4].title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
@@ -2632,10 +2639,10 @@ function NosotrosAdmin() {
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h5", {
-                                                className: "text-white font-bold text-lg md:text-xl flex items-center gap-3",
+                                                className: "text-primary font-bold text-lg md:text-xl flex items-center gap-3 group-hover:text-secondary transition-colors",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaChevronRight"], {
-                                                        className: "text-accent text-sm"
+                                                        className: "text-accent text-sm opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
                                                         lineNumber: 115,
@@ -2665,15 +2672,15 @@ function NosotrosAdmin() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                         variants: itemVariants,
-                                        className: "group bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 hover:border-accent/50 transition-all duration-500",
+                                        className: "group bg-white p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl border-b-4 border-transparent hover:border-accent transition-all duration-500 transform hover:-translate-y-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center gap-3 mb-6",
+                                                className: "flex flex-col md:flex-row md:items-center gap-4 mb-6",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "bg-white/10 p-3 rounded-xl group-hover:bg-accent transition-colors duration-300",
+                                                        className: "bg-primary/5 p-4 rounded-2xl group-hover:bg-accent group-hover:text-white transition-colors duration-300 w-fit",
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaUserShield"], {
-                                                            className: "text-white group-hover:text-primary text-lg transition-colors"
+                                                            className: "text-primary group-hover:text-white text-xl md:text-2xl transition-colors"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
                                                             lineNumber: 127,
@@ -2685,7 +2692,7 @@ function NosotrosAdmin() {
                                                         columnNumber: 33
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                        className: "text-white/80 font-black text-xs md:text-sm tracking-widest uppercase group-hover:text-accent transition-colors",
+                                                        className: "text-gray-400 font-black text-xs md:text-sm tracking-widest uppercase",
                                                         children: adminRoles[1].title
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
@@ -2699,7 +2706,7 @@ function NosotrosAdmin() {
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h5", {
-                                                className: "text-white font-extrabold text-2xl md:text-3xl",
+                                                className: "text-primary font-extrabold text-2xl md:text-3xl leading-tight",
                                                 children: adminRoles[1].name
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
@@ -2714,10 +2721,10 @@ function NosotrosAdmin() {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                         variants: itemVariants,
-                                        className: "group pl-4 border-l-2 border-white/10 hover:border-accent transition-colors duration-300 mt-4",
+                                        className: "group pl-6 border-l-4 border-gray-200 hover:border-accent transition-colors duration-300 mt-4",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                className: "text-white/60 font-black text-xs tracking-widest uppercase mb-2",
+                                                className: "text-gray-400 font-black text-xs tracking-widest uppercase mb-3",
                                                 children: adminRoles[3].title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
@@ -2725,10 +2732,10 @@ function NosotrosAdmin() {
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h5", {
-                                                className: "text-white font-bold text-lg md:text-xl flex items-center gap-3",
+                                                className: "text-primary font-bold text-lg md:text-xl flex items-center gap-3 group-hover:text-secondary transition-colors",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaChevronRight"], {
-                                                        className: "text-accent text-sm"
+                                                        className: "text-accent text-sm opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
                                                         lineNumber: 138,
@@ -2749,10 +2756,10 @@ function NosotrosAdmin() {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                         variants: itemVariants,
-                                        className: "group pl-4 border-l-2 border-white/10 hover:border-accent transition-colors duration-300 lg:mt-auto",
+                                        className: "group pl-6 border-l-4 border-gray-200 hover:border-accent transition-colors duration-300 lg:mt-auto",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                className: "text-white/60 font-black text-xs tracking-widest uppercase mb-2",
+                                                className: "text-gray-400 font-black text-xs tracking-widest uppercase mb-3",
                                                 children: adminRoles[5].title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
@@ -2760,10 +2767,10 @@ function NosotrosAdmin() {
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h5", {
-                                                className: "text-white font-bold text-lg md:text-xl flex items-center gap-3",
+                                                className: "text-primary font-bold text-lg md:text-xl flex items-center gap-3 group-hover:text-secondary transition-colors",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaChevronRight"], {
-                                                        className: "text-accent text-sm"
+                                                        className: "text-accent text-sm opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
                                                         lineNumber: 147,
@@ -2798,6 +2805,32 @@ function NosotrosAdmin() {
             }, void 0, true, {
                 fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
                 lineNumber: 57,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0 pointer-events-none",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                    className: "relative block w-full h-[60px] md:h-[120px]",
+                    "data-name": "Layer 1",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 1200 120",
+                    preserveAspectRatio: "none",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.26,192.4,103.5,237.93,91.68,280.9,74.5,321.39,56.44Z",
+                        className: "fill-[#1b2b65]"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
+                        lineNumber: 158,
+                        columnNumber: 21
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
+                    lineNumber: 157,
+                    columnNumber: 17
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/quienes-somos/NosotrosAdmin.tsx",
+                lineNumber: 156,
                 columnNumber: 13
             }, this)
         ]
