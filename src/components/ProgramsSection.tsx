@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FaGraduationCap, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useScrollReveal, useStagger, slideVariants, fadeVariants } from "./animations";
 
 interface ProgramItem {
     title: string;
@@ -45,40 +46,28 @@ export default function ProgramsSection({ programs }: ProgramsSectionProps) {
 
     const displayPrograms = (programs && programs.length > 0) ? programs : defaultPrograms;
 
-    const containerVariants = {
-        hidden: {},
-        visible: {
-            transition: {
-                staggerChildren: 0.15
-            }
-        }
-    };
-
-    const cardVariants = {
-        hidden: { opacity: 0, y: 40 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, ease: "easeOut" as const }
-        }
-    };
+    const scrollReveal = useScrollReveal();
+    const stagger = useStagger(0.15);
 
     return (
         <section className="w-full py-20 md:py-32 bg-gray-50 relative overflow-hidden">
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
                 <div className="flex flex-col xl:flex-row gap-12 xl:gap-16">
                     {/* Left Column Text */}
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6 }}
+                        {...scrollReveal}
+                        variants={fadeVariants}
                         className="w-full xl:w-1/4 shrink-0 flex flex-col justify-center"
                     >
                         <div className="flex items-center gap-4 mb-6">
                             <span className="text-sm font-bold text-gray-400 tracking-widest uppercase">Aconino</span>
-                            <div className="h-[2px] bg-accent w-16"></div>
+                            <motion.div 
+                                initial={{ width: 0 }}
+                                whileInView={{ width: 64 }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                                className="h-[2px] bg-accent"
+                            />
                         </div>
                         <h2 className="text-4xl md:text-5xl xl:text-6xl font-extrabold text-primary leading-tight mb-6">
                             Nuestros Programas
@@ -90,27 +79,38 @@ export default function ProgramsSection({ programs }: ProgramsSectionProps) {
 
                     {/* Right Column Cards */}
                     <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-50px" }}
+                        {...scrollReveal}
+                        variants={stagger}
                         className="w-full xl:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
                     >
                         {displayPrograms.map((prog, idx) => (
                             <motion.div
-                                variants={cardVariants}
+                                variants={slideVariants}
                                 key={idx}
-                                className="bg-white border-b-4 border-transparent hover:border-accent rounded-xl transition-all duration-300 shadow-md hover:shadow-2xl p-8 flex flex-col group relative transform hover:-translate-y-2"
+                                whileHover={{ scale: 1.03 }}
+                                className="bg-white border-b-4 border-transparent hover:border-accent rounded-xl transition-all duration-300 shadow-md hover:shadow-2xl p-8 flex flex-col group relative overflow-hidden"
                             >
-                                <div className="mb-6 bg-gray-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-primary/5 transition-colors">
+                                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                                
+                                <motion.div 
+                                    className="mb-6 bg-gray-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-primary/10 transition-colors relative z-10"
+                                    whileHover={{ rotate: [0, -10, 10, 0] }}
+                                    transition={{ duration: 0.5 }}
+                                >
                                     {prog.icon || <FaGraduationCap className="text-4xl text-secondary" />}
-                                </div>
-                                <h3 className="text-xl font-bold text-primary mb-4 leading-snug line-clamp-3 group-hover:text-secondary transition-colors">{prog.title}</h3>
-                                <p className="text-sm text-gray-500 mb-8 flex-1 leading-relaxed">{prog.desc}</p>
+                                </motion.div>
+                                <h3 className="text-xl font-bold text-primary mb-4 leading-snug line-clamp-3 group-hover:text-secondary transition-colors relative z-10">{prog.title}</h3>
+                                <p className="text-sm text-gray-500 mb-8 flex-1 leading-relaxed relative z-10">{prog.desc}</p>
 
-                                <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                                    <Link href={prog.slug ? `/programas#${prog.slug}` : "/programas"} className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
-                                        <FaArrowRight />
+                                <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100 relative z-10">
+                                    <Link href={prog.slug ? `/programas#${prog.slug}` : "/programas"} className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 group-hover:bg-gradient-to-r group-hover:from-secondary group-hover:to-primary group-hover:text-white transition-all duration-300 shadow-sm overflow-hidden relative">
+                                        <motion.div 
+                                            className="absolute inset-0 bg-white/20"
+                                            initial={{ x: '-100%' }}
+                                            whileHover={{ x: '100%' }}
+                                            transition={{ duration: 0.6 }}
+                                        />
+                                        <FaArrowRight className="relative z-10" />
                                     </Link>
                                 </div>
                             </motion.div>
@@ -119,7 +119,6 @@ export default function ProgramsSection({ programs }: ProgramsSectionProps) {
                 </div>
 
             </div>
-
 
             <div className="absolute inset-0 z-0 bg-opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/always-grey.png')] mix-blend-multiply opacity-10"></div>
         </section>
