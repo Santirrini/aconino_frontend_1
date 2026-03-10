@@ -8,7 +8,7 @@ export const curtainVariants = {
     opacity: 1,
     transition: {
       duration: 1.2,
-      ease: [0.76, 0, 0.24, 1], // Custom cinematic easing
+      ease: [0.76, 0, 0.24, 1] as const, // Custom cinematic easing
     },
     transitionEnd: {
       clipPath: "none",
@@ -28,7 +28,7 @@ export const shimmerVariants = {
     transition: {
       duration: 1.5,
       delay: 0.3,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
     },
   }
 };
@@ -44,7 +44,7 @@ export const bgPulseVariants = {
     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
     transition: {
       duration: 3,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
       repeat: Infinity,
       repeatDelay: 10,
     },

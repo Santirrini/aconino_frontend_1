@@ -1,4 +1,4 @@
-import { WPPost, WPPage } from "../types/wp";
+import { WPPost, WPPage, WPCategory } from "../types/wp";
 
 // Use environment variable or default to the live URL
 const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || "https://aconino.org/wp-json/wp/v2";
@@ -21,6 +21,86 @@ export async function getLatestPosts(limit = 3): Promise<WPPost[]> {
     } catch (error) {
         console.error("Error fetching WP posts:", error);
         return [];
+    }
+}
+
+/**
+ * Fetch paginated blog posts with optional category filter.
+ */
+export interface BlogPostsResponse {
+    posts: WPPost[];
+    totalPages: number;
+    total: number;
+}
+
+export async function getBlogPosts(
+    page = 1,
+    perPage = 9,
+    categoryId?: number
+): Promise<BlogPostsResponse> {
+    try {
+        let url = `${WP_API_URL}/posts?per_page=${perPage}&page=${page}&_embed=1`;
+        if (categoryId) {
+            url += `&categories=${categoryId}`;
+        }
+
+        const res = await fetch(url, {
+            next: { revalidate: 1800 }, // 30 min
+        });
+
+        if (!res.ok) {
+            throw new Error(`Failed to fetch blog posts: ${res.statusText}`);
+        }
+
+        const posts: WPPost[] = await res.json();
+        const totalPages = parseInt(res.headers.get("X-WP-TotalPages") || "1", 10);
+        const total = parseInt(res.headers.get("X-WP-Total") || "0", 10);
+
+        return { posts, totalPages, total };
+    } catch (error) {
+        console.error("Error fetching blog posts:", error);
+        return { posts: [], totalPages: 1, total: 0 };
+    }
+}
+
+/**
+ * Fetch all categories from WordPress.
+ */
+export async function getCategories(): Promise<WPCategory[]> {
+    try {
+        const res = await fetch(`${WP_API_URL}/categories?per_page=50&orderby=count&order=desc`, {
+            next: { revalidate: 3600 },
+        });
+
+        if (!res.ok) {
+            throw new Error(`Failed to fetch categories: ${res.statusText}`);
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error("Error fetching WP categories:", error);
+        return [];
+    }
+}
+
+/**
+ * Fetch a single post by slug.
+ */
+export async function getPostBySlug(slug: string): Promise<WPPost | null> {
+    try {
+        const res = await fetch(`${WP_API_URL}/posts?slug=${slug}&_embed=1`, {
+            next: { revalidate: 1800 },
+        });
+
+        if (!res.ok) {
+            throw new Error(`Failed to fetch post: ${res.statusText}`);
+        }
+
+        const posts: WPPost[] = await res.json();
+        return posts.length > 0 ? posts[0] : null;
+    } catch (error) {
+        console.error("Error fetching WP post:", error);
+        return null;
     }
 }
 

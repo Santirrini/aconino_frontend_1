@@ -10,7 +10,7 @@ export const headerContainerVariants = {
     y: 0,
     transition: {
       duration: 0.4,
-      ease: "easeInOut"
+      ease: "easeInOut" as const
     }
   }
 };
@@ -21,7 +21,7 @@ export const accentLineVariants = {
   scrolled: {
     scaleX: 1,
     opacity: 1,
-    transition: { duration: 0.5, ease: "easeInOut" }
+    transition: { duration: 0.5, ease: "easeInOut" as const }
   },
 };
 
