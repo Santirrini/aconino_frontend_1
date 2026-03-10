@@ -7971,3 +7971,26 @@ It can also happen if the client has a browser extension installed which messes 
 [00:27:21.295] Browser WARN    Image with src "https://via.placeholder.com/200/ffffff/0c2070?text=Logo+2" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
 [00:27:21.295] Browser WARN    Image with src "https://via.placeholder.com/200/ffffff/0c2070?text=Logo+3" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
 [00:27:21.295] Browser WARN    Image with src "https://via.placeholder.com/200/ffffff/0c2070?text=Logo+4" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:32:02.368] Server  ERROR   TypeError: fetch failed
+[00:32:02.385] Server  ERROR   TypeError: fetch failed
+[00:32:02.404] Server  ERROR   TypeError: fetch failed
+[00:32:02.446] Server  ERROR   TypeError: fetch failed
+[00:32:17.247] Server  ERROR   TypeError: fetch failed
+[00:32:17.264] Server  ERROR   TypeError: fetch failed
+[00:32:17.281] Server  ERROR   TypeError: fetch failed
+[00:32:17.312] Server  ERROR   TypeError: fetch failed
+[00:32:18.839] Server  ERROR   TypeError: fetch failed
+[00:32:19.488] Server  ERROR   TypeError: fetch failed
+[00:32:20.215] Server  ERROR   TypeError: fetch failed
+[00:32:20.321] Server  ERROR   TypeError: fetch failed
+[00:32:20.832] Server  ERROR   TypeError: fetch failed
+[00:32:40.004] Server  ERROR   TypeError: fetch failed
+[00:32:40.022] Server  ERROR   TypeError: fetch failed
+[00:32:40.040] Server  ERROR   TypeError: fetch failed
+[00:32:40.057] Server  ERROR   TypeError: fetch failed
+[00:32:40.074] Server  ERROR   TypeError: fetch failed
+[00:32:40.092] Server  ERROR   TypeError: fetch failed
+[00:32:40.267] Server  ERROR   TypeError: fetch failed
+[00:32:40.284] Server  ERROR   TypeError: fetch failed
+[00:32:46.354] Server  LOG     Generating import map
+[00:32:46.387] Server  LOG     No new imports found, skipping writing import map
