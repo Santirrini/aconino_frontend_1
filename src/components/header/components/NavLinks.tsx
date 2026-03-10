@@ -1,0 +1,101 @@
+"use client";
+
+import Link from "next/link";
+import { FaChevronDown } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
+import Dropdown from "./Dropdown";
+import { staggerItem } from "../animations/staggerChildren";
+
+interface NavLink {
+  name: string;
+  href: string;
+  hasDropdown?: boolean;
+  subLinks?: { name: string; href: string }[];
+}
+
+interface NavLinksProps {
+  navLinks: NavLink[];
+}
+
+export default function NavLinks({ navLinks }: NavLinksProps) {
+  const pathname = usePathname();
+  const [currentHash, setCurrentHash] = useState("");
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleHashChange = () => setCurrentHash(window.location.hash);
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    try {
+      const urlObj = new URL(href, "http://localhost"); 
+      const matchesPath = pathname === urlObj.pathname;
+      if (urlObj.hash) {
+        return matchesPath && currentHash === urlObj.hash;
+      }
+      if (matchesPath && currentHash !== "") return false; 
+      return matchesPath;
+    } catch {
+      return false;
+    }
+  };
+
+  const isParentActive = (link: NavLink) => {
+    if (isActive(link.href)) return true;
+    if (link.subLinks) {
+      return link.subLinks.some(sub => isActive(sub.href));
+    }
+    return false;
+  };
+
+  return (
+    <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[13px] xl:text-[14px] font-bold">
+      {navLinks.map((link, idx) => {
+        const parentActive = isParentActive(link);
+        const isHovered = hoveredIdx === idx;
+
+        return (
+          <motion.div 
+            key={idx} 
+            className="relative"
+            onMouseEnter={() => setHoveredIdx(idx)}
+            onMouseLeave={() => setHoveredIdx(null)}
+            variants={staggerItem}
+          >
+            <Link
+              href={link.href}
+              className={`flex items-center gap-1 py-4 transition-colors duration-300 relative z-10 ${
+                parentActive ? 'text-accent' : 'text-primary hover:text-accent'
+              }`}
+            >
+              {link.name}
+              {link.hasDropdown && (
+                <motion.div
+                  animate={{ rotate: isHovered ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <FaChevronDown className={`text-[10px] ${parentActive ? 'text-accent' : 'text-gray-400'}`} />
+                </motion.div>
+              )}
+
+              {/* Magnet/Glow indicator */}
+              <span className={`absolute bottom-0 left-0 h-[3px] rounded-t-md bg-accent transition-all duration-300 ${
+                parentActive ? 'w-full shadow-[0_-2px_10px_rgba(248,183,25,0.5)]' : 'w-0 group-hover:w-full'
+              }`} style={{ width: parentActive || isHovered ? '100%' : '0%' }}></span>
+            </Link>
+
+            {link.hasDropdown && link.subLinks && (
+              <Dropdown subLinks={link.subLinks} isOpen={isHovered} />
+            )}
+          </motion.div>
+        );
+      })}
+    </nav>
+  );
+}
