@@ -1,135 +1,6 @@
-[00:00:01.449] Server  LOG     ✓ Ready in 1048ms
-[00:00:04.119] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:10.341] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:10.916] Server  ERROR   TypeError: fetch failed
-[00:00:15.208] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:17.149] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:17.610] Server  ERROR   TypeError: fetch failed
-[00:00:33.986] Server  ERROR   TypeError: fetch failed
-[00:00:44.588] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
-[00:00:44.590] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
-[00:00:44.593] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
-[00:00:44.595] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
-[00:00:44.603] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
-[00:00:45.896] Server  ERROR   TypeError: fetch failed
-[00:00:46.402] Server  ERROR   TypeError: fetch failed
-[00:00:46.430] Server  ERROR   TypeError: fetch failed
-[00:00:46.448] Server  ERROR   TypeError: fetch failed
-[00:00:46.470] Server  ERROR   TypeError: fetch failed
-[00:00:56.497] Server  LOG     ✓ Compiled in 818ms
-[00:01:44.521] Server  ERROR   TypeError: fetch failed
-[00:01:44.580] Server  ERROR   TypeError: fetch failed
-[00:01:44.717] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
-[00:01:44.720] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
-[00:01:44.724] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
-[00:01:44.727] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
-[00:01:44.799] Server  ERROR   TypeError: fetch failed
-[00:01:44.809] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
-[00:01:44.878] Server  ERROR   TypeError: fetch failed
-[00:01:44.900] Server  ERROR   TypeError: fetch failed
-[00:01:44.940] Server  ERROR   TypeError: fetch failed
-[00:01:44.967] Server  ERROR   TypeError: fetch failed
-[00:01:45.048] Server  ERROR   TypeError: fetch failed
-[00:01:45.414] Server  ERROR   TypeError: fetch failed
-[00:01:45.492] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
-[00:01:45.495] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
-[00:01:45.498] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
-[00:01:45.501] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
-[00:01:45.530] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
-[00:01:45.587] Server  ERROR   TypeError: fetch failed
-[00:01:45.611] Server  ERROR   TypeError: fetch failed
-[00:01:45.638] Server  ERROR   TypeError: fetch failed
-[00:01:45.674] Server  ERROR   TypeError: fetch failed
-[00:01:45.709] Server  ERROR   TypeError: fetch failed
-[00:02:35.478] Server  ERROR   TypeError: fetch failed
-[00:02:35.489] Server  ERROR   TypeError: fetch failed
-[00:02:35.596] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
-[00:02:35.598] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
-[00:02:35.609] Server  ERROR   TypeError: fetch failed
-[00:02:35.615] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
-[00:02:35.617] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
-[00:02:35.661] Server  ERROR   TypeError: fetch failed
-[00:02:35.673] Server  ERROR   TypeError: fetch failed
-[00:02:35.685] Server  ERROR   TypeError: fetch failed
-[00:02:35.698] Server  ERROR   TypeError: fetch failed
-[00:02:35.704] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
-[00:02:35.788] Server  ERROR   TypeError: fetch failed
-[00:02:35.807] Server  ERROR   TypeError: fetch failed
-[00:02:35.958] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
-[00:02:35.960] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
-[00:02:35.962] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
-[00:02:35.975] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
-[00:02:36.033] Server  ERROR   TypeError: fetch failed
-[00:02:36.046] Server  ERROR   TypeError: fetch failed
-[00:02:36.060] Server  ERROR   TypeError: fetch failed
-[00:02:36.074] Server  ERROR   TypeError: fetch failed
-[00:02:36.096] Server  ERROR   TypeError: fetch failed
-[00:02:36.099] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
-[00:02:38.498] Server  LOG     ✓ Compiled in 441ms
-[00:02:54.129] Server  LOG     ✓ Compiled in 174ms
-[00:03:04.452] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:22.675] Server  ERROR   TypeError: fetch failed
-[00:04:22.692] Server  ERROR   TypeError: fetch failed
-[00:04:22.780] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
-[00:04:22.782] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
-[00:04:22.783] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
-[00:04:22.786] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
-[00:04:22.811] Server  ERROR   TypeError: fetch failed
-[00:04:22.838] Server  ERROR   TypeError: fetch failed
-[00:04:22.851] Server  ERROR   TypeError: fetch failed
-[00:04:22.865] Server  ERROR   TypeError: fetch failed
-[00:04:22.882] Server  ERROR   TypeError: fetch failed
-[00:04:22.884] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
-[00:04:23.117] Server  ERROR   TypeError: fetch failed
-[00:04:23.176] Server  ERROR   TypeError: fetch failed
-[00:04:23.206] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
-[00:04:23.248] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
-[00:04:23.250] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
-[00:04:23.252] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
-[00:04:23.273] Server  ERROR   TypeError: fetch failed
-[00:04:23.290] Server  ERROR   TypeError: fetch failed
-[00:04:23.304] Server  ERROR   TypeError: fetch failed
-[00:04:23.307] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
-[00:04:23.320] Server  ERROR   TypeError: fetch failed
-[00:04:23.339] Server  ERROR   TypeError: fetch failed
-[00:04:31.708] Server  LOG     Generating import map
-[00:04:32.110] Server  LOG     ✓ Compiled in 587ms
-[00:04:32.306] Server  LOG     No new imports found, skipping writing import map
-[00:04:34.352] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:43.782] Server  ERROR   TypeError: fetch failed
-[00:04:43.796] Server  ERROR   TypeError: fetch failed
-[00:04:43.858] Server  ERROR   TypeError: fetch failed
-[00:04:43.880] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
-[00:04:43.881] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
-[00:04:43.883] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
-[00:04:43.885] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
-[00:04:43.954] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
-[00:04:44.047] Server  ERROR   TypeError: fetch failed
-[00:04:44.062] Server  ERROR   TypeError: fetch failed
-[00:04:44.115] Server  ERROR   TypeError: fetch failed
-[00:04:44.139] Server  ERROR   TypeError: fetch failed
-[00:04:44.161] Server  ERROR   TypeError: fetch failed
-[00:04:44.178] Server  ERROR   TypeError: fetch failed
-[00:04:44.315] Server  ERROR   TypeError: fetch failed
-[00:04:44.318] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
-[00:04:44.325] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
-[00:04:44.327] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
-[00:04:44.329] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
-[00:04:44.330] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
-[00:04:44.376] Server  ERROR   TypeError: fetch failed
-[00:04:44.390] Server  ERROR   TypeError: fetch failed
-[00:04:44.403] Server  ERROR   TypeError: fetch failed
-[00:04:44.425] Server  ERROR   TypeError: fetch failed
-[00:04:49.899] Server  LOG     Generating import map
-[00:04:49.908] Server  LOG     No new imports found, skipping writing import map
-[00:04:49.959] Server  LOG     ✓ Compiled in 213ms
-[00:04:52.616] Server  LOG     ✓ Compiled in 208ms
-[00:05:09.558] Server  LOG     ✓ Compiled in 77ms
-[00:07:42.137] Server  LOG     Generating import map
-[00:07:42.147] Server  LOG     ✓ Compiled in 201ms
-[00:07:42.202] Server  LOG     No new imports found, skipping writing import map
-[00:07:44.228] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:07:45.086] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:01.977] Server  LOG     ✓ Ready in 1316ms
+[00:00:14.660] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:20.904] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -143,7 +14,7 @@ It can also happen if the client has a browser extension installed which messes 
 
   ...
     <div ref={{current:null}} style={{display:"none"}}>
-      <kp collectionSlug="programs-p...">
+      <kp collectionSlug="courses">
         <Ou draggable={{...}} onClick={function onClick} pills={[...]}>
           <Vr className="pill-selector" ids={[...]} onDragEnd={function onDragEnd}>
             <DndContext collisionDetection={function closestCenter} id="_R_mkql7in..." onDragEnd={function h} ...>
@@ -199,7 +70,7 @@ It can also happen if the client has a browser extension installed which messes 
                           className="pill pill--style-light pill--size-small pill-selector__pill pill-selector__pill--..."
                           disabled={true}
                           href={null}
-                          id="ageRange"
+                          id="duration"
                           onClick={function Ou.useMemo[n]}
                           type="button"
                         >
@@ -361,33 +232,6 @@ It can also happen if the client has a browser extension installed which messes 
                           className="pill pill--style-light pill--size-small pill-selector__pill pill--has-action pill..."
                           disabled={true}
                           href={null}
-                          id="icon"
-                          onClick={function Ou.useMemo[n]}
-                          type="button"
-                        >
-                  <yt alignIcon="left" aria-checked={false} className="pill-selec..." draggable={true} icon={<ar>} ...>
-                    <m$ alignIcon="left" aria-checked={false} className="pill-selec..." draggable={true} icon={<ar>} ...>
-                      <gS alignIcon="left" aria-checked={false} className="pill-selec..." draggable={true} icon={<ar>} ...>
-                        <button
-                          onMouseDown={function useSyntheticListeners.useMemo}
-                          onTouchStart={function useSyntheticListeners.useMemo}
-                          onKeyDown={function useSyntheticListeners.useMemo}
-                          role="button"
-                          tabIndex={0}
-                          aria-disabled={false}
-                          aria-pressed={undefined}
-                          aria-roledescription="sortable"
-+                         aria-describedby="_R_mkql7inebn5ripkr9etb_"
--                         aria-describedby="_R_2qjakuatpesneb6jd9etb_"
-                          style={{transform:null}}
-                          ref={function}
-                          aria-checked={false}
-                          aria-controls={undefined}
-                          aria-expanded={undefined}
-                          aria-label={undefined}
-                          className="pill pill--style-light pill--size-small pill-selector__pill pill--has-action pill..."
-                          disabled={true}
-                          href={null}
                           id="featuredImage"
                           onClick={function Ou.useMemo[n]}
                           type="button"
@@ -422,52 +266,23 @@ It can also happen if the client has a browser extension installed which messes 
               ...
               ...
 
-[00:07:49.662] Server  LOG     Generating import map
-[00:07:49.677] Server  LOG     No new imports found, skipping writing import map
-[00:08:12.089] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:09:02.583] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:09:02.977] Server  ERROR   TypeError: fetch failed
-[00:09:12.232] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:09:14.007] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:09:14.463] Server  ERROR   TypeError: fetch failed
-[00:09:36.961] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:09:37.412] Server  ERROR   TypeError: fetch failed
-[00:09:50.374] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
-[00:09:50.375] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
-[00:09:50.377] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
-[00:09:50.379] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
-[00:09:50.380] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
-[00:09:50.551] Server  ERROR   TypeError: fetch failed
-[00:09:50.786] Server  ERROR   TypeError: fetch failed
-[00:09:50.855] Server  ERROR   TypeError: fetch failed
-[00:09:50.869] Server  ERROR   TypeError: fetch failed
-[00:09:50.880] Server  ERROR   TypeError: fetch failed
-[00:09:50.893] Server  ERROR   TypeError: fetch failed
-[00:17:00.993] Server  LOG     ✓ Compiled in 144ms
-[00:17:02.991] Server  LOG     ✓ Compiled in 117ms
-[00:17:30.246] Server  LOG     ✓ Compiled in 338ms
-[00:17:32.775] Server  LOG     ✓ Compiled in 781ms
-[00:17:56.187] Server  LOG     ✓ Compiled in 456ms
-[00:17:58.050] Server  LOG     ✓ Compiled in 492ms
-[00:17:58.976] Server  LOG     Generating import map
-[00:17:59.045] Server  LOG     No new imports found, skipping writing import map
-[00:18:42.962] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:18:46.267] Server  ERROR   TypeError: fetch failed
-[00:19:42.506] Server  LOG     ✓ Compiled in 321ms
-[00:20:19.762] Server  LOG     ✓ Compiled in 301ms
-[00:20:20.592] Server  LOG     ✓ Compiled in 731ms
-[00:20:21.126] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:22.051] Server  LOG     ✓ Compiled in 342ms
-[00:20:51.049] Server  LOG     ✓ Compiled in 160ms
-[00:21:38.453] Server  ERROR   TypeError: fetch failed
-[00:21:39.946] Server  ERROR   TypeError: fetch failed
-[00:21:41.538] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
-[00:21:41.544] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
-[00:21:41.551] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
-[00:21:41.558] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
-[00:21:41.570] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
-[00:21:42.787] Server  ERROR   TypeError: fetch failed
-[00:21:44.421] Server  ERROR   TypeError: fetch failed
-[00:21:44.457] Server  ERROR   TypeError: fetch failed
-[00:21:44.490] Server  ERROR   TypeError: fetch failed
-[00:21:44.531] Server  ERROR   TypeError: fetch failed
+[00:00:20.939] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:22.264] Server  ERROR   ⨯ "upstream image response failed for" "https://images.unsplash.com/photo-1473451159981-d13eb22d2f78?q=80&w=200&auto=format&fit=crop" 404
+[00:00:22.373] Server  ERROR   ⨯ "upstream image response failed for" "https://images.unsplash.com/photo-1601000676450-9bb32dce30eb?q=80&w=200&auto=format&fit=crop" 404
+[00:00:22.420] Server  ERROR   ⨯ "upstream image response failed for" "https://images.unsplash.com/photo-1541818167362-dcc7ae6a2e88?q=80&w=200&auto=format&fit=crop" 404
+[00:00:22.698] Server  ERROR   ⨯ "upstream image response failed for" "https://images.unsplash.com/photo-1513904677712-4aa82dce6961?q=80&w=200&auto=format&fit=crop" 404
+[00:00:22.756] Browser WARN    Image with src "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1968&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:22.756] Browser WARN    Image with src "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.668] Browser WARN    Image with src "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=2127&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.668] Browser WARN    Image with src "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.668] Browser WARN    Image with src "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.668] Browser WARN    Image with src "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.668] Browser WARN    Image with src "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.669] Browser WARN    Image with src "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.669] Browser WARN    Image with src "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.669] Browser WARN    Image with src "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.669] Browser WARN    Image with src "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.669] Browser WARN    Image with src "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.669] Browser WARN    Image with src "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.669] Browser WARN    Image with src "https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:23.669] Browser WARN    Image with src "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=200&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
