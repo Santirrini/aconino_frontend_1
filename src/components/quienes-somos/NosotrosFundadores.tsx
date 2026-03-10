@@ -52,7 +52,7 @@ export default function NosotrosFundadores() {
     );
 
     return (
-        <section className="py-24 md:py-32 bg-gray-50 relative overflow-hidden">
+        <section id="fundadores" className="py-24 md:py-32 bg-gray-50 relative overflow-hidden">
             {/* Soft decorative background */}
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none" />
             

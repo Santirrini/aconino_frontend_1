@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function NosotrosMission() {
     return (
-        <section className="bg-primary flex flex-col lg:flex-row relative overflow-hidden">
+        <section id="mision" className="bg-primary flex flex-col lg:flex-row relative overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 z-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
 

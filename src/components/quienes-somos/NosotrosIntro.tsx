@@ -6,7 +6,7 @@ import { FaHeart } from "react-icons/fa";
 
 export default function NosotrosIntro() {
     return (
-        <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+        <section id="nosotros" className="py-24 md:py-32 bg-white relative overflow-hidden">
             {/* Background decorative elements */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gray-50 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl opacity-50 translate-y-1/3 -translate-x-1/3 pointer-events-none" />

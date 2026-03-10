@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function NosotrosJuntaPhoto() {
     return (
-        <section className="bg-gray-50 py-24 md:py-32 relative overflow-hidden">
+        <section id="junta-directiva" className="bg-gray-50 py-24 md:py-32 relative overflow-hidden">
             {/* Background elements */}
             <div className="absolute top-1/2 left-0 w-full h-[300px] bg-primary/5 -skew-y-3 transform -translate-y-1/2" />
 

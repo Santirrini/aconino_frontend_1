@@ -49,16 +49,16 @@ export default function Header({ navData }: HeaderProps) {
         { name: "Inicio", href: "/" },
         {
             name: "Quiénes somos",
-            href: "#",
+            href: "/quienes-somos/nosotros",
             hasDropdown: true,
             subLinks: [
                 { name: "Nosotros", href: "/quienes-somos/nosotros" },
-                { name: "Misión", href: "/quienes-somos/mision" },
-                { name: "Visión", href: "/quienes-somos/vision" },
-                { name: "Historia", href: "/quienes-somos/historia" },
-                { name: "Fundadores", href: "/quienes-somos/fundadores" },
-                { name: "Junta Directiva", href: "/quienes-somos/junta-directiva" },
-                { name: "Equipo De Trabajo", href: "/quienes-somos/equipo-de-trabajo" },
+                { name: "Misión", href: "/quienes-somos/nosotros#mision" },
+                { name: "Visión", href: "/quienes-somos/nosotros#vision" },
+                { name: "Historia", href: "/quienes-somos/nosotros#historia" },
+                { name: "Fundadores", href: "/quienes-somos/nosotros#fundadores" },
+                { name: "Junta Directiva", href: "/quienes-somos/nosotros#junta-directiva" },
+                { name: "Equipo De Trabajo", href: "/quienes-somos/nosotros#equipo-de-trabajo" },
                 { name: "Asociación De Usuarios", href: "/quienes-somos/asociacion-de-usuarios" },
             ]
         },

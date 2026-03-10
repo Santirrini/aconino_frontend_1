@@ -276,7 +276,7 @@ function Header({ navData }) {
         },
         {
             name: "Quiénes somos",
-            href: "#",
+            href: "/quienes-somos/nosotros",
             hasDropdown: true,
             subLinks: [
                 {
@@ -285,27 +285,27 @@ function Header({ navData }) {
                 },
                 {
                     name: "Misión",
-                    href: "/quienes-somos/mision"
+                    href: "/quienes-somos/nosotros#mision"
                 },
                 {
                     name: "Visión",
-                    href: "/quienes-somos/vision"
+                    href: "/quienes-somos/nosotros#vision"
                 },
                 {
                     name: "Historia",
-                    href: "/quienes-somos/historia"
+                    href: "/quienes-somos/nosotros#historia"
                 },
                 {
                     name: "Fundadores",
-                    href: "/quienes-somos/fundadores"
+                    href: "/quienes-somos/nosotros#fundadores"
                 },
                 {
                     name: "Junta Directiva",
-                    href: "/quienes-somos/junta-directiva"
+                    href: "/quienes-somos/nosotros#junta-directiva"
                 },
                 {
                     name: "Equipo De Trabajo",
-                    href: "/quienes-somos/equipo-de-trabajo"
+                    href: "/quienes-somos/nosotros#equipo-de-trabajo"
                 },
                 {
                     name: "Asociación De Usuarios",

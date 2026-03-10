@@ -1,6 +1,8 @@
 {
   "/(app)/page": "app/(app)/page.js",
+  "/(app)/quienes-somos/[slug]/page": "app/(app)/quienes-somos/[slug]/page.js",
   "/(app)/quienes-somos/nosotros/page": "app/(app)/quienes-somos/nosotros/page.js",
   "/(payload)/admin/[[...segments]]/page": "app/(payload)/admin/[[...segments]]/page.js",
-  "/(payload)/api/[...slug]/route": "app/(payload)/api/[...slug]/route.js"
+  "/(payload)/api/[...slug]/route": "app/(payload)/api/[...slug]/route.js",
+  "/_not-found/page": "app/_not-found/page.js"
 }

@@ -6,7 +6,7 @@ import { FaEye } from "react-icons/fa";
 
 export default function NosotrosVision() {
     return (
-        <section className="bg-gray-50 flex flex-col-reverse lg:flex-row relative overflow-hidden">
+        <section id="vision" className="bg-gray-50 flex flex-col-reverse lg:flex-row relative overflow-hidden">
             
             {/* Left side Content */}
             <motion.div 

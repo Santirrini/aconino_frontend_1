@@ -6,7 +6,7 @@ import { FaHistory } from "react-icons/fa";
 
 export default function NosotrosHistory() {
     return (
-        <section className="bg-primary flex flex-col md:flex-row relative overflow-hidden">
+        <section id="historia" className="bg-primary flex flex-col md:flex-row relative overflow-hidden">
             {/* Left side Content (Dark Blue Background) */}
             <motion.div 
                 initial={{ opacity: 0, x: -50 }}

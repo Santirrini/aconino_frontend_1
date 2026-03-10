@@ -6,7 +6,7 @@ import { FaUsers } from "react-icons/fa";
 
 export default function NosotrosEquipo() {
     return (
-        <section className="bg-white py-24 md:py-32 relative overflow-hidden">
+        <section id="equipo-de-trabajo" className="bg-white py-24 md:py-32 relative overflow-hidden">
             <div className="absolute right-0 top-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
             
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
