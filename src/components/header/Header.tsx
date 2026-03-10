@@ -52,7 +52,7 @@ export default function Header({ navData }: HeaderProps) {
     { name: "Apóyanos", href: "/apoyanos" },
     {
       name: "Cursos",
-      href: "#",
+      href: "/cursos",
       hasDropdown: true,
       subLinks: [
         { name: "Curso Introductorio NDT", href: "/cursos/curso-introductorio-ndt" },
@@ -112,9 +112,8 @@ export default function Header({ navData }: HeaderProps) {
 
               <button
                 onClick={mobileMenu.toggleMenu}
-                className={`lg:hidden p-3 rounded-xl transition-colors ${
-                  mobileMenu.isOpen ? 'bg-primary text-white' : 'bg-gray-50 text-primary hover:bg-primary hover:text-white'
-                }`}
+                className={`lg:hidden p-3 rounded-xl transition-colors ${mobileMenu.isOpen ? 'bg-primary text-white' : 'bg-gray-50 text-primary hover:bg-primary hover:text-white'
+                  }`}
                 aria-label="Toggle menu"
               >
                 {mobileMenu.isOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
