@@ -7994,3 +7994,29 @@ It can also happen if the client has a browser extension installed which messes 
 [00:32:40.284] Server  ERROR   TypeError: fetch failed
 [00:32:46.354] Server  LOG     Generating import map
 [00:32:46.387] Server  LOG     No new imports found, skipping writing import map
+[00:35:03.308] Server  ERROR   TypeError: fetch failed
+[00:35:03.326] Server  ERROR   TypeError: fetch failed
+[00:35:03.352] Server  ERROR   TypeError: fetch failed
+[00:35:03.425] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
+[00:35:03.429] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
+[00:35:03.439] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
+[00:35:03.457] Server  ERROR   TypeError: fetch failed
+[00:35:03.478] Server  ERROR   TypeError: fetch failed
+[00:35:03.494] Server  ERROR   TypeError: fetch failed
+[00:35:03.521] Server  ERROR   TypeError: fetch failed
+[00:35:03.560] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
+[00:35:03.563] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
+[00:35:03.633] Server  ERROR   TypeError: fetch failed
+[00:35:03.651] Server  ERROR   TypeError: fetch failed
+[00:35:03.708] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/Berta-Zuleima-Aflora_vp4.jpg" 403
+[00:35:03.710] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2024/03/kyrios-en-aconino-2024.jpg" 403
+[00:35:03.716] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/curso-introductorio-caracas_vp.jpg" 403
+[00:35:03.759] Server  ERROR   TypeError: fetch failed
+[00:35:03.775] Server  ERROR   TypeError: fetch failed
+[00:35:03.791] Server  ERROR   TypeError: fetch failed
+[00:35:03.808] Server  ERROR   TypeError: fetch failed
+[00:35:03.811] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/berta-simposio-vp.jpg" 403
+[00:35:03.904] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/instroductorio-bucarmanga_vp.jpg" 403
+[00:35:03.932] Server  ERROR   TypeError: fetch failed
+[00:35:03.976] Server  ERROR   TypeError: fetch failed
+[00:35:03.982] Server  ERROR   ⨯ "upstream image response failed for" "https://aconino.org/wp-content/uploads/2023/11/gms-trust-vp.jpg" 403
