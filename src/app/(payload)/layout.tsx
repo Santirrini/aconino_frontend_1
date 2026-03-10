@@ -11,7 +11,6 @@ type Args = {
     children: React.ReactNode
 }
 
-// @ts-expect-error
 import { importMap } from './admin/importMap'
 
 const serverFunction = async (args: any) => {
