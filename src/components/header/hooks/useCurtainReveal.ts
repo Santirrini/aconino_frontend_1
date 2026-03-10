@@ -4,15 +4,9 @@ export function useCurtainReveal() {
   const [isRevealed, setIsRevealed] = useState(false);
 
   useEffect(() => {
-    const hasVisited = sessionStorage.getItem("hasVisitedAconino");
-    
-    if (!hasVisited) {
-      sessionStorage.setItem("hasVisitedAconino", "true");
-      const timer = setTimeout(() => setIsRevealed(true), 100);
-      return () => clearTimeout(timer);
-    } else {
-      setIsRevealed(true);
-    }
+    // La animación se ejecutará siempre que el componente se monte
+    const timer = setTimeout(() => setIsRevealed(true), 100);
+    return () => clearTimeout(timer);
   }, []);
 
   return { isRevealed };
