@@ -5,7 +5,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { useHeader } from "./hooks/useHeader";
 import { curtainVariants } from "./animations/curtainReveal";
 import { staggerContainer } from "./animations/staggerChildren";
-import { headerContainerVariants } from "./animations/glassEffect";
+import { headerContainerVariants } from "./animations/scrollVariants";
 
 import TopBar from "./components/TopBar";
 import Logo from "./components/Logo";
@@ -18,7 +18,7 @@ interface HeaderProps {
 }
 
 export default function Header({ navData }: HeaderProps) {
-  const { isScrolled, mobileMenu, isRevealed, glassStyles } = useHeader();
+  const { isScrolled, mobileMenu, isRevealed } = useHeader();
 
   const defaultLinks = [
     { name: "Inicio", href: "/" },
@@ -78,10 +78,9 @@ export default function Header({ navData }: HeaderProps) {
 
         <motion.header
           variants={headerContainerVariants}
-          initial="transparent"
-          animate={isScrolled ? "glass" : "transparent"}
-          style={glassStyles}
-          className="transition-all duration-300"
+          initial="top"
+          animate={isScrolled ? "scrolled" : "top"}
+          className="transition-all duration-300 relative"
         >
           <motion.div 
             variants={staggerContainer}
@@ -107,6 +106,14 @@ export default function Header({ navData }: HeaderProps) {
               </button>
             </div>
           </motion.div>
+
+          {/* Línea de acento animada al hacer scroll */}
+          <motion.div
+            className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-primary via-accent to-secondary origin-center"
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: isScrolled ? 1 : 0, opacity: isScrolled ? 1 : 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          />
         </motion.header>
       </motion.div>
 

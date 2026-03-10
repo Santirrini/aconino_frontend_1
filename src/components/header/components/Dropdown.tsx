@@ -47,28 +47,31 @@ export default function Dropdown({ subLinks, isOpen }: DropdownProps) {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 10, scale: 0.95 }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="absolute top-full left-1/2 -translate-x-1/2 w-[280px] bg-white shadow-2xl rounded-2xl border border-gray-100 py-3 z-50 overflow-hidden mt-4"
+          /* El pt-4 crea un "puente" invisible para que el hover no se pierda al mover el mouse */
+          className="absolute top-full left-1/2 -translate-x-1/2 w-[280px] pt-4 z-50"
         >
-          {/* Decorative top border */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-secondary"></div>
-          
-          <div className="flex flex-col">
-            {subLinks.map((sub, idx) => {
-              const subActive = isActive(sub.href);
-              return (
-                <Link
-                  key={idx}
-                  href={sub.href}
-                  className={`relative block px-6 py-3 text-sm transition-all duration-300 border-l-4 ${
-                    subActive 
-                      ? 'border-accent bg-primary/5 text-primary font-black' 
-                      : 'border-transparent text-gray-600 font-semibold hover:bg-gray-50 hover:text-primary hover:border-accent hover:pl-7'
-                  }`}
-                >
-                  {sub.name}
-                </Link>
-              );
-            })}
+          <div className="bg-white shadow-2xl rounded-2xl border border-gray-100 py-3 overflow-hidden relative">
+            {/* Decorative top border */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-secondary"></div>
+            
+            <div className="flex flex-col">
+              {subLinks.map((sub, idx) => {
+                const subActive = isActive(sub.href);
+                return (
+                  <Link
+                    key={idx}
+                    href={sub.href}
+                    className={`relative block px-6 py-3 text-sm transition-all duration-300 border-l-4 ${
+                      subActive 
+                        ? 'border-accent bg-primary/5 text-primary font-black' 
+                        : 'border-transparent text-gray-600 font-semibold hover:bg-gray-50 hover:text-primary hover:border-accent hover:pl-7'
+                    }`}
+                  >
+                    {sub.name}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </motion.div>
       )}

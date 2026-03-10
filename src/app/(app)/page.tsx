@@ -11,7 +11,7 @@ import { WPPost } from "../../types/wp";
 
 export default async function Home() {
     const posts: WPPost[] = await getLatestPosts(6); // Fetches up to 6 for the slider
-    
+
     // Fetch Global configuration from Payload
     const payload = await getPayload({ config: configPromise });
     const homePage = await payload.findGlobal({ slug: "home-page" });
@@ -23,7 +23,7 @@ export default async function Home() {
         hero_background_type: homePage.hero?.backgroundType,
         hero_video_url: homePage.hero?.videoUrl,
         hero_image: typeof homePage.hero?.backgroundImage === 'object' && homePage.hero.backgroundImage !== null ? homePage.hero.backgroundImage.url : null,
-        
+
         about_title: homePage.about?.title,
         about_description: homePage.about?.description,
         about_image: typeof homePage.about?.image === 'object' && homePage.about.image !== null ? homePage.about.image.url : null,
@@ -35,11 +35,13 @@ export default async function Home() {
         hero_cta_text: homePage.cta?.buttonText,
         hero_cta_link: homePage.cta?.buttonLink,
     };
-    
+
     const mappedPrograms = homePage.programs?.list?.map((p: any) => ({
         title: p.title,
         desc: p.description,
+        slug: p.slug,
     }));
+
 
     const mappedRecognitions = homePage.recognitions?.list?.map((r: any) => ({
         title: r.title,

@@ -70,6 +70,15 @@ export default function NavLinks({ navLinks }: NavLinksProps) {
           >
             <Link
               href={link.href}
+              onClick={(e) => {
+                // Soportar abrir el dropdown con click además de hover
+                if (link.hasDropdown) {
+                  if (link.href === "#" || link.href === "") {
+                    e.preventDefault();
+                  }
+                  setHoveredIdx(hoveredIdx === idx ? null : idx);
+                }
+              }}
               className={`flex items-center gap-1 py-4 transition-colors duration-300 relative z-10 ${
                 parentActive ? 'text-accent' : 'text-primary hover:text-accent'
               }`}
