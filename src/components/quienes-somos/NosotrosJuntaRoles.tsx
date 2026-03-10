@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { FaUserTie, FaChevronRight } from "react-icons/fa";
+
 export default function NosotrosJuntaRoles() {
     const roles = [
         {
@@ -32,81 +37,88 @@ export default function NosotrosJuntaRoles() {
         }
     ];
 
+    const containerVariants = {
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.1 } }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, x: -20 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+    };
+
     return (
-        <section className="bg-[#0f1f6a] relative overflow-hidden py-16 md:py-24">
-            {/* Texture overlay via CSS repeating-radial-gradient or SVG pattern - placeholder for screenshot matching */}
-            <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
+        <section className="bg-primary relative overflow-hidden py-24 md:py-32">
+            {/* Texture overlay */}
+            <div className="absolute inset-0 opacity-[0.05] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row gap-8 md:gap-16 lg:gap-32 justify-center">
-
-                {/* Left Column */}
-                <div className="flex-1 max-w-lg space-y-10">
-                    {/* Presidente */}
-                    <div className="border-b border-white/20 pb-8">
-                        <h4 className="text-white/80 font-bold text-sm tracking-wider mb-4">PRESIDENTE</h4>
-                        <div className="flex items-start gap-2 mb-3">
-                            <span className="text-white mt-1">▸</span>
-                            <h5 className="text-white font-bold text-lg">{roles[0].name}</h5>
-                        </div>
-                        {roles[0].description && (
-                            <p className="text-white/70 text-sm leading-relaxed text-justify">
-                                {roles[0].description}
-                            </p>
-                        )}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <motion.div 
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24"
+                >
+                    {/* Left Column */}
+                    <div className="flex flex-col gap-10">
+                        {[0, 2, 3, 5].map((index) => {
+                            const role = roles[index];
+                            return (
+                                <motion.div variants={itemVariants} key={index} className="group">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="bg-white/10 p-2 rounded-lg group-hover:bg-accent transition-colors duration-300">
+                                            <FaUserTie className="text-white text-sm" />
+                                        </div>
+                                        <h4 className="text-white/70 font-black text-xs tracking-widest uppercase group-hover:text-accent transition-colors">{role.title}</h4>
+                                    </div>
+                                    <div className="pl-11 border-l-2 border-white/10 group-hover:border-accent transition-colors duration-300">
+                                        <h5 className="text-white font-extrabold text-xl md:text-2xl mb-2 flex items-center gap-2">
+                                            <FaChevronRight className="text-accent text-sm opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+                                            {role.name}
+                                        </h5>
+                                        {role.description && (
+                                            <p className="text-gray-400 text-sm md:text-base leading-relaxed text-justify max-w-md mt-4 font-medium">
+                                                {role.description}
+                                            </p>
+                                        )}
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
                     </div>
 
-                    {/* Secretaria */}
-                    <div className="border-b border-white/20 pb-6">
-                        <h4 className="text-white/80 font-bold text-sm tracking-wider mb-4">SECRETARIA</h4>
-                        <div className="flex items-start gap-2">
-                            <span className="text-white mt-1">▸</span>
-                            <h5 className="text-white font-bold text-base">{roles[2].name}</h5>
-                        </div>
+                    {/* Right Column */}
+                    <div className="flex flex-col gap-10 pt-2 md:pt-24 lg:pt-32">
+                        {/* Decorative separator on desktop */}
+                        <div className="hidden md:block absolute top-1/4 bottom-1/4 left-1/2 w-[1px] bg-gradient-to-b from-transparent via-white/20 to-transparent -translate-x-1/2"></div>
+
+                        {[1, 4].map((index) => {
+                            const role = roles[index];
+                            return (
+                                <motion.div variants={itemVariants} key={index} className="group">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="bg-white/10 p-2 rounded-lg group-hover:bg-accent transition-colors duration-300">
+                                            <FaUserTie className="text-white text-sm" />
+                                        </div>
+                                        <h4 className="text-white/70 font-black text-xs tracking-widest uppercase group-hover:text-accent transition-colors">{role.title}</h4>
+                                    </div>
+                                    <div className="pl-11 border-l-2 border-white/10 group-hover:border-accent transition-colors duration-300">
+                                        <h5 className="text-white font-extrabold text-xl md:text-2xl mb-2 flex items-center gap-2">
+                                            <FaChevronRight className="text-accent text-sm opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+                                            {role.name}
+                                        </h5>
+                                        {role.description && (
+                                            <p className="text-gray-400 text-sm md:text-base leading-relaxed text-justify max-w-md mt-4 font-medium">
+                                                {role.description}
+                                            </p>
+                                        )}
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
                     </div>
-
-                    {/* Vocal 1 */}
-                    <div className="border-b border-white/20 pb-6">
-                        <h4 className="text-white/80 font-bold text-sm tracking-wider mb-4">VOCAL</h4>
-                        <div className="flex items-start gap-2">
-                            <span className="text-white mt-1">▸</span>
-                            <h5 className="text-white font-bold text-base">{roles[3].name}</h5>
-                        </div>
-                    </div>
-
-                    {/* Vocal 3 */}
-                    <div className="border-b border-white/20 pb-6">
-                        <h4 className="text-white/80 font-bold text-sm tracking-wider mb-4">VOCAL</h4>
-                        <div className="flex items-start gap-2">
-                            <span className="text-white mt-1">▸</span>
-                            <h5 className="text-white font-bold text-base">{roles[5].name}</h5>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Right Column */}
-                <div className="flex-1 max-w-lg space-y-10 pt-2">
-                    {/* decorative line top right */}
-                    <div className="h-[1px] w-24 bg-white/30 hidden md:block absolute top-12 right-1/4"></div>
-
-                    {/* Vicepresidente */}
-                    <div className="border-b border-white/20 pb-6 mt-10 md:mt-0">
-                        <h4 className="text-white/80 font-bold text-sm tracking-wider mb-4">VICEPRESIDENTE</h4>
-                        <div className="flex items-start gap-2">
-                            <span className="text-white mt-1">▸</span>
-                            <h5 className="text-white font-bold text-base">{roles[1].name}</h5>
-                        </div>
-                    </div>
-
-                    {/* Vocal 2 */}
-                    <div className="border-b border-white/20 pb-6 !mt-[12.5rem]">
-                        <h4 className="text-white/80 font-bold text-sm tracking-wider mb-4">VOCAL</h4>
-                        <div className="flex items-start gap-2">
-                            <span className="text-white mt-1">▸</span>
-                            <h5 className="text-white font-bold text-base">{roles[4].name}</h5>
-                        </div>
-                    </div>
-                </div>
-
+                </motion.div>
             </div>
         </section>
     );

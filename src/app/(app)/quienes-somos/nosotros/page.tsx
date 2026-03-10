@@ -8,6 +8,7 @@ import NosotrosSemillas from "@/components/quienes-somos/NosotrosSemillas";
 import NosotrosJuntaPhoto from "@/components/quienes-somos/NosotrosJuntaPhoto";
 import NosotrosJuntaRoles from "@/components/quienes-somos/NosotrosJuntaRoles";
 import NosotrosEquipo from "@/components/quienes-somos/NosotrosEquipo";
+import NosotrosAdmin from "@/components/quienes-somos/NosotrosAdmin";
 
 export const metadata = {
     title: "Quiénes Somos - Aconiño",
@@ -27,6 +28,7 @@ export default function QuienesSomosPage() {
             <NosotrosJuntaPhoto />
             <NosotrosJuntaRoles />
             <NosotrosEquipo />
+            <NosotrosAdmin />
         </main>
     );
 }
