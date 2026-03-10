@@ -2,6 +2,7 @@ import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import ProgramCTA from "../../../../components/programs/ProgramCTA";
 
 interface PageProps {
     params: Promise<{
@@ -42,11 +43,19 @@ export default async function ProgramPage({ params }: PageProps) {
                             )}
                             <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{program.title}</h1>
                         </div>
-                        <div className="h-1 w-24 bg-accent md:hidden"></div>
+
+                        {/* CTA embedded in hero */}
+                        <div className="w-full md:w-80">
+                            <ProgramCTA programTitle={program.title} />
+                        </div>
                     </div>
                 </div>
                 {/* Decorative overlay */}
-                <div className="absolute inset-0 bg-primary/20 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-primary/20 pointer-events-none" />
+
+                {/* Animated background shapes */}
+                <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-2xl" />
             </header>
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col lg:flex-row gap-16">

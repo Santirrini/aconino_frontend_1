@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useHeader } from "./hooks/useHeader";
-import { curtainVariants } from "./animations/curtainReveal";
+import { curtainVariants, shimmerVariants } from "./animations/curtainReveal";
 import { staggerContainer } from "./animations/staggerChildren";
 import { headerContainerVariants } from "./animations/scrollVariants";
 
@@ -12,6 +12,7 @@ import Logo from "./components/Logo";
 import NavLinks from "./components/NavLinks";
 import CTAButton from "./components/CTAButton";
 import MobileMenu from "./components/MobileMenu";
+import ParticleEffect from "./components/ParticleEffect";
 
 interface HeaderProps {
   navData?: any[];
@@ -74,27 +75,41 @@ export default function Header({ navData }: HeaderProps) {
         animate={isRevealed ? "animate" : "initial"}
         className="fixed top-0 left-0 right-0 z-50 w-full"
       >
+        {/* Particle effect during reveal */}
+        <ParticleEffect isActive={isRevealed} />
+
+        {/* Shimmer overlay during reveal */}
+        <motion.div
+          variants={shimmerVariants}
+          initial="initial"
+          animate={isRevealed ? "animate" : "initial"}
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "linear-gradient(90deg, transparent 0%, rgba(248,183,25,0.15) 50%, transparent 100%)",
+          }}
+        />
+
         <TopBar isScrolled={isScrolled} />
 
         <motion.header
           variants={headerContainerVariants}
           initial="top"
           animate={isScrolled ? "scrolled" : "top"}
-          className="transition-all duration-300 relative"
+          className="transition-all duration-300 relative bg-white"
         >
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="show"
             className={`w-full max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}
           >
             <Logo />
-            
+
             <NavLinks navLinks={links} />
 
             <div className="flex items-center gap-4 relative z-50">
               <CTAButton />
-              
+
               <button
                 onClick={mobileMenu.toggleMenu}
                 className={`lg:hidden p-3 rounded-xl transition-colors ${
@@ -107,7 +122,7 @@ export default function Header({ navData }: HeaderProps) {
             </div>
           </motion.div>
 
-          {/* Línea de acento animada al hacer scroll */}
+          {/* Animated accent line */}
           <motion.div
             className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-primary via-accent to-secondary origin-center"
             initial={{ scaleX: 0, opacity: 0 }}
@@ -117,9 +132,9 @@ export default function Header({ navData }: HeaderProps) {
         </motion.header>
       </motion.div>
 
-      <MobileMenu 
-        isOpen={mobileMenu.isOpen} 
-        navLinks={links} 
+      <MobileMenu
+        isOpen={mobileMenu.isOpen}
+        navLinks={links}
         closeMenu={mobileMenu.closeMenu}
         expandedItem={mobileMenu.expandedItem}
         toggleExpanded={mobileMenu.toggleExpanded}

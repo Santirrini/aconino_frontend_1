@@ -34,12 +34,12 @@ export default function NavLinks({ navLinks }: NavLinksProps) {
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     try {
-      const urlObj = new URL(href, "http://localhost"); 
+      const urlObj = new URL(href, "http://localhost");
       const matchesPath = pathname === urlObj.pathname;
       if (urlObj.hash) {
         return matchesPath && currentHash === urlObj.hash;
       }
-      if (matchesPath && currentHash !== "") return false; 
+      if (matchesPath && currentHash !== "") return false;
       return matchesPath;
     } catch {
       return false;
@@ -61,17 +61,24 @@ export default function NavLinks({ navLinks }: NavLinksProps) {
         const isHovered = hoveredIdx === idx;
 
         return (
-          <motion.div 
-            key={idx} 
+          <motion.div
+            key={idx}
             className="relative"
             onMouseEnter={() => setHoveredIdx(idx)}
             onMouseLeave={() => setHoveredIdx(null)}
             variants={staggerItem}
           >
+            {/* Glow backdrop on hover */}
+            <motion.div
+              className="absolute inset-0 bg-accent/10 blur-lg rounded-full"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1.2 : 0.8 }}
+              transition={{ duration: 0.3 }}
+            />
+
             <Link
               href={link.href}
               onClick={(e) => {
-                // Soportar abrir el dropdown con click además de hover
                 if (link.hasDropdown) {
                   if (link.href === "#" || link.href === "") {
                     e.preventDefault();
@@ -79,11 +86,18 @@ export default function NavLinks({ navLinks }: NavLinksProps) {
                   setHoveredIdx(hoveredIdx === idx ? null : idx);
                 }
               }}
-              className={`flex items-center gap-1 py-4 transition-colors duration-300 relative z-10 ${
+              className={`relative flex items-center gap-1 py-4 px-2 transition-all duration-300 z-10 ${
                 parentActive ? 'text-accent' : 'text-primary hover:text-accent'
               }`}
             >
-              {link.name}
+              <motion.span
+                className="relative"
+                whileHover={{ y: -2 }}
+                transition={{ duration: 0.2 }}
+              >
+                {link.name}
+              </motion.span>
+
               {link.hasDropdown && (
                 <motion.div
                   animate={{ rotate: isHovered ? 180 : 0 }}
@@ -93,10 +107,19 @@ export default function NavLinks({ navLinks }: NavLinksProps) {
                 </motion.div>
               )}
 
-              {/* Magnet/Glow indicator */}
-              <span className={`absolute bottom-0 left-0 h-[3px] rounded-t-md bg-accent transition-all duration-300 ${
-                parentActive ? 'w-full shadow-[0_-2px_10px_rgba(248,183,25,0.5)]' : 'w-0 group-hover:w-full'
-              }`} style={{ width: parentActive || isHovered ? '100%' : '0%' }}></span>
+              {/* Animated underline */}
+              <motion.span
+                className="absolute bottom-0 left-0 h-[3px] rounded-t-full"
+                style={{ backgroundColor: '#f8b719' }}
+                initial={{ width: 0, boxShadow: '0 0 0px rgba(248,183,25,0)' }}
+                animate={{
+                  width: parentActive || isHovered ? '100%' : '0%',
+                  boxShadow: parentActive || isHovered
+                    ? '0 -4px 12px rgba(248,183,25,0.4)'
+                    : '0 0 0px rgba(248,183,25,0)',
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              />
             </Link>
 
             {link.hasDropdown && link.subLinks && (
