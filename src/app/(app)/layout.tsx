@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
+import { DonationProvider } from "../../providers/DonationProvider";
 
 const manrope = Manrope({
     subsets: ["latin"],
@@ -51,11 +52,13 @@ export default async function RootLayout({
     return (
         <html lang="es" className={`${manrope.variable}`}>
             <body className="antialiased min-h-screen flex flex-col font-sans bg-white text-primary">
-                <Header navData={navLinks} />
-                <main className="flex-1 w-full relative">
-                    {children}
-                </main>
-                <Footer />
+                <DonationProvider>
+                    <Header navData={navLinks} />
+                    <main className="flex-1 w-full relative">
+                        {children}
+                    </main>
+                    <Footer />
+                </DonationProvider>
             </body>
         </html>
     );

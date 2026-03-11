@@ -14,11 +14,11 @@ const iconMap: Record<string, React.ReactNode> = {
 
 const defaultPrograms = [
     {
-        id: 'default-1',
-        title: "Apoyo a dificultades en el aprendizaje a niños",
-        description: "de 3 a 14 años. Programa terapéutico de apoyo a las actividades escolares para potencializar las habilidades motoras, cognitivas y de lenguaje.",
-        slug: "apoyo-aprendizaje",
-        ageRange: "3-14 años",
+        id: 'default-3',
+        title: "Atención temprana",
+        description: "de 0 a 3 años. Programa terapéutico integral para apoyar el desarrollo sicomotor a través de la estimulación temprana y adecuada de sistemas multisensoriales.",
+        slug: "atencion-temprana",
+        ageRange: "0-3 años",
         featuredImage: null,
     },
     {
@@ -30,11 +30,11 @@ const defaultPrograms = [
         featuredImage: null,
     },
     {
-        id: 'default-3',
-        title: "Atención temprana",
-        description: "de 0 a 3 años. Programa terapéutico integral para apoyar el desarrollo sicomotor a través de la estimulación temprana y adecuada de sistemas multisensoriales.",
-        slug: "atencion-temprana",
-        ageRange: "0-3 años",
+        id: 'default-1',
+        title: "Apoyo a dificultades en el aprendizaje a niños",
+        description: "de 3 a 14 años. Programa terapéutico de apoyo a las actividades escolares para potencializar las habilidades motoras, cognitivas y de lenguaje.",
+        slug: "apoyo-aprendizaje",
+        ageRange: "3-14 años",
         featuredImage: null,
     },
     {
@@ -52,7 +52,7 @@ export default async function ProgramasPage() {
 
     const { docs: fetchedPrograms } = await payload.find({
         collection: "programs-pages",
-        sort: "createdAt",
+        sort: "order",
     });
 
     const programs = (fetchedPrograms && fetchedPrograms.length > 0) ? fetchedPrograms : defaultPrograms;

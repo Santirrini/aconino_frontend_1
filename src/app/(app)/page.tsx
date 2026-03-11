@@ -3,6 +3,7 @@ import configPromise from "@payload-config";
 import Hero from "../../components/Hero";
 import AboutSection from "../../components/AboutSection";
 import ProgramsSection from "../../components/ProgramsSection";
+import ImpactSection from "../../components/ImpactSection";
 import CtaSection from "../../components/CtaSection";
 import NewsSection from "../../components/NewsSection";
 import RecognitionsSection from "../../components/RecognitionsSection";
@@ -59,6 +60,7 @@ export default async function Home() {
             ) : (
                 <ProgramsSection />
             )}
+            <ImpactSection />
             <CtaSection acf={acf} />
             <NewsSection posts={posts} />
             {mappedRecognitions && mappedRecognitions.length > 0 ? (

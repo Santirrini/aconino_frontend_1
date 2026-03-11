@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronDown, FaHeart } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useDonation } from "../../../providers/DonationProvider";
 
 interface SubLink {
   name: string;
@@ -29,6 +30,7 @@ interface MobileMenuProps {
 export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, toggleExpanded }: MobileMenuProps) {
   const pathname = usePathname();
   const [currentHash, setCurrentHash] = useState("");
+  const { openDonationWidget } = useDonation();
 
   useEffect(() => {
     const handleHashChange = () => setCurrentHash(window.location.hash);
@@ -160,14 +162,16 @@ export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, 
               <a href="mailto:asistentenorte@aconino.org" className="text-primary font-bold text-lg mb-2 block hover:text-accent transition-colors">asistentenorte@aconino.org</a>
               <p className="text-gray-500 text-sm font-medium">Calle 127 B No. 45-28 – Barrio Prado<br />Bogotá - Colombia</p>
 
-              <Link
-                href="/pago-en-linea"
-                onClick={closeMenu}
-                className="sm:hidden mt-6 flex items-center justify-center gap-3 bg-gradient-to-r from-primary to-secondary text-white px-6 py-4 rounded-full font-black text-sm tracking-widest shadow-xl shadow-primary/20 hover:scale-105 transition-transform"
+              <button
+                onClick={() => {
+                  closeMenu();
+                  openDonationWidget();
+                }}
+                className="sm:hidden w-full mt-6 flex items-center justify-center gap-3 bg-accent text-primary px-6 py-4 rounded-full font-black text-sm tracking-widest shadow-xl shadow-accent/40 hover:scale-105 transition-transform uppercase"
               >
-                PAGO EN LÍNEA
-                <FaHeart className="text-accent" />
-              </Link>
+                DONAR AHORA
+                <FaHeart className="text-primary" />
+              </button>
             </motion.div>
           </div>
         </motion.div>

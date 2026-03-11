@@ -19,10 +19,10 @@ interface ProgramsSectionProps {
 export default function ProgramsSection({ programs }: ProgramsSectionProps) {
     const defaultPrograms = [
         {
-            title: "Apoyo a dificultades en el aprendizaje a niños",
-            desc: "de 3 a 14 años. Programa terapéutico de...",
-            slug: "apoyo-aprendizaje",
-            icon: <FaGraduationCap className="text-5xl text-secondary" />
+            title: "Atención temprana",
+            desc: "de 0 a 3 años. Programa terapéutico integral para apoyar el desarrollo sicomotor a través de...",
+            slug: "atencion-temprana",
+            icon: <FaGraduationCap className="text-5xl text-accent" />
         },
         {
             title: "Protocolo Intensivo Pediasuit Niños y jóvenes",
@@ -31,10 +31,10 @@ export default function ProgramsSection({ programs }: ProgramsSectionProps) {
             icon: <FaGraduationCap className="text-5xl text-secondary" />
         },
         {
-            title: "Atención temprana",
-            desc: "de 0 a 3 años. Programa terapéutico integral para apoyar el desarrollo sicomotor a través de...",
-            slug: "atencion-temprana",
-            icon: <FaGraduationCap className="text-5xl text-accent" />
+            title: "Apoyo a dificultades en el aprendizaje a niños",
+            desc: "de 3 a 14 años. Programa terapéutico de...",
+            slug: "apoyo-aprendizaje",
+            icon: <FaGraduationCap className="text-5xl text-secondary" />
         },
         {
             title: "Atención a niños y jóvenes",

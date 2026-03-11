@@ -28,6 +28,15 @@ export const Programs: CollectionConfig = {
             },
         },
         {
+            name: 'order',
+            type: 'number',
+            label: 'Order',
+            defaultValue: 0,
+            admin: {
+                position: 'sidebar',
+            },
+        },
+        {
             name: 'ageRange',
             type: 'text',
             label: 'Age Range (e.g., 0-3 years)',
