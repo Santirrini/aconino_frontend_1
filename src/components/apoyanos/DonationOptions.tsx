@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaUniversity, FaGlobe, FaCreditCard } from "react-icons/fa";
+import { FaUniversity, FaGlobe, FaCreditCard, FaHeart } from "react-icons/fa";
 import Image from "next/image";
+import { useDonation } from "../../providers/DonationProvider";
 
 const programs = [
     {
@@ -28,6 +29,8 @@ const programs = [
 ];
 
 export default function DonationOptions() {
+    const { openDonationWidget } = useDonation();
+
     return (
         <section className="py-20 bg-gray-50">
             <div className="container mx-auto px-4 max-w-6xl">
@@ -43,17 +46,21 @@ export default function DonationOptions() {
                     {programs.map((program, index) => (
                         <motion.div
                             key={index}
+                            onClick={openDonationWidget}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             whileHover={{ y: -10 }}
-                            className="bg-white rounded-2xl shadow-lg shadow-gray-200 overflow-hidden flex flex-col items-center text-center p-8 border-t-8 border-accent"
+                            className="bg-white rounded-2xl shadow-lg shadow-gray-200 overflow-hidden flex flex-col items-center text-center p-8 border-t-8 border-accent cursor-pointer group"
                         >
-                            <h4 className={`text-sm font-black text-white px-4 py-8 mb-4 w-full h-32 flex items-center justify-center ${program.color} rounded-xl`}>
+                            <h4 className={`text-sm font-black text-white px-4 py-8 mb-4 w-full h-32 flex items-center justify-center ${program.color} rounded-xl transition-colors duration-300`}>
                                 {program.title}
                             </h4>
-                            <p className="text-2xl font-bold text-primary">{program.price}</p>
+                            <p className="text-2xl font-bold text-primary mb-4">{program.price}</p>
+                            <span className="text-accent font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2">
+                                <FaHeart /> Donar
+                            </span>
                         </motion.div>
                     ))}
                 </div>
