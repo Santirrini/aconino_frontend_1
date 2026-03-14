@@ -1,9 +1,9 @@
-import { getPayload } from "payload";
-import configPromise from "@payload-config";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import ProgramCTA from "../../../../components/programs/ProgramCTA";
 import ScrollReveal from "../../../../components/animations/ScrollReveal";
+import { defaultPrograms } from "@/data/secondaryPages";
 
 interface PageProps {
     params: Promise<{
@@ -13,23 +13,12 @@ interface PageProps {
 
 export default async function ProgramPage({ params }: PageProps) {
     const { slug } = await params;
-    const payload = await getPayload({ config: configPromise });
+    
+    const program = defaultPrograms.find((p: any) => p.slug === slug);
 
-    const result = await payload.find({
-        collection: "programs-pages",
-        where: {
-            slug: {
-                equals: slug,
-            },
-        },
-        limit: 1,
-    });
-
-    if (!result.docs || result.docs.length === 0) {
+    if (!program) {
         return notFound();
     }
-
-    const program = result.docs[0];
 
     return (
         <article className="min-h-screen bg-gray-50">
@@ -88,7 +77,7 @@ export default async function ProgramPage({ params }: PageProps) {
                                 <div className="rounded-3xl overflow-hidden shadow-2xl relative group">
                                     <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                                     <Image
-                                        src={program.featuredImage.url || ""}
+                                        src={program.featuredImage}
                                         alt={program.title}
                                         width={600}
                                         height={800}
@@ -127,13 +116,13 @@ export default async function ProgramPage({ params }: PageProps) {
                                     </a>
                                 </div>
 
-                                <a href="/contacto" className="block w-full relative overflow-hidden bg-primary text-white text-center font-bold py-4 rounded-xl transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(12,32,112,0.3)] transform group-hover:-translate-y-1">
+                                <Link href="/contacto" className="block w-full relative overflow-hidden bg-primary text-white text-center font-bold py-4 rounded-xl transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(12,32,112,0.3)] transform group-hover:-translate-y-1">
                                     <span className="relative z-10 flex items-center justify-center gap-2">
                                         SOLICITAR ASESORÍA
                                         <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                                     </span>
                                     <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                </a>
+                                </Link>
                             </div>
                         </ScrollReveal>
                     </div>

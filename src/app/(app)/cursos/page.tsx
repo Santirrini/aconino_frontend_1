@@ -1,5 +1,3 @@
-import { getPayload } from "payload";
-import configPromise from "@payload-config";
 import CursosHero from "@/components/cursos/CursosHero";
 import BobathHistory from "@/components/cursos/BobathHistory";
 import InstructorsSection from "@/components/cursos/InstructorsSection";
@@ -94,40 +92,22 @@ const defaultCourses: (CourseCardData & { year: number })[] = [
 ];
 
 export default async function CursosPage() {
-    const payload = await getPayload({ config: configPromise });
-
-    const { docs: fetchedCourses } = await payload.find({
-        collection: "courses",
-        sort: "-year",
-        limit: 100,
-    });
-
-    const courses: (CourseCardData & { year: number })[] =
-        fetchedCourses && fetchedCourses.length > 0
-            ? fetchedCourses.map((doc: any) => ({
-                id: doc.id,
-                title: doc.title,
-                slug: doc.slug,
-                dates: doc.dates || null,
-                duration: doc.duration || null,
-                location: doc.location || null,
-                countryCode: doc.countryCode || null,
-                status: doc.status || "upcoming",
-                year: doc.year || new Date().getFullYear(),
-                description: doc.description || null,
-                featuredImage:
-                    typeof doc.featuredImage === "object" && doc.featuredImage !== null
-                        ? { url: doc.featuredImage.url, alt: doc.featuredImage.alt }
-                        : null,
-                detailUrl: doc.detailUrl || null,
-            }))
-            : defaultCourses;
+    const courses = defaultCourses;
+    const heroTitle = "Cursos y Capacitaciones";
+    const heroImage = "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format&fit=crop";
+    const showInstructors = true;
+    const bottomCTA = {
+        title: "¿Interesado en nuestros cursos?",
+        description: "Contáctanos para conocer las próximas fechas y disponibilidad de cupos.",
+        buttonText: "CONTÁCTANOS",
+        buttonLink: "https://wa.me/573133910760"
+    };
 
     return (
         <main className="min-h-screen bg-white">
-            <CursosHero />
+            <CursosHero title={heroTitle} imageUrl={heroImage} />
             <BobathHistory />
-            <InstructorsSection />
+            {showInstructors && <InstructorsSection />}
             <CourseGrid courses={courses} />
 
             {/* Bottom CTA */}
@@ -138,18 +118,18 @@ export default async function CursosPage() {
 
                 <div className="relative z-10 max-w-3xl mx-auto px-4">
                     <h3 className="text-3xl md:text-4xl font-extrabold mb-4">
-                        ¿Interesado en nuestros cursos?
+                        {bottomCTA?.title || "¿Interesado en nuestros cursos?"}
                     </h3>
                     <p className="text-white/80 text-lg mb-8 max-w-xl mx-auto">
-                        Contáctanos para conocer las próximas fechas y disponibilidad de cupos.
+                        {bottomCTA?.description || "Contáctanos para conocer las próximas fechas y disponibilidad de cupos."}
                     </p>
                     <a
-                        href="https://wa.me/573001234567"
+                        href={bottomCTA?.buttonLink || "https://wa.me/573133910760"}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 bg-accent text-primary px-10 py-4 rounded-full font-black text-lg hover:bg-white hover:scale-105 transition-all duration-300 shadow-xl"
                     >
-                        CONTÁCTANOS
+                        {bottomCTA?.buttonText || "CONTÁCTANOS"}
                     </a>
                 </div>
             </section>

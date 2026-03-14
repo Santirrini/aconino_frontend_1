@@ -1,83 +1,47 @@
-import { getPayload } from "payload";
-import configPromise from "@payload-config";
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowRight, FaGraduationCap, FaHeart, FaStar, FaUser } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import ScrollReveal from "../../../components/animations/ScrollReveal";
 
-const iconMap: Record<string, React.ReactNode> = {
-    'graduation-cap': <FaGraduationCap />,
-    'heart': <FaHeart />,
-    'star': <FaStar />,
-    'user': <FaUser />,
-};
-
-const defaultPrograms = [
-    {
-        id: 'default-3',
-        title: "Atención temprana",
-        description: "de 0 a 3 años. Programa terapéutico integral para apoyar el desarrollo sicomotor a través de la estimulación temprana y adecuada de sistemas multisensoriales.",
-        slug: "atencion-temprana",
-        ageRange: "0-3 años",
-        featuredImage: null,
-    },
-    {
-        id: 'default-2',
-        title: "Protocolo Intensivo Pediasuit Niños y jóvenes",
-        description: "de 2 a 18 años. Protocolo Pediasuit es un programa terapéutico intensivo para apoyar el desarrollo sicomotor a través de la estimulación de sistemas multisensoriales.",
-        slug: "pediasuit",
-        ageRange: "2-18 años",
-        featuredImage: null,
-    },
-    {
-        id: 'default-1',
-        title: "Apoyo a dificultades en el aprendizaje a niños",
-        description: "de 3 a 14 años. Programa terapéutico de apoyo a las actividades escolares para potencializar las habilidades motoras, cognitivas y de lenguaje.",
-        slug: "apoyo-aprendizaje",
-        ageRange: "3-14 años",
-        featuredImage: null,
-    },
-    {
-        id: 'default-4',
-        title: "Visión a niños y jóvenes",
-        description: "de 3 a 18 años. Programa terapéutico integral para apoyar el desarrollo sicomotor y evitar en lo posible la aparición de patrones atípicos.",
-        slug: "atencion-ninos-jovenes",
-        ageRange: "3-18 años",
-        featuredImage: null,
-    }
-];
+import { defaultPrograms } from "@/data/secondaryPages";
 
 export default async function ProgramasPage() {
-    const payload = await getPayload({ config: configPromise });
-
-    const { docs: fetchedPrograms } = await payload.find({
-        collection: "programs-pages",
-        sort: "order",
-    });
-
-    const programs = (fetchedPrograms && fetchedPrograms.length > 0) ? fetchedPrograms : defaultPrograms;
+    const programs = defaultPrograms;
+    
+    const heroTitle = "Programas";
+    const heroSubtitle = "Conoce nuestros programas de habilitación y rehabilitación integral.";
+    const heroImage = "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop";
+    
+    const ctaText = "CONTÁCTANOS";
+    const ctaLink = "/contacto";
+    const ctaTitle = "¿Quieres saber más sobre nuestros programas?";
 
     return (
         <main className="min-h-screen bg-white">
             {/* Hero Banner */}
             <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
                 <Image
-                    src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop"
-                    alt="Programas Aconiño"
+                    src={heroImage}
+                    alt={heroTitle}
                     fill
                     className="object-cover brightness-50"
                     priority
                 />
-                <div className="relative z-10 text-center px-4">
+                <div className="relative z-10 text-center px-4 mt-16">
                     <ScrollReveal animation="fade-up" delay={0.1}>
                         <div className="flex justify-center mb-6">
                             <span className="text-yellow-400 text-5xl">♥</span>
                         </div>
                     </ScrollReveal>
                     <ScrollReveal animation="zoom-in" delay={0.3}>
-                        <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter">
-                            Programas
+                        <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-4">
+                            {heroTitle}
                         </h1>
+                        {heroSubtitle && (
+                            <p className="text-xl text-white/90 max-w-2xl mx-auto mt-4 font-medium">
+                                {heroSubtitle}
+                            </p>
+                        )}
                     </ScrollReveal>
                 </div>
             </section>
@@ -170,12 +134,14 @@ export default async function ProgramasPage() {
             {/* Floating CTA */}
             <section className="bg-primary py-20 text-center text-white">
                 <ScrollReveal animation="zoom-in" delay={0.2}>
-                    <h3 className="text-3xl font-bold mb-8">¿Quieres saber más sobre nuestros programas?</h3>
+                    <h3 className="text-3xl font-bold mb-8">
+                        {ctaTitle}
+                    </h3>
                     <Link
-                        href="/contacto"
-                        className="bg-accent text-primary px-10 py-4 rounded-full font-black text-lg hover:bg-white transition-colors"
+                        href={ctaLink}
+                        className="bg-accent text-primary px-10 py-4 rounded-full font-black text-lg hover:bg-white transition-colors uppercase"
                     >
-                        CONTÁCTANOS
+                        {ctaText}
                     </Link>
                 </ScrollReveal>
             </section>

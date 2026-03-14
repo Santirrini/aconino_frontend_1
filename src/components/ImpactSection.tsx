@@ -8,37 +8,79 @@ import { useScrollReveal, useStagger, fadeVariants, slideVariants } from "./anim
 import { useDonation } from "../providers/DonationProvider";
 import Image from "next/image";
 
-const stats = [
-  { id: 1, value: 150, suffix: "+", label: "Niños atendidos", icon: <FaChild /> },
-  { id: 2, value: 25, suffix: "", label: "Años de servicio", icon: <FaCalendarAlt /> },
-  { id: 3, value: 5000, suffix: "+", label: "Sesiones anuales", icon: <FaHandsHelping /> },
+// Icons rendered at render time via index lookup — never stored in data objects
+const STAT_ICONS = [FaChild, FaCalendarAlt, FaHandsHelping];
+
+const defaultStats = [
+  { id: 1, value: 150, suffix: "+", label: "Niños atendidos" },
+  { id: 2, value: 25, suffix: "", label: "Años de servicio" },
+  { id: 3, value: 5000, suffix: "+", label: "Sesiones anuales" },
 ];
 
-const stories = [
-  {
-    id: 1,
-    name: "M.",
-    story: "Gracias a las terapias, M. ha logrado dar sus primeros pasos independientes.",
-    img: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=600&auto=format&fit=crop"
-  },
-  {
-    id: 2,
-    name: "J.",
-    story: "El programa Pediasuit transformó la calidad de vida de toda nuestra familia.",
-    img: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=600&auto=format&fit=crop"
-  },
-  {
-    id: 3,
-    name: "S.",
-    story: "Verlo sonreír y jugar con otros niños es el mayor regalo que pudimos recibir.",
-    img: "https://images.unsplash.com/photo-1542887800-faca0261c9e1?q=80&w=600&auto=format&fit=crop"
-  }
-];
+interface ImpactStat {
+    label: string;
+    value: string;
+}
 
-export default function ImpactSection() {
+interface ImpactStory {
+    name: string;
+    quote: string;
+    image?: { url?: string } | string | number | null;
+}
+
+interface ImpactSectionProps {
+    title?: string | null;
+    stats?: ImpactStat[] | null;
+    stories?: ImpactStory[] | null;
+    ctaButtonText?: string | null;
+}
+
+export default function ImpactSection({ title, stats = [], stories: storiesProp, ctaButtonText }: ImpactSectionProps) {
   const scrollReveal = useScrollReveal();
   const stagger = useStagger(0.2);
   const { openDonationWidget } = useDonation();
+
+  const displayStats = stats && stats.length > 0 
+    ? stats.map((s, i) => {
+        const numMatch = s.value.match(/\d+/);
+        const val = numMatch ? parseInt(numMatch[0]) : 0;
+        const suffix = s.value.replace(/\d+/g, '').trim();
+        return {
+            id: i + 1,
+            value: val,
+            suffix: suffix,
+            label: s.label,
+        };
+      })
+    : defaultStats;
+
+  const displayStories = storiesProp && storiesProp.length > 0
+    ? storiesProp.map((s, i) => ({
+        id: i + 1,
+        name: s.name,
+        story: s.quote,
+        img: (typeof s.image === 'object' ? s.image?.url : (s.image as string)) || "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=600&auto=format&fit=crop"
+    }))
+    : [
+        {
+          id: 1,
+          name: "M.",
+          story: "Gracias a las terapias, M. ha logrado dar sus primeros pasos independientes.",
+          img: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=600&auto=format&fit=crop"
+        },
+        {
+          id: 2,
+          name: "J.",
+          story: "El programa Pediasuit transformó la calidad de vida de toda nuestra familia.",
+          img: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=600&auto=format&fit=crop"
+        },
+        {
+          id: 3,
+          name: "S.",
+          story: "Verlo sonreír y jugar con otros niños es el mayor regalo que pudimos recibir.",
+          img: "https://images.unsplash.com/photo-1542887800-faca0261c9e1?q=80&w=600&auto=format&fit=crop"
+        }
+    ];
 
   return (
     <section className="py-24 bg-white relative overflow-hidden">
@@ -56,7 +98,11 @@ export default function ImpactSection() {
             <FaHeart className="text-accent text-4xl" />
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary uppercase tracking-tighter mb-4">
-            Tu apoyo <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">transforma</span> vidas
+            {title ? (
+                <span dangerouslySetInnerHTML={{ __html: title.replace('transforma', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">transforma</span>') }} />
+            ) : (
+                <>Tu apoyo <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">transforma</span> vidas</>
+            )}
           </h2>
           <p className="text-xl text-gray-500 max-w-2xl mx-auto font-medium">
             Cada aporte cuenta. Con tu ayuda logramos que más niños reciban la atención terapéutica que necesitan.
@@ -65,7 +111,9 @@ export default function ImpactSection() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          {stats.map((stat) => (
+          {displayStats.map((stat, idx) => {
+            const IconComponent = STAT_ICONS[idx % STAT_ICONS.length];
+            return (
             <motion.div
               key={stat.id}
               initial={{ opacity: 0, y: 20 }}
@@ -75,7 +123,7 @@ export default function ImpactSection() {
               className="bg-gray-50 rounded-3xl p-8 text-center flex flex-col items-center justify-center shadow-sm hover:shadow-lg transition-shadow border border-gray-100"
             >
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl text-secondary mb-4 shadow-sm">
-                {stat.icon}
+                <IconComponent />
               </div>
               <div className="text-5xl font-black text-primary mb-2 flex items-baseline">
                 <CountUp end={stat.value} duration={3} enableScrollSpy scrollSpyOnce />
@@ -83,7 +131,7 @@ export default function ImpactSection() {
               </div>
               <p className="text-lg font-bold text-gray-500 uppercase tracking-wide">{stat.label}</p>
             </motion.div>
-          ))}
+          )})}
         </div>
 
         {/* Stories */}
@@ -92,7 +140,7 @@ export default function ImpactSection() {
           variants={stagger}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
         >
-          {stories.map((story) => (
+          {displayStories.map((story) => (
             <motion.div
               key={story.id}
               variants={slideVariants}
@@ -110,7 +158,7 @@ export default function ImpactSection() {
               <div className="absolute bottom-0 left-0 p-6 w-full text-white">
                 <h3 className="text-2xl font-black mb-2">{story.name}</h3>
                 <p className="text-white/80 leading-snug font-medium text-sm">
-                  "{story.story}"
+                  &ldquo;{story.story}&rdquo;
                 </p>
               </div>
             </motion.div>
@@ -128,10 +176,10 @@ export default function ImpactSection() {
             className="flex items-center gap-3 bg-accent text-primary px-10 py-5 rounded-full font-black text-xl tracking-widest shadow-xl shadow-accent/40 hover:scale-105 hover:bg-yellow-400 transition-all duration-300 group"
           >
             <FaHeart className="group-hover:scale-125 transition-transform duration-300" />
-            APADRINA UN NIÑO
+            {ctaButtonText || "APADRINA UN NIÑO"}
           </button>
         </motion.div>
       </div>
     </section>
   );
-}
+}

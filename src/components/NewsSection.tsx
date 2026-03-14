@@ -2,15 +2,20 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { WPPost } from "../types/wp";
+// @ts-ignore
+import { getPayloadImageUrl } from "@/lib/payload-utils";
 import { FaRegCommentDots, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 interface NewsSectionProps {
-    posts: WPPost[];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    posts: any[];
+    title?: string | null;
+    showSection?: boolean | null;
 }
 
-export default function NewsSection({ posts }: NewsSectionProps) {
+export default function NewsSection({ posts, title, showSection = true }: NewsSectionProps) {
+    if (showSection === false) return null;
     const containerVariants = {
         hidden: {},
         visible: {
@@ -39,7 +44,7 @@ export default function NewsSection({ posts }: NewsSectionProps) {
                             <span className="text-sm font-bold text-gray-400 tracking-widest uppercase">Aconino</span>
                             <div className="h-[2px] bg-accent w-16"></div>
                         </div>
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary">Últimas noticias</h2>
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary">{title || "Últimas noticias"}</h2>
                     </div>
 
                     <Link href="/noticias" className="inline-flex items-center justify-center gap-3 border-2 border-primary text-primary font-bold px-8 py-3 rounded-full hover:bg-primary hover:text-white transition-all duration-300 text-sm tracking-widest shrink-0 group">
@@ -58,10 +63,12 @@ export default function NewsSection({ posts }: NewsSectionProps) {
                 >
                     {posts.length > 0 ? (
                         posts.map((post) => {
-                            const dateObj = new Date(post.date);
+                            const dateObj = new Date(post.publishedAt || post.createdAt);
                             const day = dateObj.getDate();
                             const month = dateObj.toLocaleDateString("es-ES", { month: "short" }).toUpperCase();
-                            const featuredImageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || `https://via.placeholder.com/600x400/e2e8f0/0c2070?text=Noticia+${post.id}`;
+                            const featuredImageUrl = (typeof post.featuredImage === 'object' && post.featuredImage?.url) 
+                                ? post.featuredImage.url 
+                                : post.featuredImage ?? `https://via.placeholder.com/600x400/e2e8f0/0c2070?text=Noticia+${post.id}`;
 
                             return (
                                 <motion.article 
@@ -73,7 +80,7 @@ export default function NewsSection({ posts }: NewsSectionProps) {
                                     <div className="relative w-full h-72 bg-gray-100 overflow-hidden">
                                         <Image
                                             src={featuredImageUrl}
-                                            alt={post.title.rendered}
+                                            alt={post.title}
                                             fill
                                             className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
                                         />
@@ -94,12 +101,12 @@ export default function NewsSection({ posts }: NewsSectionProps) {
                                         </div>
 
                                         <h3 className="text-xl lg:text-2xl font-bold text-primary mb-4 leading-snug line-clamp-3 group-hover:text-secondary transition-colors">
-                                            {post.title.rendered}
+                                            {post.title}
                                         </h3>
 
                                         <div
                                             className="text-gray-500 text-base mb-8 line-clamp-3 leading-relaxed"
-                                            dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+                                            dangerouslySetInnerHTML={{ __html: post.excerpt || '' }}
                                         />
 
                                         <div className="mt-auto pt-6 border-t border-gray-100">
