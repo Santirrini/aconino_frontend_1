@@ -11,7 +11,7 @@ export const homePageContent = {
     about: {
         title: "Sobre Aconiño",
         description: "Somos una organización sin fines de lucro dedicada a brindar servicios de salud y educación a niños y jóvenes con discapacidad sensoriomotriz en Colombia.",
-        image: "https://aconino.org/wp-content/uploads/2024/02/Quienes-Somos-Home.jpg",
+        image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=600&auto=format&fit=crop",
         ctaText: "CONOCE MÁS",
         ctaLink: "/quienes-somos/nosotros",
         statsValue: "35+",

@@ -1,7 +1,7 @@
 export const navLinks = [
-    { label: "Inicio", href: "/" },
+    { name: "Inicio", href: "/" },
     { 
-        label: "Nosotros", 
+        name: "Nosotros", 
         href: "/quienes-somos/nosotros",
         hasDropdown: true,
         subLinks: [
@@ -10,7 +10,7 @@ export const navLinks = [
         ]
     },
     { 
-        label: "Programas", 
+        name: "Programas", 
         href: "/programas",
         hasDropdown: true,
         dropdownType: 'dynamic',
@@ -22,8 +22,8 @@ export const navLinks = [
             { name: "Visión", href: "/programas#atencion-ninos-jovenes" }
         ]
     },
-    { label: "Cursos", href: "/cursos" },
-    { label: "Contacto", href: "/contacto" }
+    { name: "Cursos", href: "/cursos" },
+    { name: "Contacto", href: "/contacto" }
 ];
 
 export const footerConfig = {

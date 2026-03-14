@@ -1,7 +1,6 @@
 import Hero from "../../components/Hero";
 import AboutSection from "../../components/AboutSection";
 import ProgramsSection from "../../components/ProgramsSection";
-import ProgramsProcedure from "../../components/ProgramsProcedure";
 import ImpactSection from "../../components/ImpactSection";
 import CtaSection from "../../components/CtaSection";
 import NewsSection from "../../components/NewsSection";
@@ -59,9 +58,8 @@ export default async function Home() {
 
             <Hero acf={acf} />
             <AboutSection acf={acf} />
-            {/* <ProgramsProcedure data={homePage.methodology as any} /> */}
-            {/* <ProgramsSection programs={mappedPrograms || []} description={homePage.programs?.description || ""} /> */}
-            {/* <ImpactSection 
+            <ProgramsSection programs={mappedPrograms || []} />
+            <ImpactSection 
                 title={homePage.impact.title}
                 stats={homePage.impact.features}
                 stories={homePage.impact.stories.map((s: any) => ({
@@ -70,10 +68,10 @@ export default async function Home() {
                     image: ""
                 }))}
                 ctaButtonText={homePage.impact.ctaButtonText}
-            /> */}
-            {/* <CtaSection acf={acf} /> */}
-            {/* <NewsSection posts={posts} title={homePage.news?.title} showSection={homePage.news?.showSection} /> */}
-            {/* <RecognitionsSection /> */}
+            />
+            <CtaSection acf={acf} />
+            <NewsSection posts={posts} title={homePage.news?.title} showSection={homePage.news?.showSection} />
+            <RecognitionsSection />
         </div>
     );
 }

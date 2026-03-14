@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-// @ts-ignore
-import { getPayloadImageUrl } from "@/lib/payload-utils";
+
 import { FaRegCommentDots, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -63,12 +62,21 @@ export default function NewsSection({ posts, title, showSection = true }: NewsSe
                 >
                     {posts.length > 0 ? (
                         posts.map((post) => {
-                            const dateObj = new Date(post.publishedAt || post.createdAt);
-                            const day = dateObj.getDate();
-                            const month = dateObj.toLocaleDateString("es-ES", { month: "short" }).toUpperCase();
-                            const featuredImageUrl = (typeof post.featuredImage === 'object' && post.featuredImage?.url) 
-                                ? post.featuredImage.url 
-                                : post.featuredImage ?? `https://via.placeholder.com/600x400/e2e8f0/0c2070?text=Noticia+${post.id}`;
+                            // WP posts use 'date', not 'publishedAt'/'createdAt'
+                            const rawDate = post.date || post.publishedAt || post.createdAt;
+                            const dateObj = rawDate ? new Date(rawDate) : new Date();
+                            const day = isNaN(dateObj.getTime()) ? '--' : dateObj.getDate();
+                            const month = isNaN(dateObj.getTime()) ? '---' : dateObj.toLocaleDateString("es-ES", { month: "short" }).toUpperCase();
+
+                            // WP embedded media for featured image
+                            const wpMedia = post._embedded?.["wp:featuredmedia"]?.[0];
+                            const featuredImageUrl = wpMedia?.source_url 
+                                || (typeof post.featuredImage === 'object' && post.featuredImage?.url ? post.featuredImage.url : null)
+                                || `https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=600&auto=format&fit=crop`;
+
+                            // WP title and excerpt are {rendered: string}, not flat strings
+                            const postTitle = typeof post.title === 'object' ? post.title.rendered : (post.title || '');
+                            const postExcerpt = typeof post.excerpt === 'object' ? post.excerpt.rendered : (post.excerpt || '');
 
                             return (
                                 <motion.article 
@@ -80,7 +88,7 @@ export default function NewsSection({ posts, title, showSection = true }: NewsSe
                                     <div className="relative w-full h-72 bg-gray-100 overflow-hidden">
                                         <Image
                                             src={featuredImageUrl}
-                                            alt={post.title}
+                                            alt={postTitle}
                                             fill
                                             className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
                                         />
@@ -101,12 +109,12 @@ export default function NewsSection({ posts, title, showSection = true }: NewsSe
                                         </div>
 
                                         <h3 className="text-xl lg:text-2xl font-bold text-primary mb-4 leading-snug line-clamp-3 group-hover:text-secondary transition-colors">
-                                            {post.title}
+                                            {postTitle}
                                         </h3>
 
                                         <div
                                             className="text-gray-500 text-base mb-8 line-clamp-3 leading-relaxed"
-                                            dangerouslySetInnerHTML={{ __html: post.excerpt || '' }}
+                                            dangerouslySetInnerHTML={{ __html: postExcerpt }}
                                         />
 
                                         <div className="mt-auto pt-6 border-t border-gray-100">
