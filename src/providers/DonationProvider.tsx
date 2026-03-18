@@ -6,8 +6,10 @@ import DonationWidget from "../components/donations/DonationWidget";
 
 interface DonationContextProps {
   isDonationWidgetOpen: boolean;
-  openDonationWidget: () => void;
+  selectedCategory: string;
+  openDonationWidget: (categoryId?: string) => void;
   closeDonationWidget: () => void;
+  handleProcessDonation: (amount: number, categoryId: string) => void;
 }
 
 const DonationContext = createContext<DonationContextProps | undefined>(undefined);
@@ -22,12 +24,33 @@ export const useDonation = () => {
 
 export const DonationProvider = ({ children }: { children: ReactNode }) => {
   const [isDonationWidgetOpen, setIsDonationWidgetOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("general");
 
-  const openDonationWidget = () => setIsDonationWidgetOpen(true);
+  const openDonationWidget = (categoryId?: string) => {
+    if (categoryId) {
+      setSelectedCategory(categoryId);
+    }
+    setIsDonationWidgetOpen(true);
+  };
+  
   const closeDonationWidget = () => setIsDonationWidgetOpen(false);
 
+  const handleProcessDonation = (amount: number, categoryId: string) => {
+    const reference = `${categoryId}_${Date.now()}`;
+    const wompiUrl = `https://checkout.wompi.co/p/?amount=${amount}&reference=${reference}`;
+    window.location.href = wompiUrl;
+  };
+
   return (
-    <DonationContext.Provider value={{ isDonationWidgetOpen, openDonationWidget, closeDonationWidget }}>
+    <DonationContext.Provider 
+      value={{ 
+        isDonationWidgetOpen, 
+        selectedCategory,
+        openDonationWidget, 
+        closeDonationWidget,
+        handleProcessDonation
+      }}
+    >
       {children}
       <DonationWidget isOpen={isDonationWidgetOpen} onClose={closeDonationWidget} />
     </DonationContext.Provider>
