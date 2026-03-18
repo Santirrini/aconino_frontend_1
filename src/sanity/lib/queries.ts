@@ -439,3 +439,37 @@ export const CURSOS_PAGE_QUERY = defineQuery(`
     }
   }
 `)
+
+// Query for the app page configuration
+export const APP_PAGE_QUERY = defineQuery(`
+  *[_type == "appPage"][0] {
+    heroSlides[] {
+      _key,
+      "imageUrl": image.asset->url,
+      alt,
+      overlayOpacity
+    },
+    infoSection {
+      title,
+      text1,
+      text2
+    },
+    quoteSection {
+      quote,
+      author,
+      "avatarUrl": avatar.asset->url
+    },
+    benefitsSection {
+      title,
+      benefits,
+      downloadUrl,
+      "phoneImageUrl": phoneImage.asset->url
+    },
+    resultsSection {
+      title,
+      text1,
+      text2,
+      videoUrl
+    }
+  }
+`)

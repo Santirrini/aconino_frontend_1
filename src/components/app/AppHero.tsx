@@ -11,7 +11,7 @@ const heroImages = [
         alt: "Niño en terapia con aconiñoapp",
     },
     {
-        src: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?q=80&w=2070&auto=format&fit=crop",
+        src: "https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=2070&auto=format&fit=crop",
         alt: "Familia utilizando la aplicación",
     },
     {
