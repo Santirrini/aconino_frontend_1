@@ -21,8 +21,9 @@ interface Program {
 
 export default async function ProgramPage({ params }: PageProps) {
     const { slug } = await params;
+    const normalizedSlug = decodeURIComponent(slug).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     
-    const program: Program | undefined = defaultPrograms.find((p: Program) => p.slug === slug);
+    const program: Program | undefined = defaultPrograms.find((p: Program) => p.slug.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") === normalizedSlug);
 
     if (!program) {
         return notFound();
