@@ -1,4 +1,4 @@
-import { FaHardHat, FaHandHoldingHeart, FaStethoscope, FaTruck, FaUtensils } from "react-icons/fa";
+import { FaHardHat, FaStethoscope, FaTruck, FaUtensils } from "react-icons/fa";
 import { IconType } from "react-icons";
 
 export const MIN_DONATION_AMOUNT = 5000;
