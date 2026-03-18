@@ -18,9 +18,7 @@ Transformar el actual `DonationWidget` (modal) en un **Sidebar Lateral (Donation
 ### 3.1 Estructura Modular
 El sidebar se dividirá en sub-componentes internos para facilitar el mantenimiento:
 
-1.  **`SidebarHeader`**: Selector de pestañas (Tabs) con gradientes dinámicos.
-    *   `Tab: Construcción` (Materiales del Centro Día).
-    *   `Tab: Plan Padrino` (Terapias y Bienestar).
+1.  **`SidebarHeader`**: Selector de pestañas (Tabs) con gradientes dinámicos. Incluye botón "X" de cierre.
 2.  **`ImpactStory`**: Visualización del progreso actual.
     *   Imagen/Ilustración dinámica.
     *   Barra de progreso minimalista ("Faltan 10 bultos...").
@@ -31,6 +29,7 @@ El sidebar se dividirá en sub-componentes internos para facilitar el mantenimie
 
 ### 3.2 Comportamiento y Animaciones (Framer Motion)
 *   **Entrada:** `x: '100%' -> 0` con un `spring` suave.
+*   **Cierre:** Botón "X" en la esquina superior derecha del `SidebarHeader` y clic en el backdrop oscurecido.
 *   **Interacción:** Hover states en las tarjetas de monto con sutil elevación y cambio de color perimetral.
 *   **Feedback:** Al seleccionar un monto, el botón de acción debe iluminarse con un pulso de color `accent`.
 
@@ -38,7 +37,7 @@ El sidebar se dividirá en sub-componentes internos para facilitar el mantenimie
 
 ### 4.1 Colores y Tipografía
 *   **Fondo:** White / Gray-50.
-*   **Gradientes:** Uso de `from-primary to-secondary` para Construcción y `from-secondary to-accent` (o similar) para Plan Padrino.
+*   **Gradientes:** Uso de `from-primary to-secondary` para Construcción y `from-secondary to-accent` para Plan Padrino.
 *   **Tipografía:** 
     *   Títulos: `font-black text-primary uppercase`.
     *   Montos: `font-bold text-2xl`.
@@ -49,9 +48,32 @@ El sidebar se dividirá en sub-componentes internos para facilitar el mantenimie
 *   **Móvil:** Pantalla completa (Full-screen overlay) con scroll interno.
 
 ## 5. Implementación Técnica
-*   **Estrategia de Datos:** Los montos e impactos se cargarán desde un archivo de configuración centralizado (`src/data/donation-options.ts`).
-*   **Estado Global:** Integración con `DonationProvider.tsx` para manejar la apertura/cierre y el monto seleccionado.
-*   **Validación:** Asegurar que el input de "Otro monto" solo acepte valores numéricos positivos.
+
+### 5.1 Flujo de Pago
+El sidebar actúa como un **selector de intención y monto**. Al hacer clic en el botón de acción principal ("¡QUIERO APOYAR!"), el sistema debe:
+1.  Validar el monto seleccionado (min: $5.000 COP).
+2.  Redirigir al usuario a la pasarela de pago externa (Wompi/PayPal) inyectando el monto y la referencia de la causa seleccionada.
+*Nota: El sidebar NO procesa transacciones directamente, solo orquestra la selección.*
+
+### 5.2 Esquema de Datos (`src/data/donation-options.ts`)
+Para garantizar la escalabilidad, el esquema debe ser:
+```typescript
+interface DonationOption {
+  id: string;
+  category: 'construction' | 'padrino';
+  title: string;
+  items: Array<{
+    value: number;
+    label: string;
+    impact: string; // ej: "1 bulto de cemento"
+    icon: string; // nombre del icono de react-icons
+  }>;
+}
+```
+
+### 5.3 Validación y Estados
+*   **Input Personalizado:** Validar numéricamente; el botón de acción se deshabilita si el monto es inferior al mínimo.
+*   **Carga Fallida:** Si no hay datos en la configuración o el archivo `donation-options.ts` no se carga, mostrar un mensaje amigable invitando a contactar directamente.
 
 ## 6. Próximos Pasos (Plan de Acción)
 1.  Crear estructura de archivos modular.
