@@ -97,7 +97,7 @@ export default function ZoneDetailModal({ zone, isOpen, onClose }: ZoneDetailMod
                           <div className={`h-full rounded-full ${isComplete ? 'bg-green-500' : 'bg-accent'}`} style={{ width: `${Math.min(donatedPercentage, 100)}%` }} />
                         </div>
                       </div>
-                      {!isComplete && <button onClick={openDonationWidget} className="mt-3 w-full py-2 bg-primary text-white rounded-lg font-medium text-sm hover:bg-secondary">Donar {need.unit} de {need.name}</button>}
+                      {!isComplete && <button                       onClick={() => openDonationWidget()} className="mt-3 w-full py-2 bg-primary text-white rounded-lg font-medium text-sm hover:bg-secondary">Donar {need.unit} de {need.name}</button>}
                     </motion.div>
                   );
                 })}
@@ -105,7 +105,7 @@ export default function ZoneDetailModal({ zone, isOpen, onClose }: ZoneDetailMod
             </div>
 
             <div className="p-6 border-t bg-gray-50">
-              <button onClick={openDonationWidget} className="w-full py-4 bg-accent text-primary rounded-xl font-bold text-lg hover:bg-yellow-400">Donar a esta zona</button>
+              <button                       onClick={() => openDonationWidget()} className="w-full py-4 bg-accent text-primary rounded-xl font-bold text-lg hover:bg-yellow-400">Donar a esta zona</button>
             </div>
           </motion.div>
         </>

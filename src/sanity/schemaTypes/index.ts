@@ -15,9 +15,31 @@ import homeHero from './homeHero'
 import homePrograms from './homePrograms'
 import homeRecognitions from './homeRecognitions'
 import homeNews from './homeNews'
-import cursosHero from './cursosHero'
+import curso from './curso'
+import cursosPage from './cursosPage'
+import appPage from './appPage'
 import programasPage from './programasPage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [post, author, category, blockContent, page, settings, navigation, ctaSection, aboutSection, nosotrosIntro, quienesSomos, homeHero, homePrograms, homeRecognitions, homeNews, cursosHero, programasPage],
+  types: [
+    post,
+    author,
+    category,
+    blockContent,
+    page,
+    settings,
+    navigation,
+    ctaSection,
+    aboutSection,
+    nosotrosIntro,
+    quienesSomos,
+    homeHero,
+    homePrograms,
+    homeRecognitions,
+    homeNews,
+    curso,
+    cursosPage,
+    appPage,
+    programasPage,
+  ],
 }

@@ -253,6 +253,93 @@ export const LATEST_POSTS_QUERY = defineQuery(`
   }
 `)
 
+// Query para un post individual por slug
+export const POST_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "post" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    publishedAt,
+    excerpt,
+    body,
+    "mainImageUrl": mainImage.asset->url,
+    "mainImageAlt": mainImage.alt,
+    author-> {
+      _id,
+      name,
+      "imageUrl": image.asset->url
+    },
+    categories[]-> {
+      _id,
+      title,
+      "slug": slug.current
+    }
+  }
+`)
+
+// Query para todos los posts (listado paginado)
+export const ALL_POSTS_QUERY = defineQuery(`
+  *[_type == "post"] | order(publishedAt desc) [$start...$end] {
+    _id,
+    title,
+    "slug": slug.current,
+    publishedAt,
+    excerpt,
+    "mainImageUrl": mainImage.asset->url,
+    "mainImageAlt": mainImage.alt,
+    author-> {
+      name
+    }
+  }
+`)
+
+// Query para contar total de posts
+export const POSTS_COUNT_QUERY = defineQuery(`
+  count(*[_type == "post"])
+`)
+
+// Query para posts por categoría
+export const POSTS_BY_CATEGORY_QUERY = defineQuery(`
+  *[_type == "post" && $categorySlug in categories[]->slug.current] | order(publishedAt desc) [$start...$end] {
+    _id,
+    title,
+    "slug": slug.current,
+    publishedAt,
+    excerpt,
+    "mainImageUrl": mainImage.asset->url,
+    "mainImageAlt": mainImage.alt,
+    author-> {
+      name
+    }
+  }
+`)
+
+// Query para contar posts por categoría
+export const POSTS_COUNT_BY_CATEGORY_QUERY = defineQuery(`
+  count(*[_type == "post" && $categorySlug in categories[]->slug.current])
+`)
+
+// Query para todas las categorías
+export const ALL_CATEGORIES_QUERY = defineQuery(`
+  *[_type == "category"] | order(title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    description
+  }
+`)
+
+// Query para posts recientes (sidebar)
+export const RECENT_POSTS_QUERY = defineQuery(`
+  *[_type == "post" && defined(mainImage)] | order(publishedAt desc) [0...$limit] {
+    _id,
+    title,
+    "slug": slug.current,
+    publishedAt,
+    "mainImageUrl": mainImage.asset->url
+  }
+`)
+
 // Query para la página de Programas
 export const PROGRAMAS_PAGE_QUERY = defineQuery(`
   *[_type == "programasPage"][0] {
@@ -273,6 +360,116 @@ export const PROGRAMAS_PAGE_QUERY = defineQuery(`
       title,
       buttonText,
       buttonLink
+    }
+  }
+`)
+
+// Query for all courses
+export const ALL_CURSOS_QUERY = defineQuery(`
+  *[_type == "curso"] | order(year desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    dates,
+    location,
+    countryCode,
+    status,
+    description,
+    "featuredImage": featuredImage.asset->url,
+    year,
+    instructor,
+    isFeatured,
+    detailUrl
+  }
+`)
+
+// Query for a course by slug
+export const CURSO_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "curso" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    dates,
+    location,
+    countryCode,
+    status,
+    description,
+    body,
+    "featuredImage": featuredImage.asset->url,
+    "featuredImageAlt": featuredImage.alt,
+    benefits,
+    detailUrl,
+    year,
+    instructor
+  }
+`)
+
+// Query for the cursos page configuration
+export const CURSOS_PAGE_QUERY = defineQuery(`
+  *[_type == "cursosPage"][0] {
+    heroTitle,
+    heroSlides[] {
+      _key,
+      "imageUrl": image.asset->url,
+      alt,
+      overlayOpacity
+    },
+    historiaTitle,
+    historiaSubtitle,
+    historiaEvents[] {
+      _key,
+      year,
+      title,
+      description,
+      color,
+      icon
+    },
+    instructorsTitle,
+    instructorsIntro,
+    instructorGroups[] {
+      _key,
+      organization,
+      instructors
+    },
+    cta {
+      title,
+      description,
+      buttonText,
+      buttonLink
+    }
+  }
+`)
+
+// Query for the app page configuration
+export const APP_PAGE_QUERY = defineQuery(`
+  *[_type == "appPage"][0] {
+    heroSlides[] {
+      _key,
+      "imageUrl": image.asset->url,
+      alt,
+      overlayOpacity
+    },
+    infoSection {
+      title,
+      text1,
+      text2
+    },
+    quoteSection {
+      quote,
+      author,
+      "avatarUrl": avatar.asset->url
+    },
+    benefitsSection {
+      title,
+      benefits,
+      downloadUrl,
+      "phoneImageUrl": phoneImage.asset->url
+    },
+    resultsSection {
+      title,
+      text1,
+      text2,
+      videoUrl
     }
   }
 `)

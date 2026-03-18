@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { DonationProvider } from "../../providers/DonationProvider";
 import { client } from "@/sanity/lib/client";
 import { SETTINGS_QUERY, NAVIGATION_QUERY } from "@/sanity/lib/queries";
-import FloatingChatbot from "../../components/FloatingChatbot";
+import FloatingDonationWidget from "@/components/FloatingDonationWidget";
 
 const manrope = Manrope({
     subsets: ["latin"],
@@ -32,6 +32,7 @@ export default async function RootLayout({
         <html lang="es" className={`${manrope.variable}`}>
             <body className="antialiased min-h-screen flex flex-col font-sans bg-white text-primary">
                 <DonationProvider>
+                    <FloatingDonationWidget />
                     <Header 
                         navData={navigation?.navItems} 
                         ctaLabel={navigation?.ctaButton?.label}
@@ -43,7 +44,6 @@ export default async function RootLayout({
                     </main>
                     <Footer settings={settings} />
                 </DonationProvider>
-                <FloatingChatbot />
             </body>
         </html>
     );

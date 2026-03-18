@@ -27,7 +27,7 @@ export default function FinalCTA() {
             Únete a nuestra familia de donantes. Cada aporte, sin importar el tamaño, nos ayuda a construir un mejor futuro.
           </p>
           <button
-            onClick={openDonationWidget}
+            onClick={() => openDonationWidget()}
             className="inline-flex items-center justify-center gap-3 bg-accent text-primary px-10 py-5 rounded-full font-black text-xl tracking-widest shadow-2xl hover:scale-105 hover:bg-yellow-400 transition-all duration-300 uppercase"
           >
             <FaHeart />

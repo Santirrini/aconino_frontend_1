@@ -22,7 +22,7 @@ const defaultSlides: CursosHeroSlide[] = [
         alt: "Cursos de formación en neurodesarrollo",
     },
     {
-        src: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=2070&auto=format&fit=crop",
+        src: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=2070&auto=format&fit=crop",
         alt: "Capacitación profesional en rehabilitación",
     },
     {
