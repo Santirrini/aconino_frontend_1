@@ -26,7 +26,7 @@ export const MIN_DONATION_AMOUNT = 5000;
 export interface DonationItem {
   value: number;
   label: string;
-  impact: string;
+  impactLabel: string;
   icon: IconType;
 }
 
@@ -34,7 +34,15 @@ export interface DonationCategory {
   id: string;
   title: string;
   description: string;
-  color: string; // Tailwind gradient classes
+  color: string;
+  image: string;
+  progress: {
+    target: number;
+    current: number;
+    unit: string;
+  };
+  impactMultiplier: number;
+  impactUnit: string;
   items: DonationItem[];
 }
 
@@ -44,10 +52,14 @@ export const DONATION_OPTIONS: DonationCategory[] = [
     title: 'Construye el Centro',
     description: 'Ayúdanos a terminar el nuevo Centro Día para adultos con discapacidad.',
     color: 'from-primary to-secondary',
+    image: '/images/hero-background-blue.png',
+    progress: { target: 100, current: 65, unit: 'bultos' },
+    impactMultiplier: 85000,
+    impactUnit: 'm² de piso',
     items: [
-      { value: 85000, label: '$85.000', impact: '1 m² de piso para el salón de terapias', icon: FaHardHat },
-      { value: 150000, label: '$150.000', impact: '2 bultos de cemento y mano de obra', icon: FaHardHat },
-      { value: 500000, label: '$500.000', impact: 'Kit de materiales básicos de construcción', icon: FaHardHat },
+      { value: 85000, label: '$85.000', impactLabel: '1 m² de piso', icon: FaHardHat },
+      { value: 150000, label: '$150.000', impactLabel: '2 bultos de cemento', icon: FaHardHat },
+      { value: 500000, label: '$500.000', impactLabel: 'Kit de materiales básicos', icon: FaHardHat },
     ]
   },
   {
@@ -55,28 +67,30 @@ export const DONATION_OPTIONS: DonationCategory[] = [
     title: 'Plan Padrino',
     description: 'Apoya directamente el tratamiento y bienestar de nuestros niños.',
     color: 'from-secondary to-accent',
+    image: '/images/hero-background-blue.png',
+    progress: { target: 50, current: 12, unit: 'padrinos' },
+    impactMultiplier: 20000,
+    impactUnit: 'sesiones de transporte',
     items: [
-      { value: 20000, label: '$20.000', impact: '1 sesión de transporte para un niño', icon: FaTruck },
-      { value: 50000, label: '$50.000', impact: 'Kit nutricional para una semana', icon: FaUtensils },
-      { value: 100000, label: '$100.000', impact: '1 sesión integral de fisioterapia', icon: FaStethoscope },
+      { value: 20000, label: '$20.000', impactLabel: '1 sesión de transporte', icon: FaTruck },
+      { value: 50000, label: '$50.000', impactLabel: 'Kit nutricional semanal', icon: FaUtensils },
+      { value: 100000, label: '$100.000', impactLabel: '1 sesión de fisioterapia', icon: FaStethoscope },
     ]
   }
 ];
 
 export const calculateImpact = (amount: number, categoryId: string): string => {
-  if (categoryId === 'construction') {
-    const floors = (amount / 85000).toFixed(1);
-    return `${floors} m² de piso para el Centro Día`;
-  }
-  const sessions = (amount / 20000).toFixed(1);
-  return `${sessions} sesiones de transporte o apoyo`;
+  const category = DONATION_OPTIONS.find(c => c.id === categoryId);
+  if (!category) return "";
+  const result = (amount / category.impactMultiplier).toFixed(1);
+  return `${result} ${category.impactUnit}`;
 };
 ```
 
 - [ ] **Step 2: Commit changes**
 ```bash
 git add src/data/donation-options.ts
-git commit -m "feat: add centralized donation options and impact logic"
+git commit -m "feat: add comprehensive donation options and impact logic"
 ```
 
 ### Task 2: Refactor DonationProvider State
@@ -84,72 +98,86 @@ git commit -m "feat: add centralized donation options and impact logic"
 **Files:**
 - Modify: `src/providers/DonationProvider.tsx`
 
-- [ ] **Step 1: Add category selection and redirection logic**
-Update `openDonationWidget` to accept `categoryId`. Implement a `handleProcessDonation(amount: number)` function that constructs the redirection URL (placeholder for now).
+- [ ] **Step 1: Update `DonationContextProps` interface**
+Add `selectedCategory: string`, `handleProcessDonation: (amount: number, categoryId: string) => void`, and update `openDonationWidget(categoryId?: string)`.
 
-- [ ] **Step 2: Commit changes**
+- [ ] **Step 2: Implement category selection and redirection logic**
+Ensure `openDonationWidget` handles optional `categoryId`. Implement `handleProcessDonation` constructing a URL like `https://checkout.wompi.co/p/?amount=${amount}&reference=${categoryId}_${Date.now()}`.
+
+- [ ] **Step 3: Commit changes**
 ```bash
 git add src/providers/DonationProvider.tsx
-git commit -m "refactor: update DonationProvider with category and redirection logic"
+git commit -m "refactor: update DonationProvider with category support and redirection"
 ```
 
-### Task 3: Implement DonationSidebar Sub-components
+### Task 3: Sidebar Header & Narrative
 
 **Files:**
 - Create: `src/components/donations/SidebarHeader.tsx`
 - Create: `src/components/donations/ImpactStory.tsx`
-- Create: `src/components/donations/DonationGrid.tsx`
-- Create: `src/components/donations/CustomAmountInput.tsx`
-- Create: `src/components/donations/SidebarFooter.tsx`
 
 - [ ] **Step 1: Create `SidebarHeader.tsx`**
-Implement the Tabs for category selection and the close button ("X").
+Implement category Tabs and close button ("X").
 
 - [ ] **Step 2: Create `ImpactStory.tsx`**
-Implement the visual narrative area with a mini progress bar.
+Implement visual narrative area with dynamic image and progress bar ("Faltan X [unit]...").
 
-- [ ] **Step 3: Create `DonationGrid.tsx`**
-Implement the amount selection cards mapping over the category items.
-
-- [ ] **Step 4: Create `CustomAmountInput.tsx`**
-Implement the input field with real-time impact calculation using `calculateImpact`.
-
-- [ ] **Step 5: Create `SidebarFooter.tsx`**
-Implement the action button and trust badges. Disable button if `amount < MIN_DONATION_AMOUNT`.
-
-- [ ] **Step 6: Commit changes**
+- [ ] **Step 3: Commit changes**
 ```bash
-git add src/components/donations/*.tsx
-git commit -m "feat: implement modular sidebar sub-components with impact logic"
+git add src/components/donations/SidebarHeader.tsx src/components/donations/ImpactStory.tsx
+git commit -m "feat: implement sidebar header and impact story components"
 ```
 
-### Task 4: Main DonationSidebar Integration
+### Task 4: Donation Selection Components
 
 **Files:**
-- Create: `src/components/donations/DonationSidebar.tsx`
+- Create: `src/components/donations/DonationGrid.tsx`
+- Create: `src/components/donations/CustomAmountInput.tsx`
 
-- [ ] **Step 1: Assemble sub-components into the main sidebar**
-Use `AnimatePresence` and `motion.div` for the slide-in/out effect. Include a semi-transparent backdrop with `onClick` to close.
+- [ ] **Step 1: Create `DonationGrid.tsx`**
+Implement amount selection cards mapping over category items.
 
-- [ ] **Step 2: Commit changes**
+- [ ] **Step 2: Create `CustomAmountInput.tsx`**
+Implement input field with real-time impact calculation using `calculateImpact`.
+
+- [ ] **Step 3: Commit changes**
 ```bash
-git add src/components/donations/DonationSidebar.tsx
-git commit -m "feat: assemble final DonationSidebar component with backdrop"
+git add src/components/donations/DonationGrid.tsx src/components/donations/CustomAmountInput.tsx
+git commit -m "feat: implement donation grid and custom amount input"
 ```
 
-### Task 5: Final Provider Integration
+### Task 5: Sidebar Footer & Main Integration
+
+**Files:**
+- Create: `src/components/donations/SidebarFooter.tsx`
+- Create: `src/components/donations/DonationSidebar.tsx`
+
+- [ ] **Step 1: Create `SidebarFooter.tsx`**
+Implement action button, trust badges, and link to corporate donation (`/apoyanos#empresarial`).
+
+- [ ] **Step 2: Assemble `DonationSidebar.tsx`**
+Use `AnimatePresence` and `motion.div`. Include backdrop with `backdrop-blur-sm` and `onClick` to close.
+**Constraints:** Desktop width `500px`, Mobile width `100%`.
+
+- [ ] **Step 3: Commit changes**
+```bash
+git add src/components/donations/SidebarFooter.tsx src/components/donations/DonationSidebar.tsx
+git commit -m "feat: assemble final DonationSidebar component"
+```
+
+### Task 6: Final Provider Integration
 
 **Files:**
 - Modify: `src/providers/DonationProvider.tsx`
 
 - [ ] **Step 1: Mount `DonationSidebar` within the provider**
-Ensure `DonationSidebar` is rendered inside the `DonationProvider` to have access to the context. Replace `DonationWidget`.
+Ensure it's rendered inside the provider. Replace the old `DonationWidget`.
 
 - [ ] **Step 2: Manual verification**
-Open the sidebar from various pages and check the responsiveness, animations, and impact calculator.
+Open from various pages, check responsiveness, animations, impact calculator, and corporate link.
 
 - [ ] **Step 3: Commit changes**
 ```bash
 git add src/providers/DonationProvider.tsx
-git commit -m "feat: integrate DonationSidebar into DonationProvider"
+git commit -m "feat: final integration of DonationSidebar into provider"
 ```
