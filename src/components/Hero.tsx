@@ -3,7 +3,7 @@
 import { FaHeart, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { CurtainReveal, GradientOverlay, ParticleMorph, slideVariants, fadeVariants } from "./animations";
+import { CurtainReveal, GradientOverlay, ParticleMorph, slideVariants, fadeVariants, Typewriter } from "./animations";
 
 interface HeroProps {
     acf?: {
@@ -115,7 +115,12 @@ export default function Hero({ acf }: HeroProps) {
                         style={{ textShadow: "0 4px 20px rgba(0,0,0,0.6)" }}
                     >
                         <motion.span variants={slideVariants} className="block mb-2 md:mb-4">{title}</motion.span>
-                        <motion.span variants={slideVariants} className="block text-4xl md:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-white to-white/80">{subtitle}</motion.span>
+                        <motion.span 
+                            variants={slideVariants} 
+                            className="block text-4xl md:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-white to-white/80"
+                        >
+                            <Typewriter text={subtitle} delay={1.3} speed={0.03} />
+                        </motion.span>
                     </motion.h2>
                 </motion.div>
             </div>

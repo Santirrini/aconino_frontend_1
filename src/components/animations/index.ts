@@ -6,6 +6,7 @@ export * from "./variants/curtainVariants";
 export * from "./effects/CurtainReveal";
 export * from "./effects/GradientOverlay";
 export * from "./effects/ParticleMorph";
+export * from "./effects/Typewriter";
 
 export * from "./hooks/useScrollReveal";
 export * from "./hooks/useStagger";
