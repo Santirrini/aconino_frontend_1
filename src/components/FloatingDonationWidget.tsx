@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDonation } from "@/providers/DonationProvider";
-import { IconHeart, IconHands, IconProgress, IconUsers } from "./apoyanos/ApoyanosIcons";
+import { IconHeart, IconHands, IconProgress, IconUsers } from "@/constants/apoyanos-icons";
 
 export default function FloatingDonationWidget() {
   const pathname = usePathname();

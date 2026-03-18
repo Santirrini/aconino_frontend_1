@@ -172,7 +172,7 @@ export default function ImpactSection({ title, stats = [], stories: storiesProp,
           className="flex justify-center"
         >
           <button
-            onClick={openDonationWidget}
+            onClick={() => openDonationWidget()}
             className="flex items-center gap-3 bg-accent text-primary px-10 py-5 rounded-full font-black text-xl tracking-widest shadow-xl shadow-accent/40 hover:scale-105 hover:bg-yellow-400 transition-all duration-300 group"
           >
             <FaHeart className="group-hover:scale-125 transition-transform duration-300" />

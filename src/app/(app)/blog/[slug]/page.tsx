@@ -1,45 +1,45 @@
-import { getPostBySlug, getLatestPosts, getCategories } from "@/lib/wp";
-import { notFound } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import BlogSidebar from "@/components/blog/BlogSidebar";
-import ScrollReveal from "@/components/animations/ScrollReveal";
-import { FaCalendarAlt, FaArrowLeft, FaUser } from "react-icons/fa";
+import Image from "next/image"
+import Link from "next/link"
+import { getPostBySlug, getRecentPosts, getCategories, getPosts } from "@/lib/sanity-posts"
+import { notFound } from "next/navigation"
+import BlogSidebar from "@/components/blog/BlogSidebar"
+import BlogContent from "@/components/blog/BlogContent"
+import ScrollReveal from "@/components/animations/ScrollReveal"
+import { FaCalendarAlt, FaArrowLeft, FaUser } from "react-icons/fa"
 
 interface PageProps {
-    params: Promise<{ slug: string }>;
+    params: Promise<{ slug: string }>
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-    const { slug } = await params;
-    const post = await getPostBySlug(slug);
+    const { slug } = await params
+    const post = await getPostBySlug(slug)
 
     if (!post) {
-        return notFound();
+        return notFound()
     }
 
     const [recentPosts, categories] = await Promise.all([
-        getLatestPosts(5),
+        getRecentPosts(5),
         getCategories(),
-    ]);
+    ])
 
-    const imageUrl = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || null;
-    const date = new Date(post.date).toLocaleDateString("es-ES", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    });
+    const date = post.publishedAt
+        ? new Date(post.publishedAt).toLocaleDateString("es-ES", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+          })
+        : null
 
     return (
         <article className="min-h-screen bg-slate-50 relative overflow-hidden">
-            {/* Background Pattern */}
             <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.4]"
                 style={{
                     backgroundImage: `radial-gradient(#cbd5e1 0.5px, transparent 0.5px)`,
                     backgroundSize: '24px 24px'
                 }}
             />
-            {/* Hero */}
             <header className="bg-primary text-white pt-28 pb-16 md:pt-36 md:pb-20 relative overflow-hidden">
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <div className="absolute top-1/4 -left-20 w-80 h-80 bg-accent/15 rounded-full blur-[100px]" />
@@ -59,38 +59,41 @@ export default async function BlogPostPage({ params }: PageProps) {
 
                     <ScrollReveal animation="fade-up" delay={0.2}>
                         <div className="flex items-center gap-4 text-white/60 text-sm mb-6">
-                            <div className="flex items-center gap-1.5">
-                                <FaCalendarAlt className="text-accent text-xs" />
-                                <time dateTime={post.date}>{date}</time>
-                            </div>
-                            <span>·</span>
-                            <div className="flex items-center gap-1.5">
-                                <FaUser className="text-accent text-xs" />
-                                <span>Aconiño</span>
-                            </div>
+                            {date && (
+                                <div className="flex items-center gap-1.5">
+                                    <FaCalendarAlt className="text-accent text-xs" />
+                                    <time dateTime={post.publishedAt}>{date}</time>
+                                </div>
+                            )}
+                            {post.author && (
+                                <>
+                                    <span>·</span>
+                                    <div className="flex items-center gap-1.5">
+                                        <FaUser className="text-accent text-xs" />
+                                        <span>{post.author.name}</span>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </ScrollReveal>
 
                     <ScrollReveal animation="zoom-in" delay={0.3}>
-                        <h1
-                            className="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight"
-                            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                        />
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+                            {post.title}
+                        </h1>
                     </ScrollReveal>
                 </div>
             </header>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
-                    {/* Main Content */}
                     <div className="lg:col-span-2">
-                        {/* Featured Image */}
-                        {imageUrl && (
+                        {post.mainImageUrl && (
                             <ScrollReveal animation="fade-up" delay={0.1}>
                                 <div className="relative h-[300px] md:h-[450px] rounded-3xl overflow-hidden shadow-2xl mb-10 -mt-12 md:-mt-16">
                                     <Image
-                                        src={imageUrl}
-                                        alt={post.title.rendered}
+                                        src={post.mainImageUrl}
+                                        alt={post.mainImageAlt || post.title}
                                         fill
                                         className="object-cover"
                                         priority
@@ -99,20 +102,12 @@ export default async function BlogPostPage({ params }: PageProps) {
                             </ScrollReveal>
                         )}
 
-                        {/* Article Content */}
-                        <ScrollReveal animation="fade-up" delay={0.2}>
-                            <div
-                                className="prose prose-lg prose-primary max-w-none text-gray-700
-                                    prose-headings:text-primary prose-headings:font-extrabold
-                                    prose-a:text-secondary prose-a:no-underline hover:prose-a:text-accent
-                                    prose-img:rounded-2xl prose-img:shadow-lg
-                                    prose-blockquote:border-l-accent prose-blockquote:bg-gray-50 prose-blockquote:rounded-r-xl prose-blockquote:py-2 prose-blockquote:px-6
-                                    prose-strong:text-primary"
-                                dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-                            />
-                        </ScrollReveal>
+                        {post.body && (
+                            <ScrollReveal animation="fade-up" delay={0.2}>
+                                <BlogContent content={post.body} />
+                            </ScrollReveal>
+                        )}
 
-                        {/* Share / Navigation */}
                         <ScrollReveal animation="fade-up" delay={0.3}>
                             <div className="mt-12 pt-8 border-t border-gray-200 flex items-center justify-between">
                                 <Link
@@ -126,17 +121,21 @@ export default async function BlogPostPage({ params }: PageProps) {
                         </ScrollReveal>
                     </div>
 
-                    {/* Sidebar */}
-                    <div className="order-first lg:order-last">
-                        <div className="lg:sticky lg:top-36">
+                    <div className="lg:sticky lg:top-36">
                             <BlogSidebar
                                 recentPosts={recentPosts}
                                 categories={categories}
                             />
                         </div>
-                    </div>
                 </div>
             </div>
         </article>
-    );
+    )
+}
+
+export async function generateStaticParams() {
+    const { posts } = await getPosts(1)
+    return posts.map((post) => ({
+        slug: post.slug,
+    }))
 }

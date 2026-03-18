@@ -26,7 +26,7 @@ export default function CTAButton({ label = "DONAR AHORA", href, isDonation = tr
 
   const buttonContent = (
     <motion.button
-      onClick={isDonation ? openDonationWidget : undefined}
+      onClick={isDonation ? () => openDonationWidget() : undefined}
       className="hidden sm:flex relative items-center gap-3 bg-accent text-primary px-6 py-3 rounded-full font-black text-sm tracking-widest shadow-lg hover:shadow-2xl hover:shadow-accent/40 transition-all duration-300 transform hover:scale-105 group overflow-hidden"
     >
       <motion.div

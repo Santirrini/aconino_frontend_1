@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import { useScrollReveal } from "../animations";
-import { IconProgress, IconUsers, IconBuilding } from "./ApoyanosIcons";
+import { IconProgress, IconUsers, IconBuilding } from "@/constants/apoyanos-icons";
 
 interface ConstructionProgressProps {
   goal: number;

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { IconShield, IconDocument, IconChart } from "./ApoyanosIcons";
+import { IconShield, IconDocument, IconChart } from "@/constants/apoyanos-icons";
 
 const badges = [
   { icon: IconShield, text: "Donaciones 100% seguras" },

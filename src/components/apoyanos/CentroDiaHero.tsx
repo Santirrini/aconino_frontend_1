@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useDonation } from "@/providers/DonationProvider";
 import { CurtainReveal, GradientOverlay, ParticleMorph } from "../animations";
-import { IconBuilding, IconConstruction } from "./ApoyanosIcons";
+import { IconBuilding, IconConstruction, ChevronLeftIcon, ChevronRightIcon, LocationIcon, GlobeIcon, HeartIcon } from "@/constants/apoyanos-icons";
 
 interface HeroSlide {
   src: string;
@@ -31,38 +31,7 @@ const defaultSlides: HeroSlide[] = [
   },
 ];
 
-const ChevronLeftIcon = ({ className = "" }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M15 18l-6-6 6-6" />
-  </svg>
-);
 
-const ChevronRightIcon = ({ className = "" }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 18l6-6-6-6" />
-  </svg>
-);
-
-const LocationIcon = ({ className = "" }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-    <circle cx="12" cy="10" r="3" />
-  </svg>
-);
-
-const HeartIcon = ({ className = "" }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-  </svg>
-);
-
-const GlobeIcon = ({ className = "" }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10" />
-    <line x1="2" y1="12" x2="22" y2="12" />
-    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-  </svg>
-);
 
 
 
@@ -224,7 +193,7 @@ export default function CentroDiaHero() {
         </motion.div>
 
         <motion.button
-          onClick={openDonationWidget}
+          onClick={() => openDonationWidget()}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
@@ -234,21 +203,21 @@ export default function CentroDiaHero() {
           <HeartIcon className="w-5 h-5 sm:w-6 sm:h-6 relative z-10" />
           <span className="relative z-10">Donar Ahora</span>
         </motion.button>
-      </div>
 
-      <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-3">
-        {slides.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentIndex(idx)}
-            className={`rounded-full transition-all duration-300 ${
-              idx === currentIndex
-                ? "w-6 sm:w-8 h-2 bg-accent shadow-[0_0_15px_rgba(248,183,25,0.7)]"
-                : "w-2.5 sm:w-3 h-2 bg-white/40 hover:bg-white/70"
-            }`}
-            aria-label={`Ir a imagen ${idx + 1}`}
-          />
-        ))}
+        <div className="mt-6 sm:mt-8 flex items-center gap-2 sm:gap-3">
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`rounded-full transition-all duration-300 ${
+                idx === currentIndex
+                  ? "w-6 sm:w-8 h-2 bg-accent shadow-[0_0_15px_rgba(248,183,25,0.7)]"
+                  : "w-2.5 sm:w-3 h-2 bg-white/40 hover:bg-white/70"
+              }`}
+              aria-label={`Ir a imagen ${idx + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

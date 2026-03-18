@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useDonation } from "@/providers/DonationProvider";
-import { IconMoney, IconMaterials, IconHeart, IconGlobe, IconFurniture, IconElectronics } from "./ApoyanosIcons";
+import { IconMoney, IconMaterials, IconHeart, IconGlobe, IconFurniture, IconElectronics } from "@/constants/apoyanos-icons";
 
 const categories = [
   { id: 'monetary', title: 'Donaciones Monetarias', description: 'Tu aporte ayuda a comprar materiales y pagar mano de obra', icon: IconMoney, color: 'from-primary to-secondary', headerBg: 'bg-primary', btnColor: 'from-primary to-secondary', items: [{ name: '1 m² de piso', price: 85000 }, { name: 'Kit de materiales básicos', price: 500000 }, { name: 'Donación libre', price: 0 }] },
@@ -47,7 +47,7 @@ export default function DonationCatalog() {
                   {category.items.slice(0, 3).map((item, i) => (
                     <button 
                       key={i} 
-                      onClick={openDonationWidget} 
+                      onClick={() => openDonationWidget()} 
                       className="w-full flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 text-sm transition-colors"
                     >
                       <span className="text-gray-700">{item.name}</span>
@@ -57,7 +57,7 @@ export default function DonationCatalog() {
                 </div>
                 <div className="p-4 pt-0">
                   <button 
-                    onClick={openDonationWidget} 
+                    onClick={() => openDonationWidget()} 
                     className={`w-full py-3 bg-gradient-to-r ${category.btnColor} ${category.id === 'furniture' ? 'text-primary' : 'text-white'} rounded-xl font-medium text-sm hover:shadow-lg transition-all flex items-center justify-center gap-2`}
                   >
                     <IconHeart className="w-4 h-4" />
@@ -81,7 +81,7 @@ export default function DonationCatalog() {
             <h3 className="text-2xl md:text-3xl font-bold mb-4">¿Estás fuera de Colombia?</h3>
             <p className="text-white/80 max-w-2xl mx-auto mb-8">Aceptamos donaciones internacionales. Contamos con cuentas bancarias internacionales.</p>
             <button 
-              onClick={openDonationWidget} 
+              onClick={() => openDonationWidget()} 
               className="px-8 py-4 bg-gradient-to-r from-accent to-yellow-400 text-primary rounded-full font-bold hover:shadow-lg hover:scale-105 transition-all"
             >
               Donar desde el Exterior

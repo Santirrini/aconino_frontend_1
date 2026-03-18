@@ -65,7 +65,7 @@ export default function ApoyanosHero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    onClick={openDonationWidget}
+                    onClick={() => openDonationWidget()}
                     className="inline-flex items-center gap-3 bg-accent text-primary px-10 py-5 rounded-full font-black text-xl tracking-widest shadow-2xl hover:scale-105 hover:bg-yellow-400 transition-all duration-300 uppercase"
                 >
                     <FaHeart />
