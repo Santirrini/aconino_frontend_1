@@ -71,9 +71,9 @@ export default function DonationImpact() {
         >
           <FaAward className="text-4xl text-accent mx-auto mb-6" />
           <blockquote className="text-xl md:text-2xl font-medium text-gray-700 mb-6 max-w-3xl mx-auto">
-            "Construir este Centro Día es más que levantar paredes. 
+            &ldquo;Construir este Centro Día es más que levantar paredes. 
             Es crear un hogar donde cada adulto encontrará dignidad, 
-            cuidado y la oportunidad de vivir plenamente."
+            cuidado y la oportunidad de vivir plenamente.&rdquo;
           </blockquote>
           <cite className="text-gray-500">
             — Equipo Aconiño, 25 años de trayectoria
