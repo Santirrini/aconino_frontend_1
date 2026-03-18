@@ -1,61 +1,82 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { FireSparkle } from "./FireSparkle";
 
 interface TypewriterProps {
   text: string;
   className?: string;
   delay?: number;
   speed?: number;
+  loop?: boolean;
+  waitDuration?: number;
 }
 
 /**
- * Typewriter effect component that animates text character by character.
+ * Typewriter effect component with looping and mini-fire effect.
  */
 export const Typewriter = ({ 
   text, 
   className = "", 
   delay = 0, 
-  speed = 0.02 
+  speed = 0.04,
+  loop = true,
+  waitDuration = 3000
 }: TypewriterProps) => {
-  // Variants for the container to stagger children
-  const containerVariants = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: speed,
-        delayChildren: delay,
-      },
-    },
-  };
+  const [displayText, setDisplayText] = useState("");
+  const [phase, setPhase] = useState<"delay" | "typing" | "fire" | "wait" | "deleting">("delay");
+  const [showFire, setShowFire] = useState(false);
 
-  // Variants for individual characters
-  const charVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { duration: 0.1 } 
-    },
-  };
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
+    if (phase === "delay") {
+      timeout = setTimeout(() => setPhase("typing"), delay * 1000);
+    } 
+    else if (phase === "typing") {
+      if (displayText.length < text.length) {
+        timeout = setTimeout(() => {
+          setDisplayText(text.slice(0, displayText.length + 1));
+        }, speed * 1000);
+      } else {
+        setPhase("fire");
+        setShowFire(true);
+      }
+    } 
+    else if (phase === "fire") {
+      // Show fire for 1.5 seconds at the end of typing
+      timeout = setTimeout(() => {
+        setShowFire(false);
+        setPhase("wait");
+      }, 1500);
+    } 
+    else if (phase === "wait") {
+      // Wait before starting the next cycle
+      timeout = setTimeout(() => {
+        if (loop) setPhase("deleting");
+      }, waitDuration);
+    } 
+    else if (phase === "deleting") {
+      if (displayText.length > 0) {
+        timeout = setTimeout(() => {
+          // Faster deletion
+          setDisplayText(text.slice(0, displayText.length - 1));
+        }, speed * 500); 
+      } else {
+        // Short pause before restart
+        timeout = setTimeout(() => {
+          setPhase("typing");
+        }, 500);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayText, phase, text, delay, speed, loop, waitDuration]);
 
   return (
-    <motion.span
-      className={className}
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-    >
-      {text.split("").map((char, index) => (
-        <motion.span
-          key={`${char}-${index}`}
-          variants={charVariants}
-        >
-          {char}
-        </motion.span>
-      ))}
-    </motion.span>
+    <span className={className}>
+      {displayText}
+      <FireSparkle active={showFire} />
+    </span>
   );
 };
