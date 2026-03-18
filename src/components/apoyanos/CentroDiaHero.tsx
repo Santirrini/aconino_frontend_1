@@ -3,8 +3,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { FaHardHat, FaHandsHelping, FaChevronLeft, FaChevronRight, FaBuilding } from "react-icons/fa";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useDonation } from "@/providers/DonationProvider";
+import { CurtainReveal, GradientOverlay, ParticleMorph } from "../animations";
+import { IconBuilding, IconHands, IconConstruction } from "./ApoyanosIcons";
 
 interface HeroSlide {
   src: string;
@@ -54,7 +56,10 @@ export default function CentroDiaHero() {
 
   return (
     <section className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
-      {/* Slides */}
+      <CurtainReveal color="bg-secondary" />
+      <GradientOverlay from="from-primary/80" via="via-secondary/50" to="to-primary/80" className="opacity-60" />
+      <ParticleMorph subtle={true} />
+
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -79,42 +84,34 @@ export default function CentroDiaHero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Background Blur Effects */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-accent/20 rounded-full blur-3xl opacity-50" />
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-secondary/20 rounded-full blur-3xl opacity-50" />
-
-      {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
         className="absolute left-4 md:left-8 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
         aria-label="Imagen anterior"
       >
-        <FaChevronLeft className="text-sm md:text-base" />
+        <ChevronLeft className="text-sm md:text-base" />
       </button>
       <button
         onClick={nextSlide}
         className="absolute right-4 md:right-8 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
         aria-label="Siguiente imagen"
       >
-        <FaChevronRight className="text-sm md:text-base" />
+        <ChevronRight className="text-sm md:text-base" />
       </button>
 
-      {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-6 py-2 mb-6"
         >
-          <FaHardHat className="text-accent" />
+          <IconConstruction className="text-accent w-5 h-5" />
           <span className="text-accent font-bold text-sm uppercase tracking-wider">
             Nueva Construcción
           </span>
         </motion.div>
 
-        {/* Main Title with floating icon */}
         <div className="relative inline-block">
           <motion.div
             initial={{ scale: 0, rotate: -20 }}
@@ -127,21 +124,20 @@ export default function CentroDiaHero() {
             }}
             className="absolute -top-8 left-1/2 -translate-x-1/2 md:-top-12 z-20"
           >
-            <FaBuilding className="text-accent text-4xl md:text-5xl drop-shadow-lg" />
+            <IconBuilding className="text-accent w-12 h-12 md:w-16 md:h-16 drop-shadow-lg" />
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight"
+            className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight pt-8 md:pt-12"
             style={{ textShadow: "0 4px 30px rgba(0,0,0,0.5)" }}
           >
             Construyendo <span className="text-accent">Esperanza</span>
           </motion.h1>
         </div>
 
-        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -161,7 +157,6 @@ export default function CentroDiaHero() {
           ¡Ayúdanos a hacer realidad este sueño!
         </motion.p>
 
-        {/* Location & Donor badges */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -172,25 +167,23 @@ export default function CentroDiaHero() {
             <span className="text-white font-medium">Bogotá, Colombia</span>
           </div>
           <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 border border-white/20">
-            <FaHandsHelping className="text-accent" />
+            <IconHands className="text-accent w-5 h-5" />
             <span className="text-white font-medium">Donaciones Nacionales e Internacionales</span>
           </div>
         </motion.div>
 
-        {/* CTA Button */}
         <motion.button
           onClick={openDonationWidget}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="inline-flex items-center justify-center gap-3 bg-accent text-primary px-10 py-5 rounded-full font-black text-lg tracking-widest shadow-2xl hover:scale-105 hover:bg-yellow-400 transition-all duration-300 uppercase"
+          className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-accent to-yellow-400 text-primary px-12 py-5 rounded-full font-black text-lg tracking-widest shadow-2xl hover:shadow-[0_20px_50px_rgba(248,183,25,0.4)] hover:scale-105 transition-all duration-300 uppercase"
         >
-          <FaHandsHelping />
+          <IconHands className="w-6 h-6" />
           Donar Ahora
         </motion.button>
       </div>
 
-      {/* Dot Indicators */}
       <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
         {slides.map((_, idx) => (
           <button
