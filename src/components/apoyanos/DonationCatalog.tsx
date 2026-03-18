@@ -5,10 +5,10 @@ import { useDonation } from "@/providers/DonationProvider";
 import { IconMoney, IconMaterials, IconHeart, IconGlobe, IconFurniture, IconElectronics } from "./ApoyanosIcons";
 
 const categories = [
-  { id: 'monetary', title: 'Donaciones Monetarias', description: 'Tu aporte ayuda a comprar materiales y pagar mano de obra', icon: IconMoney, color: 'from-green-500 to-emerald-600', items: [{ name: '1 m² de piso', price: 85000 }, { name: 'Kit de materiales básicos', price: 500000 }, { name: 'Donación libre', price: 0 }] },
-  { id: 'materials', title: 'Materiales de Construcción', description: 'Done materiales directamente', icon: IconMaterials, color: 'from-orange-500 to-red-600', items: [{ name: 'Bulto de cemento', price: 65000 }, { name: 'Ladrillo (100 und)', price: 180000 }, { name: 'Pintura (galón)', price: 95000 }] },
-  { id: 'equipment', title: 'Equipos Electrónicos', description: 'Televisores, computadores, equipos', icon: IconElectronics, color: 'from-blue-500 to-indigo-600', items: [{ name: 'Televisor 55"', price: 1200000 }, { name: 'Computador', price: 1500000 }, { name: 'Proyector', price: 1500000 }] },
-  { id: 'furniture', title: 'Muebles y Equipamiento', description: 'Sillas, mesas, camas, armarios', icon: IconFurniture, color: 'from-purple-500 to-pink-600', items: [{ name: 'Silla ergonómica', price: 280000 }, { name: 'Escritorio', price: 650000 }, { name: 'Cama articulada', price: 3500000 }] }
+  { id: 'monetary', title: 'Donaciones Monetarias', description: 'Tu aporte ayuda a comprar materiales y pagar mano de obra', icon: IconMoney, color: 'from-primary to-secondary', headerBg: 'bg-primary', btnColor: 'from-primary to-secondary', items: [{ name: '1 m² de piso', price: 85000 }, { name: 'Kit de materiales básicos', price: 500000 }, { name: 'Donación libre', price: 0 }] },
+  { id: 'materials', title: 'Materiales de Construcción', description: 'Done materiales directamente', icon: IconMaterials, color: 'from-secondary to-primary', headerBg: 'bg-secondary', btnColor: 'from-secondary to-primary', items: [{ name: 'Bulto de cemento', price: 65000 }, { name: 'Ladrillo (100 und)', price: 180000 }, { name: 'Pintura (galón)', price: 95000 }] },
+  { id: 'equipment', title: 'Equipos Electrónicos', description: 'Televisores, computadores, equipos', icon: IconElectronics, color: 'from-primary to-accent', headerBg: 'bg-primary', btnColor: 'from-primary to-accent', items: [{ name: 'Televisor 55"', price: 1200000 }, { name: 'Computador', price: 1500000 }, { name: 'Proyector', price: 1500000 }] },
+  { id: 'furniture', title: 'Muebles y Equipamiento', description: 'Sillas, mesas, camas, armarios', icon: IconFurniture, color: 'from-accent to-yellow-400', headerBg: 'bg-accent', btnColor: 'from-accent to-yellow-400', items: [{ name: 'Silla ergonómica', price: 280000 }, { name: 'Escritorio', price: 650000 }, { name: 'Cama articulada', price: 3500000 }] }
 ];
 
 export default function DonationCatalog() {
@@ -37,7 +37,7 @@ export default function DonationCatalog() {
               >
                 <div className={`bg-gradient-to-r ${category.color} p-6 text-white relative overflow-hidden`}>
                   <div className="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full blur-xl" />
-                  <IconComponent className="w-8 h-8 mb-3 relative z-10" />
+                  <IconComponent className="w-8 h-8 mb-3 relative z-10 text-white" />
                   <h3 className="font-bold text-xl relative z-10">{category.title}</h3>
                 </div>
                 <div className="p-4 border-b border-gray-100">
@@ -58,7 +58,7 @@ export default function DonationCatalog() {
                 <div className="p-4 pt-0">
                   <button 
                     onClick={openDonationWidget} 
-                    className={`w-full py-3 bg-gradient-to-r ${category.color} text-white rounded-xl font-medium text-sm hover:shadow-lg transition-all flex items-center justify-center gap-2`}
+                    className={`w-full py-3 bg-gradient-to-r ${category.btnColor} ${category.id === 'furniture' ? 'text-primary' : 'text-white'} rounded-xl font-medium text-sm hover:shadow-lg transition-all flex items-center justify-center gap-2`}
                   >
                     <IconHeart className="w-4 h-4" />
                     Ver más
