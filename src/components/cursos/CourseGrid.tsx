@@ -8,9 +8,13 @@ interface CourseGridProps {
 }
 
 export default function CourseGrid({ courses }: CourseGridProps) {
+    interface CourseWithYear extends CourseCardData {
+        year?: number;
+    }
+
     // Group by year, descending
     const grouped = courses.reduce<Record<number, CourseCardData[]>>((acc, course) => {
-        const year = (course as any).year || new Date().getFullYear();
+        const year = (course as CourseWithYear).year || new Date().getFullYear();
         if (!acc[year]) acc[year] = [];
         acc[year].push(course);
         return acc;
@@ -54,7 +58,9 @@ export default function CourseGrid({ courses }: CourseGridProps) {
                         {/* Cards Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                             {grouped[year].map((course, idx) => (
-                                <CourseCard key={course.id} course={course} index={idx} />
+                                <div key={course.id} id={course.slug}>
+                                    <CourseCard course={course} index={idx} />
+                                </div>
                             ))}
                         </div>
                     </div>

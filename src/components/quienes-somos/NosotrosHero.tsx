@@ -3,10 +3,25 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-export default function NosotrosHero() {
+interface HeroData {
+    subtitle?: string;
+    title?: string;
+    imageUrl?: string;
+    imageAlt?: string;
+}
+
+interface Props {
+    data?: HeroData | null;
+}
+
+export default function NosotrosHero({ data }: Props) {
+    const subtitle = data?.subtitle || "Asociación Aconiño";
+    const title = data?.title || "Quiénes Somos";
+    const imageUrl = data?.imageUrl || "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop";
+    const imageAlt = data?.imageAlt || "Fondo Asociación Aconiño";
+
     return (
         <section className="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden bg-primary">
-            {/* Background Image with Parallax Effect */}
             <motion.div 
                 initial={{ scale: 1.1 }}
                 animate={{ scale: 1 }}
@@ -14,17 +29,15 @@ export default function NosotrosHero() {
                 className="absolute inset-0 z-0"
             >
                 <Image
-                    src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"
-                    alt="Fondo Asociación Aconiño"
+                    src={imageUrl}
+                    alt={imageAlt}
                     fill
                     className="object-cover object-center"
                     priority
                 />
-                {/* Modern Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/50 to-primary/90 mix-blend-multiply" />
             </motion.div>
 
-            {/* Content Overlay */}
             <div className="relative z-10 text-center px-4 md:px-8 flex flex-col items-center max-w-5xl mx-auto mt-16">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -34,12 +47,12 @@ export default function NosotrosHero() {
                     <div className="flex items-center justify-center gap-4 mb-6">
                         <div className="h-[2px] bg-accent w-12 md:w-24"></div>
                         <span className="text-sm md:text-base text-gray-200 tracking-[0.3em] uppercase font-bold">
-                            Asociación Aconiño
+                            {subtitle}
                         </span>
                         <div className="h-[2px] bg-accent w-12 md:w-24"></div>
                     </div>
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white drop-shadow-2xl tracking-tight leading-tight">
-                        Quiénes Somos
+                        {title}
                     </h1>
                 </motion.div>
                 
@@ -53,7 +66,6 @@ export default function NosotrosHero() {
                 </motion.p>
             </div>
 
-            {/* Scroll Indicator */}
             <motion.div 
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}

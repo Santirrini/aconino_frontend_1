@@ -4,7 +4,23 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaUsers } from "react-icons/fa";
 
-export default function NosotrosEquipo() {
+interface EquipoData {
+    subtitle?: string;
+    title?: string;
+    imageUrl?: string;
+    imageAlt?: string;
+}
+
+interface Props {
+    data?: EquipoData | null;
+}
+
+export default function NosotrosEquipo({ data }: Props) {
+    const subtitle = data?.subtitle || "El Corazón de Aconiño";
+    const title = data?.title || "Nuestro equipo de trabajo";
+    const imageUrl = data?.imageUrl || "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop";
+    const imageAlt = data?.imageAlt || "Equipo de trabajo Aconiño";
+
     return (
         <section id="equipo-de-trabajo" className="bg-white py-24 md:py-32 relative overflow-hidden">
             <div className="absolute right-0 top-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
@@ -22,11 +38,11 @@ export default function NosotrosEquipo() {
                     </div>
                     <div className="flex items-center justify-center gap-4 mb-4">
                         <div className="h-[2px] bg-accent w-12"></div>
-                        <span className="text-sm font-bold text-gray-400 tracking-widest uppercase">El Corazón de Aconiño</span>
+                        <span className="text-sm font-bold text-gray-400 tracking-widest uppercase">{subtitle}</span>
                         <div className="h-[2px] bg-accent w-12"></div>
                     </div>
                     <h2 className="text-5xl md:text-6xl font-black text-primary">
-                        Nuestro equipo de trabajo
+                        {title}
                     </h2>
                 </motion.div>
 
@@ -38,16 +54,14 @@ export default function NosotrosEquipo() {
                     className="relative w-full aspect-[4/3] md:aspect-[21/9] max-w-6xl mx-auto shadow-2xl rounded-3xl overflow-hidden group"
                 >
                     <Image
-                        src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"
-                        alt="Equipo de trabajo Aconiño"
+                        src={imageUrl}
+                        alt={imageAlt}
                         fill
                         className="object-cover object-center transition-transform duration-1000 group-hover:scale-105"
                         priority
                     />
-                    {/* Modern gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-80" />
                     
-                    {/* Floating Accent element */}
                     <div className="absolute bottom-0 left-0 w-full h-3 bg-gradient-to-r from-primary via-accent to-secondary" />
                 </motion.div>
             </div>

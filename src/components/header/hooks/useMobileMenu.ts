@@ -7,7 +7,8 @@ export function useMobileMenu() {
   const toggleMenu = () => setIsOpen((prev) => !prev);
   const closeMenu = () => setIsOpen(false);
   
-  const toggleExpanded = (item: string) => {
+  const toggleExpanded = (item: string | undefined) => {
+    if (!item) return;
     setExpandedItem((prev) => (prev === item ? null : item));
   };
 
@@ -24,10 +25,15 @@ export function useMobileMenu() {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      document.body.classList.add("menu-open");
     } else {
       document.body.style.overflow = "unset";
+      document.body.classList.remove("menu-open");
     }
-    return () => { document.body.style.overflow = "unset"; };
+    return () => { 
+      document.body.style.overflow = "unset"; 
+      document.body.classList.remove("menu-open");
+    };
   }, [isOpen]);
 
   return { isOpen, toggleMenu, closeMenu, expandedItem, toggleExpanded, setExpandedItem };

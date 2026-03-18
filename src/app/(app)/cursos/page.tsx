@@ -3,6 +3,8 @@ import BobathHistory from "@/components/cursos/BobathHistory";
 import InstructorsSection from "@/components/cursos/InstructorsSection";
 import CourseGrid from "@/components/cursos/CourseGrid";
 import { CourseCardData } from "@/components/cursos/CourseCard";
+import { client } from "@/sanity/lib/client";
+import { CURSOS_HERO_QUERY } from "@/sanity/lib/queries";
 
 export const metadata = {
     title: "Cursos y Capacitaciones - Asociación Aconiño",
@@ -93,8 +95,6 @@ const defaultCourses: (CourseCardData & { year: number })[] = [
 
 export default async function CursosPage() {
     const courses = defaultCourses;
-    const heroTitle = "Cursos y Capacitaciones";
-    const heroImage = "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format&fit=crop";
     const showInstructors = true;
     const bottomCTA = {
         title: "¿Interesado en nuestros cursos?",
@@ -103,9 +103,30 @@ export default async function CursosPage() {
         buttonLink: "https://wa.me/573133910760"
     };
 
+    let heroTitle = "Cursos y Capacitaciones";
+    let heroSlides: { src: string; alt: string; overlayOpacity?: number }[] | undefined;
+
+    try {
+        const cursosHeroData = await client.fetch(CURSOS_HERO_QUERY);
+        if (cursosHeroData) {
+            heroTitle = cursosHeroData.title || heroTitle;
+            if (cursosHeroData.slides && Array.isArray(cursosHeroData.slides)) {
+                heroSlides = cursosHeroData.slides
+                    .filter((slide: { imageUrl?: string }) => slide.imageUrl)
+                    .map((slide: { imageUrl?: string; alt?: string; overlayOpacity?: number }) => ({
+                        src: slide.imageUrl || "",
+                        alt: slide.alt || "",
+                        overlayOpacity: slide.overlayOpacity
+                    }));
+            }
+        }
+    } catch (error) {
+        console.error("Error fetching cursos hero:", error);
+    }
+
     return (
         <main className="min-h-screen bg-white">
-            <CursosHero title={heroTitle} imageUrl={heroImage} />
+            <CursosHero title={heroTitle} slides={heroSlides} />
             <BobathHistory />
             {showInstructors && <InstructorsSection />}
             <CourseGrid courses={courses} />

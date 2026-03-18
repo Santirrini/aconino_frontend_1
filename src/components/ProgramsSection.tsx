@@ -1,126 +1,219 @@
 "use client";
 
 import Link from "next/link";
-import { FaGraduationCap, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { useScrollReveal, useStagger, slideVariants, fadeVariants } from "./animations";
+import Image from "next/image";
+import { 
+    RiHeartPulseLine, 
+    RiWalkLine, 
+    RiBookOpenLine, 
+    RiBrainLine,
+    RiArrowRightUpLine,
+    RiStethoscopeLine
+} from "react-icons/ri";
 
 interface ProgramItem {
     title: string;
     desc: string;
     slug?: string;
-    icon?: React.ReactNode;
+    imageUrl?: string;
+    category?: string;
 }
 
 interface ProgramsSectionProps {
     programs?: ProgramItem[];
+    subtitle?: string;
+    clinicalFocus?: string;
+    familySupport?: string;
+    ctaLabel?: string;
 }
 
-export default function ProgramsSection({ programs }: ProgramsSectionProps) {
+const getIconForProgram = (slug?: string, defaultIdx: number = 0) => {
+    const s = slug?.toLowerCase() || '';
+    if (s.includes('temprana') || s.includes('estimulacion')) return RiHeartPulseLine;
+    if (s.includes('pediasuit') || s.includes('fisica')) return RiWalkLine;
+    if (s.includes('aprendizaje') || s.includes('lenguaje')) return RiBookOpenLine;
+    if (s.includes('neurodesarrollo') || s.includes('neurologia')) return RiBrainLine;
+    
+    const fallbackIcons = [RiStethoscopeLine, RiHeartPulseLine, RiBrainLine, RiWalkLine];
+    return fallbackIcons[defaultIdx % fallbackIcons.length];
+};
+
+export default function ProgramsSection({ 
+    programs, 
+    subtitle, 
+    clinicalFocus,
+    ctaLabel
+}: ProgramsSectionProps) {
+    
     const defaultPrograms = [
         {
-            title: "Atención temprana",
-            desc: "de 0 a 3 años. Programa terapéutico integral para apoyar el desarrollo sicomotor a través de...",
+            title: "Atención Temprana",
+            category: "0 a 3 años",
+            desc: "Programa terapéutico integral para apoyar el desarrollo sicomotor en la primera infancia.",
             slug: "atencion-temprana",
-            icon: <FaGraduationCap className="text-5xl text-accent" />
+            imageUrl: "https://aconino.org/wp-content/uploads/2024/03/visita-claudia-aconino-2024-731x1024.jpg"
         },
         {
-            title: "Protocolo Intensivo Pediasuit Niños y jóvenes",
-            desc: "de 2 a 18 años. Protocolo Pediasuit es un programa...",
+            title: "Protocolo PediaSuit",
+            category: "Terapia Intensiva",
+            desc: "Uso de traje ortopédico dinámico para potenciar habilidades motoras y funcionales.",
             slug: "pediasuit",
-            icon: <FaGraduationCap className="text-5xl text-secondary" />
+            imageUrl: "https://aconino.org/wp-content/uploads/2024/02/mujer-ocupada-haciendo-muchas-cosas-vez-scaled.jpg"
         },
         {
-            title: "Apoyo a dificultades en el aprendizaje a niños",
-            desc: "de 3 a 14 años. Programa terapéutico de...",
+            title: "Apoyo al Aprendizaje",
+            category: "3 a 14 años",
+            desc: "Intervención integral para niños con retos pedagógicos y dificultades cognitivas.",
             slug: "apoyo-aprendizaje",
-            icon: <FaGraduationCap className="text-5xl text-secondary" />
+            imageUrl: "https://aconino.org/wp-content/uploads/2020/07/noticia-2-opt.jpg"
         },
         {
-            title: "Atención a niños y jóvenes",
-            desc: "de 3 a 18 años. programa terapéutico integral para apoyar el desarrollo...",
-            slug: "atencion-ninos-jovenes",
-            icon: <FaGraduationCap className="text-5xl text-accent" />
+            title: "Neurodesarrollo",
+            category: "Niños y Jóvenes",
+            desc: "Tratamientos especializados bajo el modelo contemporáneo de neurodesarrollo NDT.",
+            slug: "neurodesarrollo",
+            imageUrl: "https://aconino.org/wp-content/uploads/2022/07/curso-pereira-2022.jpg"
         }
     ];
 
     const displayPrograms = (programs && programs.length > 0) ? programs : defaultPrograms;
 
-    const scrollReveal = useScrollReveal();
-    const stagger = useStagger(0.15);
-
     return (
-        <section className="w-full py-20 md:py-32 bg-gray-50 relative overflow-hidden">
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <section className="w-full py-24 lg:py-32 bg-[#F8FAFC] relative overflow-hidden">
+            {/* Background Decorative Elements */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+                <div className="absolute -top-[20%] -right-[10%] w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px]" />
+                <div className="absolute top-[40%] -left-[10%] w-[500px] h-[500px] rounded-full bg-accent/5 blur-[100px]" />
+            </div>
 
-                <div className="flex flex-col xl:flex-row gap-12 xl:gap-16">
-                    {/* Left Column Text */}
-                    <motion.div
-                        {...scrollReveal}
-                        variants={fadeVariants}
-                        className="w-full xl:w-1/4 shrink-0 flex flex-col justify-center"
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                {/* Header de la Sección */}
+                <div className="flex flex-col xl:flex-row xl:items-end justify-between mb-20 gap-10">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                        className="max-w-3xl"
                     >
-                        <div className="flex items-center gap-4 mb-6">
-                            <span className="text-sm font-bold text-gray-400 tracking-widest uppercase">Aconino</span>
-                            <motion.div 
-                                initial={{ width: 0 }}
-                                whileInView={{ width: 64 }}
-                                transition={{ duration: 0.8, delay: 0.2 }}
-                                className="h-[2px] bg-accent"
-                            />
+                        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white border border-gray-200/60 shadow-sm mb-6">
+                            <span className="w-2 h-2 rounded-full bg-accent animate-pulse block"></span>
+                            <span className="text-primary font-bold uppercase tracking-widest text-[#0a1f44] text-xs">
+                                Excelencia Clínica
+                            </span>
                         </div>
-                        <h2 className="text-4xl md:text-5xl xl:text-6xl font-extrabold text-primary leading-tight mb-6">
-                            Nuestros Programas
+                        <h2 className="text-4xl md:text-5xl lg:text-[56px] font-black text-[#0a1f44] leading-[1.1] tracking-tight mb-6">
+                            {subtitle || "Nuestros Programas"}
                         </h2>
-                        <p className="text-gray-500 text-base leading-relaxed mb-8 xl:mb-0">
-                            Programa terapéutico integral para apoyar el desarrollo psicomotor.
+                        <p className="text-slate-600 text-lg lg:text-xl leading-relaxed max-w-2xl font-medium">
+                            {clinicalFocus || "Más de 35 años transformando el futuro a través de la rehabilitación especializada, brindando esperanza y calidad de vida."}
                         </p>
                     </motion.div>
-
-                    {/* Right Column Cards */}
-                    <motion.div
-                        {...scrollReveal}
-                        variants={stagger}
-                        className="w-full xl:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+                    
+                    <motion.div 
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        {displayPrograms.map((prog, idx) => (
-                            <motion.div
-                                variants={slideVariants}
-                                key={idx}
-                                whileHover={{ scale: 1.03 }}
-                                className="bg-white border-b-4 border-transparent hover:border-accent rounded-xl transition-all duration-300 shadow-md hover:shadow-2xl p-8 flex flex-col group relative overflow-hidden"
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                                
-                                <motion.div 
-                                    className="mb-6 bg-gray-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-primary/10 transition-colors relative z-10"
-                                    whileHover={{ rotate: [0, -10, 10, 0] }}
-                                    transition={{ duration: 0.5 }}
-                                >
-                                    {prog.icon || <FaGraduationCap className="text-4xl text-secondary" />}
-                                </motion.div>
-                                <h3 className="text-xl font-bold text-primary mb-4 leading-snug line-clamp-3 group-hover:text-secondary transition-colors relative z-10">{prog.title}</h3>
-                                <p className="text-sm text-gray-500 mb-8 flex-1 leading-relaxed relative z-10">{prog.desc}</p>
-
-                                <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100 relative z-10">
-                                    <Link href={prog.slug ? `/programas#${prog.slug}` : "/programas"} className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 group-hover:bg-gradient-to-r group-hover:from-secondary group-hover:to-primary group-hover:text-white transition-all duration-300 shadow-sm overflow-hidden relative">
-                                        <motion.div 
-                                            className="absolute inset-0 bg-white/20"
-                                            initial={{ x: '-100%' }}
-                                            whileHover={{ x: '100%' }}
-                                            transition={{ duration: 0.6 }}
-                                        />
-                                        <FaArrowRight className="relative z-10" />
-                                    </Link>
-                                </div>
-                            </motion.div>
-                        ))}
+                        <Link 
+                            href="/programas" 
+                            className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white rounded-full font-bold transition-all duration-300 hover:bg-opacity-90 hover:shadow-xl hover:shadow-primary/25 hover:-translate-y-1 group"
+                        >
+                            <span>{ctaLabel || "VER TODOS LOS SERVICIOS"}</span>
+                            <RiArrowRightUpLine className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        </Link>
                     </motion.div>
                 </div>
 
-            </div>
+                {/* Grid de Tarjetas */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {displayPrograms.map((prog, idx) => {
+                        const IconComponent = getIconForProgram(prog.slug, idx);
+                        return (
+                            <motion.div
+                                key={idx}
+                                initial="initial"
+                                whileHover="hover"
+                                viewport={{ once: true, margin: "-50px" }}
+                                variants={{
+                                    initial: { opacity: 0, y: 40 },
+                                    hover: { y: -8 }
+                                }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                                className="group relative flex flex-col bg-white rounded-[2rem] overflow-hidden border border-slate-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] hover:border-slate-300/60 transition-all duration-500"
+                            >
+                                {/* Top Image Section */}
+                                <div className="relative h-56 xl:h-60 overflow-hidden bg-slate-100">
+                                    <Image
+                                        src={prog.imageUrl || "https://placehold.co/600x800?text=Aconino+Program"}
+                                        alt={prog.title}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-[#0a1f44]/5 transition-colors duration-500 group-hover:bg-transparent" />
+                                    
+                                    <div className="absolute top-5 left-5 bg-white/95 backdrop-blur-md px-4 py-1.5 rounded-full shadow-sm z-10 transition-transform duration-300 group-hover:scale-105">
+                                        <span className="text-[11px] font-black text-primary tracking-wider uppercase">
+                                            {prog.category || "Especialidad"}
+                                        </span>
+                                    </div>
+                                </div>
 
-            <div className="absolute inset-0 z-0 bg-opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/always-grey.png')] mix-blend-multiply opacity-10"></div>
+                                {/* Content Section */}
+                                <div className="flex-1 p-8 xl:p-9 relative flex flex-col bg-white">
+                                    {/* Floating Icon */}
+                                    <div className="absolute -top-8 right-10 w-16 h-16 bg-accent rounded-2xl shadow-[0_10px_25px_rgba(255,182,18,0.3)] flex items-center justify-center transform group-hover:rotate-6 transition-all duration-500 z-20">
+                                        <IconComponent className="w-8 h-8 text-white" />
+                                    </div>
+
+                                    <h3 className="text-2xl font-bold text-[#0a1f44] mb-4 group-hover:text-primary transition-colors pr-10">
+                                        {prog.title}
+                                    </h3>
+
+                                    {/* Description that shows on hover */}
+                                    <motion.div
+                                        variants={{
+                                            initial: { height: 0, opacity: 0, marginTop: 0 },
+                                            hover: { height: "auto", opacity: 1, marginTop: 12 }
+                                        }}
+                                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                                        className="overflow-hidden"
+                                    >
+                                        <p className="text-slate-600 leading-relaxed mb-6">
+                                            {prog.desc}
+                                        </p>
+                                    </motion.div>
+                                    
+                                    {/* Footer CTA */}
+                                    <div className="pt-6 mt-auto border-t border-slate-100">
+                                        <Link 
+                                            href={`/programas/${prog.slug}`} 
+                                            className="inline-flex items-center gap-2 text-[13px] font-bold text-primary uppercase tracking-widest group/btn w-full justify-between"
+                                        >
+                                            <span className="relative overflow-hidden h-5 w-full flex-1">
+                                                <span className="absolute top-0 left-0 w-full transition-transform duration-300 group-hover/btn:-translate-y-full">Más información</span>
+                                                <span className="absolute top-0 left-0 w-full translate-y-full transition-transform duration-300 group-hover/btn:translate-y-0 text-accent">Explorar programa</span>
+                                            </span>
+                                            <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover/btn:bg-accent/10 transition-colors">
+                                                <RiArrowRightUpLine className="w-4 h-4 text-slate-400 group-hover/btn:text-accent transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-all duration-300" />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </div>
+            </div>
+            
+            {/* Elemento de Diseño Abstracto */}
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 opacity-[0.02] pointer-events-none -ml-24 select-none z-0">
+                <span className="text-[28rem] font-black text-[#0a1f44] leading-none tracking-tighter">ACN</span>
+            </div>
         </section>
     );
 }

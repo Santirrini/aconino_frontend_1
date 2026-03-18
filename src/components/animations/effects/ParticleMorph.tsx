@@ -7,9 +7,19 @@ interface ParticleMorphProps {
   subtle?: boolean;
 }
 
+interface Particle {
+  width: number;
+  height: number;
+  top: string;
+  left: string;
+  xAnimation: number;
+  duration: number;
+  delay: number;
+}
+
 export function ParticleMorph({ subtle = false }: ParticleMorphProps) {
   const [mounted, setMounted] = useState(false);
-  const [particleData, setParticleData] = useState<any[]>([]);
+  const [particleData, setParticleData] = useState<Particle[]>([]);
   const particlesLength = subtle ? 10 : 25;
 
   useEffect(() => {

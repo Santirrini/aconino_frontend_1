@@ -7,16 +7,11 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDonation } from "../../../providers/DonationProvider";
 
-interface SubLink {
-  name: string;
-  href: string;
-}
-
 interface NavLink {
-  name: string;
-  href: string;
+  name?: string;
+  href?: string;
   hasDropdown?: boolean;
-  subLinks?: SubLink[];
+  subLinks?: { name?: string; href?: string }[];
 }
 
 interface MobileMenuProps {
@@ -24,7 +19,7 @@ interface MobileMenuProps {
   navLinks: NavLink[];
   closeMenu: () => void;
   expandedItem: string | null;
-  toggleExpanded: (item: string) => void;
+  toggleExpanded: (item: string | undefined) => void;
 }
 
 export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, toggleExpanded }: MobileMenuProps) {
@@ -39,7 +34,8 @@ export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, 
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const isActive = (href: string) => {
+  const isActive = (href: string | undefined) => {
+    if (!href) return false;
     if (href === "/") return pathname === "/";
     try {
       const urlObj = new URL(href, "http://localhost"); 
@@ -101,7 +97,7 @@ export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, 
                       </span>
                     ) : (
                       <Link
-                        href={link.href}
+                        href={link.href || "#"}
                         className={`text-xl font-black transition-colors ${parentActive ? 'text-accent' : 'text-primary hover:text-accent'}`}
                         onClick={closeMenu}
                       >
@@ -133,7 +129,7 @@ export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, 
                             return (
                               <Link
                                 key={sIdx}
-                                href={sub.href}
+                                href={sub.href || "#"}
                                 onClick={closeMenu}
                                 className={`px-4 py-3 text-sm md:text-base transition-all rounded-r-xl ${subActive ? 'text-accent font-black bg-primary/5' : 'text-gray-600 font-semibold hover:text-primary hover:bg-gray-50'}`}
                               >

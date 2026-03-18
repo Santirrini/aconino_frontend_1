@@ -9,8 +9,19 @@ interface ParticleEffectProps {
   count?: number;
 }
 
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  duration: number;
+  delay: number;
+  vx: number;
+  color: string;
+}
+
 export default function ParticleEffect({ isActive = true, count = 12 }: ParticleEffectProps) {
-  const [particles, setParticles] = useState<any[]>([]);
+  const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
     setParticles(generateEntranceParticles(count));

@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import DonationWidget from "../components/donations/DonationWidget";
-import FloatingDonateCTA from "../components/FloatingDonateCTA";
+
 
 interface DonationContextProps {
   isDonationWidgetOpen: boolean;
@@ -30,7 +30,6 @@ export const DonationProvider = ({ children }: { children: ReactNode }) => {
     <DonationContext.Provider value={{ isDonationWidgetOpen, openDonationWidget, closeDonationWidget }}>
       {children}
       <DonationWidget isOpen={isDonationWidgetOpen} onClose={closeDonationWidget} />
-      <FloatingDonateCTA onOpen={openDonationWidget} />
     </DonationContext.Provider>
   );
 };

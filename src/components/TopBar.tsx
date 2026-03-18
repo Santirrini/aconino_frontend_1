@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaYoutube, FaTwitter, FaLinkedinIn, FaSearch } from "react-icons/fa";
 
 export default function TopBar() {

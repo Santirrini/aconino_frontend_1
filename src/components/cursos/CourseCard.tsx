@@ -53,7 +53,7 @@ export default function CourseCard({
     const flag = course.countryCode ? countryFlags[course.countryCode] || "" : "";
     const isFinished = course.status === "finalizado";
 
-    const href = course.detailUrl || `/cursos/${course.slug}`;
+    const href = course.detailUrl || `#${course.slug}`;
     const isExternal = !!course.detailUrl;
 
     return (

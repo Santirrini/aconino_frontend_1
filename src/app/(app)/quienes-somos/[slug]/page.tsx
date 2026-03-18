@@ -1,15 +1,7 @@
 import { notFound } from "next/navigation";
 
-interface PageProps {
-    params: Promise<{
-        slug: string;
-    }>;
-}
-
-export default async function GenericPage({ params }: PageProps) {
-    const { slug } = await params;
-    
-    // La colección 'pages' fue eliminada - las páginas now usan globals específicos
+export default async function GenericPage() {
+    // La colección 'pages' fue eliminada - las páginas now usan globales específicos
     // /quienes-somos/nosotros → global 'quienes-somos-page'
     // Esta página catch-all ya no es necesaria
     

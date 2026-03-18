@@ -5,12 +5,19 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 interface CtaSectionProps {
-    acf?: any;
+    acf?: {
+        cta_title?: string;
+        cta_label?: string;
+        cta_background_image?: string;
+        hero_cta_link?: string;
+    };
 }
 
 export default function CtaSection({ acf }: CtaSectionProps) {
-    const ctaText = acf?.hero_cta_text || "CONTÁCTANOS";
-    const ctaLink = acf?.hero_cta_link || "/contacto";
+    const ctaTitle = acf?.cta_title || "35 años apoyando la inclusión";
+    const ctaText = acf?.cta_label || "CONTÁCTANOS";
+    const ctaLink = acf?.hero_cta_link || "/contactanos";
+    const backgroundImage = acf?.cta_background_image || "/images/hero-background-blue.png";
 
     return (
         <section className="relative w-full py-32 md:py-48 flex items-center justify-center overflow-hidden bg-primary">
@@ -23,10 +30,11 @@ export default function CtaSection({ acf }: CtaSectionProps) {
                 className="absolute inset-0 z-0 opacity-40 mix-blend-overlay"
             >
                 <Image
-                    src="https://via.placeholder.com/1920x600/0c2070/ffffff?text=Fondo+Niños"
+                    src={backgroundImage}
                     alt="Niños felices"
                     fill
                     className="object-cover"
+                    priority
                 />
             </motion.div>
 
@@ -49,7 +57,7 @@ export default function CtaSection({ acf }: CtaSectionProps) {
                 </div>
                 
                 <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-12 tracking-tight drop-shadow-lg leading-tight">
-                    35 años apoyando la inclusión
+                    {ctaTitle}
                 </h2>
                 
                 <Link href={ctaLink} className="inline-block bg-accent text-primary font-black tracking-widest text-sm md:text-base px-12 py-5 rounded-full hover:bg-white hover:text-primary transition-all duration-300 shadow-xl shadow-accent/20 transform hover:-translate-y-1 hover:scale-105">
@@ -58,4 +66,4 @@ export default function CtaSection({ acf }: CtaSectionProps) {
             </motion.div>
         </section>
     );
-}
+}

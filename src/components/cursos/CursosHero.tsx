@@ -5,7 +5,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const heroImages = [
+export interface CursosHeroSlide {
+    src: string;
+    alt: string;
+    overlayOpacity?: number;
+}
+
+interface CursosHeroProps {
+    title?: string;
+    slides?: CursosHeroSlide[];
+}
+
+const defaultSlides: CursosHeroSlide[] = [
     {
         src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop",
         alt: "Cursos de formación en neurodesarrollo",
@@ -20,21 +31,28 @@ const heroImages = [
     },
 ];
 
-export default function CursosHero() {
+export default function CursosHero({ 
+    title = "Cursos",
+    slides: providedSlides
+}: CursosHeroProps) {
+    const slides = providedSlides && providedSlides.length > 0 ? providedSlides : defaultSlides;
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const nextSlide = useCallback(() => {
-        setCurrentIndex((prev) => (prev + 1) % heroImages.length);
-    }, []);
+        setCurrentIndex((prev) => (prev + 1) % slides.length);
+    }, [slides.length]);
 
     const prevSlide = useCallback(() => {
-        setCurrentIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-    }, []);
+        setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    }, [slides.length]);
 
     useEffect(() => {
         const timer = setInterval(nextSlide, 6000);
         return () => clearInterval(timer);
     }, [nextSlide]);
+
+    const currentSlide = slides[currentIndex];
+    const overlayOpacity = currentSlide?.overlayOpacity ?? 50;
 
     return (
         <section className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center overflow-hidden">
@@ -49,13 +67,17 @@ export default function CursosHero() {
                     className="absolute inset-0 w-full h-full z-0"
                 >
                     <Image
-                        src={heroImages[currentIndex].src}
-                        alt={heroImages[currentIndex].alt}
+                        src={currentSlide.src}
+                        alt={currentSlide.alt}
                         fill
-                        className="object-cover"
+                        className="object-cover object-center"
                         priority={currentIndex === 0}
+                        sizes="100vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+                    <div 
+                        className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"
+                        style={{ opacity: overlayOpacity / 100 }}
+                    />
                 </motion.div>
             </AnimatePresence>
 
@@ -99,14 +121,14 @@ export default function CursosHero() {
                         className="text-6xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter"
                         style={{ textShadow: "0 4px 20px rgba(0,0,0,0.5)" }}
                     >
-                        Cursos
+                        {title}
                     </motion.h1>
                 </div>
             </div>
 
             {/* Dot Indicators */}
             <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
-                {heroImages.map((_, idx) => (
+                {slides.map((_, idx) => (
                     <button
                         key={idx}
                         onClick={() => setCurrentIndex(idx)}

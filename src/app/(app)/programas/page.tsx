@@ -3,18 +3,53 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import ScrollReveal from "../../../components/animations/ScrollReveal";
 
+import { client } from "@/sanity/lib/client";
+import { PROGRAMAS_PAGE_QUERY } from "@/sanity/lib/queries";
 import { defaultPrograms } from "@/data/secondaryPages";
 
+interface Program {
+    _key?: string;
+    id?: string;
+    title?: string;
+    description?: string;
+    slug?: string;
+    ageRange?: string;
+    featuredImage?: string;
+    imageUrl?: string;
+}
+
+interface Hero {
+    title?: string;
+    subtitle?: string;
+    backgroundImageUrl?: string;
+}
+
+interface CTA {
+    title?: string;
+    buttonText?: string;
+    buttonLink?: string;
+}
+
 export default async function ProgramasPage() {
-    const programs = defaultPrograms;
-    
-    const heroTitle = "Programas";
-    const heroSubtitle = "Conoce nuestros programas de habilitación y rehabilitación integral.";
-    const heroImage = "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop";
-    
-    const ctaText = "CONTÁCTANOS";
-    const ctaLink = "/contacto";
-    const ctaTitle = "¿Quieres saber más sobre nuestros programas?";
+    const programasData = await client.fetch(PROGRAMAS_PAGE_QUERY);
+
+    const hero: Hero = programasData?.hero || {
+        title: "Programas",
+        subtitle: "Conoce nuestros programas de habilitación y rehabilitación integral.",
+        backgroundImageUrl: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop"
+    };
+
+    const programs: Program[] = programasData?.programs?.length > 0
+        ? programasData.programs
+        : defaultPrograms;
+
+    const cta: CTA = programasData?.cta || {
+        title: "¿Quieres saber más sobre nuestros programas?",
+        buttonText: "CONTÁCTANOS",
+        buttonLink: "/contacto"
+    };
+
+    const heroImage = hero.backgroundImageUrl || "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop";
 
     return (
         <main className="min-h-screen bg-white">
@@ -22,7 +57,7 @@ export default async function ProgramasPage() {
             <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
                 <Image
                     src={heroImage}
-                    alt={heroTitle}
+                    alt={hero.title || "Programas"}
                     fill
                     className="object-cover brightness-50"
                     priority
@@ -35,11 +70,11 @@ export default async function ProgramasPage() {
                     </ScrollReveal>
                     <ScrollReveal animation="zoom-in" delay={0.3}>
                         <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-4">
-                            {heroTitle}
+                            {hero.title}
                         </h1>
-                        {heroSubtitle && (
+                        {hero.subtitle && (
                             <p className="text-xl text-white/90 max-w-2xl mx-auto mt-4 font-medium">
-                                {heroSubtitle}
+                                {hero.subtitle}
                             </p>
                         )}
                     </ScrollReveal>
@@ -49,15 +84,13 @@ export default async function ProgramasPage() {
             {/* Programs List */}
             <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {programs.map((program: any, index: number) => {
+                    {programs.map((program: Program, index: number) => {
                         const isEven = index % 2 === 0;
-                        const imageUrl = program.featuredImage && typeof program.featuredImage === 'object'
-                            ? program.featuredImage.url
-                            : "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1972&auto=format&fit=crop";
+                        const imageUrl = program.imageUrl || program.featuredImage || "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1972&auto=format&fit=crop";
 
                         return (
                             <div
-                                key={program.id || index}
+                                key={program._key || program.id || index}
                                 id={program.slug}
                                 className={`scroll-mt-40 flex flex-col lg:flex-row items-center gap-12 mb-32 last:mb-0 ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"
                                     }`}
@@ -70,7 +103,7 @@ export default async function ProgramasPage() {
                                         <div className="relative h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
                                             <Image
                                                 src={imageUrl || ""}
-                                                alt={program.title}
+                                                alt={program.title || "Programa"}
                                                 fill
                                                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                                             />
@@ -135,13 +168,13 @@ export default async function ProgramasPage() {
             <section className="bg-primary py-20 text-center text-white">
                 <ScrollReveal animation="zoom-in" delay={0.2}>
                     <h3 className="text-3xl font-bold mb-8">
-                        {ctaTitle}
+                        {cta.title}
                     </h3>
                     <Link
-                        href={ctaLink}
+                        href={cta.buttonLink || "/contacto"}
                         className="bg-accent text-primary px-10 py-4 rounded-full font-black text-lg hover:bg-white transition-colors uppercase"
                     >
-                        {ctaText}
+                        {cta.buttonText}
                     </Link>
                 </ScrollReveal>
             </section>

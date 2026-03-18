@@ -14,11 +14,29 @@ import CTAButton from "./components/CTAButton";
 import MobileMenu from "./components/MobileMenu";
 import ParticleEffect from "./components/ParticleEffect";
 
-interface HeaderProps {
-  navData?: any[];
+interface NavItem {
+  name?: string;
+  href?: string;
+  hasDropdown?: boolean;
+  subLinks?: { name?: string; href?: string }[];
 }
 
-export default function Header({ navData }: HeaderProps) {
+interface HeaderSettings {
+  phoneNumber?: string;
+  mobilePhone?: string;
+  email?: string;
+  address?: string;
+  headerCTA?: string;
+}
+
+interface HeaderProps {
+  navData?: NavItem[];
+  ctaLabel?: string;
+  ctaHref?: string;
+  settings?: HeaderSettings;
+}
+
+export default function Header({ navData, ctaLabel, ctaHref, settings }: HeaderProps) {
   const { isScrolled, mobileMenu, isRevealed } = useHeader();
 
   const defaultLinks = [
@@ -55,9 +73,12 @@ export default function Header({ navData }: HeaderProps) {
       href: "/cursos",
       hasDropdown: true,
       subLinks: [
-        { name: "Curso Introductorio NDT", href: "/cursos/curso-introductorio-ndt" },
-        { name: "Curso Avanzado NDT", href: "/cursos/curso-avanzado-ndt" },
-        { name: "Certificación Pediasuit", href: "/cursos/certificacion-pediasuit" },
+        { name: "Curso GMS Trust", href: "/cursos#gms-trust-movimientos-generales" },
+        { name: "Curso Básico PediaSuit", href: "/cursos#curso-basico-pediasuit" },
+        { name: "Curso Introductorio Caracas", href: "/cursos#curso-introductorio-neurodesarrollo-caracas" },
+        { name: "Evaluación e Interacción Terapéutica", href: "/cursos#evaluacion-interaccion-terapeutica-bebes" },
+        { name: "Curso Introductorio Lima", href: "/cursos#curso-introductorio-neurodesarrollo-lima" },
+        { name: "Curso Introductorio Bogotá", href: "/cursos#curso-introductorio-neurodesarrollo-bogota" },
       ]
     },
     { name: "App", href: "/app" },
@@ -65,7 +86,30 @@ export default function Header({ navData }: HeaderProps) {
     { name: "Contáctanos", href: "/contacto" },
   ];
 
-  const links = navData && navData.length > 0 ? navData : defaultLinks;
+  // Map Sanity navItems to expected format
+  interface SanityNavItem {
+    label?: string;
+    href?: string;
+    hasDropdown?: boolean;
+    subLinks?: { label?: string; href?: string }[];
+  }
+
+  const mappedNavData = navData?.map((item: SanityNavItem) => ({
+    name: item.label,
+    href: item.href,
+    hasDropdown: item.hasDropdown,
+    subLinks: item.subLinks?.map((sub) => ({
+      name: sub.label,
+      href: sub.href
+    }))
+  })) || [];
+
+  const links = mappedNavData.length > 0 ? mappedNavData : defaultLinks;
+  
+  // Determine if CTA should be donation or link based on props
+  const headerCTALabel = ctaLabel || settings?.headerCTA || "DONAR AHORA";
+  const headerCTAHref = ctaHref || "/apoyanos";
+  const isDonation = !ctaLabel || ctaLabel === "DONAR AHORA" || ctaLabel === "CONTÁCTANOS";
 
   return (
     <>
@@ -108,7 +152,11 @@ export default function Header({ navData }: HeaderProps) {
             <NavLinks navLinks={links} />
 
             <div className="flex items-center gap-4 relative z-50">
-              <CTAButton />
+              <CTAButton 
+                label={headerCTALabel} 
+                href={headerCTAHref}
+                isDonation={isDonation}
+              />
 
               <button
                 onClick={mobileMenu.toggleMenu}

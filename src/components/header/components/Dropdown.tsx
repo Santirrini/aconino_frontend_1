@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 import { dropdownStaggerContainer, dropdownStaggerItem } from "../animations/staggerChildren";
 
 interface SubLink {
-  name: string;
-  href: string;
+  name?: string;
+  href?: string;
 }
 
 interface DropdownProps {
@@ -27,7 +27,8 @@ export default function Dropdown({ subLinks, isOpen }: DropdownProps) {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const isActive = (href: string) => {
+  const isActive = (href: string | undefined) => {
+    if (!href) return false;
     try {
       const urlObj = new URL(href, "http://localhost");
       const matchesPath = pathname === urlObj.pathname;
@@ -82,7 +83,7 @@ export default function Dropdown({ subLinks, isOpen }: DropdownProps) {
                     className="relative"
                   >
                     <Link
-                      href={sub.href}
+                      href={sub.href || "#"}
                       className={`relative block px-6 py-3 text-sm transition-all duration-300 border-l-4 ${
                         subActive
                           ? 'border-accent bg-primary/5 text-primary font-black'

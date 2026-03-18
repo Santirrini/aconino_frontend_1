@@ -4,8 +4,15 @@ import { FaHeart } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useDonation } from "../../../providers/DonationProvider";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
-export default function CTAButton() {
+interface CTAButtonProps {
+  label?: string;
+  href?: string;
+  isDonation?: boolean;
+}
+
+export default function CTAButton({ label = "DONAR AHORA", href, isDonation = true }: CTAButtonProps) {
   const [mounted, setMounted] = useState(false);
   const { openDonationWidget } = useDonation();
 
@@ -17,9 +24,9 @@ export default function CTAButton() {
     return <div className="hidden sm:block relative w-[160px] h-[48px]" />;
   }
 
-  return (
+  const buttonContent = (
     <motion.button
-      onClick={openDonationWidget}
+      onClick={isDonation ? openDonationWidget : undefined}
       className="hidden sm:flex relative items-center gap-3 bg-accent text-primary px-6 py-3 rounded-full font-black text-sm tracking-widest shadow-lg hover:shadow-2xl hover:shadow-accent/40 transition-all duration-300 transform hover:scale-105 group overflow-hidden"
     >
       <motion.div
@@ -35,7 +42,13 @@ export default function CTAButton() {
       >
         <FaHeart className="text-primary group-hover:text-red-500 transition-colors" />
       </motion.div>
-      <span className="z-10 relative">DONAR AHORA</span>
+      <span className="z-10 relative">{label}</span>
     </motion.button>
   );
+
+  if (!isDonation && href) {
+    return <Link href={href}>{buttonContent}</Link>;
+  }
+
+  return buttonContent;
 }

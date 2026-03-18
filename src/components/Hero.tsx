@@ -6,15 +6,24 @@ import { motion } from "framer-motion";
 import { CurtainReveal, GradientOverlay, ParticleMorph, slideVariants, fadeVariants } from "./animations";
 
 interface HeroProps {
-    acf?: any;
+    acf?: {
+        hero_title?: string;
+        hero_subtitle?: string;
+        hero_background_type?: string;
+        hero_video_url?: string;
+        hero_image?: string;
+        hero_impact?: string;
+        hero_cta_text?: string;
+        hero_cta_link?: string;
+    };
 }
 
 export default function Hero({ acf }: HeroProps) {
     const title = acf?.hero_title || "35 años";
     const subtitle = acf?.hero_subtitle || "apoyando la inclusión!";
-    const isVideo = acf?.hero_background_type === "video";
-    const videoUrl = acf?.hero_video_url || "https://www.w3schools.com/html/mov_bbb.mp4";
-    const imageUrl = acf?.hero_image || "https://via.placeholder.com/1920x1080/0c2070/ffffff?text=Fondo+Hero";
+    const isVideo = acf?.hero_background_type === "video" && acf?.hero_video_url;
+    const videoUrl = acf?.hero_video_url || "";
+    const imageUrl = acf?.hero_image || "/images/hero-background-blue.png";
 
     return (
         <section className="relative w-full h-[600px] md:h-[800px] lg:h-[900px] bg-primary flex items-center justify-center overflow-hidden">
@@ -29,7 +38,7 @@ export default function Hero({ acf }: HeroProps) {
                     loop
                     muted
                     playsInline
-                    poster="https://via.placeholder.com/1920x1080/0c2070/ffffff?text=Video+Cargando..."
+                    poster="https://placehold.co/1920x1080/0c2070/ffffff?text=Video+Cargando"
                 >
                     <source src={videoUrl} type="video/mp4" />
                     Tu navegador no soporta videos HTML5.

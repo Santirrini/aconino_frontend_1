@@ -9,10 +9,10 @@ import Dropdown from "./Dropdown";
 import { staggerItem } from "../animations/staggerChildren";
 
 interface NavLink {
-  name: string;
-  href: string;
+  name?: string;
+  href?: string;
   hasDropdown?: boolean;
-  subLinks?: { name: string; href: string }[];
+  subLinks?: { name?: string; href?: string }[];
 }
 
 interface NavLinksProps {
@@ -31,7 +31,8 @@ export default function NavLinks({ navLinks }: NavLinksProps) {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const isActive = (href: string) => {
+  const isActive = (href: string | undefined) => {
+    if (!href) return false;
     if (href === "/") return pathname === "/";
     try {
       const urlObj = new URL(href, "http://localhost");
@@ -77,10 +78,10 @@ export default function NavLinks({ navLinks }: NavLinksProps) {
             />
 
             <Link
-              href={link.href}
+              href={link.href || "#"}
               onClick={(e) => {
                 if (link.hasDropdown) {
-                  if (link.href === "#" || link.href === "") {
+                  if (link.href === "#" || link.href === "" || !link.href) {
                     e.preventDefault();
                   }
                   setHoveredIdx(hoveredIdx === idx ? null : idx);

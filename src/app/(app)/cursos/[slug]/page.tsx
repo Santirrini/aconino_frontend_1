@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaCertificate, FaArrowLeft } from "react-icons/fa";
+import { FaCalendarAlt, FaMapMarkerAlt, FaCertificate, FaArrowLeft } from "react-icons/fa";
 
 const countryFlags: Record<string, string> = {
     CO: "🇨🇴", VE: "🇻🇪", PE: "🇵🇪", EC: "🇪🇨", MX: "🇲🇽",
@@ -15,20 +15,86 @@ interface PageProps {
     }>;
 }
 
-const defaultCourses = [
+interface Course {
+    id: string;
+    title: string;
+    slug: string;
+    dates?: string;
+    duration?: string;
+    location?: string;
+    countryCode?: string;
+    status?: string;
+    description?: string;
+    featuredImage?: string;
+}
+
+const defaultCourses: Course[] = [
     {
         id: "default-1",
         title: "Curso de Certificación Internacional GMS Trust - Movimientos Generales",
         slug: "gms-trust-movimientos-generales",
-        dates: "31 octubre - 7 noviembre 2024",
-        duration: "Básico y Avanzado",
+        dates: "Básico: 31 octubre - 3 noviembre · Avanzado: 4 noviembre - 7 noviembre",
         location: "Bogotá, Colombia",
         countryCode: "CO",
         status: "finalizado",
-        description: "Diagnostica precozmente el riesgo de parálisis cerebral en niños para comenzar su intervención y tratamiento.",
+        description: "Diagnostica precozmente el riesgo de parálisis cerebral en niños para comenzar su intervención y tratamiento. Dictado por la fisioterapeuta italiana Natascia Bertoncelli, Instructora oficial del \"General Movements Trust\".",
         featuredImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=600&auto=format&fit=crop",
     },
-    // ... otros cursos si es necesario, pero buscaremos por slug en los defaultCourses definidos en page.tsx
+    {
+        id: "default-2",
+        title: "Curso Básico PediaSuit",
+        slug: "curso-basico-pediasuit",
+        dates: "Junio 07 al 10 de 2024",
+        location: "Bogotá, Colombia",
+        countryCode: "CO",
+        status: "finalizado",
+        description: "Este taller de formación acreditado internacionalmente, es útil para aplicar la terapia intensiva de tratamiento del método Pediasuit en pacientes con alteraciones neurológicas, ortopédicas y genéticas.",
+        featuredImage: "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=600&auto=format&fit=crop",
+    },
+    {
+        id: "default-3",
+        title: "Curso Introductorio de Neurodesarrollo",
+        slug: "curso-introductorio-neurodesarrollo-caracas",
+        dates: "14, 15, 16, 17 y 18 de Junio de 2024",
+        location: "Caracas, Venezuela",
+        countryCode: "VE",
+        status: "finalizado",
+        description: "Este curso promueve conceptos básicos de este modelo, el análisis de todos los campos del desarrollo del niño, el manejo de los desórdenes del movimiento y el trabajo multidisciplinario haciendo énfasis en la participación de la familia.",
+        featuredImage: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=600&auto=format&fit=crop",
+    },
+    {
+        id: "default-4",
+        title: "Curso Proceso de Evaluación e Interacción Terapéutica en Bebés",
+        slug: "evaluacion-interaccion-terapeutica-bebes",
+        dates: "17, 18, 19, 20 y 21 de Junio de 2024",
+        location: "Caracas, Venezuela",
+        countryCode: "VE",
+        status: "finalizado",
+        description: "Aprende a reconocer los patrones posturales atípicos con el propósito de establecer las características existentes en bebés con alteración del movimiento, interpretando los procesos teóricos básicos que los fundamentan.",
+        featuredImage: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=600&auto=format&fit=crop",
+    },
+    {
+        id: "default-5",
+        title: "Curso Introductorio de Neurodesarrollo",
+        slug: "curso-introductorio-neurodesarrollo-lima",
+        dates: "5, 6, 7, 13 y 14 de Julio de 2024",
+        location: "Lima, Perú",
+        countryCode: "PE",
+        status: "finalizado",
+        description: "Este curso promueve conceptos básicos de este modelo, el análisis de todos los campos del desarrollo del niño, el manejo de los desórdenes del movimiento y el trabajo multidisciplinario haciendo énfasis en la participación de la familia.",
+        featuredImage: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=600&auto=format&fit=crop",
+    },
+    {
+        id: "default-6",
+        title: "Curso Introductorio de Neurodesarrollo",
+        slug: "curso-introductorio-neurodesarrollo-bogota",
+        dates: "5, 6, 7, 13 y 14 de Abril de 2024",
+        location: "Bogotá, Colombia",
+        countryCode: "CO",
+        status: "finalizado",
+        description: "Este curso promueve conceptos básicos de este modelo, el análisis de todos los campos del desarrollo del niño, el manejo de los desórdenes del movimiento y el trabajo multidisciplinario haciendo énfasis en la participación de la familia.",
+        featuredImage: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600&auto=format&fit=crop",
+    },
 ];
 
 export default async function CoursePage({ params }: PageProps) {
@@ -93,15 +159,6 @@ export default async function CoursePage({ params }: PageProps) {
                                         <div className="text-left">
                                             <span className="text-white/60 text-xs block">Fechas</span>
                                             <span className="font-bold text-sm">{course.dates}</span>
-                                        </div>
-                                    </div>
-                                )}
-                                {course.duration && (
-                                    <div className="bg-white/10 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/15 flex items-center gap-3">
-                                        <FaClock className="text-accent" />
-                                        <div className="text-left">
-                                            <span className="text-white/60 text-xs block">Duración</span>
-                                            <span className="font-bold text-sm">{course.duration}</span>
                                         </div>
                                     </div>
                                 )}

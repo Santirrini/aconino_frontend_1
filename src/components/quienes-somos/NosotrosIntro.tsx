@@ -3,8 +3,35 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaHeart } from "react-icons/fa";
+import { PortableText, PortableTextBlock } from "@portabletext/react";
 
-export default function NosotrosIntro() {
+interface NosotrosIntroProps {
+    data?: {
+        subtitle?: string;
+        title?: string;
+        imageUrl?: string;
+        imageAlt?: string;
+        description?: string | object;
+        stats?: Array<{
+            value: string;
+            label: string;
+            color: string;
+        }>;
+    } | null;
+}
+
+export default function NosotrosIntro({ data }: NosotrosIntroProps) {
+    const subtitle = data?.subtitle || "Historia Aconiño";
+    const title = data?.title || "Nuestra Identidad";
+    const imageUrl = data?.imageUrl || "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1968&auto=format&fit=crop";
+    const imageAlt = data?.imageAlt || "Niña en terapia";
+    
+    const defaultStats = [
+        { value: "+30", label: "Años de Exp.", color: "secondary" },
+        { value: "+5k", label: "Familias Apoyadas", color: "accent" }
+    ];
+    const stats = data?.stats && data.stats.length > 0 ? data.stats : defaultStats;
+
     return (
         <section id="nosotros" className="py-24 md:py-32 bg-white relative overflow-hidden">
             {/* Background decorative elements */}
@@ -24,8 +51,8 @@ export default function NosotrosIntro() {
                     >
                         <div className="relative aspect-[4/5] md:aspect-square w-full max-w-lg mx-auto shadow-2xl rounded-3xl overflow-hidden group">
                             <Image
-                                src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1968&auto=format&fit=crop"
-                                alt="Niña en terapia"
+                                src={imageUrl}
+                                alt={imageAlt}
                                 fill
                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                             />
@@ -56,24 +83,32 @@ export default function NosotrosIntro() {
                         className="w-full lg:w-1/2"
                     >
                         <div className="mb-6 flex items-center gap-4">
-                            <span className="text-gray-400 font-bold tracking-widest uppercase text-sm">Historia Aconiño</span>
+                            <span className="text-gray-400 font-bold tracking-widest uppercase text-sm">{subtitle}</span>
                             <div className="h-[2px] w-16 bg-accent"></div>
                         </div>
                         
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary mb-8 tracking-tight leading-tight">
-                            Nuestra Identidad
+                            {title}
                         </h2>
                         
                         <div className="prose prose-lg text-gray-600 prose-p:leading-relaxed max-w-none">
-                            <p className="mb-6 text-xl font-medium text-gray-700">
-                                Somos una entidad privada sin ánimo de lucro, creada en 1990, con el propósito fundamental de apoyar a las familias.
-                            </p>
-                            <p className="text-justify text-base md:text-lg">
-                                Brindamos un servicio de atención integral basado en el modelo de práctica contemporáneo de Neurodesarrollo NDT, que contempla diagnósticos como Parálisis Cerebral, Retraso en el Desarrollo Psicomotor, Síndrome de West e Hipotonía, entre otros.
-                            </p>
-                            <p className="text-justify text-base md:text-lg mt-4">
-                                A lo largo de estos más de 30 años, hemos construido un espacio seguro donde el amor, la ciencia y la dedicación se unen para impulsar el potencial máximo de cada niño y joven que cruza nuestras puertas.
-                            </p>
+                            {data?.description && typeof data.description === 'object' ? (
+                                <PortableText value={data.description as PortableTextBlock[]} />
+                            ) : data?.description && typeof data.description === 'string' ? (
+                                <p className="mb-6 text-xl font-medium text-gray-700">{data.description}</p>
+                            ) : (
+                                <>
+                                    <p className="mb-6 text-xl font-medium text-gray-700">
+                                        Somos una entidad privada sin ánimo de lucro, creada en 1990, con el propósito fundamental de apoyar a las familias.
+                                    </p>
+                                    <p className="text-justify text-base md:text-lg">
+                                        Brindamos un servicio de atención integral basado en el modelo de práctica contemporáneo de Neurodesarrollo NDT, que contempla diagnósticos como Parálisis Cerebral, Retraso en el Desarrollo Psicomotor, Síndrome de West e Hipotonía, entre otros.
+                                    </p>
+                                    <p className="text-justify text-base md:text-lg mt-4">
+                                        A lo largo de estos más de 30 años, hemos construido un espacio seguro donde el amor, la ciencia y la dedicación se unen para impulsar el potencial máximo de cada niño y joven que cruza nuestras puertas.
+                                    </p>
+                                </>
+                            )}
                         </div>
                         
                         <motion.div 
@@ -83,15 +118,17 @@ export default function NosotrosIntro() {
                             transition={{ delay: 0.6 }}
                             className="mt-10 flex gap-6"
                         >
-                            <div className="flex flex-col">
-                                <span className="text-4xl font-black text-secondary">+30</span>
-                                <span className="text-sm font-bold text-gray-400 uppercase tracking-wider">Años de Exp.</span>
-                            </div>
-                            <div className="w-[1px] bg-gray-200" />
-                            <div className="flex flex-col">
-                                <span className="text-4xl font-black text-accent">+5k</span>
-                                <span className="text-sm font-bold text-gray-400 uppercase tracking-wider">Familias Apoyadas</span>
-                            </div>
+                            {stats.map((stat, idx) => (
+                                <div key={idx} className="flex gap-6 items-center">
+                                    <div className="flex flex-col">
+                                        <span className={`text-4xl font-black ${stat.color === 'secondary' ? 'text-secondary' : 'text-accent'}`}>
+                                            {stat.value}
+                                        </span>
+                                        <span className="text-sm font-bold text-gray-400 uppercase tracking-wider">{stat.label}</span>
+                                    </div>
+                                    {idx < stats.length - 1 && <div className="w-[1px] h-12 bg-gray-200" />}
+                                </div>
+                            ))}
                         </motion.div>
                     </motion.div>
                 </div>

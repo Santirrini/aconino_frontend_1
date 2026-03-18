@@ -46,7 +46,7 @@ export default function NewsSection({ posts, title, showSection = true }: NewsSe
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary">{title || "Últimas noticias"}</h2>
                     </div>
 
-                    <Link href="/noticias" className="inline-flex items-center justify-center gap-3 border-2 border-primary text-primary font-bold px-8 py-3 rounded-full hover:bg-primary hover:text-white transition-all duration-300 text-sm tracking-widest shrink-0 group">
+                    <Link href="/blog" className="inline-flex items-center justify-center gap-3 border-2 border-primary text-primary font-bold px-8 py-3 rounded-full hover:bg-primary hover:text-white transition-all duration-300 text-sm tracking-widest shrink-0 group">
                         VER TODO <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </motion.div>
@@ -118,7 +118,7 @@ export default function NewsSection({ posts, title, showSection = true }: NewsSe
                                         />
 
                                         <div className="mt-auto pt-6 border-t border-gray-100">
-                                            <Link href={`/noticias/${post.slug}`} className="text-sm font-bold text-primary tracking-widest flex items-center gap-2 group/link w-fit">
+                                            <Link href={`/blog/${post.slug}`} className="text-sm font-bold text-primary tracking-widest flex items-center gap-2 group/link w-fit">
                                                 <span className="text-accent text-xl leading-none group-hover/link:translate-x-1 transition-transform">&raquo;</span> LEER MÁS
                                             </Link>
                                         </div>

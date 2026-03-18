@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaFacebook, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaInfoCircle, FaHandshake, FaTools } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaInfoCircle, FaTools } from "react-icons/fa";
 import Image from "next/image";
 
 export default function AdditionalInfo() {

@@ -3,8 +3,10 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-
 import { DonationProvider } from "../../providers/DonationProvider";
+import { client } from "@/sanity/lib/client";
+import { SETTINGS_QUERY, NAVIGATION_QUERY } from "@/sanity/lib/queries";
+import FloatingChatbot from "../../components/FloatingChatbot";
 
 const manrope = Manrope({
     subsets: ["latin"],
@@ -21,16 +23,27 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const [settings, navigation] = await Promise.all([
+        client.fetch(SETTINGS_QUERY),
+        client.fetch(NAVIGATION_QUERY)
+    ]);
+    
     return (
         <html lang="es" className={`${manrope.variable}`}>
             <body className="antialiased min-h-screen flex flex-col font-sans bg-white text-primary">
                 <DonationProvider>
-                    <Header />
+                    <Header 
+                        navData={navigation?.navItems} 
+                        ctaLabel={navigation?.ctaButton?.label}
+                        ctaHref={navigation?.ctaButton?.href}
+                        settings={settings}
+                    />
                     <main className="flex-1 w-full relative">
                         {children}
                     </main>
-                    <Footer />
+                    <Footer settings={settings} />
                 </DonationProvider>
+                <FloatingChatbot />
             </body>
         </html>
     );

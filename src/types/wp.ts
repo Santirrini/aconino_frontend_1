@@ -7,7 +7,7 @@ export interface WPCategory {
     slug: string;
     taxonomy: "category";
     parent: number;
-    meta: any[];
+    meta: unknown[];
     yoast_head?: string;
     yoast_head_json?: YoastHeadJson;
 }
@@ -29,7 +29,7 @@ export interface WPMedia {
     comment_status: string;
     ping_status: string;
     template: string;
-    meta: any;
+    meta: unknown;
     class_list: string[];
     description: { rendered: string };
     caption: { rendered: string };
@@ -78,7 +78,7 @@ export interface WPPost {
     sticky: boolean;
     template: string;
     format: "standard" | string;
-    meta: any;
+    meta: unknown;
     categories: number[];
     tags: number[];
     yoast_head?: string;
@@ -130,8 +130,8 @@ export interface WPPage {
     comment_status: string;
     ping_status: string;
     template: string;
-    meta: any;
-    acf?: AcfHomePage | any;
+    meta: unknown;
+    acf?: AcfHomePage | unknown;
     yoast_head?: string;
     yoast_head_json?: YoastHeadJson;
 }
@@ -153,5 +153,5 @@ export interface YoastHeadJson {
     og_site_name: string;
     twitter_card: string;
     twitter_site: string;
-    schema?: any;
+    schema?: unknown;
 }

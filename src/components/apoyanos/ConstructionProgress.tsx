@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FaChartLine, FaUsers, FaCheckCircle } from "react-icons/fa";
 import CountUp from "react-countup";
+import { useScrollReveal } from "../animations";
 
 interface ConstructionProgressProps {
   goal: number;
@@ -12,37 +13,46 @@ interface ConstructionProgressProps {
 
 export default function ConstructionProgress({ goal, raised, donors }: ConstructionProgressProps) {
   const percentage = Math.min((raised / goal) * 100, 100);
+  const scrollReveal = useScrollReveal();
 
   return (
-    <section className="py-16 bg-gradient-to-r from-primary via-secondary to-primary relative overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+    <section className="py-24 bg-gradient-to-r from-primary via-secondary to-primary relative overflow-hidden">
+      {/* Background Blur Effects */}
+      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-50" />
+      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-secondary/10 rounded-full blur-3xl opacity-50" />
+
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div 
+          {...scrollReveal}
+          className="max-w-4xl mx-auto"
+        >
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter mb-4">
               Progreso de la Construcción
             </h2>
-            <p className="text-white/70">
-              Juntos estamos construyendo un futuro mejor
-            </p>
+            <p className="text-white/70 text-lg">Juntos estamos construyendo un futuro mejor</p>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 mb-8">
-            <div className="flex justify-between items-end mb-4">
+          {/* Main Progress Card */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-white/20 mb-8">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-6">
               <div>
-                <p className="text-white/70 text-sm uppercase tracking-wider mb-1">Total Recaudado</p>
-                <p className="text-4xl md:text-5xl font-black text-accent">
+                <p className="text-white/70 text-sm uppercase tracking-wider mb-2">Total Recaudado</p>
+                <p className="text-4xl md:text-5xl lg:text-6xl font-black text-accent">
                   <CountUp end={raised} duration={2} prefix="$" separator="." decimals={0} />
                 </p>
               </div>
-              <div className="text-right">
-                <p className="text-white/70 text-sm uppercase tracking-wider mb-1">Meta</p>
+              <div className="text-right mt-4 md:mt-0">
+                <p className="text-white/70 text-sm uppercase tracking-wider mb-2">Meta</p>
                 <p className="text-2xl md:text-3xl font-bold text-white">
                   <CountUp end={goal} duration={2} prefix="$" separator="." decimals={0} />
                 </p>
               </div>
             </div>
 
-            <div className="h-6 bg-black/30 rounded-full overflow-hidden">
+            {/* Progress Bar */}
+            <div className="h-8 bg-black/30 rounded-full overflow-hidden relative">
               <motion.div 
                 initial={{ width: 0 }} 
                 animate={{ width: `${percentage}%` }} 
@@ -51,54 +61,62 @@ export default function ConstructionProgress({ goal, raised, donors }: Construct
               >
                 <div className="absolute inset-0 bg-white/20 animate-pulse" />
               </motion.div>
+              {/* Progress markers */}
+              <div className="absolute top-0 left-1/4 w-0.5 h-full bg-white/20" />
+              <div className="absolute top-0 left-1/2 w-0.5 h-full bg-white/20" />
+              <div className="absolute top-0 left-3/4 w-0.5 h-full bg-white/20" />
             </div>
 
-            <div className="flex justify-between mt-3">
-              <span className="text-white/70 text-sm">{percentage.toFixed(1)}% completado</span>
-              <span className="text-white/70 text-sm">
+            <div className="flex justify-between mt-4 text-sm">
+              <span className="text-white/70">{percentage.toFixed(1)}% completado</span>
+              <span className="text-white/70">
                 Faltan <CountUp end={goal - raised} duration={2} prefix="$" separator="." />
               </span>
             </div>
           </div>
 
+          {/* Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <motion.div 
               initial={{ opacity: 0, y: 20 }} 
               whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }}
               className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20"
             >
               <FaChartLine className="text-3xl text-accent mx-auto mb-3" />
-              <p className="text-3xl font-black text-white">
+              <p className="text-3xl md:text-4xl font-black text-white">
                 <CountUp end={percentage} duration={2} suffix="%" decimals={1} />
               </p>
-              <p className="text-white/70 text-sm">del objetivo</p>
+              <p className="text-white/70 text-sm mt-1">del objetivo</p>
             </motion.div>
-
+            
             <motion.div 
               initial={{ opacity: 0, y: 20 }} 
               whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }}
               transition={{ delay: 0.1 }} 
               className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20"
             >
               <FaUsers className="text-3xl text-accent mx-auto mb-3" />
-              <p className="text-3xl font-black text-white">
+              <p className="text-3xl md:text-4xl font-black text-white">
                 <CountUp end={donors} duration={2} separator="." />
               </p>
-              <p className="text-white/70 text-sm">donantes</p>
+              <p className="text-white/70 text-sm mt-1">donantes</p>
             </motion.div>
-
+            
             <motion.div 
               initial={{ opacity: 0, y: 20 }} 
               whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }}
               transition={{ delay: 0.2 }} 
               className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 col-span-2 md:col-span-1"
             >
               <FaCheckCircle className="text-3xl text-accent mx-auto mb-3" />
-              <p className="text-3xl font-black text-white">5</p>
-              <p className="text-white/70 text-sm">zonas en progreso</p>
+              <p className="text-3xl md:text-4xl font-black text-white">5</p>
+              <p className="text-white/70 text-sm mt-1">zonas en progreso</p>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -5,13 +5,21 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 interface AboutSectionProps {
-    acf?: any;
+    acf?: {
+        about_title?: string;
+        about_description?: string;
+        about_image?: string;
+        about_cta_text?: string;
+        about_cta_link?: string;
+        stats_1_value?: string;
+        stats_1_label?: string;
+    };
 }
 
 export default function AboutSection({ acf }: AboutSectionProps) {
     const title = acf?.about_title || "35 años trabajando por mejorar la calidad de vida de niños, niñas y jóvenes en condición de discapacidad";
     const description = acf?.about_description || "Tratamientos y terapias con el Modelo de práctica contemporáneo de Neurodesarrollo y protocolo intensivo Pediasuit Orientación y apoyo a las familias";
-    const imageUrl = acf?.about_image || "https://via.placeholder.com/600x450/e2e8f0/0c2070?text=Foto+Equipo+Aconiño";
+    const imageUrl = acf?.about_image || "https://placehold.co/600x450/e2e8f0/0c2070?text=Foto+Equipo+Aconiño";
     const ctaText = acf?.about_cta_text || "CONTÁCTANOS";
     const ctaLink = acf?.about_cta_link || "/contacto";
     
@@ -28,18 +36,18 @@ export default function AboutSection({ acf }: AboutSectionProps) {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8 }}
-                    className="relative"
+                    className="relative py-8 md:py-16 md:pr-0"
                 >
                     {/* Dark blue background box */}
                     <motion.div 
-                        initial={{ height: 0 }}
-                        whileInView={{ height: "100%" }}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.3 }}
-                        className="absolute top-1/4 -left-4 md:-left-16 w-4/5 md:w-3/4 bg-secondary z-0 flex flex-col items-center justify-center text-white py-12 px-4 shadow-2xl rounded-tr-3xl rounded-bl-3xl"
+                        className="absolute top-1/2 -translate-y-1/2 -left-2 md:-left-4 lg:-left-8 w-[160px] md:w-[220px] lg:w-[260px] aspect-square bg-secondary z-30 flex flex-col items-center justify-center text-white p-6 shadow-2xl rounded-tr-[2rem] rounded-bl-[2rem]"
                     >
-                        <span className="text-5xl md:text-7xl font-black mb-2 drop-shadow-md">{statsValue}</span>
-                        <span className="text-sm md:text-lg text-center leading-tight font-medium">
+                        <span className="text-4xl md:text-5xl lg:text-7xl font-black mb-2 drop-shadow-md">{statsValue}</span>
+                        <span className="text-xs md:text-sm lg:text-base text-center leading-tight font-medium">
                             {statsLabelParts.map((part: string, idx: number) => (
                                 <span key={idx}>
                                     {part}
@@ -53,7 +61,7 @@ export default function AboutSection({ acf }: AboutSectionProps) {
                     <motion.div 
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.3 }}
-                        className="relative z-10 w-[90%] md:w-full max-w-md mx-auto lg:ml-auto shadow-2xl aspect-[4/3] rounded-2xl overflow-hidden"
+                        className="relative z-10 w-[85%] md:w-[85%] lg:w-[90%] ml-auto shadow-2xl aspect-[4/3] rounded-2xl overflow-hidden"
                     >
                         <Image
                             src={imageUrl}
@@ -64,7 +72,7 @@ export default function AboutSection({ acf }: AboutSectionProps) {
                     </motion.div>
 
                     {/* Accent Yellow Border Box */}
-                    <div className="absolute -bottom-8 md:-bottom-12 -right-4 md:right-4 w-32 h-32 md:w-56 md:h-56 border-8 border-accent z-20 pointer-events-none rounded-2xl opacity-80"></div>
+                    <div className="absolute -bottom-2 md:-bottom-4 right-0 md:-right-8 w-24 h-24 md:w-40 md:h-40 border-8 border-accent z-20 pointer-events-none rounded-xl opacity-80"></div>
                 </motion.div>
 
                 {/* Right Side: Text Content */}

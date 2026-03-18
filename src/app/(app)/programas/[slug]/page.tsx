@@ -11,10 +11,18 @@ interface PageProps {
     }>;
 }
 
+interface Program {
+    slug: string;
+    title?: string;
+    description?: string;
+    ageRange?: string;
+    featuredImage?: string;
+}
+
 export default async function ProgramPage({ params }: PageProps) {
     const { slug } = await params;
     
-    const program = defaultPrograms.find((p: any) => p.slug === slug);
+    const program: Program | undefined = defaultPrograms.find((p: Program) => p.slug === slug);
 
     if (!program) {
         return notFound();
@@ -41,7 +49,7 @@ export default async function ProgramPage({ params }: PageProps) {
                         {/* CTA embedded in hero */}
                         <div className="w-full md:w-80 relative z-20">
                             <ScrollReveal animation="slide-left" delay={0.4}>
-                                <ProgramCTA programTitle={program.title} />
+                                <ProgramCTA programTitle={program.title || ""} />
                             </ScrollReveal>
                         </div>
                     </div>
@@ -78,7 +86,7 @@ export default async function ProgramPage({ params }: PageProps) {
                                     <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                                     <Image
                                         src={program.featuredImage}
-                                        alt={program.title}
+                                        alt={program.title || "Programa"}
                                         width={600}
                                         height={800}
                                         className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
