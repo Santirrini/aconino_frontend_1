@@ -199,7 +199,7 @@ export const GoldenTypewriter = ({
   );
 
   return (
-    <span className={`${className} relative inline-block`} ref={containerRef}>
+    <span className={`${className} relative inline-block leading-tight md:leading-tight`} ref={containerRef}>
       <style jsx>{`
         @keyframes pulse-glow {
           0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.85); }

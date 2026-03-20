@@ -26,7 +26,7 @@ export default function Hero({ acf }: HeroProps) {
     const imageUrl = acf?.hero_image || "/images/hero-background-blue.png";
 
     return (
-        <section className="relative w-full h-[600px] md:h-[800px] lg:h-[900px] bg-primary flex items-center justify-center overflow-hidden">
+        <section className="relative w-full min-h-[600px] md:min-h-[800px] lg:min-h-[100vh] bg-primary flex items-center justify-center overflow-hidden py-24">
             {/* Curtain Reveal Initial Effect */}
             <CurtainReveal color="bg-secondary" />
 
@@ -110,7 +110,7 @@ export default function Hero({ acf }: HeroProps) {
 
                     <motion.h2 
                         variants={slideVariants}
-                        className="text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-extrabold text-white tracking-tight leading-tight md:leading-none drop-shadow-2xl" 
+                        className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-white tracking-tight leading-tight md:leading-tight drop-shadow-2xl" 
                         style={{ textShadow: "0 4px 20px rgba(0,0,0,0.6)" }}
                     >
                         <motion.span variants={slideVariants} className="block mb-2 md:mb-4">

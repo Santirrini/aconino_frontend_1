@@ -53,31 +53,7 @@ export default function AboutSection({ acf }: AboutSectionProps) {
 
                 </motion.div>
 
-                {/* Right Side: Text Content */}
-                <motion.div 
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative z-10 px-4 md:px-0"
-                >
-                    <div className="flex items-center gap-4 mb-6">
-                        <span className="text-sm font-bold text-gray-400 tracking-widest uppercase">Aconino</span>
-                        <div className="h-[2px] bg-accent w-24"></div>
-                    </div>
 
-                    <h2 className="text-3xl md:text-5xl lg:text-5xl font-extrabold text-primary leading-tight mb-8">
-                        {title}
-                    </h2>
-
-                    <p className="text-gray-600 mb-10 leading-relaxed max-w-lg md:text-lg">
-                        {description}
-                    </p>
-
-                    <Link href={ctaLink} className="inline-block bg-primary text-white font-bold tracking-widest text-sm px-10 py-5 rounded-full hover:bg-accent hover:text-primary hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                        {ctaText}
-                    </Link>
-                </motion.div>
             </div>
 
             {/* Very faint background illustration */}
