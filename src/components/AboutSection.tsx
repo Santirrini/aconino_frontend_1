@@ -25,34 +25,63 @@ export default function AboutSection({ acf }: AboutSectionProps) {
 
     return (
         <section className="w-full py-20 md:py-32 overflow-hidden relative bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
 
-                {/* Left Side: Image group */}
+                {/* Centered Image Group with Decorative Frame */}
                 <motion.div 
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8 }}
-                    className="relative py-8 md:py-16 md:pr-0"
+                    className="relative p-6 md:p-10 w-full max-w-4xl"
                 >
+                    {/* Decorative Frame Elements */}
+                    <div className="absolute top-0 left-0 w-24 h-24 border-t-4 border-l-4 border-accent rounded-tl-3xl z-0" />
+                    <div className="absolute bottom-0 right-0 w-24 h-24 border-b-4 border-r-4 border-accent rounded-br-3xl z-0" />
+                    
+                    {/* Secondary Frame offset */}
+                    <div className="absolute top-4 left-4 right-4 bottom-4 border-2 border-primary/10 rounded-[2.5rem] z-0 pointer-events-none" />
 
-                    {/* Main Image */}
+                    {/* Main Image Container */}
                     <motion.div 
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.3 }}
-                        className="relative z-10 w-[85%] md:w-[85%] lg:w-[90%] ml-auto shadow-2xl aspect-[4/3] rounded-2xl overflow-hidden"
+                        whileHover={{ scale: 1.01 }}
+                        transition={{ duration: 0.4 }}
+                        className="relative z-10 w-full shadow-[0_20px_50px_rgba(0,0,0,0.15)] aspect-[16/9] md:aspect-[21/9] rounded-[2rem] overflow-hidden border-8 border-white"
                     >
                         <Image
                             src={imageUrl}
                             alt="Equipo Aconiño"
                             fill
                             className="object-cover"
+                            priority
                         />
+                        
+                        {/* Subtle Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent pointer-events-none" />
                     </motion.div>
 
-
+                    {/* Floating Badge/Accent */}
+                    <motion.div
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute -bottom-4 -left-2 md:left-4 z-20 bg-primary text-white p-4 md:p-6 rounded-2xl shadow-xl flex items-center gap-4 border-2 border-accent/30 backdrop-blur-sm"
+                    >
+                        <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-primary text-2xl">
+                            <Image 
+                                src="/images/hero-background-blue.png" 
+                                alt="Icon" 
+                                width={30} 
+                                height={30} 
+                                className="opacity-20 hidden"
+                            />
+                            ❤️
+                        </div>
+                        <div>
+                            <p className="text-xs font-bold uppercase tracking-widest text-accent mb-1">Tradición</p>
+                            <p className="text-lg md:text-xl font-black leading-none">35 AÑOS</p>
+                        </div>
+                    </motion.div>
                 </motion.div>
-
 
             </div>
 
