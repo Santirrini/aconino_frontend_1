@@ -20,24 +20,23 @@ export default defineType({
        initialValue: 'Tratamientos y terapias con el Modelo de práctica contemporáneo de Neurodesarrollo y protocolo intensivo Pediasuit Orientación y apoyo a las familias' 
     }),
     defineField({ 
-      name: 'image', 
-      title: 'Imagen Principal',
-      type: 'image', 
-      options: { hotspot: true },
-      description: 'Imagen que aparecerá al lado de los textos de la sección.'
-    }),
+       name: 'image', 
+       title: 'Imagen Principal',
+       type: 'image', 
+       options: { hotspot: true },
+       description: 'Imagen que aparecerá al lado de los textos de la sección.'
+     }),
     defineField({ 
-       name: 'statsValue', 
-       title: 'Valor de Estadística (Ej: +35)', 
+       name: 'experienceLabel', 
+       title: 'Etiqueta de Experiencia (Ej: Tradición)', 
        type: 'string', 
-       initialValue: '+35' 
+       initialValue: 'Tradición' 
     }),
     defineField({ 
-       name: 'statsLabel', 
-       title: 'Etiqueta de Estadística (Ej: años\napoyando la\ninclusión!)', 
-       type: 'text', 
-       rows: 3,
-       initialValue: 'años\napoyando la\ninclusión!' 
+       name: 'experienceValue', 
+       title: 'Valor de Experiencia (Ej: 35 AÑOS)', 
+       type: 'string', 
+       initialValue: '35 AÑOS' 
     }),
     defineField({ 
        name: 'ctaLabel', 

@@ -46,8 +46,8 @@ export default async function Home() {
         about_title: sanityAbout?.title,
         about_description: sanityAbout?.description,
         about_image: sanityAbout?.imageUrl,
-        stats_1_value: sanityAbout?.statsValue,
-        stats_1_label: sanityAbout?.statsLabel,
+        experience_label: sanityAbout?.experienceLabel,
+        experience_value: sanityAbout?.experienceValue,
         about_cta_text: sanityAbout?.ctaLabel,
         about_cta_link: sanityAbout?.ctaLink,
     };

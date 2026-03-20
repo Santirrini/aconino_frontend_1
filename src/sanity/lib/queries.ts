@@ -151,8 +151,8 @@ export const ABOUT_SECTION_QUERY = defineQuery(`
     title,
     description,
     "imageUrl": image.asset->url,
-    statsValue,
-    statsLabel,
+    experienceLabel,
+    experienceValue,
     ctaLabel,
     ctaLink
   }
