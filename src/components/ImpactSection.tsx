@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import { FaHeart, FaChild, FaCalendarAlt, FaHandsHelping } from "react-icons/fa";
-import { useScrollReveal, useStagger, fadeVariants, slideVariants } from "./animations";
+import { useScrollReveal, fadeVariants } from "./animations";
 import { useDonation } from "../providers/DonationProvider";
 import Image from "next/image";
 
@@ -37,7 +37,6 @@ interface ImpactSectionProps {
 
 export default function ImpactSection({ title, stats = [], stories: storiesProp, ctaButtonText }: ImpactSectionProps) {
   const scrollReveal = useScrollReveal();
-  const stagger = useStagger(0.2);
   const { openDonationWidget } = useDonation();
 
   const displayStats = stats && stats.length > 0 
@@ -110,7 +109,7 @@ export default function ImpactSection({ title, stats = [], stories: storiesProp,
         </motion.div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-20">
           {displayStats.map((stat, idx) => {
             const IconComponent = STAT_ICONS[idx % STAT_ICONS.length];
             return (
@@ -120,50 +119,66 @@ export default function ImpactSection({ title, stats = [], stories: storiesProp,
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: stat.id * 0.1 }}
-              className="bg-gray-50 rounded-3xl p-8 text-center flex flex-col items-center justify-center shadow-sm hover:shadow-lg transition-shadow border border-gray-100"
+              className="bg-gray-50 rounded-2xl md:rounded-3xl p-4 md:p-8 text-center flex flex-col items-center justify-center shadow-sm hover:shadow-lg transition-shadow border border-gray-100"
             >
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl text-secondary mb-4 shadow-sm">
+              <div className="w-10 h-10 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center text-xl md:text-3xl text-secondary mb-3 md:mb-4 shadow-sm">
                 <IconComponent />
               </div>
-              <div className="text-5xl font-black text-primary mb-2 flex items-baseline">
+              <div className="text-2xl md:text-5xl font-black text-primary mb-1 md:mb-2 flex items-baseline">
                 <CountUp end={stat.value} duration={3} enableScrollSpy scrollSpyOnce />
-                <span className="text-3xl text-accent ml-1">{stat.suffix}</span>
+                <span className="text-xl md:text-3xl text-accent ml-0.5 md:ml-1">{stat.suffix}</span>
               </div>
-              <p className="text-lg font-bold text-gray-500 uppercase tracking-wide">{stat.label}</p>
+              <p className="text-[10px] md:text-lg font-bold text-gray-500 uppercase tracking-wide leading-tight px-1">{stat.label}</p>
             </motion.div>
           )})}
         </div>
 
-        {/* Stories */}
-        <motion.div
-          {...scrollReveal}
-          variants={stagger}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
-        >
-          {displayStories.map((story) => (
-            <motion.div
-              key={story.id}
-              variants={slideVariants}
-              className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
-            >
-              <div className="relative h-72 w-full">
-                <Image
-                  src={story.img}
-                  alt={`Historia de ${story.name}`}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent" />
-              </div>
-              <div className="absolute bottom-0 left-0 p-6 w-full text-white">
-                <h3 className="text-2xl font-black mb-2">{story.name}</h3>
-                <p className="text-white/80 leading-snug font-medium text-sm">
-                  &ldquo;{story.story}&rdquo;
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Stories - Horizontal Scroll on Mobile */}
+        <div className="relative w-full mb-12 md:mb-16 overflow-hidden">
+          <div 
+            className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-x-visible pb-8 md:pb-0 snap-x snap-mandatory scroll-smooth flex-nowrap"
+            style={{ 
+              scrollbarWidth: 'none', 
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch'
+            }}
+          >
+            {displayStories.map((story, idx) => (
+              <motion.div
+                key={story.id}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="group relative min-w-[85vw] md:min-w-0 flex-shrink-0 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 snap-center bg-slate-100 border border-slate-100"
+              >
+                <div className="relative h-64 md:h-72 w-full bg-slate-200">
+                  <Image
+                    src={story.img}
+                    alt={`Historia de ${story.name}`}
+                    fill
+                    unoptimized={story.img.includes('aconino.org')}
+                    className="object-cover transition-transform duration-700 md:group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent" />
+                </div>
+                <div className="absolute bottom-0 left-0 p-5 md:p-6 w-full text-white z-10">
+                  <h3 className="text-xl md:text-2xl font-black mb-1 md:mb-2">{story.name}</h3>
+                  <p className="text-white/80 leading-tight font-medium text-xs md:text-sm italic">
+                    &ldquo;{story.story}&rdquo;
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Mobile Hint - Visual indicator that there is more content */}
+          <div className="flex justify-center gap-1.5 mt-2 md:hidden">
+            {displayStories.map((_, i) => (
+              <div key={i} className="w-1.5 h-1.5 rounded-full bg-slate-300" />
+            ))}
+          </div>
+        </div>
 
         {/* CTA */}
         <motion.div 

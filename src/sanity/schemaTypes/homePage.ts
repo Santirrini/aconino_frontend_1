@@ -148,6 +148,34 @@ export default defineType({
         }),
       ]
     }),
+    defineField({
+      name: 'testimonials',
+      title: 'Sección de Testimonios',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Título de la Sección',
+          type: 'string',
+          description: 'Ej: Lo que dicen nuestras familias'
+        }),
+        defineField({
+          name: 'items',
+          title: 'Testimonios',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              type: 'object',
+              fields: [
+                { name: 'name', title: 'Nombre', type: 'string', description: 'Ej: María, mamá de Sofía' },
+                { name: 'quote', title: 'Testimonio', type: 'text', description: 'Texto del testimonio' },
+                { name: 'image', title: 'Foto', type: 'image', options: { hotspot: true } }
+              ]
+            })
+          ]
+        }),
+      ]
+    }),
   ],
   preview: {
     prepare() {

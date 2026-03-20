@@ -120,6 +120,15 @@ export const HOME_PAGE_QUERY = defineQuery(`
         description,
         "imageUrl": image.asset->url
       }
+    },
+    testimonials {
+      title,
+      items[] {
+        _key,
+        name,
+        quote,
+        "imageUrl": image.asset->url
+      }
     }
   }
 `)

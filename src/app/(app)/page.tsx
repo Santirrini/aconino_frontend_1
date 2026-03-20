@@ -103,6 +103,18 @@ export default async function Home() {
         }
     }));
 
+    interface SanityTestimonial {
+        name?: string;
+        quote?: string;
+        imageUrl?: string;
+    }
+
+    const mappedTestimonials = sanityHome?.testimonials?.items?.map((t: SanityTestimonial) => ({
+        name: t.name || 'Familia Aconiño',
+        quote: t.quote || 'Gracias a Aconiño, nuestro hijo ha logrado avances increíbles.',
+        image: t.imageUrl || null
+    })) || [];
+
     return (
         <div className="w-full">
             <Hero acf={acf} />
@@ -114,9 +126,8 @@ export default async function Home() {
             />
             
             <ImpactSection 
-                title={sanityHome?.hero?.impact || "+35 años apoiando la inclusión!"}
-                stats={[]}
-                stories={[]}
+                title={sanityHome?.hero?.impact}
+                stories={mappedTestimonials}
                 ctaButtonText="Ver más"
             />
             

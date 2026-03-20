@@ -90,7 +90,7 @@ export default function RecognitionsSection({ recognitions, text }: Recognitions
                                 <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-accent/5 to-transparent rounded-tr-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                                 <div className="relative z-10 flex flex-col items-center h-full">
-                                    <div className="w-32 h-32 relative mb-10 rounded-3xl bg-gray-50/50 flex items-center justify-center p-6 group-hover:scale-110 group-hover:bg-white group-hover:shadow-xl group-hover:shadow-accent/5 transition-all duration-500 overflow-hidden border border-gray-100">
+                                    <div className="w-32 h-32 relative mb-10 rounded-3xl bg-gray-50/50 flex items-center justify-center p-4 group-hover:scale-110 group-hover:bg-white group-hover:shadow-xl group-hover:shadow-accent/5 transition-all duration-500 overflow-hidden border border-gray-100">
                                         <Image 
                                             src={imgUrl} 
                                             alt={award.title} 
@@ -99,18 +99,18 @@ export default function RecognitionsSection({ recognitions, text }: Recognitions
                                         />
                                     </div>
                                     
-                                    <h4 className="font-extrabold text-xl text-primary mb-4 leading-tight group-hover:text-accent transition-colors duration-300">
+                                    <h4 className="font-extrabold text-xl text-primary mb-4 leading-tight group-hover:text-accent transition-colors duration-300 line-clamp-2 uppercase text-center">
                                         {award.title}
                                     </h4>
                                     
                                     <div className="w-10 h-[2px] bg-gray-100 group-hover:bg-accent/40 mb-6 transition-all duration-500"></div>
 
-                                    <p className="text-sm text-gray-500 leading-relaxed mb-8 flex-1 line-clamp-4 group-hover:text-gray-600 transition-colors">
+                                    <p className="text-sm text-gray-500 leading-relaxed mb-8 flex-1 line-clamp-4 group-hover:text-gray-600 transition-colors text-center">
                                         {desc}
                                     </p>
                                     
-                                    <div className="pt-6 border-t border-gray-50 w-full">
-                                        <span className="inline-flex items-center justify-center w-full bg-primary/[0.03] text-primary/70 font-bold text-[10px] sm:text-xs px-5 py-3 rounded-2xl uppercase tracking-[0.15em] group-hover:bg-accent group-hover:text-white group-hover:shadow-lg group-hover:shadow-accent/20 transition-all duration-500">
+                                    <div className="pt-6 border-t border-gray-50 w-full mt-auto">
+                                        <span className="inline-flex items-center justify-center w-full bg-primary/[0.03] text-primary/70 font-bold text-xs px-5 py-3 rounded-2xl uppercase tracking-[0.15em] group-hover:bg-accent group-hover:text-white group-hover:shadow-lg group-hover:shadow-accent/20 transition-all duration-500">
                                             {award.meta}
                                         </span>
                                     </div>
