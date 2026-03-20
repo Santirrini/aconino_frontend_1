@@ -88,46 +88,6 @@ export default function ProgramsSection({
             </div>
 
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                
-                {/* Header de la Sección */}
-                <div className="flex flex-col xl:flex-row xl:items-end justify-between mb-20 gap-10">
-                    <motion.div 
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                        className="max-w-3xl"
-                    >
-                        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white border border-gray-200/60 shadow-sm mb-6">
-                            <span className="w-2 h-2 rounded-full bg-accent animate-pulse block"></span>
-                            <span className="text-primary font-bold uppercase tracking-widest text-[#0a1f44] text-xs">
-                                Excelencia Clínica
-                            </span>
-                        </div>
-                        <h2 className="text-4xl md:text-5xl lg:text-[56px] font-black text-[#0a1f44] leading-[1.1] tracking-tight mb-6">
-                            {subtitle || "Nuestros Programas"}
-                        </h2>
-                        <p className="text-slate-600 text-lg lg:text-xl leading-relaxed max-w-2xl font-medium">
-                            {clinicalFocus || "Más de 35 años transformando el futuro a través de la rehabilitación especializada, brindando esperanza y calidad de vida."}
-                        </p>
-                    </motion.div>
-                    
-                    <motion.div 
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                        <Link 
-                            href="/programas" 
-                            className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white rounded-full font-bold transition-all duration-300 hover:bg-opacity-90 hover:shadow-xl hover:shadow-primary/25 hover:-translate-y-1 group"
-                        >
-                            <span>{ctaLabel || "VER TODOS LOS SERVICIOS"}</span>
-                            <RiArrowRightUpLine className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                        </Link>
-                    </motion.div>
-                </div>
-
                 {/* Grid de Tarjetas */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {displayPrograms.map((prog, idx) => {
