@@ -11,7 +11,48 @@ interface GoldenTypewriterProps {
   waitDuration?: number;
 }
 
-const PARTICLE_COLORS = ["#fff", "#ffe066", "#f8b719", "#fff5cc", "#ffffff", "#ffd700", "#ffed4a", "#f5a623"];
+const GOLD_COLOR = "#f8b719";
+const WHITE_COLOR = "rgba(255, 255, 255, 0.4)";
+
+class Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  life: number;
+  decay: number;
+  size: number;
+  gravity: number;
+
+  constructor(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+    // Random direction, mostly outwards and down
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 3 + 1;
+    this.vx = Math.cos(angle) * speed;
+    this.vy = Math.sin(angle) * speed - 2; // Initial push upwards
+    this.life = 1.0;
+    this.decay = Math.random() * 0.03 + 0.02;
+    this.size = Math.random() * 2 + 1;
+    this.gravity = 0.15; // Sparks fall
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.vy += this.gravity;
+    this.life -= this.decay;
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.beginPath();
+    // Color varies based on life
+    ctx.fillStyle = `rgba(255, ${Math.floor(215 * this.life)}, 0, ${this.life})`;
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
 
 export const GoldenTypewriter = ({
   text,
@@ -26,10 +67,91 @@ export const GoldenTypewriter = ({
   const [mounted, setMounted] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLSpanElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const particlesRef = useRef<Particle[]>([]);
+  const cursorRef = useRef(cursorPos);
+  const phaseRef = useRef(phase);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    cursorRef.current = cursorPos;
+  }, [cursorPos]);
+
+  useEffect(() => {
+    phaseRef.current = phase;
+  }, [phase]);
+
+  // Update canvas size
+  useEffect(() => {
+    if (!mounted) return;
+    const handleResize = () => {
+      if (canvasRef.current && containerRef.current) {
+        canvasRef.current.width = containerRef.current.offsetWidth;
+        canvasRef.current.height = containerRef.current.offsetHeight;
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [mounted, text]);
+
+  // Particle Animation Loop
+  useEffect(() => {
+    if (!mounted || !canvasRef.current) return;
+    
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationFrameId: number;
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const currentPhase = phaseRef.current;
+      const currentPos = cursorRef.current;
+
+      if (currentPhase === "typing" || currentPhase === "sparkle") {
+        // Emit particles at current cursor pos
+        for (let i = 0; i < 3; i++) {
+          particlesRef.current.push(new Particle(currentPos.x, currentPos.y));
+        }
+
+        // Draw Heat Glow (Welding Flash)
+        const gradient = ctx.createRadialGradient(
+          currentPos.x, currentPos.y, 0,
+          currentPos.x, currentPos.y, 35
+        );
+        gradient.addColorStop(0, "rgba(255, 255, 255, 0.8)");
+        gradient.addColorStop(0.2, "rgba(248, 183, 25, 0.5)");
+        gradient.addColorStop(1, "rgba(248, 183, 25, 0)");
+        
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(currentPos.x, currentPos.y, 35, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Update and draw existing particles
+      for (let i = particlesRef.current.length - 1; i >= 0; i--) {
+        const p = particlesRef.current[i];
+        p.update();
+        if (p.life <= 0) {
+          particlesRef.current.splice(i, 1);
+        } else {
+          p.draw(ctx);
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [mounted]);
 
   useEffect(() => {
     const updateCursorPosition = () => {
@@ -37,28 +159,16 @@ export const GoldenTypewriter = ({
         const container = containerRef.current;
         const charSpans = container.querySelectorAll(".char-span");
         
-        if (charIndex === 0) {
-          const firstCharSpan = charSpans[0];
-          if (firstCharSpan) {
-            const charRect = firstCharSpan.getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
-            setCursorPos({
-              x: charRect.left - containerRect.left,
-              y: charRect.top - containerRect.top + charRect.height / 2
-            });
-          } else {
-            setCursorPos({ x: 0, y: container.offsetHeight / 2 || 12 });
-          }
-        } else {
-          const targetIndex = Math.min(charIndex - 1, text.length - 1);
-          if (charSpans[targetIndex]) {
-            const charRect = charSpans[targetIndex].getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
-            setCursorPos({
-              x: charRect.right - containerRect.left,
-              y: charRect.top - containerRect.top + charRect.height / 2
-            });
-          }
+        const targetIndex = Math.min(charIndex, text.length - 1);
+        const targetSpan = charSpans[targetIndex];
+        
+        if (targetSpan) {
+          const charRect = targetSpan.getBoundingClientRect();
+          const containerRect = container.getBoundingClientRect();
+          setCursorPos({
+            x: charRect.left - containerRect.left + (charRect.width / 2),
+            y: charRect.top - containerRect.top + (charRect.height / 2)
+          });
         }
       }
     };
@@ -85,7 +195,7 @@ export const GoldenTypewriter = ({
     } else if (phase === "sparkle") {
       timeout = setTimeout(() => {
         setPhase("wait");
-      }, 1500);
+      }, 1000);
     } else if (phase === "wait") {
       timeout = setTimeout(() => {
         if (loop) {
@@ -101,145 +211,56 @@ export const GoldenTypewriter = ({
     return () => clearTimeout(timeout);
   }, [mounted, phase, charIndex, text.length, delay, speed, loop, waitDuration]);
 
-  const isTyping = phase === "typing";
-  const showSparkle = phase === "sparkle";
-  const isWaiting = phase === "wait";
-  const isRestarting = phase === "restarting";
-  const showCursor = isTyping || showSparkle || isWaiting || isRestarting;
-
-  const getCharColor = (index: number): string => {
-    if (!mounted) return "#f8b719";
-    if (index < charIndex) return "#f8b719";
-    return "white";
-  };
-
   if (!mounted) {
     return <span className={className}>{text}</span>;
   }
 
-  const renderCursor = () => (
-    <span
-      className="absolute pointer-events-none transition-all duration-75"
-      style={{
-        left: `${cursorPos.x}px`,
-        top: `${cursorPos.y}px`,
-        height: "24px",
-        width: "4px",
-        zIndex: 20,
-        transform: "translateY(-50%)",
-      }}
-    >
-      <span
-        className="absolute"
-        style={{
-          width: "4px",
-          height: "1.2em",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          background:
-            "linear-gradient(180deg, transparent 0%, #f8b719 15%, #ffe066 50%, #f8b719 85%, transparent 100%)",
-          borderRadius: "2px",
-          boxShadow: showSparkle
-            ? "0 0 20px 6px rgba(248, 183, 25, 0.9), 0 0 40px 12px rgba(248, 183, 25, 0.6), 0 0 60px 18px rgba(248, 183, 25, 0.3)"
-            : "0 0 12px 4px rgba(248, 183, 25, 0.8), 0 0 25px 8px rgba(248, 183, 25, 0.5)",
-        }}
-      />
-
-      <span
-        className="absolute rounded-full"
-        style={{
-          width: "40px",
-          height: "40px",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          background:
-            "radial-gradient(circle, rgba(248, 183, 25, 0.6) 0%, rgba(255, 235, 59, 0.3) 40%, transparent 70%)",
-          animation: "pulse-glow 0.4s ease-in-out infinite alternate",
-          pointerEvents: "none",
-        }}
-      />
-
-      {[...Array(45)].map((_, i) => {
-        const animIndex = i % 20;
-        const isLeft = animIndex >= 5 && animIndex < 8;
-        const isRight = animIndex >= 8 && animIndex < 11;
-        const isDiagLeft = animIndex >= 11 && animIndex < 13;
-        const isDiagRight = animIndex >= 13 && animIndex < 15;
-        const isBurst = animIndex >= 15 && animIndex < 20;
-        
-        let animName = `spark-up-${i % 5}`;
-        if (isLeft) animName = `spark-left-${i % 3}`;
-        else if (isRight) animName = `spark-right-${i % 3}`;
-        else if (isDiagLeft) animName = `spark-diag-left-${i % 1}`;
-        else if (isDiagRight) animName = `spark-diag-right-${i % 1}`;
-        else if (isBurst) animName = `spark-burst-${i % 5}`;
-        
-        const size = isBurst ? 3 + (i % 3) : 2 + (i % 4);
-        
-        return (
-          <span
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: `${size}px`,
-              height: `${size}px`,
-              backgroundColor: PARTICLE_COLORS[i % PARTICLE_COLORS.length],
-              filter: "blur(0.3px)",
-              left: "50%",
-              top: "50%",
-              animation: `${animName} ${0.3 + (i % 5) * 0.1}s ease-out infinite`,
-              animationDelay: `${(i % 10) * 0.05}s`,
-            }}
-          />
-        );
-      })}
-    </span>
-  );
-
   return (
-    <span className={`${className} relative inline-block leading-tight md:leading-tight`} ref={containerRef}>
+    <span 
+      className={`${className} relative inline-block whitespace-pre-wrap leading-tight md:leading-tight`} 
+      ref={containerRef}
+      style={{ isolation: 'isolate' }}
+    >
       <style jsx>{`
-        @keyframes pulse-glow {
-          0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.85); }
-          100% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+        @keyframes dropIn {
+          0% {
+            transform: translateY(-20px) scale(1.1);
+            opacity: 0.5;
+          }
+          100% {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+          }
         }
-        @keyframes spark-up-0 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(0, -45px) scale(0.1); } }
-        @keyframes spark-up-1 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(0, -50px) scale(0.15); } }
-        @keyframes spark-up-2 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(0, -40px) scale(0.1); } }
-        @keyframes spark-up-3 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(0, -55px) scale(0.2); } }
-        @keyframes spark-up-4 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(0, -35px) scale(0.1); } }
-        @keyframes spark-left-0 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(-25px, -20px) scale(0.15); } }
-        @keyframes spark-left-1 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(-40px, -30px) scale(0.1); } }
-        @keyframes spark-left-2 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(-35px, -15px) scale(0.2); } }
-        @keyframes spark-right-0 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(25px, -20px) scale(0.15); } }
-        @keyframes spark-right-1 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(40px, -30px) scale(0.1); } }
-        @keyframes spark-right-2 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(35px, -15px) scale(0.2); } }
-        @keyframes spark-diag-left-0 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(-25px, -45px) scale(0.12); } }
-        @keyframes spark-diag-right-0 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(25px, -45px) scale(0.12); } }
-        @keyframes spark-burst-0 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 20% { opacity: 0.9; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(0, -60px) scale(0.05); } }
-        @keyframes spark-burst-1 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 20% { opacity: 0.9; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(-45px, -45px) scale(0.05); } }
-        @keyframes spark-burst-2 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 20% { opacity: 0.9; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(45px, -45px) scale(0.05); } }
-        @keyframes spark-burst-3 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 20% { opacity: 0.9; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(-60px, 0) scale(0.05); } }
-        @keyframes spark-burst-4 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 20% { opacity: 0.9; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(60px, 0) scale(0.05); } }
+        .char-span {
+          display: inline-block;
+          color: ${WHITE_COLOR};
+          transition: color 0.1s ease-out;
+        }
+        .char-span.typed {
+          color: #ffffff;
+          text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+          animation: dropIn 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
       `}</style>
+
+      {/* Sparks Canvas Layer */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 pointer-events-none"
+        style={{ zIndex: 10 }}
+      />
 
       <span className="relative z-10 inline">
         {text.split("").map((char, i) => (
           <span
             key={i}
-            className="relative inline char-span"
-            style={{
-              color: getCharColor(i),
-              transition: "color 0.05s ease-out",
-            }}
+            className={`relative inline char-span ${i < charIndex ? "typed" : ""}`}
           >
             {char}
           </span>
         ))}
       </span>
-      {showCursor && renderCursor()}
     </span>
   );
 };

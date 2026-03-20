@@ -85,7 +85,7 @@ export default function Hero({ acf }: HeroProps) {
             </motion.button>
 
             {/* Content Overlay */}
-            <div className="relative z-20 text-center px-4 md:px-8 max-w-5xl mx-auto flex flex-col items-center mt-12 md:mt-0">
+            <div className="relative z-20 text-center px-4 md:px-8 w-full max-w-6xl mx-auto flex flex-col items-center mt-12 md:mt-0">
                 <motion.div 
                     initial="hidden"
                     animate="visible"
@@ -93,30 +93,34 @@ export default function Hero({ acf }: HeroProps) {
                         hidden: {},
                         visible: { transition: { staggerChildren: 0.2, delayChildren: 0.5 } }
                     }}
-                    className="relative inline-block mt-8"
+                    className="relative w-full flex flex-col items-center mt-8"
                 >
                     {/* Floating Heart Icon */}
                     <motion.div
                         variants={fadeVariants}
-                        className="absolute -top-12 md:-top-16 -right-4 md:right-4 z-30"
+                        className="absolute -top-8 md:-top-12 -left-16 md:-left-24 z-30"
                     >
                         <motion.div
                             animate={{ y: [0, -10, 0] }}
                             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                         >
-                            <FaHeart className="text-accent text-5xl md:text-6xl drop-shadow-lg" />
+                            <FaHeart className="text-accent text-4xl md:text-5xl drop-shadow-lg opacity-60" />
                         </motion.div>
                     </motion.div>
 
-                    <motion.h2 
-                        variants={slideVariants}
-                        className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-white tracking-tight leading-tight md:leading-tight drop-shadow-2xl" 
-                        style={{ textShadow: "0 4px 20px rgba(0,0,0,0.6)" }}
+                    {/* Main Combined Heading */}
+                    <h1 
+                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white tracking-tighter leading-tight md:leading-tight mb-8 drop-shadow-2xl max-w-5xl text-center" 
+                        style={{ textShadow: "0 10px 30px rgba(0,0,0,0.8)" }}
                     >
-                        <motion.span variants={slideVariants} className="block mb-2 md:mb-4">
-                            <GoldenTypewriter text={`${title} ${subtitle}`} delay={0} speed={0.1} loop={true} waitDuration={3000} />
-                        </motion.span>
-                    </motion.h2>
+                        <GoldenTypewriter 
+                            text={`${title} ${subtitle}`} 
+                            delay={0.6} 
+                            speed={0.1} 
+                            loop={true} 
+                            waitDuration={4000}
+                        />
+                    </h1>
                 </motion.div>
             </div>
 
