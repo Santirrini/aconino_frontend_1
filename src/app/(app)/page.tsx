@@ -30,6 +30,13 @@ export default async function Home() {
         console.error('Error fetching Sanity data:', error);
     }
 
+    // DEBUG: Ver qué datos llegan de Sanity
+    console.log('=== DEBUG: sanityHome ===');
+    console.log(JSON.stringify(sanityHome, null, 2));
+    console.log('=== DEBUG: testimonials ===');
+    console.log('testimonials field:', sanityHome?.testimonials);
+    console.log('items:', sanityHome?.testimonials?.items);
+
     // Mapear datos para el Hero desde documento unificado
     const acf = {
         hero_title: sanityHome?.hero?.slogan?.split(' ').slice(0, 2).join(' ') || "35 años", 
@@ -114,6 +121,10 @@ export default async function Home() {
         quote: t.quote || 'Gracias a Aconiño, nuestro hijo ha logrado avances increíbles.',
         image: t.imageUrl || null
     })) || [];
+
+    // DEBUG: Ver mapped testimonials
+    console.log('=== DEBUG: mappedTestimonials ===');
+    console.log(JSON.stringify(mappedTestimonials, null, 2));
 
     return (
         <div className="w-full">

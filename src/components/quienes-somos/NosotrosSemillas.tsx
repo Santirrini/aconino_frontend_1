@@ -27,19 +27,36 @@ const defaultSemillas: SemillaData[] = [
 export default function NosotrosSemillas({ data }: Props) {
     const semillas = data && data.length > 0 ? data : defaultSemillas;
 
-    const containerVariants = {
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.1 } }
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, scale: 0.8 },
-        visible: { opacity: 1, scale: 1, transition: { type: "spring" as const, stiffness: 100 } }
-    };
+    const SemillaCard = ({ child, delay }: { child: SemillaData, delay: number }) => (
+        <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay }}
+            className="flex flex-col items-center text-center group cursor-pointer w-full max-w-[120px] mx-auto"
+        >
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-36 md:h-36 mb-3 md:mb-6 rounded-2xl md:rounded-3xl rotate-3 overflow-hidden shadow-lg border-2 md:border-[6px] border-white group-hover:rotate-0 group-hover:scale-105 group-hover:border-accent transition-all duration-500">
+                <Image
+                    src={child.imageUrl || "https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=200&auto=format&fit=crop"}
+                    alt={child.name || "Niño"}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+            </div>
+            <h4 className="text-primary group-hover:text-accent font-black text-center text-[10px] md:text-xl leading-tight px-1 transition-colors duration-300">
+                {child.name}
+            </h4>
+            {child.age && (
+                <span className="text-accent/80 font-bold text-[8px] md:text-sm uppercase tracking-wider mt-1">
+                    {child.age} años
+                </span>
+            )}
+        </motion.div>
+    );
 
     return (
         <section className="bg-white">
-            <div className="relative bg-gradient-to-r from-primary via-primary to-secondary py-20 md:py-24 overflow-hidden shadow-inner">
+            <div className="relative bg-gradient-to-r from-primary via-primary to-secondary py-12 md:py-24 overflow-hidden shadow-inner">
                 <div className="absolute inset-0 z-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/always-grey.png')] mix-blend-overlay" />
                 
                 <motion.div 
@@ -47,40 +64,47 @@ export default function NosotrosSemillas({ data }: Props) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="max-w-5xl mx-auto px-4 relative z-10 text-center flex flex-col items-center"
+                    className="max-w-5xl mx-auto px-6 relative z-10 text-center flex flex-col items-center"
                 >
-                    <FaHeart className="text-accent text-5xl mb-6 drop-shadow-md animate-pulse" />
-                    <h2 className="text-white text-4xl md:text-6xl font-black leading-tight drop-shadow-xl tracking-tight">
+                    <FaHeart className="text-accent text-3xl md:text-5xl mb-4 md:mb-6 drop-shadow-md animate-pulse" />
+                    <h2 className="text-white text-2xl md:text-6xl font-black leading-tight drop-shadow-xl tracking-tight">
                         Semillas de amor <br className="hidden md:block" />
-                        <span className="text-accent italic font-light tracking-normal text-3xl md:text-5xl">donde ahora crecen otros sueños</span>
+                        <span className="text-accent italic font-light tracking-normal text-xl md:text-5xl block mt-1">donde ahora crecen otros sueños</span>
                     </h2>
                 </motion.div>
             </div>
 
-            <div className="py-24 md:py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div 
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-50px" }}
-                    className="flex flex-wrap justify-center gap-10 md:gap-16 lg:gap-20"
+            <div className="py-12 md:py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* FORCE GRID: Consistent 3 columns for mobile */}
+                <div 
+                    className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-10 md:gap-y-20 gap-x-2 md:gap-x-10"
+                    style={{ 
+                        display: 'grid', 
+                        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' 
+                    }}
                 >
+                    {/* Media Query Overrides for Grid Columns */}
+                    <style jsx>{`
+                        @media (min-width: 768px) {
+                            div {
+                                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+                            }
+                        }
+                        @media (min-width: 1024px) {
+                            div {
+                                grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+                            }
+                        }
+                    `}</style>
+
                     {semillas.map((child, idx) => (
-                        <motion.div variants={itemVariants} key={idx} className="flex flex-col items-center text-center group cursor-pointer">
-                            <div className="relative w-28 h-28 md:w-36 md:h-36 mb-6 rounded-3xl rotate-3 overflow-hidden shadow-xl border-4 border-white ring-1 ring-gray-100 group-hover:rotate-0 group-hover:scale-105 group-hover:ring-accent group-hover:shadow-2xl transition-all duration-500">
-                                <Image
-                                    src={child.imageUrl || "https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=200&auto=format&fit=crop"}
-                                    alt={child.name || "Niño"}
-                                    fill
-                                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                                />
-                            </div>
-                            <h4 className="text-primary font-bold text-base md:text-lg max-w-[150px] leading-tight group-hover:text-accent transition-colors">{child.name}</h4>
-                            {child.age && <span className="text-gray-400 text-sm">{child.age} años</span>}
-                            <div className="h-[2px] w-6 bg-gray-200 mt-4 group-hover:bg-accent group-hover:w-10 transition-all duration-300"></div>
-                        </motion.div>
+                        <SemillaCard 
+                            key={idx} 
+                            child={child} 
+                            delay={idx * 0.05} 
+                        />
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
     );

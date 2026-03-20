@@ -39,6 +39,11 @@ export default function ImpactSection({ title, stats = [], stories: storiesProp,
   const scrollReveal = useScrollReveal();
   const { openDonationWidget } = useDonation();
 
+  // DEBUG
+  console.log('=== ImpactSection received ===');
+  console.log('storiesProp:', storiesProp);
+  console.log('storiesProp length:', storiesProp?.length);
+
   const displayStats = stats && stats.length > 0 
     ? stats.map((s, i) => {
         const numMatch = s.value.match(/\d+/);

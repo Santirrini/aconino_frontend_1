@@ -74,48 +74,44 @@ function PersonCard({ person, isExpanded, onToggle }: { person: JuntaPersonData;
     if (!person.name) return null;
     
     return (
-        <div 
-            className="group cursor-pointer py-2" 
+        <motion.div 
+            whileTap={{ scale: 0.98 }}
+            className={`group cursor-pointer py-3 px-3 -mx-3 rounded-xl transition-all duration-300 ${isExpanded ? 'bg-white/5' : 'hover:bg-white/[0.03]'}`} 
             onClick={onToggle}
         >
-            <div className="flex items-center justify-between">
-                <h5 className="text-white font-extrabold text-lg md:text-xl">
+            <div className="flex items-center justify-between gap-4">
+                <h5 className={`font-extrabold text-base md:text-xl transition-colors duration-300 ${isExpanded ? 'text-accent' : 'text-white'}`}>
                     {person.name}
                 </h5>
                 {person.description && (
-                    <div className={`flex items-center gap-2 text-sm transition-colors ${isExpanded ? 'text-accent' : 'text-white/50 group-hover:text-accent'}`}>
-                        <span className="text-xs hidden md:inline">{isExpanded ? "Ocultar" : "Más info"}</span>
-                        {isExpanded ? (
-                            <FaChevronUp className="text-xs" />
-                        ) : (
-                            <FaChevronDown className="text-xs" />
-                        )}
+                    <div className={`flex items-center justify-center w-8 h-8 rounded-full border transition-all duration-500 ${isExpanded ? 'bg-accent border-accent text-primary rotate-180' : 'border-white/20 text-white/40 group-hover:border-accent group-hover:text-accent'}`}>
+                        <FaChevronDown className="text-[10px]" />
                     </div>
                 )}
             </div>
             <AnimatePresence>
                 {isExpanded && person.description && (
                     <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        initial={{ height: 0, opacity: 0, y: -10 }}
+                        animate={{ height: "auto", opacity: 1, y: 0 }}
+                        exit={{ height: 0, opacity: 0, y: -10 }}
+                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
                         className="overflow-hidden"
                     >
-                        <p className="text-gray-300 text-sm mt-2 leading-relaxed border-t border-white/10 pt-2">
-                            {person.description}
+                        <p className="text-gray-400 text-sm md:text-base mt-3 leading-relaxed border-t border-white/5 pt-3 font-medium italic">
+                            &ldquo;{person.description}&rdquo;
                         </p>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
+        </motion.div>
     );
 }
 
 function RoleCard({ role, expandedPerson, onTogglePerson }: { 
     role: { position: string; people: JuntaPersonData[] };
-    expandedPerson: number | null;
-    onTogglePerson: (index: number) => void;
+    expandedPerson: string | null;
+    onTogglePerson: (id: string) => void;
 }) {
     if (!role.position) return null;
     
@@ -127,25 +123,28 @@ function RoleCard({ role, expandedPerson, onTogglePerson }: {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
             }}
-            className="group"
+            className="group mb-10 md:mb-12 last:mb-0"
         >
-            <div className="flex items-center gap-3 mb-3">
-                <div className="bg-white/10 p-2 rounded-lg group-hover:bg-accent transition-colors duration-300">
-                    <FaUserTie className="text-white text-sm" />
+            <div className="flex items-center gap-3 mb-4">
+                <div className="bg-accent/10 p-2 rounded-lg group-hover:bg-accent transition-colors duration-300">
+                    <FaUserTie className="text-accent group-hover:text-primary text-xs md:text-sm" />
                 </div>
-                <h4 className="text-white/70 font-black text-xs tracking-widest uppercase group-hover:text-accent transition-colors">
+                <h4 className="text-accent font-black text-[10px] md:text-sm tracking-[0.2em] uppercase">
                     {role.position}
                 </h4>
             </div>
-            <div className="pl-11 border-l-2 border-white/10 group-hover:border-accent transition-colors duration-300 space-y-1">
-                {people.map((person, personIdx) => (
-                    <PersonCard 
-                        key={personIdx}
-                        person={person}
-                        isExpanded={expandedPerson === personIdx}
-                        onToggle={() => onTogglePerson(personIdx)}
-                    />
-                ))}
+            <div className="pl-6 md:pl-11 border-l border-white/10 group-hover:border-accent/30 transition-colors duration-500 space-y-2">
+                {people.map((person, personIdx) => {
+                    const personId = `${role.position}-${personIdx}`;
+                    return (
+                        <PersonCard 
+                            key={personIdx}
+                            person={person}
+                            isExpanded={expandedPerson === personId}
+                            onToggle={() => onTogglePerson(personId)}
+                        />
+                    );
+                })}
             </div>
         </motion.div>
     );
@@ -158,10 +157,10 @@ export default function NosotrosJuntaRoles({ data }: Props) {
         return roles.map(role => normalizeRole(role));
     }, [roles]);
     
-    const [expandedPerson, setExpandedPerson] = useState<number | null>(null);
+    const [expandedPerson, setExpandedPerson] = useState<string | null>(null);
 
-    const togglePerson = (index: number) => {
-        setExpandedPerson(expandedPerson === index ? null : index);
+    const togglePerson = (id: string) => {
+        setExpandedPerson(expandedPerson === id ? null : id);
     };
 
     const containerVariants = {

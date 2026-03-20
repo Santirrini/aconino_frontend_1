@@ -28,84 +28,80 @@ const defaultFundadores: FundadorData[] = [
 
 export default function NosotrosFundadores({ data }: Props) {
     const fundadores = data && data.length > 0 ? data : defaultFundadores;
-    
-    const row1 = fundadores.slice(0, 5);
-    const row2 = fundadores.slice(5);
 
     const FounderCard = ({ founder, delay }: { founder: FundadorData, delay: number }) => (
         <motion.div 
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay, ease: "easeOut" }}
-            className="flex flex-col items-center group cursor-pointer"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay }}
+            className="flex flex-col items-center w-full max-w-[120px] md:max-w-none mx-auto group cursor-pointer"
         >
-            <div className="relative w-28 h-28 md:w-36 md:h-36 mb-6 rounded-full overflow-hidden border-[6px] border-white shadow-lg group-hover:shadow-2xl group-hover:border-accent group-hover:-translate-y-2 transition-all duration-300">
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-36 md:h-36 mb-3 md:mb-6 rounded-full overflow-hidden border-2 md:border-[6px] border-white shadow-lg group-hover:shadow-2xl group-hover:border-accent transition-all duration-500">
                 <Image
                     src={founder.imageUrl || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop"}
                     alt={founder.name || "Fundador"}
                     fill
-                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110"
+                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
                 />
             </div>
-            <h4 className="text-gray-700 font-extrabold text-center text-sm md:text-lg group-hover:text-primary transition-colors">{founder.name}</h4>
-            <div className="h-[2px] w-6 bg-gray-200 mt-3 group-hover:bg-accent group-hover:w-12 transition-all duration-300"></div>
+            
+            <h4 className="text-primary group-hover:text-accent font-black text-center text-[11px] md:text-xl leading-tight px-1 transition-colors duration-300">
+                {founder.name}
+            </h4>
+            
+            <span className="text-accent/80 font-bold text-[8px] md:text-xs uppercase tracking-[0.1em] mt-1">
+                {founder.role || "Fundador/a"}
+            </span>
         </motion.div>
     );
 
     return (
-        <section id="fundadores" className="py-24 md:py-32 bg-gray-50 relative overflow-hidden">
+        <section id="fundadores" className="py-16 md:py-32 bg-gray-50 relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none" />
             
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <motion.div 
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-20"
-                >
-                    <div className="flex items-center justify-center gap-4 mb-4">
-                        <div className="h-[2px] bg-accent w-12"></div>
-                        <span className="text-sm font-bold text-gray-400 tracking-widest uppercase">Quienes iniciaron todo</span>
-                        <div className="h-[2px] bg-accent w-12"></div>
+                <div className="text-center mb-10 md:mb-20">
+                    <div className="flex items-center justify-center gap-3 md:gap-4 mb-4">
+                        <div className="h-[1px] md:h-[2px] bg-accent w-8 md:w-12"></div>
+                        <span className="text-[10px] md:text-sm font-bold text-gray-400 tracking-widest uppercase">Quienes iniciaron todo</span>
+                        <div className="h-[1px] md:h-[2px] bg-accent w-8 md:w-12"></div>
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-black text-primary drop-shadow-sm">
+                    <h2 className="text-3xl md:text-6xl font-black text-primary leading-tight">
                         Nuestros <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Fundadores</span>
                     </h2>
-                </motion.div>
+                </div>
 
-                <motion.div 
-                    variants={{
-                        hidden: { opacity: 0 },
-                        visible: {
-                            opacity: 1,
-                            transition: {
-                                staggerChildren: 0.1
+                {/* FORCE GRID: Inline styles to override any CSS conflict */}
+                <div 
+                    className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-8 md:gap-y-20 gap-x-2 md:gap-x-10"
+                    style={{ 
+                        display: 'grid', 
+                        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' 
+                    }}
+                >
+                    {/* Responsive Grid for Desktop handled by Tailwind, Mobile forced by inline style */}
+                    <style jsx>{`
+                        @media (min-width: 768px) {
+                            div {
+                                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
                             }
                         }
-                    }}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className="flex flex-col gap-16 md:gap-24 items-center"
-                >
-                    {row1.length > 0 && (
-                        <div className="flex flex-wrap justify-center gap-10 md:gap-16 lg:gap-20">
-                            {row1.map((founder, idx) => (
-                                <FounderCard key={idx} founder={founder} delay={0} />
-                            ))}
-                        </div>
-                    )}
+                        @media (min-width: 1024px) {
+                            div {
+                                grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+                            }
+                        }
+                    `}</style>
                     
-                    {row2.length > 0 && (
-                        <div className="flex flex-wrap justify-center gap-10 md:gap-16 lg:gap-20">
-                            {row2.map((founder, idx) => (
-                                <FounderCard key={idx} founder={founder} delay={0} />
-                            ))}
-                        </div>
-                    )}
-                </motion.div>
+                    {fundadores.map((founder, idx) => (
+                        <FounderCard 
+                            key={idx} 
+                            founder={founder} 
+                            delay={idx * 0.03} 
+                        />
+                    ))}
+                </div>
             </div>
         </section>
     );
