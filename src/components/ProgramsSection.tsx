@@ -22,10 +22,6 @@ interface ProgramItem {
 
 interface ProgramsSectionProps {
     programs?: ProgramItem[];
-    subtitle?: string;
-    clinicalFocus?: string;
-    familySupport?: string;
-    ctaLabel?: string;
 }
 
 const getIconForProgram = (slug?: string, defaultIdx: number = 0) => {
@@ -40,10 +36,7 @@ const getIconForProgram = (slug?: string, defaultIdx: number = 0) => {
 };
 
 export default function ProgramsSection({ 
-    programs, 
-    subtitle, 
-    clinicalFocus,
-    ctaLabel
+    programs
 }: ProgramsSectionProps) {
     
     const defaultPrograms = [

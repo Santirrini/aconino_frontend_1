@@ -3,7 +3,7 @@
 import { FaHeart, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { CurtainReveal, GradientOverlay, ParticleMorph, slideVariants, fadeVariants, GoldenTypewriter } from "./animations";
+import { CurtainReveal, GradientOverlay, ParticleMorph, fadeVariants, GoldenTypewriter } from "./animations";
 
 interface HeroProps {
     acf?: {
