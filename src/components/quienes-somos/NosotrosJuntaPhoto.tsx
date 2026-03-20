@@ -43,21 +43,32 @@ export default function NosotrosJuntaPhoto({ data }: Props) {
                 </motion.div>
 
                 <motion.div 
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0.98 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="relative w-full aspect-[16/9] md:aspect-[3/1] max-w-6xl mx-auto shadow-2xl rounded-3xl overflow-hidden group"
+                    className="relative w-full aspect-video md:aspect-[21/9] lg:aspect-[3/1.2] max-w-6xl mx-auto shadow-[0_20px_50px_rgba(8,112,184,0.15)] rounded-3xl overflow-hidden group bg-white border border-white"
                 >
+                    {/* Background decoration inside the frame */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-accent/5" />
+                    
                     <Image
                         src={photoUrl}
                         alt={photoAlt}
                         fill
-                        className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                        className="object-contain md:object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                     />
-                    <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500" />
                     
-                    <div className="absolute inset-0 border-4 md:border-8 border-white/20 m-4 md:m-6 rounded-2xl pointer-events-none" />
+                    {/* Elegant Minimalist Overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-60" />
+                    
+                    {/* Subtle Internal Shine Border */}
+                    <div className="absolute inset-3 md:inset-5 border border-white/20 rounded-[1.4rem] md:rounded-[2rem] pointer-events-none" />
+                    
+                    {/* Brand Accent Detail - Bottom Right Corner */}
+                    <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 w-12 md:w-16 h-[2px] bg-accent rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-right" />
+                    <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 h-12 md:h-16 w-[2px] bg-accent rounded-full transform scale-y-0 group-hover:scale-y-100 transition-transform duration-700 origin-bottom" />
                 </motion.div>
             </div>
         </section>

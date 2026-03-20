@@ -25,37 +25,39 @@ export default function NosotrosMission({ data }: Props) {
 
     return (
         <section id="mision" className="bg-primary flex flex-col lg:flex-row relative overflow-hidden">
+            {/* Background Texture Overlay */}
             <div className="absolute inset-0 z-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
 
+            {/* Left side Content */}
             <motion.div 
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="w-full lg:w-1/2 flex items-center p-12 md:p-20 lg:p-24 relative z-10"
+                className="w-full lg:w-1/2 flex items-center p-8 md:p-20 lg:p-24 relative z-10"
             >
                 <div className="max-w-xl mx-auto w-full text-white">
-                    <div className="mb-6 flex items-center gap-4">
-                        <span className="text-accent font-bold tracking-widest uppercase text-sm">{subtitle}</span>
-                        <div className="h-[2px] w-16 bg-white/20"></div>
+                    <div className="mb-4 md:mb-6 flex items-center gap-3 md:gap-4">
+                        <span className="text-accent font-bold tracking-widest uppercase text-[10px] md:text-sm">{subtitle}</span>
+                        <div className="h-[1px] md:h-[2px] w-12 md:w-16 bg-white/20"></div>
                     </div>
                     
-                    <h2 className="text-5xl md:text-6xl font-black mb-8 tracking-tight drop-shadow-md">
+                    <h2 className="text-4xl md:text-6xl font-black mb-6 md:mb-8 tracking-tight drop-shadow-md leading-tight">
                         {title}
                     </h2>
                     
                     <div className="relative">
-                        <span className="absolute -top-10 -left-8 text-8xl text-white/10 font-serif leading-none select-none">&quot;</span>
+                        <span className="absolute -top-8 md:-top-10 -left-6 md:-left-8 text-7xl md:text-8xl text-white/10 font-serif leading-none select-none">&quot;</span>
                         {description ? (
-                            <div className="prose prose-lg text-gray-200 prose-p:leading-relaxed max-w-none">
+                            <div className="prose prose-base md:prose-lg text-gray-200 prose-p:leading-relaxed max-w-none">
                                 <PortableText value={description} />
                             </div>
                         ) : (
                             <>
-                                <p className="text-gray-200 leading-relaxed text-lg md:text-xl text-justify relative z-10 font-medium">
+                                <p className="text-gray-200 leading-relaxed text-base md:text-xl text-justify relative z-10 font-medium">
                                     Somos una asociación innovadora, que ofrece programas de prevención y atención integral a niños, niñas y jóvenes con alteraciones sensoriomotoras, así como capacitación y orientación a profesionales e instituciones.
                                 </p>
-                                <p className="text-gray-300 leading-relaxed text-base md:text-lg text-justify mt-6 relative z-10">
+                                <p className="text-gray-300 leading-relaxed text-sm md:text-lg text-justify mt-4 md:mt-6 relative z-10">
                                     Aplicamos el enfoque de Neurodesarrollo - Bobath y otras técnicas relacionadas, para el mejoramiento de la calidad de vida e Inclusión social de la población objetivo.
                                 </p>
                             </>
@@ -72,21 +74,30 @@ export default function NosotrosMission({ data }: Props) {
                 />
             </motion.div>
 
-            <motion.div 
-                initial={{ opacity: 0, scale: 1.05 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1 }}
-                className="w-full lg:w-1/2 relative min-h-[500px] lg:min-h-[600px] z-10"
-            >
-                <Image
-                    src={imageUrl}
-                    alt={imageAlt}
-                    fill
-                    className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent lg:hidden" />
-            </motion.div>
+            {/* Right side Image with Frame */}
+            <div className="w-full lg:w-1/2 relative bg-primary/20 flex items-center justify-center p-6 md:p-12 lg:p-20 z-10 overflow-hidden">
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="relative w-full aspect-video md:aspect-square lg:h-full min-h-[280px] shadow-2xl rounded-2xl md:rounded-3xl overflow-hidden group bg-accent/5 border border-white/10"
+                >
+                    <Image
+                        src={imageUrl}
+                        alt={imageAlt}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        priority
+                    />
+                    {/* Minimalist Overlay for depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-40 group-hover:opacity-10 transition-opacity duration-500" />
+                    
+                    {/* Internal Shine border */}
+                    <div className="absolute inset-2 md:inset-4 border border-white/20 rounded-xl md:rounded-2xl pointer-events-none" />
+                </motion.div>
+            </div>
         </section>
     );
 }
