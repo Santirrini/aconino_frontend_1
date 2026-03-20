@@ -13,6 +13,8 @@ interface GoldenTypewriterProps {
 
 const GOLD_COLOR = "#f8b719";
 const WHITE_COLOR = "rgba(255, 255, 255, 0.4)";
+const LETTER_SPACING = "0.02em"; // Subtle letter spacing for "premium" feel
+const WORD_SPACING = "0.15em"; // Slightly more space between words
 
 class Particle {
   x: number;
@@ -217,9 +219,9 @@ export const GoldenTypewriter = ({
 
   return (
     <span 
-      className={`${className} relative inline-block whitespace-pre-wrap leading-tight md:leading-tight`} 
+      className={`${className} relative inline-block leading-tight md:leading-tight`} 
       ref={containerRef}
-      style={{ isolation: 'isolate' }}
+      style={{ isolation: 'isolate', letterSpacing: LETTER_SPACING }}
     >
       <style jsx>{`
         @keyframes dropIn {
@@ -242,6 +244,14 @@ export const GoldenTypewriter = ({
           text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
           animation: dropIn 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
+        .word-wrapper {
+          display: inline-block;
+          white-space: nowrap;
+          margin-right: ${WORD_SPACING};
+        }
+        .word-wrapper:last-child {
+          margin-right: 0;
+        }
       `}</style>
 
       {/* Sparks Canvas Layer */}
@@ -252,14 +262,44 @@ export const GoldenTypewriter = ({
       />
 
       <span className="relative z-10 inline">
-        {text.split("").map((char, i) => (
-          <span
-            key={i}
-            className={`relative inline char-span ${i < charIndex ? "typed" : ""}`}
-          >
-            {char}
-          </span>
-        ))}
+        {(() => {
+          const words = text.split(/(\s+)/);
+          let absoluteCharIndex = 0;
+          return words.map((word, wordIdx) => {
+            const isSpace = /^\s+$/.test(word);
+            if (isSpace) {
+              const spaceChars = word.split("");
+              return spaceChars.map((char, charIdx) => {
+                const globalIdx = absoluteCharIndex++;
+                return (
+                  <span
+                    key={`space-${wordIdx}-${charIdx}`}
+                    className={`relative inline char-span ${globalIdx < charIndex ? "typed" : ""}`}
+                  >
+                    {char}
+                  </span>
+                );
+              });
+            }
+            
+            const wordChars = word.split("");
+            return (
+              <span key={`word-${wordIdx}`} className="word-wrapper">
+                {wordChars.map((char, charIdx) => {
+                  const globalIdx = absoluteCharIndex++;
+                  return (
+                    <span
+                      key={charIdx}
+                      className={`relative inline char-span ${globalIdx < charIndex ? "typed" : ""}`}
+                    >
+                      {char}
+                    </span>
+                  );
+                })}
+              </span>
+            );
+          });
+        })()}
       </span>
     </span>
   );
