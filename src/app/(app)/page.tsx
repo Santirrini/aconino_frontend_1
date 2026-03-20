@@ -111,10 +111,6 @@ export default async function Home() {
             
             <ProgramsSection 
                 programs={mappedPrograms} 
-                subtitle={sanityHome?.programs?.subtitle}
-                clinicalFocus={sanityHome?.programs?.clinicalFocus}
-                familySupport={sanityHome?.programs?.familySupport}
-                ctaLabel={sanityHome?.programs?.ctaLabel}
             />
             
             <ImpactSection 
