@@ -11,6 +11,7 @@ import ctaSection from './ctaSection'
 import aboutSection from './aboutSection'
 import nosotrosIntro from './nosotrosIntro'
 import quienesSomos from './quienesSomos'
+import homePage from './homePage'
 import homeHero from './homeHero'
 import homePrograms from './homePrograms'
 import homeRecognitions from './homeRecognitions'
@@ -33,6 +34,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     aboutSection,
     nosotrosIntro,
     quienesSomos,
+    homePage,
     homeHero,
     homePrograms,
     homeRecognitions,

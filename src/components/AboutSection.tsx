@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 
 interface AboutSectionProps {
@@ -17,8 +16,6 @@ interface AboutSectionProps {
 }
 
 export default function AboutSection({ acf }: AboutSectionProps) {
-    const title = acf?.about_title || "35 años trabajando por mejorar la calidad de vida de niños, niñas y jóvenes en condición de discapacidad";
-    const description = acf?.about_description || "Tratamientos y terapias con el Modelo de práctica contemporáneo de Neurodesarrollo y protocolo intensivo Pediasuit Orientación y apoyo a las familias";
     const imageUrl = acf?.about_image || "https://aconino.org/wp-content/uploads/2024/03/visita-claudia-aconino-2024-731x1024.jpg";
     const experienceLabel = acf?.experience_label || "Tradición";
     const experienceValue = acf?.experience_value || "35 AÑOS";

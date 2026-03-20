@@ -11,7 +11,7 @@ interface GoldenTypewriterProps {
   waitDuration?: number;
 }
 
-const GOLD_COLOR = "#f8b719";
+
 const WHITE_COLOR = "rgba(255, 255, 255, 0.4)";
 const LETTER_SPACING = "0.02em"; // Subtle letter spacing for "premium" feel
 const WORD_SPACING = "0.15em"; // Slightly more space between words

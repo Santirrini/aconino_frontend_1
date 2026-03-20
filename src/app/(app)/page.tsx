@@ -8,26 +8,20 @@ import RecognitionsSection from "../../components/RecognitionsSection";
 
 // Importar cliente y consultas de Sanity
 import { client } from "@/sanity/lib/client";
-import { LATEST_POSTS_QUERY, CTA_SECTION_QUERY, ABOUT_SECTION_QUERY, HOME_HERO_QUERY, HOME_PROGRAMS_QUERY, HOME_RECOGNITIONS_QUERY, HOME_NEWS_QUERY } from "@/sanity/lib/queries";
+import { LATEST_POSTS_QUERY, CTA_SECTION_QUERY, ABOUT_SECTION_QUERY, HOME_PAGE_QUERY } from "@/sanity/lib/queries";
 
 export const revalidate = 60;
 
 export default async function Home() {
-    let sanityHero = null;
-    let sanityPrograms = null;
-    let sanityRecognitions = null;
-    let sanityNews = null;
+    let sanityHome = null;
     let sanityPosts = [];
     let sanityCta = null;
     let sanityAbout = null;
 
     try {
-        // Obtener datos de documentos separados en paralelo
-        [sanityHero, sanityPrograms, sanityRecognitions, sanityNews, sanityPosts, sanityCta, sanityAbout] = await Promise.all([
-            client.fetch(HOME_HERO_QUERY).catch(() => null),
-            client.fetch(HOME_PROGRAMS_QUERY).catch(() => null),
-            client.fetch(HOME_RECOGNITIONS_QUERY).catch(() => null),
-            client.fetch(HOME_NEWS_QUERY).catch(() => null),
+        // Obtener datos del documento unificado y documentos independientes
+        [sanityHome, sanityPosts, sanityCta, sanityAbout] = await Promise.all([
+            client.fetch(HOME_PAGE_QUERY).catch(() => null),
             client.fetch(LATEST_POSTS_QUERY).catch(() => []),
             client.fetch(CTA_SECTION_QUERY).catch(() => null),
             client.fetch(ABOUT_SECTION_QUERY).catch(() => null)
@@ -36,21 +30,19 @@ export default async function Home() {
         console.error('Error fetching Sanity data:', error);
     }
 
-    // Mapear datos para el Hero
+    // Mapear datos para el Hero desde documento unificado
     const acf = {
-        hero_title: sanityHero?.slogan?.split(' ').slice(0, 2).join(' ') || "35 años", 
-        hero_subtitle: sanityHero?.slogan?.split(' ').slice(2).join(' ') || "apoyando la inclusión",
-        hero_background_type: sanityHero?.backgroundType || "image", 
-        hero_video_url: sanityHero?.backgroundVideoUrl || "",
-        hero_image: sanityHero?.backgroundImageUrl || "/images/hero-background-blue.png",
-        hero_impact: sanityHero?.impact,
-        hero_cta_text: sanityPrograms?.ctaLabel || "CONTÁCTANOS",
+        hero_title: sanityHome?.hero?.slogan?.split(' ').slice(0, 2).join(' ') || "35 años", 
+        hero_subtitle: sanityHome?.hero?.slogan?.split(' ').slice(2).join(' ') || "apoyando la inclusión",
+        hero_background_type: sanityHome?.hero?.backgroundType || "image", 
+        hero_video_url: sanityHome?.hero?.backgroundVideoUrl || "",
+        hero_image: sanityHome?.hero?.backgroundImageUrl || "/images/hero-background-blue.png",
+        hero_impact: sanityHome?.hero?.impact,
+        hero_cta_text: sanityHome?.programs?.ctaLabel || "CONTÁCTANOS",
         hero_cta_link: "/contactanos",
-        // CTA Section Data
-        cta_title: sanityCta?.title || "35 años apoyando la inclusión",
+        cta_title: sanityCta?.title || "35 años apoiando la inclusión",
         cta_label: sanityCta?.ctaLabel || "CONTÁCTANOS",
         cta_background_image: sanityCta?.backgroundImageUrl || "/images/hero-background-blue.png",
-        // About Section Data
         about_title: sanityAbout?.title,
         about_description: sanityAbout?.description,
         about_image: sanityAbout?.imageUrl,
@@ -60,21 +52,19 @@ export default async function Home() {
         about_cta_link: sanityAbout?.ctaLink,
     };
 
-    // Mapear Programas
     interface SanityProgram {
         title?: string;
         description?: string;
         imageUrl?: string;
     }
 
-    const mappedPrograms = sanityPrograms?.items?.map((p: SanityProgram) => ({
+    const mappedPrograms = sanityHome?.programs?.items?.map((p: SanityProgram) => ({
         title: p.title,
         desc: p.description || '',
         slug: p.title?.toLowerCase().replace(/ /g, '-') || '',
         imageUrl: p.imageUrl || null
     })) || [];
 
-    // Mapear Noticias
     interface SanityPost {
         _id: string;
         slug: string | null;
@@ -85,7 +75,6 @@ export default async function Home() {
         mainImageUrl?: string;
     }
 
-    // Función para generar slug desde título
     const generateSlug = (title?: string, existingSlug?: string | null): string => {
         if (existingSlug && existingSlug.trim() !== '') {
             return existingSlug;
@@ -122,14 +111,14 @@ export default async function Home() {
             
             <ProgramsSection 
                 programs={mappedPrograms} 
-                subtitle={sanityPrograms?.subtitle}
-                clinicalFocus={sanityPrograms?.clinicalFocus}
-                familySupport={sanityPrograms?.familySupport}
-                ctaLabel={sanityPrograms?.ctaLabel}
+                subtitle={sanityHome?.programs?.subtitle}
+                clinicalFocus={sanityHome?.programs?.clinicalFocus}
+                familySupport={sanityHome?.programs?.familySupport}
+                ctaLabel={sanityHome?.programs?.ctaLabel}
             />
             
             <ImpactSection 
-                title={sanityHero?.impact || "+35 años apoyando la inclusión!"}
+                title={sanityHome?.hero?.impact || "+35 años apoiando la inclusión!"}
                 stats={[]}
                 stories={[]}
                 ctaButtonText="Ver más"
@@ -139,13 +128,13 @@ export default async function Home() {
             
             <NewsSection 
                 posts={mappedPosts} 
-                title={sanityNews?.title || "Últimas noticias"} 
+                title={sanityHome?.news?.title || "Últimas noticias"} 
                 showSection={true} 
             />
             
             <RecognitionsSection 
-                text={sanityRecognitions?.title} 
-                recognitions={sanityRecognitions?.items} 
+                text={sanityHome?.recognitions?.title} 
+                recognitions={sanityHome?.recognitions?.items} 
             />
         </div>
     );

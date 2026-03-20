@@ -84,7 +84,47 @@ export const HOME_RECOGNITIONS_QUERY = defineQuery(`
   }
 `)
 
-// Query para Home News Section (documento separado)
+// Query para Home Page (documento unificado)
+export const HOME_PAGE_QUERY = defineQuery(`
+  *[_type == "homePage"][0] {
+    hero {
+      backgroundType,
+      "backgroundImageUrl": backgroundImage.asset->url,
+      "backgroundVideoUrl": backgroundVideo.asset->url,
+      slogan,
+      impact
+    },
+    programs {
+      subtitle,
+      clinicalFocus,
+      familySupport,
+      ctaLabel,
+      items[] {
+        _key,
+        title,
+        description,
+        url,
+        "imageUrl": image.asset->url
+      }
+    },
+    news {
+      title,
+      ctaLabel
+    },
+    recognitions {
+      title,
+      items[] {
+        _key,
+        title,
+        meta,
+        description,
+        "imageUrl": image.asset->url
+      }
+    }
+  }
+`)
+
+// Query para Home News Section (documento separado) - DEPRECATED
 export const HOME_NEWS_QUERY = defineQuery(`
   *[_type == "homeNews"][0] {
     title,
