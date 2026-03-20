@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface GoldenTypewriterProps {
   text: string;
@@ -24,10 +24,49 @@ export const GoldenTypewriter = ({
   const [charIndex, setCharIndex] = useState(0);
   const [phase, setPhase] = useState<"delay" | "typing" | "sparkle" | "wait" | "restarting">("delay");
   const [mounted, setMounted] = useState(false);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    const updateCursorPosition = () => {
+      if (mounted && containerRef.current) {
+        const container = containerRef.current;
+        const charSpans = container.querySelectorAll(".char-span");
+        
+        if (charIndex === 0) {
+          const firstCharSpan = charSpans[0];
+          if (firstCharSpan) {
+            const charRect = firstCharSpan.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            setCursorPos({
+              x: charRect.left - containerRect.left,
+              y: charRect.top - containerRect.top + charRect.height / 2
+            });
+          } else {
+            setCursorPos({ x: 0, y: container.offsetHeight / 2 || 12 });
+          }
+        } else {
+          const targetIndex = Math.min(charIndex - 1, text.length - 1);
+          if (charSpans[targetIndex]) {
+            const charRect = charSpans[targetIndex].getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            setCursorPos({
+              x: charRect.right - containerRect.left,
+              y: charRect.top - containerRect.top + charRect.height / 2
+            });
+          }
+        }
+      }
+    };
+
+    updateCursorPosition();
+    window.addEventListener('resize', updateCursorPosition);
+    return () => window.removeEventListener('resize', updateCursorPosition);
+  }, [charIndex, mounted, text.length, text]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -78,15 +117,16 @@ export const GoldenTypewriter = ({
     return <span className={className}>{text}</span>;
   }
 
-  const renderCursor = (position: "left" | "right") => (
+  const renderCursor = () => (
     <span
-      className="absolute pointer-events-none"
+      className="absolute pointer-events-none transition-all duration-75"
       style={{
-        width: "0px",
-        height: "1em",
-        top: 0,
-        [position]: 0,
+        left: `${cursorPos.x}px`,
+        top: `${cursorPos.y}px`,
+        height: "24px",
+        width: "4px",
         zIndex: 20,
+        transform: "translateY(-50%)",
       }}
     >
       <span
@@ -159,7 +199,7 @@ export const GoldenTypewriter = ({
   );
 
   return (
-    <span className={`${className} relative inline`}>
+    <span className={`${className} relative inline-block`} ref={containerRef}>
       <style jsx>{`
         @keyframes pulse-glow {
           0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.85); }
@@ -186,26 +226,20 @@ export const GoldenTypewriter = ({
       `}</style>
 
       <span className="relative z-10 inline">
-        {text.split("").map((char, i) => {
-          const isCurrentChar = showCursor && charIndex === i + 1;
-          const isFirstChar = showCursor && charIndex === 0 && i === 0;
-          return (
-            <span
-              key={i}
-              className="relative inline"
-              style={{
-                color: getCharColor(i),
-                transition: "color 0.05s ease-out",
-              }}
-            >
-              {isFirstChar && renderCursor("left")}
-              {char}
-              {isCurrentChar && renderCursor("right")}
-            </span>
-          );
-        })}
-        {showCursor && charIndex === 0 && text.length === 0 && renderCursor("left")}
+        {text.split("").map((char, i) => (
+          <span
+            key={i}
+            className="relative inline char-span"
+            style={{
+              color: getCharColor(i),
+              transition: "color 0.05s ease-out",
+            }}
+          >
+            {char}
+          </span>
+        ))}
       </span>
+      {showCursor && renderCursor()}
     </span>
   );
 };

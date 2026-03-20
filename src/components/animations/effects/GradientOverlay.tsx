@@ -21,7 +21,7 @@ export function GradientOverlay({
       variants={morphingGradient}
       initial="initial"
       animate="animate"
-      className={`absolute inset-0 bg-gradient-to-r ${from} ${via} ${to} bg-[length:200%_200%] mix-blend-multiply opacity-50 z-10 ${className}`}
+      className={`absolute inset-0 bg-gradient-to-r ${from} ${via} ${to} bg-[length:200%_200%] mix-blend-multiply ${className}`}
     />
   );
 }

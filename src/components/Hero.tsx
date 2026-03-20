@@ -60,9 +60,8 @@ export default function Hero({ acf }: HeroProps) {
                 </motion.div>
             )}
 
-            {/* Overlays */}
             <div className="absolute inset-0 bg-black/40 z-10" />
-            <GradientOverlay from="from-primary/80" via="via-secondary/50" to="to-primary/80" className="opacity-60" />
+            <GradientOverlay from="from-primary/80" via="via-secondary/50" to="to-primary/80" className="opacity-60 z-10" />
             <ParticleMorph subtle={true} />
 
             {/* Navigation Arrows */}
@@ -111,7 +110,7 @@ export default function Hero({ acf }: HeroProps) {
 
                     <motion.h2 
                         variants={slideVariants}
-                        className="text-5xl md:text-8xl lg:text-9xl font-extrabold text-white tracking-tight leading-tight md:leading-none drop-shadow-2xl" 
+                        className="text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-extrabold text-white tracking-tight leading-tight md:leading-none drop-shadow-2xl" 
                         style={{ textShadow: "0 4px 20px rgba(0,0,0,0.6)" }}
                     >
                         <motion.span variants={slideVariants} className="block mb-2 md:mb-4">
