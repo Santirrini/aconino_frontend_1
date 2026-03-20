@@ -114,12 +114,8 @@ export default function Hero({ acf }: HeroProps) {
                         className="text-5xl md:text-8xl lg:text-9xl font-extrabold text-white tracking-tight leading-tight md:leading-none drop-shadow-2xl" 
                         style={{ textShadow: "0 4px 20px rgba(0,0,0,0.6)" }}
                     >
-                        <motion.span variants={slideVariants} className="block mb-2 md:mb-4">{title}</motion.span>
-                        <motion.span 
-                            variants={slideVariants} 
-                            className="block text-4xl md:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-white to-white/80"
-                        >
-                            <GoldenTypewriter text={subtitle} delay={1.3} speed={0.08} />
+                        <motion.span variants={slideVariants} className="block mb-2 md:mb-4">
+                            <GoldenTypewriter text={`${title} ${subtitle}`} delay={0} speed={0.1} loop={true} waitDuration={3000} />
                         </motion.span>
                     </motion.h2>
                 </motion.div>

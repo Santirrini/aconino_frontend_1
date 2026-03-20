@@ -11,6 +11,8 @@ interface GoldenTypewriterProps {
   waitDuration?: number;
 }
 
+const PARTICLE_COLORS = ["#fff", "#ffe066", "#f8b719", "#fff5cc", "#ffffff", "#ffd700", "#ffed4a", "#f5a623"];
+
 export const GoldenTypewriter = ({
   text,
   className = "",
@@ -20,7 +22,7 @@ export const GoldenTypewriter = ({
   waitDuration = 3000,
 }: GoldenTypewriterProps) => {
   const [charIndex, setCharIndex] = useState(0);
-  const [phase, setPhase] = useState<"delay" | "typing" | "sparkle" | "wait">("delay");
+  const [phase, setPhase] = useState<"delay" | "typing" | "sparkle" | "wait" | "restarting">("delay");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -48,8 +50,11 @@ export const GoldenTypewriter = ({
     } else if (phase === "wait") {
       timeout = setTimeout(() => {
         if (loop) {
-          setCharIndex(0);
-          setPhase("typing");
+          setPhase("restarting");
+          setTimeout(() => {
+            setCharIndex(0);
+            setPhase("typing");
+          }, 500);
         }
       }, waitDuration);
     }
@@ -57,118 +62,150 @@ export const GoldenTypewriter = ({
     return () => clearTimeout(timeout);
   }, [mounted, phase, charIndex, text.length, delay, speed, loop, waitDuration]);
 
-  const typedText = text.slice(0, charIndex);
-  const remainingText = text.slice(charIndex);
   const isTyping = phase === "typing";
   const showSparkle = phase === "sparkle";
-  const showCursor = isTyping || showSparkle;
+  const isWaiting = phase === "wait";
+  const isRestarting = phase === "restarting";
+  const showCursor = isTyping || showSparkle || isWaiting || isRestarting;
+
+  const getCharColor = (index: number): string => {
+    if (!mounted) return "#f8b719";
+    if (index < charIndex) return "#f8b719";
+    return "white";
+  };
 
   if (!mounted) {
     return <span className={className}>{text}</span>;
   }
 
-  return (
-    <span className={`${className} relative inline-block`}>
-      {/* Dimmed full text layer */}
+  const renderCursor = (position: "left" | "right") => (
+    <span
+      className="absolute pointer-events-none"
+      style={{
+        width: "0px",
+        height: "1em",
+        top: 0,
+        [position]: 0,
+        zIndex: 20,
+      }}
+    >
       <span
-        className="absolute inset-0"
-        aria-hidden="true"
-        style={{ opacity: 0.25 }}
-      >
-        {text}
-      </span>
+        className="absolute"
+        style={{
+          width: "4px",
+          height: "1.2em",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+          background:
+            "linear-gradient(180deg, transparent 0%, #f8b719 15%, #ffe066 50%, #f8b719 85%, transparent 100%)",
+          borderRadius: "2px",
+          boxShadow: showSparkle
+            ? "0 0 20px 6px rgba(248, 183, 25, 0.9), 0 0 40px 12px rgba(248, 183, 25, 0.6), 0 0 60px 18px rgba(248, 183, 25, 0.3)"
+            : "0 0 12px 4px rgba(248, 183, 25, 0.8), 0 0 25px 8px rgba(248, 183, 25, 0.5)",
+        }}
+      />
 
-      {/* Typing reveal layer */}
-      <span className="relative z-10">
-        <span>{typedText}</span>
-        <span style={{ opacity: 0 }}>{remainingText}</span>
-      </span>
+      <span
+        className="absolute rounded-full"
+        style={{
+          width: "40px",
+          height: "40px",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+          background:
+            "radial-gradient(circle, rgba(248, 183, 25, 0.6) 0%, rgba(255, 235, 59, 0.3) 40%, transparent 70%)",
+          animation: "pulse-glow 0.4s ease-in-out infinite alternate",
+          pointerEvents: "none",
+        }}
+      />
 
-      {/* Golden cursor with particles */}
-      {showCursor && (
-        <span
-          className="absolute top-0 bottom-0 pointer-events-none"
-          style={{
-            left: `${(charIndex / text.length) * 100}%`,
-            transform: "translateX(-50%)",
-            width: "4px",
-            zIndex: 20,
-          }}
-        >
-          {/* Golden vertical line */}
+      {[...Array(45)].map((_, i) => {
+        const animIndex = i % 20;
+        const isLeft = animIndex >= 5 && animIndex < 8;
+        const isRight = animIndex >= 8 && animIndex < 11;
+        const isDiagLeft = animIndex >= 11 && animIndex < 13;
+        const isDiagRight = animIndex >= 13 && animIndex < 15;
+        const isBurst = animIndex >= 15 && animIndex < 20;
+        
+        let animName = `spark-up-${i % 5}`;
+        if (isLeft) animName = `spark-left-${i % 3}`;
+        else if (isRight) animName = `spark-right-${i % 3}`;
+        else if (isDiagLeft) animName = `spark-diag-left-${i % 1}`;
+        else if (isDiagRight) animName = `spark-diag-right-${i % 1}`;
+        else if (isBurst) animName = `spark-burst-${i % 5}`;
+        
+        const size = isBurst ? 3 + (i % 3) : 2 + (i % 4);
+        
+        return (
           <span
-            className="absolute"
-            style={{
-              width: "3px",
-              height: "100%",
-              left: "50%",
-              transform: "translateX(-50%)",
-              background:
-                "linear-gradient(180deg, transparent 0%, rgb(248, 183, 25) 15%, rgb(255, 224, 102) 50%, rgb(248, 183, 25) 85%, transparent 100%)",
-              borderRadius: "2px",
-              boxShadow: showSparkle
-                ? "rgba(248, 183, 25, 0.9) 0px 0px 10px 3px, rgba(248, 183, 25, 0.5) 0px 0px 20px 6px"
-                : "rgba(248, 183, 25, 0.7) 0px 0px 10px 3px, rgba(248, 183, 25, 0.3) 0px 0px 20px 6px",
-            }}
-          />
-
-          {/* Ambient glow orb */}
-          <span
+            key={i}
             className="absolute rounded-full"
             style={{
-              width: "24px",
-              height: "24px",
+              width: `${size}px`,
+              height: `${size}px`,
+              backgroundColor: PARTICLE_COLORS[i % PARTICLE_COLORS.length],
+              filter: "blur(0.3px)",
               left: "50%",
               top: "50%",
-              transform: "translate(-50%, -50%)",
-              background:
-                "radial-gradient(circle, rgba(248, 183, 25, 0.5) 0%, rgba(255, 235, 59, 0.2) 40%, transparent 70%)",
-              animation: "pulse-glow 0.6s ease-in-out infinite alternate",
-              pointerEvents: "none",
+              animation: `${animName} ${0.3 + (i % 5) * 0.1}s ease-out infinite`,
+              animationDelay: `${(i % 10) * 0.05}s`,
             }}
           />
+        );
+      })}
+    </span>
+  );
 
-          {/* Spark particles */}
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              className="absolute rounded-full"
-              style={{
-                width: "3px",
-                height: "3px",
-                backgroundColor: i === 1 ? "#ffe066" : "#f8b719",
-                filter: "blur(0.5px)",
-                left: "50%",
-                top: `${20 + i * 25}%`,
-                animation: `spark-float-${i} 0.5s ease-out infinite`,
-              }}
-            />
-          ))}
-        </span>
-      )}
-
-      {/* CSS animations */}
+  return (
+    <span className={`${className} relative inline`}>
       <style jsx>{`
         @keyframes pulse-glow {
-          from { opacity: 0.5; transform: translate(-50%, -50%) scale(0.8); }
-          to { opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
+          0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.85); }
+          100% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
         }
-        @keyframes spark-float-0 {
-          0% { opacity: 0; transform: translate(-50%, 0) scale(0.3); }
-          30% { opacity: 0.9; }
-          100% { opacity: 0; transform: translate(calc(-50% - 10px), -8px) scale(0.5); }
-        }
-        @keyframes spark-float-1 {
-          0% { opacity: 0; transform: translate(-50%, 0) scale(0.3); }
-          30% { opacity: 0.8; }
-          100% { opacity: 0; transform: translate(calc(-50% + 8px), 6px) scale(0.5); }
-        }
-        @keyframes spark-float-2 {
-          0% { opacity: 0; transform: translate(-50%, 0) scale(0.3); }
-          30% { opacity: 0.9; }
-          100% { opacity: 0; transform: translate(calc(-50% - 12px), -4px) scale(0.5); }
-        }
+        @keyframes spark-up-0 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(0, -45px) scale(0.1); } }
+        @keyframes spark-up-1 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(0, -50px) scale(0.15); } }
+        @keyframes spark-up-2 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(0, -40px) scale(0.1); } }
+        @keyframes spark-up-3 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(0, -55px) scale(0.2); } }
+        @keyframes spark-up-4 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(0, -35px) scale(0.1); } }
+        @keyframes spark-left-0 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(-25px, -20px) scale(0.15); } }
+        @keyframes spark-left-1 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(-40px, -30px) scale(0.1); } }
+        @keyframes spark-left-2 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(-35px, -15px) scale(0.2); } }
+        @keyframes spark-right-0 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(25px, -20px) scale(0.15); } }
+        @keyframes spark-right-1 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(40px, -30px) scale(0.1); } }
+        @keyframes spark-right-2 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(35px, -15px) scale(0.2); } }
+        @keyframes spark-diag-left-0 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(-25px, -45px) scale(0.12); } }
+        @keyframes spark-diag-right-0 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(25px, -45px) scale(0.12); } }
+        @keyframes spark-burst-0 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 20% { opacity: 0.9; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(0, -60px) scale(0.05); } }
+        @keyframes spark-burst-1 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 20% { opacity: 0.9; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(-45px, -45px) scale(0.05); } }
+        @keyframes spark-burst-2 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 20% { opacity: 0.9; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(45px, -45px) scale(0.05); } }
+        @keyframes spark-burst-3 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 20% { opacity: 0.9; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(-60px, 0) scale(0.05); } }
+        @keyframes spark-burst-4 { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 20% { opacity: 0.9; } 100% { opacity: 0; transform: translate(-50%, -50%) translate(60px, 0) scale(0.05); } }
       `}</style>
+
+      <span className="relative z-10 inline">
+        {text.split("").map((char, i) => {
+          const isCurrentChar = showCursor && charIndex === i + 1;
+          const isFirstChar = showCursor && charIndex === 0 && i === 0;
+          return (
+            <span
+              key={i}
+              className="relative inline"
+              style={{
+                color: getCharColor(i),
+                transition: "color 0.05s ease-out",
+              }}
+            >
+              {isFirstChar && renderCursor("left")}
+              {char}
+              {isCurrentChar && renderCursor("right")}
+            </span>
+          );
+        })}
+        {showCursor && charIndex === 0 && text.length === 0 && renderCursor("left")}
+      </span>
     </span>
   );
 };

@@ -22,9 +22,6 @@ export default function AboutSection({ acf }: AboutSectionProps) {
     const imageUrl = acf?.about_image || "https://placehold.co/600x450/e2e8f0/0c2070?text=Foto+Equipo+Aconiño";
     const ctaText = acf?.about_cta_text || "CONTÁCTANOS";
     const ctaLink = acf?.about_cta_link || "/contacto";
-    
-    const statsValue = acf?.stats_1_value || "+35";
-    const statsLabelParts = (acf?.stats_1_label || "años\napoyando la\ninclusión!").split("\n");
 
     return (
         <section className="w-full py-20 md:py-32 overflow-hidden relative bg-white">
@@ -38,24 +35,6 @@ export default function AboutSection({ acf }: AboutSectionProps) {
                     transition={{ duration: 0.8 }}
                     className="relative py-8 md:py-16 md:pr-0"
                 >
-                    {/* Dark blue background box */}
-                    <motion.div 
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                        className="absolute top-1/2 -translate-y-1/2 -left-2 md:-left-4 lg:-left-8 w-[160px] md:w-[220px] lg:w-[260px] aspect-square bg-secondary z-30 flex flex-col items-center justify-center text-white p-6 shadow-2xl rounded-tr-[2rem] rounded-bl-[2rem]"
-                    >
-                        <span className="text-4xl md:text-5xl lg:text-7xl font-black mb-2 drop-shadow-md">{statsValue}</span>
-                        <span className="text-xs md:text-sm lg:text-base text-center leading-tight font-medium">
-                            {statsLabelParts.map((part: string, idx: number) => (
-                                <span key={idx}>
-                                    {part}
-                                    {idx < statsLabelParts.length - 1 && <br />}
-                                </span>
-                            ))}
-                        </span>
-                    </motion.div>
 
                     {/* Main Image */}
                     <motion.div 
@@ -71,8 +50,7 @@ export default function AboutSection({ acf }: AboutSectionProps) {
                         />
                     </motion.div>
 
-                    {/* Accent Yellow Border Box */}
-                    <div className="absolute -bottom-2 md:-bottom-4 right-0 md:-right-8 w-24 h-24 md:w-40 md:h-40 border-8 border-accent z-20 pointer-events-none rounded-xl opacity-80"></div>
+
                 </motion.div>
 
                 {/* Right Side: Text Content */}
