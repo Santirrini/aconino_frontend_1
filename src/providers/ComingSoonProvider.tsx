@@ -14,7 +14,7 @@ interface ComingSoonContextType {
 const ComingSoonContext = createContext<ComingSoonContextType | undefined>(undefined);
 
 export function ComingSoonProvider({ children }: { children: ReactNode }) {
-  const [showComingSoon, setShowComingSoon] = useState(true);
+  const [showComingSoon, setShowComingSoon] = useState(false);
   const [targetYear, setTargetYear] = useState(2027);
   const [message, setMessage] = useState("Centro Día para Adultos");
 

@@ -20,18 +20,9 @@ export default function ApoyanosClient() {
     const { setShowComingSoon, setTargetYear, setMessage } = useComingSoon();
 
     useEffect(() => {
-        // TODO: Fetch from Sanity when available
-        // Example:
-        // const { data } = useSanityQuery(APOYANOS_QUERY);
-        // if (data?.comingSoon !== undefined) {
-        //     setShowComingSoon(data.comingSoon);
-        // }
-        
-        // For now, the default values from ComingSoonProvider are used
-        // When Sanity data is available, uncomment above and remove this comment
-        
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        setShowComingSoon(true);
+        return () => setShowComingSoon(false);
+    }, [setShowComingSoon]);
 
     const handleZoneClick = (zone: CenterZone) => {
         setSelectedZone(zone);
