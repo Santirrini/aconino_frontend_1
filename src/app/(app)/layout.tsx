@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { DonationProvider } from "../../providers/DonationProvider";
+import { ComingSoonProvider } from "../../providers/ComingSoonProvider";
+import ComingSoonOverlayWrapper from "@/components/apoyanos/ComingSoonOverlayWrapper";
 import { client } from "@/sanity/lib/client";
 import { SETTINGS_QUERY, NAVIGATION_QUERY } from "@/sanity/lib/queries";
 import FloatingDonationWidget from "@/components/donations/FloatingDonationWidget";
@@ -32,17 +34,20 @@ export default async function RootLayout({
         <html lang="es" className={`${manrope.variable}`}>
             <body className="antialiased min-h-screen flex flex-col font-sans bg-white text-primary">
                 <DonationProvider>
-                    <FloatingDonationWidget />
-                    <Header 
-                        navData={navigation?.navItems} 
-                        ctaLabel={navigation?.ctaButton?.label}
-                        ctaHref={navigation?.ctaButton?.href}
-                        settings={settings}
-                    />
-                    <main className="flex-1 w-full relative">
-                        {children}
-                    </main>
-                    <Footer settings={settings} />
+                    <ComingSoonProvider>
+                        <FloatingDonationWidget />
+                        <Header 
+                            navData={navigation?.navItems} 
+                            ctaLabel={navigation?.ctaButton?.label}
+                            ctaHref={navigation?.ctaButton?.href}
+                            settings={settings}
+                        />
+                        <main className="flex-1 w-full relative">
+                            {children}
+                        </main>
+                        <Footer settings={settings} />
+                        <ComingSoonOverlayWrapper />
+                    </ComingSoonProvider>
                 </DonationProvider>
             </body>
         </html>

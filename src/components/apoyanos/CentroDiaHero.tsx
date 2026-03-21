@@ -31,10 +31,6 @@ const defaultSlides: HeroSlide[] = [
   },
 ];
 
-
-
-
-
 export default function CentroDiaHero() {
   const { openDonationWidget } = useDonation();
   const [currentIndex, setCurrentIndex] = useState(0);

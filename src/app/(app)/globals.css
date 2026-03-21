@@ -89,3 +89,10 @@ body {
     height: 300px;
   }
 }
+
+
+
+/* Ensure the overlay covers everything including fixed elements */
+.coming-soon-overlay-active body {
+  overflow: hidden;
+}

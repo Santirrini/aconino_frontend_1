@@ -33,7 +33,7 @@ export default function Footer({ settings }: FooterProps) {
   const defaultMobile = "313 391 0760";
   const defaultEmail = "apoyoinclusion@aconino.org";
   
-  const defaultLinks = [
+  const defaultLinks: FooterLink[] = [
     { label: "Canales de denuncia", url: "/canales-denuncia" },
     { label: "Trabaja con nosotros", url: "/trabaja-con-nosotros" },
     { label: "Permanencia ESAL", url: "/permanencia-esal" },

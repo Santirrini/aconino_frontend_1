@@ -17,12 +17,7 @@ export default function FloatingDonationWidget() {
   const { openDonationWidget } = useDonation();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Hide on certain pages if needed
-  const isHiddenPage = pathname === "/apoyanos";
-  
-  if (isHiddenPage) {
-    return null;
-  }
+  // Widget is explicitly allowed on /apoyanos as per user request
 
   // Hardcoded values for now, could be passed as props or fetched
   const progress = 45;

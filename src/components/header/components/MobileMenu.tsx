@@ -74,8 +74,8 @@ export default function MobileMenu({ mobileMenu, navLinks }: MobileMenuProps) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="fixed inset-0 z-40 bg-white lg:hidden overflow-y-auto"
-          style={{ paddingTop: '80px' }}
+          className="fixed inset-0 bg-white lg:hidden overflow-y-auto"
+          style={{ paddingTop: '80px', zIndex: 45 }}
         >
           <div className="flex flex-col px-4 sm:px-6 pt-2 pb-24">
             {/* Grid de enlaces simples - 2 columnas compactas */}
