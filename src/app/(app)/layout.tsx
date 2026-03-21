@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import { DonationProvider } from "../../providers/DonationProvider";
 import { client } from "@/sanity/lib/client";
 import { SETTINGS_QUERY, NAVIGATION_QUERY } from "@/sanity/lib/queries";
-import FloatingDonationWidget from "@/components/FloatingDonationWidget";
+import FloatingDonationWidget from "@/components/donations/FloatingDonationWidget";
 
 const manrope = Manrope({
     subsets: ["latin"],

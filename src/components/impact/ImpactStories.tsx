@@ -1,80 +1,121 @@
 "use client";
 
-import React, { useRef, useState, useEffect, useCallback } from "react";
-
-interface Story {
-  id: number;
-  name: string;
-  story: string;
-  img: string;
-}
+import React, { useRef } from "react";
+import { useScrollTracker } from "./useScrollTracker";
+import { ProcessedStory } from "./types";
 
 interface ImpactStoriesProps {
-  stories: Story[];
+  stories: ProcessedStory[];
 }
 
 export default function ImpactStories({ stories }: ImpactStoriesProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  // Track active card index on scroll (mobile)
-  const handleScroll = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const scrollLeft = el.scrollLeft;
-    const cardWidth = el.children[0]?.clientWidth || 1;
-    const gap = 16; // matches gap-4
-    const idx = Math.round(scrollLeft / (cardWidth + gap));
-    setActiveIndex(Math.min(idx, stories.length - 1));
-  }, [stories.length]);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.addEventListener("scroll", handleScroll, { passive: true });
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
-
-  // Scroll to specific card on dot click (mobile)
-  const scrollToCard = (idx: number) => {
-    const el = scrollRef.current;
-    if (!el || !el.children[idx]) return;
-    const child = el.children[idx] as HTMLElement;
-    el.scrollTo({ left: child.offsetLeft - 16, behavior: "smooth" });
-  };
+  
+  // Custom hook handles all the mobile scroll tracking logic
+  const { activeIndex, isMobile, scrollToItem } = useScrollTracker(scrollRef, stories.length, 16);
 
   return (
-    <div className="w-full mb-12 md:mb-16">
-      {/* Cards Container: horizontal scroll on mobile, 3-col grid on desktop */}
+    <div style={{ width: "100%", marginBottom: isMobile ? "2rem" : "4rem" }}>
+      {/* Cards container */}
       <div
         ref={scrollRef}
-        className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 snap-x snap-mandatory scroll-smooth hide-scrollbar -mx-6 px-6 md:mx-0 md:px-0"
+        style={{
+          display: isMobile ? "flex" : "grid",
+          gridTemplateColumns: isMobile ? undefined : "repeat(3, 1fr)",
+          gap: isMobile ? "1rem" : "2rem",
+          overflowX: isMobile ? "auto" : "visible",
+          scrollSnapType: isMobile ? "x mandatory" : undefined,
+          scrollBehavior: "smooth",
+          WebkitOverflowScrolling: "touch",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          paddingBottom: isMobile ? "0.5rem" : 0,
+        }}
       >
         {stories.map((story, idx) => (
           <div
             key={story.id}
-            className="relative flex-shrink-0 snap-center rounded-2xl md:rounded-3xl overflow-hidden border border-gray-100 shadow-md hover:shadow-xl transition-shadow duration-500 group"
             style={{
-              width: 'calc(85vw)',
-              minWidth: 'calc(85vw)',
-              height: '280px',
+              position: "relative",
+              flexShrink: 0,
+              width: isMobile ? "85vw" : "auto",
+              minWidth: isMobile ? "85vw" : 0,
+              height: isMobile ? "260px" : "300px",
+              borderRadius: isMobile ? "1rem" : "1.5rem",
+              overflow: "hidden",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+              border: "1px solid #f3f4f6",
+              scrollSnapAlign: "center",
               animation: `fadeInUp 0.5s ease-out ${idx * 0.12}s both`,
             }}
           >
-            {/* Image — native img, proven to work */}
+            {/* Using native img ensures rendering in mobile horizontal scroll context */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={story.img}
               alt={`Historia de ${story.name}`}
               loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                transition: "transform 0.7s ease",
+              }}
+              onMouseEnter={(e) => {
+                if (!isMobile) e.currentTarget.style.transform = "scale(1.05)";
+              }}
+              onMouseLeave={(e) => {
+                if (!isMobile) e.currentTarget.style.transform = "scale(1)";
+              }}
             />
+            
             {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/30 to-transparent pointer-events-none" />
-            {/* Text */}
-            <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 text-white z-10">
-              <h3 className="text-lg md:text-2xl font-black mb-1">{story.name}</h3>
-              <p className="text-white/80 leading-snug font-medium text-xs md:text-sm italic line-clamp-3">
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to top, rgba(12,32,112,0.95) 0%, rgba(12,32,112,0.3) 50%, transparent 100%)",
+                pointerEvents: "none",
+              }}
+            />
+            
+            {/* Text content */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                padding: isMobile ? "1.25rem" : "1.5rem",
+                color: "white",
+                zIndex: 2,
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: isMobile ? "1.1rem" : "1.5rem",
+                  fontWeight: 900,
+                  marginBottom: "0.25rem",
+                }}
+              >
+                {story.name}
+              </h3>
+              <p
+                style={{
+                  fontSize: isMobile ? "0.75rem" : "0.85rem",
+                  opacity: 0.85,
+                  fontStyle: "italic",
+                  lineHeight: 1.4,
+                  fontWeight: 500,
+                  display: "-webkit-box",
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
                 &ldquo;{story.story}&rdquo;
               </p>
             </div>
@@ -82,32 +123,28 @@ export default function ImpactStories({ stories }: ImpactStoriesProps) {
         ))}
       </div>
 
-      {/* Active dot indicators — mobile only */}
-      <div className="flex justify-center gap-2 mt-4 md:hidden">
-        {stories.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => scrollToCard(i)}
-            aria-label={`Ver testimonio ${i + 1}`}
-            className={`rounded-full transition-all duration-300 ${
-              i === activeIndex
-                ? "w-6 h-2 bg-accent"
-                : "w-2 h-2 bg-gray-300"
-            }`}
-          />
-        ))}
-      </div>
-
-      {/* Desktop-only: override the mobile width constraints */}
-      <style jsx>{`
-        @media (min-width: 768px) {
-          div[style*="width: calc(85vw)"] {
-            width: auto !important;
-            min-width: 0 !important;
-            height: 300px !important;
-          }
-        }
-      `}</style>
+      {/* Dot indicators — mobile only */}
+      {isMobile && (
+        <div style={{ display: "flex", justifyContent: "center", gap: "0.5rem", marginTop: "1rem" }}>
+          {stories.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollToItem(i, 24)}
+              aria-label={`Ver testimonio ${i + 1}`}
+              style={{
+                width: i === activeIndex ? "1.5rem" : "0.5rem",
+                height: "0.5rem",
+                borderRadius: "9999px",
+                backgroundColor: i === activeIndex ? "#f8b719" : "#d1d5db",
+                border: "none",
+                cursor: "pointer",
+                padding: 0,
+                transition: "all 0.3s ease",
+              }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

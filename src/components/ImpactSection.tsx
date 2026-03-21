@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
-import { FaHeart } from "react-icons/fa";
-import { useDonation } from "../providers/DonationProvider";
-
-// Sub-components
+import { ImpactSectionProps, ImpactStat, ImpactStory } from "./impact/types";
+import ImpactHeader from "./impact/ImpactHeader";
 import ImpactStats from "./impact/ImpactStats";
 import ImpactStories from "./impact/ImpactStories";
+import { useDonation } from "../providers/DonationProvider";
+import { FaHeart } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const defaultStats = [
   { id: 1, value: 150, suffix: "+", label: "Niños atendidos" },
@@ -21,30 +21,12 @@ const defaultStories = [
   { id: 3, name: "S.", story: "Verlo sonreír y jugar con otros niños es el mayor regalo que pudimos recibir.", img: "https://images.unsplash.com/photo-1542887800-faca0261c9e1?q=80&w=600&auto=format&fit=crop" }
 ];
 
-interface ImpactStat {
-  label: string;
-  value: string;
-}
-
-interface ImpactStory {
-  name: string;
-  quote: string;
-  image?: { url?: string } | string | number | null;
-}
-
-interface ImpactSectionProps {
-  title?: string | null;
-  stats?: ImpactStat[] | null;
-  stories?: ImpactStory[] | null;
-  ctaButtonText?: string | null;
-}
-
-export default function ImpactSection({ title, stats = [], stories: storiesProp, ctaButtonText }: ImpactSectionProps) {
+export default function ImpactSection({ title, stats = [], stories = [], ctaButtonText }: ImpactSectionProps) {
   const { openDonationWidget } = useDonation();
 
   // Process Stats
   const processedStats = stats && stats.length > 0 
-    ? stats.map((s, i) => {
+    ? stats.map((s: ImpactStat, i: number) => {
         const numMatch = s.value.match(/\d+/);
         const val = numMatch ? parseInt(numMatch[0]) : 0;
         const suffix = s.value.replace(/\d+/g, '').trim();
@@ -53,8 +35,8 @@ export default function ImpactSection({ title, stats = [], stories: storiesProp,
     : defaultStats;
 
   // Process Stories
-  const processedStories = storiesProp && storiesProp.length > 0
-    ? storiesProp.map((s, i) => ({
+  const processedStories = stories && stories.length > 0
+    ? stories.map((s: ImpactStory, i: number) => ({
         id: i + 1,
         name: s.name,
         story: s.quote,
@@ -71,30 +53,10 @@ export default function ImpactSection({ title, stats = [], stories: storiesProp,
       <div className="max-w-[1400px] mx-auto px-6 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Block */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12 md:mb-20"
-        >
-          <div className="flex justify-center mb-4">
-            <FaHeart className="text-accent text-3xl md:text-4xl animate-pulse" />
-          </div>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-primary uppercase tracking-tighter mb-4 leading-tight">
-            {title ? (
-                <span dangerouslySetInnerHTML={{ __html: title.replace('transforma', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">transforma</span>') }} />
-            ) : (
-                <>Tu apoyo <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">transforma</span> vidas</>
-            )}
-          </h2>
-          <p className="text-base md:text-xl text-gray-500 max-w-2xl mx-auto font-medium leading-relaxed">
-            Cada aporte cuenta. Con tu ayuda logramos que más niños reciban la atención terapéutica que necesitan para cumplir sus sueños.
-          </p>
-        </motion.div>
+        <ImpactHeader title={title} />
 
         {/* Modular Components */}
         <ImpactStats stats={processedStats} />
-        
         <ImpactStories stories={processedStories} />
 
         {/* CTA Button */}

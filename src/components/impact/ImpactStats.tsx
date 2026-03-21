@@ -7,15 +7,10 @@ import { FaChild, FaCalendarAlt, FaHandsHelping } from "react-icons/fa";
 
 const STAT_ICONS = [FaChild, FaCalendarAlt, FaHandsHelping];
 
-interface Stat {
-  id: number;
-  value: number;
-  suffix: string;
-  label: string;
-}
+import { ProcessedStat } from "./types";
 
 interface ImpactStatsProps {
-  stats: Stat[];
+  stats: ProcessedStat[];
 }
 
 export default function ImpactStats({ stats }: ImpactStatsProps) {
