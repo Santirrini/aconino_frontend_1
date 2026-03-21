@@ -66,7 +66,7 @@ export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, 
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="fixed inset-0 top-[58px] z-40 bg-white lg:hidden overflow-y-auto"
+          className="fixed inset-0 top-[70px] z-40 bg-white lg:hidden overflow-y-auto"
         >
           <div className="flex flex-col px-6 pt-4 pb-20">
             {navLinks.map((link, idx) => {
