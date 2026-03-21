@@ -31,19 +31,27 @@ export default function NosotrosFundadores({ data }: Props) {
 
     const FounderCard = ({ founder, delay }: { founder: FundadorData, delay: number }) => (
         <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay }}
+            initial={{ opacity: 0, scale: 0.9, filter: 'saturate(0.2) brightness(0.8)' }}
+            whileInView={{ 
+                opacity: 1, 
+                scale: 1, 
+                filter: 'saturate(1) brightness(1)',
+                transition: { duration: 0.8, delay, ease: "easeOut" }
+            }}
+            viewport={{ once: true, margin: "-50px" }}
+            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
             className="flex flex-col items-center w-full max-w-[120px] md:max-w-none mx-auto group cursor-pointer"
         >
-            <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-36 md:h-36 mb-3 md:mb-6 rounded-full overflow-hidden border-2 md:border-[6px] border-white shadow-lg group-hover:shadow-2xl group-hover:border-accent transition-all duration-500">
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-36 md:h-36 mb-3 md:mb-6 rounded-full overflow-hidden border-2 md:border-[6px] border-white shadow-lg group-hover:shadow-accent/30 transition-all duration-500 ring-4 ring-transparent group-hover:ring-accent/20">
                 <Image
                     src={founder.imageUrl || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop"}
                     alt={founder.name || "Fundador"}
                     fill
-                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+                    className="object-cover transition-all duration-1000 group-hover:scale-110"
                 />
+                
+                {/* Subtle Bloom Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
             
             <h4 className="text-primary group-hover:text-accent font-black text-center text-[11px] md:text-xl leading-tight px-1 transition-colors duration-300">

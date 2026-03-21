@@ -44,20 +44,6 @@ export default function ImpactSection({ title, stats = [], stories: storiesProp,
   console.log('storiesProp:', storiesProp);
   console.log('storiesProp length:', storiesProp?.length);
 
-  const displayStats = stats && stats.length > 0 
-    ? stats.map((s, i) => {
-        const numMatch = s.value.match(/\d+/);
-        const val = numMatch ? parseInt(numMatch[0]) : 0;
-        const suffix = s.value.replace(/\d+/g, '').trim();
-        return {
-            id: i + 1,
-            value: val,
-            suffix: suffix,
-            label: s.label,
-        };
-      })
-    : defaultStats;
-
   const displayStories = storiesProp && storiesProp.length > 0
     ? storiesProp.map((s, i) => ({
         id: i + 1,
@@ -85,6 +71,25 @@ export default function ImpactSection({ title, stats = [], stories: storiesProp,
           img: "https://images.unsplash.com/photo-1542887800-faca0261c9e1?q=80&w=600&auto=format&fit=crop"
         }
     ];
+
+  // DEBUG displayStories
+  console.log('=== displayStories ===');
+  console.log('displayStories length:', displayStories.length);
+  console.log('displayStories:', displayStories);
+
+  const displayStats = stats && stats.length > 0 
+    ? stats.map((s, i) => {
+        const numMatch = s.value.match(/\d+/);
+        const val = numMatch ? parseInt(numMatch[0]) : 0;
+        const suffix = s.value.replace(/\d+/g, '').trim();
+        return {
+            id: i + 1,
+            value: val,
+            suffix: suffix,
+            label: s.label,
+        };
+      })
+    : defaultStats;
 
   return (
     <section className="py-24 bg-white relative overflow-hidden">

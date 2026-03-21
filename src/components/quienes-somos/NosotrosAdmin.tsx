@@ -88,42 +88,39 @@ function PersonCard({ person, isExpanded, onToggle }: {
     if (!person.name) return null;
     
     return (
-        <div className="group">
+        <motion.div 
+            whileTap={person.description ? { scale: 0.98 } : {}}
+            className={`group rounded-xl transition-all duration-300 ${isExpanded ? 'bg-primary/[0.03]' : ''}`}
+        >
             <div 
-                className={`flex items-center justify-between py-2 ${person.description ? 'cursor-pointer' : ''}`}
+                className={`flex items-center justify-between py-3 px-2 ${person.description ? 'cursor-pointer' : ''}`}
                 onClick={person.description ? onToggle : undefined}
             >
-                <h5 className="text-primary font-extrabold text-2xl md:text-3xl leading-tight">
+                <h5 className={`font-black text-xl md:text-3xl leading-tight transition-colors duration-300 ${isExpanded ? 'text-accent' : 'text-primary'}`}>
                     {person.name}
                 </h5>
                 {person.description && (
-                    <div className={`flex items-center gap-2 text-sm transition-colors ${isExpanded ? 'text-accent' : 'text-gray-400 group-hover:text-accent'}`}>
-                        <span className="text-xs hidden md:inline">{isExpanded ? "Ocultar" : "Más info"}</span>
-                        <motion.div
-                            animate={{ rotate: isExpanded ? 180 : 0 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                        >
-                            <FaChevronDown className="text-xs" />
-                        </motion.div>
+                    <div className={`flex items-center justify-center w-8 h-8 rounded-full border transition-all duration-500 ${isExpanded ? 'bg-accent border-accent text-primary rotate-180' : 'border-primary/10 text-primary/30 group-hover:border-accent group-hover:text-accent'}`}>
+                        <FaChevronDown className="text-[10px]" />
                     </div>
                 )}
             </div>
             <AnimatePresence initial={false}>
                 {isExpanded && person.description && (
                     <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ type: "spring", stiffness: 100, damping: 20, restDelta: 0.01 }}
-                        className="overflow-hidden"
+                        initial={{ height: 0, opacity: 0, y: -10 }}
+                        animate={{ height: "auto", opacity: 1, y: 0 }}
+                        exit={{ height: 0, opacity: 0, y: -10 }}
+                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                        className="overflow-hidden px-2"
                     >
-                        <p className="text-gray-600 text-sm md:text-base leading-relaxed border-t border-gray-100 pt-4 mt-2">
-                            {person.description}
+                        <p className="text-gray-500 text-sm md:text-base leading-relaxed border-t border-gray-100 pt-3 mt-1 italic">
+                            &ldquo;{person.description}&rdquo;
                         </p>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
+        </motion.div>
     );
 }
 
@@ -143,16 +140,16 @@ function RoleCard({ role, roleIndex, expandedPerson, onTogglePerson }: {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="group bg-white p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl border-b-4 border-transparent hover:border-accent transition-all duration-500 transform hover:-translate-y-2"
+            className="group bg-white p-5 md:p-10 rounded-2xl md:rounded-3xl shadow-lg hover:shadow-2xl border-b-4 border-transparent hover:border-accent transition-all duration-500 transform hover:-translate-y-1"
         >
-            <div className="flex items-center gap-4 mb-4">
-                <div className="p-4 rounded-2xl bg-primary/5 group-hover:bg-accent group-hover:text-white transition-colors duration-300 w-fit">
-                    <FaUserShield className="text-primary group-hover:text-white text-xl md:text-2xl transition-colors" />
+            <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                <div className="p-2 md:p-4 rounded-xl md:rounded-2xl bg-primary/5 group-hover:bg-accent group-hover:text-white transition-colors duration-300 w-fit">
+                    <FaUserShield className="text-primary group-hover:text-white text-base md:text-2xl transition-colors" />
                 </div>
-                <h4 className="text-gray-400 font-black text-xs md:text-sm tracking-widest uppercase">{role.position}</h4>
+                <h4 className="text-gray-400 font-black text-[10px] md:text-sm tracking-[0.2em] uppercase">{role.position}</h4>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-2 md:space-y-4">
                 {people.map((person, personIdx) => {
                     const personId = `${roleIndex}-${personIdx}`;
                     return (
@@ -189,25 +186,25 @@ export default function NosotrosAdmin({ data }: Props) {
     const rightColumn = normalizedRoles.slice(midPoint);
 
     return (
-        <section className="bg-gray-50 relative overflow-hidden pt-20 pb-24 md:pt-28 md:pb-32">
+        <section className="bg-gray-50 relative overflow-hidden pt-12 pb-16 md:pt-28 md:pb-32">
             <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/always-grey.png')] mix-blend-overlay pointer-events-none"></div>
             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
             <div className="absolute bottom-20 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] translate-y-1/2 translate-x-1/4 pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 relative z-10">
                 <motion.div 
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
+                    className="text-center mb-10 md:mb-16"
                 >
-                    <div className="flex items-center justify-center gap-4 mb-4">
-                        <div className="h-[2px] bg-accent w-12"></div>
-                        <span className="text-sm font-bold text-gray-400 tracking-widest uppercase">{subtitle}</span>
-                        <div className="h-[2px] bg-accent w-12"></div>
+                    <div className="flex items-center justify-center gap-3 md:gap-4 mb-3 md:mb-4">
+                        <div className="h-[1px] md:h-[2px] bg-accent w-8 md:w-12"></div>
+                        <span className="text-[10px] md:text-sm font-bold text-gray-400 tracking-widest uppercase">{subtitle}</span>
+                        <div className="h-[1px] md:h-[2px] bg-accent w-8 md:w-12"></div>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-black text-primary drop-shadow-sm">
+                    <h2 className="text-3xl md:text-5xl font-black text-primary drop-shadow-sm leading-tight">
                         {title}
                     </h2>
                 </motion.div>
