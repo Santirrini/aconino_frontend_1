@@ -51,6 +51,7 @@ export default function AboutSection({ acf }: AboutSectionProps) {
                             fill
                             className="object-cover"
                             priority
+                            unoptimized
                         />
 
                         {/* Subtle Overlay */}

@@ -107,6 +107,7 @@ export default function ProgramsSection({
                                         alt={prog.title}
                                         fill
                                         className="object-cover transition-transform duration-700 md:group-hover:scale-105"
+                                        unoptimized
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-80" />
                                     
