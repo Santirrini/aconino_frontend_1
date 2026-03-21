@@ -7,8 +7,8 @@ import { FaSearch } from "react-icons/fa"
 interface PostSummary {
     _id: string
     title: string
-    slug: string
-    publishedAt?: string
+    slug: string | null
+    publishedAt?: string | null
     mainImageUrl?: string
 }
 

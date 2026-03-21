@@ -14,18 +14,51 @@ export default function TriggerButton({ isOpen, toggle }: TriggerButtonProps) {
     <motion.button
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      transition={{ delay: 1, type: "spring", stiffness: 200, damping: 20 }}
+      transition={{ 
+        delay: 1, 
+        type: "spring", 
+        stiffness: 200, 
+        damping: 20 
+      }}
       onClick={toggle}
       whileTap={{ scale: 0.9 }}
       className="bg-gradient-to-r from-accent to-yellow-400 text-primary w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(248,183,25,0.4)] hover:shadow-accent/50 transition-all group relative z-[100]"
       aria-label={isOpen ? "Cerrar menú de donación" : "Abrir menú de donación"}
     >
+      {/* Breathing Background Layer (Mobile focused) */}
+      {!isOpen && (
+        <motion.div
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute inset-0 rounded-full bg-accent/40 pointer-events-none"
+        />
+      )}
+
       <AnimatePresence mode="wait">
         {!isOpen ? (
           <motion.div
             key="heart"
             initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
+            animate={{ 
+              scale: 1,
+              // Subtle continuous icon pulse when closed
+              y: [0, -2, 0]
+            }}
+            transition={{
+              scale: { duration: 0.2 },
+              y: { 
+                duration: 2, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }
+            }}
             exit={{ scale: 0 }}
             className="absolute"
           >
@@ -46,9 +79,9 @@ export default function TriggerButton({ isOpen, toggle }: TriggerButtonProps) {
         )}
       </AnimatePresence>
 
-      {/* Pulse effect */}
+      {/* Primary Pulse effect */}
       {!isOpen && (
-        <span className="absolute inset-0 rounded-full bg-accent/40 animate-ping pointer-events-none opacity-75" />
+        <span className="absolute inset-0 rounded-full bg-accent/30 animate-ping pointer-events-none opacity-50" />
       )}
     </motion.button>
   );

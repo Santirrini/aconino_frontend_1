@@ -21,6 +21,15 @@ interface NavItem {
   subLinks?: { name?: string; href?: string }[];
 }
 
+interface SanityNavItem {
+  label?: string;
+  name?: string;
+  title?: string;
+  href?: string;
+  hasDropdown?: boolean;
+  subLinks?: Array<{ label?: string; name?: string; title?: string; href?: string }>;
+}
+
 interface HeaderSettings {
   phoneNumber?: string;
   mobilePhone?: string;
@@ -30,7 +39,7 @@ interface HeaderSettings {
 }
 
 interface HeaderProps {
-  navData?: NavItem[];
+  navData?: SanityNavItem[];
   ctaLabel?: string;
   ctaHref?: string;
   settings?: HeaderSettings;
@@ -86,23 +95,17 @@ export default function Header({ navData, ctaLabel, ctaHref, settings }: HeaderP
     { name: "Contáctanos", href: "/contacto" },
   ];
 
-  // Map Sanity navItems to expected format
-  interface SanityNavItem {
-    label?: string;
-    href?: string;
-    hasDropdown?: boolean;
-    subLinks?: { label?: string; href?: string }[];
-  }
-
-  const mappedNavData = navData?.map((item: SanityNavItem) => ({
-    name: item.label,
-    href: item.href,
-    hasDropdown: item.hasDropdown,
-    subLinks: item.subLinks?.map((sub) => ({
-      name: sub.label,
-      href: sub.href
+  const mappedNavData: NavItem[] = navData
+    ?.map((item: SanityNavItem) => ({
+      name: (item.label || item.name || item.title || "").trim(),
+      href: item.href || "#",
+      hasDropdown: !!item.hasDropdown,
+      subLinks: item.subLinks?.map((sub) => ({
+        name: (sub.label || sub.name || sub.title || "Link").trim(),
+        href: sub.href || "#"
+      }))
     }))
-  })) || [];
+    .filter((link: NavItem) => link.name !== "") || [];
 
   const links = mappedNavData.length > 0 ? mappedNavData : defaultLinks;
   
@@ -145,7 +148,7 @@ export default function Header({ navData, ctaLabel, ctaHref, settings }: HeaderP
             variants={staggerContainer}
             initial="hidden"
             animate="show"
-            className={`w-full max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-2' : 'py-2 md:py-4'}`}
+            className={`w-full max-w-[1400px] mx-auto px-5 md:px-8 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-2.5' : 'py-3 md:py-4'}`}
           >
             <Logo />
 
@@ -180,11 +183,8 @@ export default function Header({ navData, ctaLabel, ctaHref, settings }: HeaderP
       </motion.div>
 
       <MobileMenu
-        isOpen={mobileMenu.isOpen}
+        mobileMenu={mobileMenu}
         navLinks={links}
-        closeMenu={mobileMenu.closeMenu}
-        expandedItem={mobileMenu.expandedItem}
-        toggleExpanded={mobileMenu.toggleExpanded}
       />
 
       {/* Spacer to prevent content jump */}

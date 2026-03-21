@@ -3,12 +3,8 @@
 import Image from "next/image"
 import { PortableText, type PortableTextComponents, type PortableTextBlock } from "@portabletext/react"
 import { urlForImage } from "@/sanity/lib/image"
-
-function extractYouTubeId(url: string): string | null {
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
-  const match = url.match(regExp)
-  return match && match[2].length === 11 ? match[2] : null
-}
+import type { SanityImageAsset } from "@/types/sanity"
+import { extractYouTubeId } from "@/lib/format"
 
 function YouTubeVideo({ url }: { url: string }) {
   const videoId = extractYouTubeId(url)
@@ -33,12 +29,10 @@ function YouTubeVideo({ url }: { url: string }) {
   )
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function SanityImage({ value }: { value: { asset?: any; alt?: string } }) {
+function SanityImage({ value }: { value: SanityImageAsset }) {
   if (!value?.asset) return null
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const imageUrl = urlForImage(value as any).width(1200).url()
+  const imageUrl = urlForImage(value).width(1200).url()
 
   return (
     <figure className="my-8">

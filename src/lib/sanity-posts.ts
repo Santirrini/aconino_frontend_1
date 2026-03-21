@@ -1,4 +1,5 @@
 import { client } from '@/sanity/lib/client'
+import type { PortableTextBlock } from "@portabletext/react"
 import {
   ALL_POSTS_QUERY,
   POST_BY_SLUG_QUERY,
@@ -9,14 +10,16 @@ import {
   RECENT_POSTS_QUERY,
 } from '@/sanity/lib/queries'
 
+export type SanityBlockContent = PortableTextBlock[]
+
 export interface SanityPost {
   _id: string
   title: string
-  slug: string
-  publishedAt?: string
-  excerpt?: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  body?: any[]
+  slug: string | null
+  publishedAt?: string | null
+  _createdAt?: string
+  excerpt?: string | null
+  body?: SanityBlockContent
   mainImageUrl?: string
   mainImageAlt?: string
   author?: {

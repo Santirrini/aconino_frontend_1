@@ -62,7 +62,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                             {date && (
                                 <div className="flex items-center gap-1.5">
                                     <FaCalendarAlt className="text-accent text-xs" />
-                                    <time dateTime={post.publishedAt}>{date}</time>
+                                    <time dateTime={post.publishedAt ?? undefined}>{date}</time>
                                 </div>
                             )}
                             {post.author && (
@@ -135,7 +135,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 
 export async function generateStaticParams() {
     const { posts } = await getPosts(1)
-    return posts.map((post) => ({
-        slug: post.slug,
-    }))
+    return posts
+        .filter((post) => post.slug !== null)
+        .map((post) => ({
+            slug: post.slug,
+        }))
 }

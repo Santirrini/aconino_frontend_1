@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { FaCalendarAlt, FaArrowRight } from "react-icons/fa"
 import type { SanityPostListItem } from "@/types/sanity"
 
-function formatDate(dateStr?: string): string {
+function formatDate(dateStr?: string | null): string {
     if (!dateStr) return ""
     return new Date(dateStr).toLocaleDateString("es-ES", {
         year: "numeric",
@@ -25,7 +25,7 @@ function stripHtml(html: string): string {
     return html.replace(/<[^>]*>/g, "").trim()
 }
 
-function getExcerpt(excerpt?: string): string {
+function getExcerpt(excerpt?: string | null): string {
     if (!excerpt) return ""
     return stripHtml(excerpt)
 }

@@ -1,14 +1,33 @@
+import type { PortableTextBlock } from "@portabletext/react"
+
+export interface SanityImageAsset {
+  _type: 'image'
+  asset: {
+    _ref: string
+    _type: 'reference'
+  }
+  alt?: string
+  hotspot?: {
+    x: number
+    y: number
+    width: number
+    height: number
+  }
+}
+
+export type SanityBlockContent = PortableTextBlock[]
+
 export interface SanityPostListItem {
     _id: string
     title: string
-    slug: string
-    publishedAt?: string
-    excerpt?: string
-    mainImageUrl?: string
-    mainImageAlt?: string
+    slug: string | null
+    publishedAt?: string | null
+    excerpt?: string | null
+    mainImageUrl?: string | null
+    mainImageAlt?: string | null
     author?: {
         name: string
-        imageUrl?: string
+        imageUrl?: string | null
     }
 }
 
@@ -22,11 +41,10 @@ export interface SanityCategoryListItem {
 export interface SanityPostDetail {
     _id: string
     title: string
-    slug: string
+    slug: string | null
     publishedAt?: string
     excerpt?: string
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    body?: any[]
+    body?: SanityBlockContent
     mainImageUrl?: string
     mainImageAlt?: string
     author?: {

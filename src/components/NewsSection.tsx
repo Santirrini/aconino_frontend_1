@@ -6,9 +6,22 @@ import Image from "next/image";
 import { FaRegCommentDots, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
+export interface WPPost {
+    id: string | number;
+    slug: string;
+    date?: string;
+    publishedAt?: string;
+    createdAt?: string;
+    title: string | { rendered: string };
+    excerpt: string | { rendered: string };
+    featuredImage?: { url: string };
+    _embedded?: {
+        'wp:featuredmedia'?: Array<{ source_url: string }>;
+    };
+}
+
 interface NewsSectionProps {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    posts: any[];
+    posts: WPPost[];
     title?: string | null;
     showSection?: boolean | null;
 }

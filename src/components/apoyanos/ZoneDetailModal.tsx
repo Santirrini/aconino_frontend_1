@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaCheckCircle, FaMoneyBillWave, FaBoxOpen, FaDesktop, FaChair, FaHandHoldingMedical, FaBed, FaUtensils, FaTv, FaBriefcase } from "react-icons/fa";
 import { CenterZone, DonationType } from "@/types/centro-dia";
 import { useDonation } from "@/providers/DonationProvider";
+import { formatCurrency } from "@/lib/format";
 
 interface ZoneDetailModalProps {
   zone: CenterZone | null;
@@ -36,8 +37,6 @@ export default function ZoneDetailModal({ zone, isOpen, onClose }: ZoneDetailMod
 
   const IconComponent = iconMap[zone.icon] || FaBriefcase;
   const percentage = (zone.totalRaised / zone.totalNeeded) * 100;
-
-  const formatCurrency = (value: number) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(value);
 
   return (
     <AnimatePresence>

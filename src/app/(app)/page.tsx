@@ -9,6 +9,7 @@ import RecognitionsSection from "../../components/RecognitionsSection";
 // Importar cliente y consultas de Sanity
 import { client } from "@/sanity/lib/client";
 import { LATEST_POSTS_QUERY, CTA_SECTION_QUERY, ABOUT_SECTION_QUERY, HOME_PAGE_QUERY } from "@/sanity/lib/queries";
+import type { SanityPost } from "@/lib/sanity-posts";
 
 export const revalidate = 60;
 
@@ -66,16 +67,6 @@ export default async function Home() {
         slug: p.title?.toLowerCase().replace(/ /g, '-') || '',
         imageUrl: p.imageUrl || null
     })) || [];
-
-    interface SanityPost {
-        _id: string;
-        slug: string | null;
-        publishedAt?: string | null;
-        _createdAt: string;
-        title?: string;
-        excerpt?: string | null;
-        mainImageUrl?: string;
-    }
 
     const generateSlug = (title?: string, existingSlug?: string | null): string => {
         if (existingSlug && existingSlug.trim() !== '') {

@@ -1,9 +1,54 @@
 "use client";
 
-import { FaHeart, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { CurtainReveal, GradientOverlay, ParticleMorph, fadeVariants, GoldenTypewriter } from "./animations";
+import { CurtainReveal, GradientOverlay, ParticleMorph, GoldenTypewriter } from "./animations";
+
+interface HeroBackgroundProps {
+    backgroundType: 'video' | 'image';
+    videoUrl?: string;
+    imageUrl?: string;
+}
+
+const DEFAULT_TITLE = "35 años";
+const DEFAULT_SUBTITLE = "apoyando la inclusión!";
+const DEFAULT_IMAGE = "/images/hero-background-blue.png";
+const POSTER_PLACEHOLDER = "https://placehold.co/1920x1080/0c2070/ffffff?text=Video+Cargando";
+
+function HeroBackground({ backgroundType, videoUrl, imageUrl }: HeroBackgroundProps) {
+    if (backgroundType === "video" && videoUrl) {
+        return (
+            <video
+                className="absolute inset-0 w-full h-full object-cover z-0"
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster={POSTER_PLACEHOLDER}
+            >
+                <source src={videoUrl} type="video/mp4" />
+                Tu navegador no soporta videos HTML5.
+            </video>
+        );
+    }
+
+    return (
+        <motion.div
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="absolute inset-0 w-full h-full z-0"
+        >
+            <Image
+                src={imageUrl || DEFAULT_IMAGE}
+                alt="Hero Background"
+                fill
+                className="object-cover"
+                priority
+            />
+        </motion.div>
+    );
+}
 
 interface HeroProps {
     acf?: {
@@ -19,74 +64,28 @@ interface HeroProps {
 }
 
 export default function Hero({ acf }: HeroProps) {
-    const title = acf?.hero_title || "35 años";
-    const subtitle = acf?.hero_subtitle || "apoyando la inclusión!";
-    const isVideo = acf?.hero_background_type === "video" && acf?.hero_video_url;
-    const videoUrl = acf?.hero_video_url || "";
-    const imageUrl = acf?.hero_image || "/images/hero-background-blue.png";
+    const title = acf?.hero_title || DEFAULT_TITLE;
+    const subtitle = acf?.hero_subtitle || DEFAULT_SUBTITLE;
+    const backgroundType = (acf?.hero_background_type === "video" ? "video" : "image") as 'video' | 'image';
+    const videoUrl = acf?.hero_video_url;
+    const imageUrl = acf?.hero_image;
 
     return (
         <section className="relative w-full min-h-[600px] md:min-h-[800px] lg:min-h-[100vh] bg-primary flex items-center justify-center overflow-hidden py-24">
-            {/* Curtain Reveal Initial Effect */}
             <CurtainReveal color="bg-secondary" />
 
-            {/* Background Content */}
-            {isVideo ? (
-                <video
-                    className="absolute inset-0 w-full h-full object-cover z-0"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    poster="https://placehold.co/1920x1080/0c2070/ffffff?text=Video+Cargando"
-                >
-                    <source src={videoUrl} type="video/mp4" />
-                    Tu navegador no soporta videos HTML5.
-                </video>
-            ) : (
-                <motion.div
-                    initial={{ scale: 1.1 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
-                    className="absolute inset-0 w-full h-full z-0"
-                >
-                    <Image
-                        src={imageUrl}
-                        alt="Hero Background"
-                        fill
-                        className="object-cover"
-                        priority
-                    />
-                </motion.div>
-            )}
+            <HeroBackground
+                backgroundType={backgroundType}
+                videoUrl={videoUrl}
+                imageUrl={imageUrl}
+            />
 
             <div className="absolute inset-0 bg-black/40 z-10" />
             <GradientOverlay from="from-primary/80" via="via-secondary/50" to="to-primary/80" className="opacity-60 z-10" />
             <ParticleMorph subtle={true} />
 
-            {/* Navigation Arrows */}
-            <motion.button 
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1 }}
-                className="hidden md:flex absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-black/40 hover:bg-black/70 backdrop-blur-sm rounded-full items-center justify-center text-white transition-all hover:scale-110" 
-                aria-label="Previous"
-            >
-                <FaChevronLeft className="text-xl" />
-            </motion.button>
-            <motion.button 
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1 }}
-                className="hidden md:flex absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-black/40 hover:bg-black/70 backdrop-blur-sm rounded-full items-center justify-center text-white transition-all hover:scale-110" 
-                aria-label="Next"
-            >
-                <FaChevronRight className="text-xl" />
-            </motion.button>
-
-            {/* Content Overlay */}
             <div className="relative z-20 text-center px-4 md:px-8 w-full max-w-6xl mx-auto flex flex-col items-center mt-12 md:mt-0">
-                <motion.div 
+                <motion.div
                     initial="hidden"
                     animate="visible"
                     variants={{
@@ -95,44 +94,20 @@ export default function Hero({ acf }: HeroProps) {
                     }}
                     className="relative w-full flex flex-col items-center mt-8"
                 >
-                    {/* Floating Heart Icon */}
-                    <motion.div
-                        variants={fadeVariants}
-                        className="absolute -top-8 md:-top-12 -left-16 md:-left-24 z-30"
-                    >
-                        <motion.div
-                            animate={{ y: [0, -10, 0] }}
-                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        >
-                            <FaHeart className="text-accent text-4xl md:text-5xl drop-shadow-lg opacity-60" />
-                        </motion.div>
-                    </motion.div>
-
-                    {/* Main Combined Heading */}
-                    <h1 
-                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight md:leading-tight mb-8 drop-shadow-2xl max-w-5xl text-center" 
+                    <h1
+                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight md:leading-tight mb-8 drop-shadow-2xl max-w-5xl text-center"
                         style={{ textShadow: "0 10px 30px rgba(0,0,0,0.8)" }}
                     >
-                        <GoldenTypewriter 
-                            text={`${title} ${subtitle}`} 
-                            delay={0.6} 
-                            speed={0.1} 
-                            loop={true} 
+                        <GoldenTypewriter
+                            text={`${title} ${subtitle}`}
+                            delay={0.6}
+                            speed={0.1}
+                            loop={true}
                             waitDuration={4000}
                         />
                     </h1>
                 </motion.div>
             </div>
-
-            {/* Slider Indicators */}
-            <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2 }}
-                className="absolute bottom-8 md:bottom-12 z-30 flex gap-3"
-            >
-                <button className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-white ring-2 ring-white/50 ring-offset-2 ring-offset-transparent transition-transform hover:scale-110" aria-label="Slide 1"></button>
-            </motion.div>
         </section>
     );
 }
