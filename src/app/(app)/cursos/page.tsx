@@ -58,7 +58,7 @@ export default async function CursosPage() {
       heroSlides = cursosPage.heroSlides
         .filter((s: { imageUrl?: string }) => s.imageUrl)
         .map((s: { imageUrl?: string; alt?: string; overlayOpacity?: number }) => ({
-          src: s.imageUrl || "",
+          src: s.imageUrl || "https://placehold.co/800x400?text=Curso+Aconino",
           alt: s.alt || "",
           overlayOpacity: s.overlayOpacity,
         }));

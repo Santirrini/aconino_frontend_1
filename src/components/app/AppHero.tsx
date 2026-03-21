@@ -45,8 +45,8 @@ export default function AppHero({ slides }: AppHeroProps) {
           className="absolute inset-0 w-full h-full z-0"
         >
           <Image
-            src={slides[currentIndex].src}
-            alt={slides[currentIndex].alt}
+            src={slides[currentIndex]?.src || "https://placehold.co/1200x600?text=App+Hero"}
+            alt={slides[currentIndex]?.alt || "Hero image"}
             fill
             className="object-cover"
             priority={currentIndex === 0}

@@ -67,8 +67,8 @@ export default function CursosHero({
                     className="absolute inset-0 w-full h-full z-0"
                 >
                     <Image
-                        src={currentSlide.src}
-                        alt={currentSlide.alt}
+                        src={currentSlide.src || "https://placehold.co/1200x600?text=Cursos+Hero"}
+                        alt={currentSlide.alt || "Cursos Hero"}
                         fill
                         className="object-cover object-center"
                         priority={currentIndex === 0}

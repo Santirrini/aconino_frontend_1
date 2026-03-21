@@ -102,7 +102,7 @@ export default async function ProgramasPage() {
                                             }`}></div>
                                         <div className="relative h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
                                             <Image
-                                                src={imageUrl || ""}
+                                                src={imageUrl || "https://placehold.co/600x400?text=Programa+Aconino"}
                                                 alt={program.title || "Programa"}
                                                 fill
                                                 className="object-cover transition-transform duration-700 group-hover:scale-110"

@@ -81,6 +81,39 @@ export default function ProgramsSection({
             </div>
 
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                {/* Título de la Sección */}
+                <div className="text-center mb-16 md:mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="inline-block mb-4"
+                    >
+                        <span className="block w-12 h-1 bg-accent mx-auto rounded-full" />
+                    </motion.div>
+                    
+                    <motion.h2
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                        className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight"
+                    >
+                        Nuestros Programas
+                    </motion.h2>
+                    
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                        className="mt-4 text-base md:text-lg text-slate-500 max-w-2xl mx-auto"
+                    >
+                        Programas terapéuticos especializados para el desarrollo integral de niños y jóvenes
+                    </motion.p>
+                </div>
+
                 {/* Grid de Tarjetas */}
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                     {displayPrograms.map((prog, idx) => {
