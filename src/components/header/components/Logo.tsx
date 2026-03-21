@@ -15,7 +15,7 @@ export default function Logo() {
       />
 
       <motion.div
-        className="flex font-black text-4xl md:text-5xl tracking-tighter leading-none relative"
+        className="flex font-black text-2xl md:text-5xl tracking-tighter leading-none relative"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{
@@ -88,15 +88,15 @@ export default function Logo() {
 
       {/* Tagline */}
       <motion.div
-        className="flex flex-col text-center mt-1"
+        className="flex flex-col text-center mt-0.5"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.9 }}
       >
-        <span className="text-[10px] md:text-[11px] font-bold text-gray-900 leading-tight">
+        <span className="text-[8px] md:text-[11px] font-bold text-gray-900 leading-tight">
           Asociación Aconiño
         </span>
-        <span className="text-[8px] md:text-[9px] text-gray-500 leading-tight">
+        <span className="hidden md:block text-[8px] md:text-[9px] text-gray-500 leading-tight">
           Bogotá - Colombia
         </span>
       </motion.div>

@@ -145,7 +145,7 @@ export default function Header({ navData, ctaLabel, ctaHref, settings }: HeaderP
             variants={staggerContainer}
             initial="hidden"
             animate="show"
-            className={`w-full max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}
+            className={`w-full max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-2' : 'py-2 md:py-4'}`}
           >
             <Logo />
 
@@ -160,11 +160,11 @@ export default function Header({ navData, ctaLabel, ctaHref, settings }: HeaderP
 
               <button
                 onClick={mobileMenu.toggleMenu}
-                className={`lg:hidden p-3 rounded-xl transition-colors ${mobileMenu.isOpen ? 'bg-primary text-white' : 'bg-gray-50 text-primary hover:bg-primary hover:text-white'
+                className={`lg:hidden p-2.5 rounded-xl transition-colors ${mobileMenu.isOpen ? 'bg-primary text-white' : 'bg-gray-50 text-primary hover:bg-primary hover:text-white'
                   }`}
                 aria-label="Toggle menu"
               >
-                {mobileMenu.isOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
+                {mobileMenu.isOpen ? <FaTimes className="text-lg" /> : <FaBars className="text-lg" />}
               </button>
             </div>
           </motion.div>
@@ -188,7 +188,7 @@ export default function Header({ navData, ctaLabel, ctaHref, settings }: HeaderP
       />
 
       {/* Spacer to prevent content jump */}
-      <div className="h-[120px] md:h-[130px] w-full bg-transparent"></div>
+      <div className="h-[80px] md:h-[130px] w-full bg-transparent"></div>
     </>
   );
 }

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaChevronDown, FaHeart } from "react-icons/fa";
+import { FaChevronDown, FaHeart, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDonation } from "../../../providers/DonationProvider";
@@ -62,13 +62,13 @@ export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, 
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "100vh" }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 top-[70px] md:top-[80px] z-40 bg-white lg:hidden overflow-y-auto"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="fixed inset-0 top-[58px] z-40 bg-white lg:hidden overflow-y-auto"
         >
-          <div className="flex flex-col px-6 py-8 gap-4 border-t border-gray-100 pb-32">
+          <div className="flex flex-col px-6 pt-4 pb-20">
             {navLinks.map((link, idx) => {
               const parentActive = isParentActive(link);
               const isExpanded = expandedItem === link.name;
@@ -76,13 +76,13 @@ export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, 
               return (
                 <motion.div
                   key={idx}
-                  initial={{ x: -20, opacity: 0 }}
+                  initial={{ x: -10, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.1 + (idx * 0.05) }}
-                  className="border-b border-gray-50 pb-2"
+                  transition={{ delay: idx * 0.03 }}
+                  className="border-b border-gray-50 last:border-0"
                 >
                   <div
-                    className="flex items-center justify-between py-3 cursor-pointer group"
+                    className="flex items-center justify-between py-3.5 cursor-pointer group"
                     onClick={() => {
                       if (link.hasDropdown) {
                         toggleExpanded(link.name);
@@ -92,13 +92,13 @@ export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, 
                     }}
                   >
                     {link.hasDropdown ? (
-                      <span className={`text-xl font-black transition-colors ${parentActive || isExpanded ? 'text-accent' : 'text-primary'}`}>
+                      <span className={`text-lg font-bold transition-colors ${parentActive || isExpanded ? 'text-accent' : 'text-primary'}`}>
                         {link.name}
                       </span>
                     ) : (
                       <Link
                         href={link.href || "#"}
-                        className={`text-xl font-black transition-colors ${parentActive ? 'text-accent' : 'text-primary hover:text-accent'}`}
+                        className={`text-lg font-bold transition-colors ${parentActive ? 'text-accent' : 'text-primary'}`}
                         onClick={closeMenu}
                       >
                         {link.name}
@@ -106,8 +106,8 @@ export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, 
                     )}
 
                     {link.hasDropdown && (
-                      <div className={`p-2 rounded-lg transition-colors ${isExpanded ? 'bg-primary/5' : ''}`}>
-                        <FaChevronDown className={`text-sm transition-transform duration-300 ${isExpanded ? '-rotate-180 text-accent' : 'text-gray-400'}`} />
+                      <div className={`p-1.5 rounded-lg transition-colors ${isExpanded ? 'bg-accent/10 text-accent' : 'text-gray-300'}`}>
+                        <FaChevronDown className={`text-xs transition-transform duration-300 ${isExpanded ? '-rotate-180' : ''}`} />
                       </div>
                     )}
                   </div>
@@ -121,8 +121,8 @@ export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, 
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden"
                       >
-                        <div className="flex flex-col py-2 pl-4 mb-2 relative">
-                          <div className="absolute left-0 top-2 bottom-2 w-[2px] bg-gray-100 rounded-full"></div>
+                        <div className="flex flex-col pb-4 pl-4 gap-1 relative">
+                          <div className="absolute left-0 top-0 bottom-4 w-[1px] bg-accent/20"></div>
                           
                           {link.subLinks?.map((sub, sIdx) => {
                             const subActive = isActive(sub.href);
@@ -131,7 +131,7 @@ export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, 
                                 key={sIdx}
                                 href={sub.href || "#"}
                                 onClick={closeMenu}
-                                className={`px-4 py-3 text-sm md:text-base transition-all rounded-r-xl ${subActive ? 'text-accent font-black bg-primary/5' : 'text-gray-600 font-semibold hover:text-primary hover:bg-gray-50'}`}
+                                className={`px-4 py-2.5 text-sm transition-all rounded-lg ${subActive ? 'text-accent font-bold bg-accent/5' : 'text-gray-500 font-medium hover:text-primary'}`}
                               >
                                 {sub.name}
                               </Link>
@@ -145,28 +145,33 @@ export default function MobileMenu({ isOpen, navLinks, closeMenu, expandedItem, 
               );
             })}
 
+            {/* Compact Footer Menu */}
             <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="mt-8 bg-gray-50 p-6 rounded-3xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="mt-10 pt-8 border-t border-gray-100"
             >
-              <div className="text-sm font-bold text-gray-400 tracking-widest uppercase mb-4 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-accent"></div>
-                Contacto Directo
+              <div className="flex flex-col gap-4 mb-8">
+                <div className="flex items-center gap-3 text-gray-400 group">
+                  <FaEnvelope className="text-accent text-sm" />
+                  <a href="mailto:asistentenorte@aconino.org" className="text-sm font-semibold text-primary">asistentenorte@aconino.org</a>
+                </div>
+                <div className="flex items-center gap-3 text-gray-400">
+                  <FaMapMarkerAlt className="text-accent text-sm" />
+                  <span className="text-xs font-medium leading-tight">Calle 127 B No. 45-28 – Barrio Prado, Bogotá</span>
+                </div>
               </div>
-              <a href="mailto:asistentenorte@aconino.org" className="text-primary font-bold text-lg mb-2 block hover:text-accent transition-colors">asistentenorte@aconino.org</a>
-              <p className="text-gray-500 text-sm font-medium">Calle 127 B No. 45-28 – Barrio Prado<br />Bogotá - Colombia</p>
 
               <button
                 onClick={() => {
                   closeMenu();
                   openDonationWidget();
                 }}
-                className="sm:hidden w-full mt-6 flex items-center justify-center gap-3 bg-accent text-primary px-6 py-4 rounded-full font-black text-sm tracking-widest shadow-xl shadow-accent/40 hover:scale-105 transition-transform uppercase"
+                className="w-full flex items-center justify-center gap-3 bg-accent text-primary py-4 rounded-2xl font-black text-sm tracking-widest shadow-lg shadow-accent/20 active:scale-95 transition-all uppercase"
               >
-                DONAR AHORA
-                <FaHeart className="text-primary" />
+                <FaHeart />
+                APADRINA UN NIÑO
               </button>
             </motion.div>
           </div>

@@ -16,7 +16,7 @@ export default function TopBar({ isScrolled }: TopBarProps) {
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="bg-[#1b2b65] text-white text-[11px] sm:text-xs md:text-sm overflow-hidden"
+          className="hidden md:block bg-[#1b2b65] text-white text-[11px] sm:text-xs md:text-sm overflow-hidden"
         >
           <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-2 md:py-1.5 flex flex-col md:flex-row items-center justify-center md:justify-between gap-1.5 md:gap-0">
             
