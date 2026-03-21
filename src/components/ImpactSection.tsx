@@ -45,7 +45,7 @@ export default function ImpactSection({ title, stats = [], stories = [], ctaButt
     : defaultStories;
 
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-white relative overflow-hidden">
       {/* Premium Background Decor */}
       <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-accent/5 rounded-full blur-[100px] opacity-50 pointer-events-none" />
       <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-secondary/5 rounded-full blur-[100px] opacity-50 pointer-events-none" />

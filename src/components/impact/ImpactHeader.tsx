@@ -10,14 +10,13 @@ interface ImpactHeaderProps {
 
 export default function ImpactHeader({ title }: ImpactHeaderProps) {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="text-center mb-12 md:mb-20"
+      className="text-center mb-10 md:mb-12"
     >
-      <div className="flex justify-center mb-4">
-        <FaHeart className="text-accent text-3xl md:text-4xl animate-pulse" />
+      <div className="flex justify-center mb-4">        <FaHeart className="text-accent text-3xl md:text-4xl animate-pulse" />
       </div>
       <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-primary uppercase tracking-tighter mb-4 leading-tight">
         {title ? (

@@ -15,14 +15,14 @@ export default function ImpactStories({ stories }: ImpactStoriesProps) {
   const { activeIndex, isMobile, scrollToItem } = useScrollTracker(scrollRef, stories.length, 16);
 
   return (
-    <div style={{ width: "100%", marginBottom: isMobile ? "2rem" : "4rem" }}>
+    <div style={{ width: "100%", marginBottom: isMobile ? "2rem" : "3rem" }}>
       {/* Cards container */}
       <div
         ref={scrollRef}
         style={{
           display: isMobile ? "flex" : "grid",
           gridTemplateColumns: isMobile ? undefined : "repeat(3, 1fr)",
-          gap: isMobile ? "1rem" : "2rem",
+          gap: isMobile ? "1rem" : "1.5rem",
           overflowX: isMobile ? "auto" : "visible",
           scrollSnapType: isMobile ? "x mandatory" : undefined,
           scrollBehavior: "smooth",
@@ -40,7 +40,7 @@ export default function ImpactStories({ stories }: ImpactStoriesProps) {
               flexShrink: 0,
               width: isMobile ? "85vw" : "auto",
               minWidth: isMobile ? "85vw" : 0,
-              height: isMobile ? "260px" : "300px",
+              height: isMobile ? "260px" : "240px",
               borderRadius: isMobile ? "1rem" : "1.5rem",
               overflow: "hidden",
               boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
