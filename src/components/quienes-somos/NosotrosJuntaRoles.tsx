@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaUserTie, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { FaUserTie, FaChevronDown } from "react-icons/fa";
 
 interface JuntaPersonData {
     name?: string;
