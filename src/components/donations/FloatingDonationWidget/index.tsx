@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { usePathname } from "next/navigation";
 import { AnimatePresence } from "framer-motion";
 import { useDonation } from "@/providers/DonationProvider";
 import TriggerButton from "./TriggerButton";
@@ -13,7 +12,6 @@ import DonationPopup from "./DonationPopup";
  * Location: Bottom-right, hides on mobile menu open via globals.css
  */
 export default function FloatingDonationWidget() {
-  const pathname = usePathname();
   const { openDonationWidget } = useDonation();
   const [isOpen, setIsOpen] = useState(false);
 

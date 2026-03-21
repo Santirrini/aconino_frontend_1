@@ -17,7 +17,7 @@ import { CenterZone } from '@/types/centro-dia';
 export default function ApoyanosClient() {
     const [selectedZone, setSelectedZone] = useState<CenterZone | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { setShowComingSoon, setTargetYear, setMessage } = useComingSoon();
+    const { setShowComingSoon } = useComingSoon();
 
     useEffect(() => {
         setShowComingSoon(true);
