@@ -30,12 +30,7 @@ export default async function Home() {
         console.error('Error fetching Sanity data:', error);
     }
 
-    // DEBUG: Ver qué datos llegan de Sanity
-    console.log('=== DEBUG: sanityHome ===');
-    console.log(JSON.stringify(sanityHome, null, 2));
-    console.log('=== DEBUG: testimonials ===');
-    console.log('testimonials field:', sanityHome?.testimonials);
-    console.log('items:', sanityHome?.testimonials?.items);
+
 
     // Mapear datos para el Hero desde documento unificado
     const acf = {
@@ -122,9 +117,7 @@ export default async function Home() {
         image: t.imageUrl || null
     })) || [];
 
-    // DEBUG: Ver mapped testimonials
-    console.log('=== DEBUG: mappedTestimonials ===');
-    console.log(JSON.stringify(mappedTestimonials, null, 2));
+
 
     return (
         <div className="w-full">
