@@ -33,22 +33,24 @@ export default async function RootLayout({
     return (
         <html lang="es" className={`${manrope.variable}`}>
             <body className="antialiased min-h-screen flex flex-col font-sans bg-white text-primary">
-                <DonationProvider>
-                    <ComingSoonProvider>
-                        <FloatingDonationWidget />
-                        <Header 
-                            navData={navigation?.navItems} 
-                            ctaLabel={navigation?.ctaButton?.label}
-                            ctaHref={navigation?.ctaButton?.href}
-                            settings={settings}
-                        />
-                        <main className="flex-1 w-full relative">
-                            {children}
-                        </main>
-                        <Footer settings={settings} />
-                        <ComingSoonOverlayWrapper />
-                    </ComingSoonProvider>
-                </DonationProvider>
+                <div className="w-full max-w-full" style={{ overflowX: 'clip' }}>
+                    <DonationProvider>
+                        <ComingSoonProvider>
+                            <FloatingDonationWidget />
+                            <Header 
+                                navData={navigation?.navItems} 
+                                ctaLabel={navigation?.ctaButton?.label}
+                                ctaHref={navigation?.ctaButton?.href}
+                                settings={settings}
+                            />
+                            <main className="flex-1 w-full relative" style={{ overflowX: 'clip' }}>
+                                {children}
+                            </main>
+                            <Footer settings={settings} />
+                            <ComingSoonOverlayWrapper />
+                        </ComingSoonProvider>
+                    </DonationProvider>
+                </div>
             </body>
         </html>
     );
