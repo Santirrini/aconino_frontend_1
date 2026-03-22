@@ -110,7 +110,7 @@ export default function ComingSoonOverlay({
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute -top-[20%] -right-[20%] w-[800px] h-[800px] rounded-full bg-accent/20 blur-[150px]"
+          className="absolute -top-[10%] -right-[10%] w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] rounded-full bg-accent/20 blur-[80px] sm:blur-[120px]"
         />
         <motion.div
           animate={{
@@ -123,7 +123,7 @@ export default function ComingSoonOverlay({
             ease: "easeInOut",
             delay: 2
           }}
-          className="absolute -bottom-[20%] -left-[20%] w-[600px] h-[600px] rounded-full bg-accent/20 blur-[120px]"
+          className="absolute -bottom-[10%] -left-[10%] w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] rounded-full bg-accent/20 blur-[60px] sm:blur-[100px]"
         />
       </div>
 

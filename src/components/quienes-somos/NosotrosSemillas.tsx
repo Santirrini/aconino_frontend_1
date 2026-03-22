@@ -35,7 +35,7 @@ export default function NosotrosSemillas({ data }: Props) {
             transition={{ duration: 0.4, delay }}
             className="flex flex-col items-center text-center group cursor-pointer w-full max-w-[120px] mx-auto"
         >
-            <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-36 md:h-36 mb-3 md:mb-6 rounded-2xl md:rounded-3xl rotate-3 overflow-hidden shadow-lg border-2 md:border-[6px] border-white group-hover:rotate-0 group-hover:scale-105 group-hover:border-accent transition-all duration-500">
+            <div className="relative w-14 h-14 sm:w-20 sm:h-20 md:w-36 md:h-36 mb-3 md:mb-6 rounded-2xl md:rounded-3xl rotate-3 overflow-hidden shadow-lg border-2 md:border-[6px] border-white group-hover:rotate-0 group-hover:scale-105 group-hover:border-accent transition-all duration-500">
                 <Image
                     src={child.imageUrl || "https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=200&auto=format&fit=crop"}
                     alt={child.name || "Niño"}
@@ -75,28 +75,9 @@ export default function NosotrosSemillas({ data }: Props) {
             </div>
 
             <div className="py-12 md:py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* FORCE GRID: Consistent 3 columns for mobile */}
                 <div 
-                    className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-10 md:gap-y-20 gap-x-2 md:gap-x-10"
-                    style={{ 
-                        display: 'grid', 
-                        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' 
-                    }}
+                    className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-10 md:gap-y-20 gap-x-1 sm:gap-x-3 md:gap-x-10"
                 >
-                    {/* Media Query Overrides for Grid Columns */}
-                    <style jsx>{`
-                        @media (min-width: 768px) {
-                            div {
-                                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-                            }
-                        }
-                        @media (min-width: 1024px) {
-                            div {
-                                grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-                            }
-                        }
-                    `}</style>
-
                     {semillas.map((child, idx) => (
                         <SemillaCard 
                             key={idx} 

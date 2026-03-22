@@ -18,7 +18,7 @@ export default function DonationPopup({ onClose, onDonate, progress, donors }: D
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 20, scale: 0.95 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="bg-white rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.15)] mb-4 w-[calc(100vw-2.5rem)] sm:w-[350px] overflow-hidden border border-gray-100"
+      className="bg-white rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.15)] mb-4 w-[calc(100vw-3rem)] max-w-[350px] mx-auto overflow-hidden border border-gray-100"
     >
       {/* Header Widget */}
       <div className="bg-gradient-to-r from-primary via-secondary to-primary p-5 text-white relative overflow-hidden">

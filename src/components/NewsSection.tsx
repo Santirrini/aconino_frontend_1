@@ -70,7 +70,7 @@ export default function NewsSection({ posts, title, showSection = true }: NewsSe
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="flex gap-8 overflow-x-auto pb-12 snap-x hide-scrollbar"
+                    className="flex gap-6 sm:gap-8 overflow-x-auto pb-12 snap-x hide-scrollbar"
                     style={{ scrollbarWidth: "none" }}
                 >
                     {posts.length > 0 ? (
@@ -95,7 +95,7 @@ export default function NewsSection({ posts, title, showSection = true }: NewsSe
                                 <motion.article 
                                     variants={itemVariants}
                                     key={post.id} 
-                                    className="min-w-[320px] w-[400px] shrink-0 snap-start bg-white rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 flex flex-col relative group overflow-hidden transition-all duration-300 transform hover:-translate-y-2"
+                                    className="w-[85vw] max-w-[300px] shrink-0 snap-start bg-white rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 flex flex-col relative group overflow-hidden transition-all duration-300 transform hover:-translate-y-2"
                                 >
                                     {/* Thumbnail */}
                                     <div className="relative w-full h-72 bg-gray-100 overflow-hidden">

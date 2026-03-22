@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
+import { ANIMATION } from "@/constants";
 
-export function useScrollDetection(threshold: number = 50) {
+export interface UseScrollDetectionReturn {
+  isScrolled: boolean;
+  scrollY: number;
+}
+
+const DEFAULT_THRESHOLD = ANIMATION.SCROLL_THRESHOLD_DEFAULT;
+
+export function useScrollDetection(threshold: number = DEFAULT_THRESHOLD): UseScrollDetectionReturn {
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
@@ -11,7 +19,6 @@ export function useScrollDetection(threshold: number = 50) {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    // Initialize
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [threshold]);

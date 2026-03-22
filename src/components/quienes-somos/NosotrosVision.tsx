@@ -76,7 +76,7 @@ export default function NosotrosVision({ data }: Props) {
                 <motion.div 
                     animate={{ rotate: 360 }}
                     transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
-                    className="absolute -right-1/4 -bottom-1/4 w-[150%] h-[150%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent opacity-50 pointer-events-none"
+                    className="absolute inset-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent opacity-50 pointer-events-none"
                 />
 
                 <motion.div 

@@ -11,7 +11,7 @@ export default function FinalCTA() {
   return (
     <section className="py-24 bg-primary relative overflow-hidden">
       <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/always-grey.png')]" />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl -mr-20 -mt-20" />
+      <div className="absolute top-0 right-0 w-48 h-48 md:w-72 md:h-72 lg:w-96 lg:h-96 bg-accent/20 rounded-full blur-[60px] md:blur-[80px] lg:blur-3xl -mr-16 -mt-16 md:-mr-20 md:-mt-20" />
       
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <motion.div

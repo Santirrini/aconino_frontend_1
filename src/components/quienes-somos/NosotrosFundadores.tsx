@@ -42,7 +42,7 @@ export default function NosotrosFundadores({ data }: Props) {
             whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
             className="flex flex-col items-center w-full max-w-[120px] md:max-w-none mx-auto group cursor-pointer"
         >
-            <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-36 md:h-36 mb-3 md:mb-6 rounded-full overflow-hidden border-2 md:border-[6px] border-white shadow-lg group-hover:shadow-accent/30 transition-all duration-500 ring-4 ring-transparent group-hover:ring-accent/20">
+            <div className="relative w-14 h-14 sm:w-20 sm:h-20 md:w-36 md:h-36 mb-3 md:mb-6 rounded-full overflow-hidden border-2 md:border-[6px] border-white shadow-lg group-hover:shadow-accent/30 transition-all duration-500 ring-4 ring-transparent group-hover:ring-accent/20">
                 <Image
                     src={founder.imageUrl || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop"}
                     alt={founder.name || "Fundador"}
@@ -80,28 +80,9 @@ export default function NosotrosFundadores({ data }: Props) {
                     </h2>
                 </div>
 
-                {/* FORCE GRID: Inline styles to override any CSS conflict */}
                 <div 
-                    className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-8 md:gap-y-20 gap-x-2 md:gap-x-10"
-                    style={{ 
-                        display: 'grid', 
-                        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' 
-                    }}
+                    className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-8 md:gap-y-20 gap-x-1 sm:gap-x-3 md:gap-x-10"
                 >
-                    {/* Responsive Grid for Desktop handled by Tailwind, Mobile forced by inline style */}
-                    <style jsx>{`
-                        @media (min-width: 768px) {
-                            div {
-                                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-                            }
-                        }
-                        @media (min-width: 1024px) {
-                            div {
-                                grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-                            }
-                        }
-                    `}</style>
-                    
                     {fundadores.map((founder, idx) => (
                         <FounderCard 
                             key={idx} 

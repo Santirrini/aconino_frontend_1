@@ -44,8 +44,8 @@ export default function RecognitionsSection({ recognitions, text }: Recognitions
     return (
         <section className="w-full py-12 md:py-32 bg-gray-50 relative overflow-hidden">
             {/* Atmosferic Background Elements */}
-            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] translate-y-1/2 translate-x-1/4 pointer-events-none" />
+            <div className="absolute top-0 left-0 w-[200px] h-[200px] md:w-[350px] md:h-[350px] lg:w-[500px] lg:h-[500px] bg-primary/5 rounded-full blur-[60px] md:blur-[80px] lg:blur-[100px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-[150px] h-[150px] md:w-[280px] md:h-[280px] lg:w-[400px] lg:h-[400px] bg-accent/5 rounded-full blur-[50px] md:blur-[70px] lg:blur-[100px] translate-y-1/2 translate-x-1/4 pointer-events-none" />
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div>
             
             <div className="max-w-[1400px] mx-auto px-6 sm:px-6 lg:px-8 text-center relative z-10">

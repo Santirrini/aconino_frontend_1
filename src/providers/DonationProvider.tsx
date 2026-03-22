@@ -1,8 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import DonationWidget from "../components/donations/DonationWidget";
-
+import DonationWidget from "@/components/donations/DonationWidget";
 
 interface DonationContextProps {
   isDonationWidgetOpen: boolean;
@@ -38,7 +37,7 @@ export const DonationProvider = ({ children }: { children: ReactNode }) => {
   const handleProcessDonation = (amount: number, categoryId: string) => {
     const reference = `${categoryId}_${Date.now()}`;
     const wompiUrl = `https://checkout.wompi.co/p/?amount=${amount}&reference=${reference}`;
-    window.location.href = wompiUrl;
+    window.open(wompiUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (

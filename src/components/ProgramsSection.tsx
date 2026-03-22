@@ -76,11 +76,11 @@ export default function ProgramsSection({
         <section className="w-full py-24 lg:py-32 bg-[#F8FAFC] relative overflow-hidden">
             {/* Background Decorative Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-                <div className="absolute -top-[20%] -right-[10%] w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px]" />
-                <div className="absolute top-[40%] -left-[10%] w-[500px] h-[500px] rounded-full bg-accent/5 blur-[100px]" />
+                <div className="absolute -top-[10%] -right-[5%] w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[600px] lg:h-[600px] rounded-full bg-primary/5 blur-[60px] sm:blur-[80px] md:blur-[100px] lg:blur-[120px]" />
+                <div className="absolute top-[40%] -left-[5%] w-[150px] h-[150px] sm:w-[250px] sm:h-[250px] md:w-[350px] md:h-[350px] lg:w-[500px] lg:h-[500px] rounded-full bg-accent/5 blur-[50px] sm:blur-[70px] md:blur-[80px] lg:blur-[100px]" />
             </div>
 
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 overflow-x-hidden">
                 {/* Título de la Sección */}
                 <div className="text-center mb-16 md:mb-20">
                     <motion.div
@@ -196,7 +196,7 @@ export default function ProgramsSection({
             </div>
             
             {/* Elemento de Diseño Abstracto */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 opacity-[0.02] pointer-events-none -ml-24 select-none z-0">
+            <div className="hidden lg:block absolute top-1/2 left-0 -translate-y-1/2 opacity-[0.02] pointer-events-none -ml-24 select-none z-0">
                 <span className="text-[28rem] font-black text-[#0a1f44] leading-none tracking-tighter">ACN</span>
             </div>
         </section>

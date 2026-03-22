@@ -1,132 +1,128 @@
-import { WPPost, WPPage, WPCategory } from "../types/wp";
+import { WPPost, WPPage, WPCategory } from "@/types/wp";
 
-// Use environment variable or default to the live URL
 const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || "https://aconino.org/wp-json/wp/v2";
+const REVALIDATE_INTERVAL = 3600;
 
-/**
- * Fetch latest posts from WordPress REST API.
- * Uses Next.js Incremental Static Regeneration (ISR) with revalidation cache.
- */
-export async function getLatestPosts(limit = 3): Promise<WPPost[]> {
-    try {
-        const res = await fetch(`${WP_API_URL}/posts?per_page=${limit}&_embed=1`, {
-            next: { revalidate: 3600 }, // Revalidate every hour
-        });
-
-        if (!res.ok) {
-            throw new Error(`Failed to fetch posts: ${res.statusText}`);
-        }
-
-        return res.json();
-    } catch (error) {
-        console.error("Error fetching WP posts:", error);
-        return [];
-    }
+export class WPAPIError extends Error {
+  constructor(
+    message: string,
+    public status?: number,
+    public statusText?: string
+  ) {
+    super(message)
+    this.name = 'WPAPIError'
+  }
 }
 
-/**
- * Fetch paginated blog posts with optional category filter.
- */
+async function handleResponse<T>(response: Response): Promise<T> {
+  if (!response.ok) {
+    throw new WPAPIError(
+      `WordPress API error: ${response.statusText}`,
+      response.status,
+      response.statusText
+    )
+  }
+  return response.json()
+}
+
+export async function getLatestPosts(limit = 3): Promise<WPPost[]> {
+  try {
+    const res = await fetch(`${WP_API_URL}/posts?per_page=${limit}&_embed=1`, {
+      next: { revalidate: REVALIDATE_INTERVAL },
+    });
+    return handleResponse(res);
+  } catch (error) {
+    if (error instanceof WPAPIError) {
+      throw error;
+    }
+    throw new WPAPIError(
+      error instanceof Error ? error.message : 'Failed to fetch posts'
+    );
+  }
+}
+
 export interface BlogPostsResponse {
-    posts: WPPost[];
-    totalPages: number;
-    total: number;
+  posts: WPPost[];
+  totalPages: number;
+  total: number;
 }
 
 export async function getBlogPosts(
-    page = 1,
-    perPage = 9,
-    categoryId?: number
+  page = 1,
+  perPage = 9,
+  categoryId?: number
 ): Promise<BlogPostsResponse> {
-    try {
-        let url = `${WP_API_URL}/posts?per_page=${perPage}&page=${page}&_embed=1`;
-        if (categoryId) {
-            url += `&categories=${categoryId}`;
-        }
-
-        const res = await fetch(url, {
-            next: { revalidate: 1800 }, // 30 min
-        });
-
-        if (!res.ok) {
-            throw new Error(`Failed to fetch blog posts: ${res.statusText}`);
-        }
-
-        const posts: WPPost[] = await res.json();
-        const totalPages = parseInt(res.headers.get("X-WP-TotalPages") || "1", 10);
-        const total = parseInt(res.headers.get("X-WP-Total") || "0", 10);
-
-        return { posts, totalPages, total };
-    } catch (error) {
-        console.error("Error fetching blog posts:", error);
-        return { posts: [], totalPages: 1, total: 0 };
+  try {
+    let url = `${WP_API_URL}/posts?per_page=${perPage}&page=${page}&_embed=1`;
+    if (categoryId) {
+      url += `&categories=${categoryId}`;
     }
+
+    const res = await fetch(url, {
+      next: { revalidate: 1800 },
+    });
+    
+    const posts: WPPost[] = await handleResponse(res);
+    const totalPages = parseInt(res.headers.get("X-WP-TotalPages") || "1", 10);
+    const total = parseInt(res.headers.get("X-WP-Total") || "0", 10);
+    
+    return { posts, totalPages, total };
+  } catch (error) {
+    if (error instanceof WPAPIError) {
+      throw error;
+    }
+    throw new WPAPIError(
+      error instanceof Error ? error.message : 'Failed to fetch blog posts'
+    );
+  }
 }
 
-/**
- * Fetch all categories from WordPress.
- */
 export async function getCategories(): Promise<WPCategory[]> {
-    try {
-        const res = await fetch(`${WP_API_URL}/categories?per_page=50&orderby=count&order=desc`, {
-            next: { revalidate: 3600 },
-        });
-
-        if (!res.ok) {
-            throw new Error(`Failed to fetch categories: ${res.statusText}`);
-        }
-
-        return res.json();
-    } catch (error) {
-        console.error("Error fetching WP categories:", error);
-        return [];
+  try {
+    const res = await fetch(`${WP_API_URL}/categories?per_page=50&orderby=count&order=desc`, {
+      next: { revalidate: REVALIDATE_INTERVAL },
+    });
+    return handleResponse(res);
+  } catch (error) {
+    if (error instanceof WPAPIError) {
+      throw error;
     }
+    throw new WPAPIError(
+      error instanceof Error ? error.message : 'Failed to fetch categories'
+    );
+  }
 }
 
-/**
- * Fetch a single post by slug.
- */
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
-    try {
-        const res = await fetch(`${WP_API_URL}/posts?slug=${slug}&_embed=1`, {
-            next: { revalidate: 1800 },
-        });
-
-        if (!res.ok) {
-            throw new Error(`Failed to fetch post: ${res.statusText}`);
-        }
-
-        const posts: WPPost[] = await res.json();
-        return posts.length > 0 ? posts[0] : null;
-    } catch (error) {
-        console.error("Error fetching WP post:", error);
-        return null;
+  try {
+    const res = await fetch(`${WP_API_URL}/posts?slug=${slug}&_embed=1`, {
+      next: { revalidate: 1800 },
+    });
+    const posts: WPPost[] = await handleResponse(res);
+    return posts.length > 0 ? posts[0] : null;
+  } catch (error) {
+    if (error instanceof WPAPIError) {
+      throw error;
     }
+    throw new WPAPIError(
+      error instanceof Error ? error.message : 'Failed to fetch post'
+    );
+  }
 }
 
-/**
- * Fetch the homepage data from WordPress REST API.
- * Assuming the homepage has a specific slug, e.g., 'home' or 'inicio'.
- */
 export async function getHomePage(): Promise<WPPage | null> {
-    try {
-        // We'll try to fetch by slug 'inicio' or 'home'. Modify this if the slug is different.
-        const res = await fetch(`${WP_API_URL}/pages?slug=inicio,home&_embed=1`, {
-            next: { revalidate: 3600 },
-        });
-
-        if (!res.ok) {
-            throw new Error(`Failed to fetch home page: ${res.statusText}`);
-        }
-
-        const pages: WPPage[] = await res.json();
-        if (pages.length > 0) {
-            return pages[0]; // Return the first matching page
-        }
-        return null;
-    } catch (error) {
-        console.error("Error fetching WP home page:", error);
-        return null;
+  try {
+    const res = await fetch(`${WP_API_URL}/pages?slug=inicio,home&_embed=1`, {
+      next: { revalidate: REVALIDATE_INTERVAL },
+    });
+    const pages: WPPage[] = await handleResponse(res);
+    return pages.length > 0 ? pages[0] : null;
+  } catch (error) {
+    if (error instanceof WPAPIError) {
+      throw error;
     }
+    throw new WPAPIError(
+      error instanceof Error ? error.message : 'Failed to fetch home page'
+    );
+  }
 }
-

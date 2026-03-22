@@ -188,8 +188,8 @@ export default function NosotrosAdmin({ data }: Props) {
     return (
         <section className="bg-gray-50 relative overflow-hidden pt-12 pb-16 md:pt-28 md:pb-32">
             <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/always-grey.png')] mix-blend-overlay pointer-events-none"></div>
-            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-            <div className="absolute bottom-20 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] translate-y-1/2 translate-x-1/4 pointer-events-none" />
+            <div className="absolute top-0 left-0 w-[200px] h-[200px] md:w-[350px] md:h-[350px] lg:w-[500px] lg:h-[500px] bg-primary/5 rounded-full blur-[60px] md:blur-[80px] lg:blur-[100px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+            <div className="absolute bottom-20 right-0 w-[250px] h-[250px] md:w-[400px] md:h-[400px] lg:w-[600px] lg:h-[600px] bg-accent/5 rounded-full blur-[60px] md:blur-[80px] lg:blur-[100px] translate-y-1/2 translate-x-1/4 pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 relative z-10">
                 <motion.div 

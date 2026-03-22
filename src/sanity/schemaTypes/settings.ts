@@ -11,12 +11,15 @@ export default defineType({
       name: 'title',
       title: 'Site Title',
       type: 'string',
+      validation: (Rule) => Rule.required().max(100),
     }),
     defineField({
         name: 'logo',
         title: 'Logo',
         type: 'image',
-        description: 'Ej: acn - Asociación Aconiño'
+        description: 'Ej: acn - Asociación Aconiño',
+        options: { hotspot: true },
+        validation: (Rule) => Rule.required(),
     }),
     defineField({
         name: 'headerCTA',
@@ -28,7 +31,8 @@ export default defineType({
       name: 'phoneNumber',
       title: 'Phone Number (PBX)',
       type: 'string',
-      description: 'Ej: (601) 6601475'
+      description: 'Ej: (601) 6601475',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'mobilePhone',
@@ -40,7 +44,8 @@ export default defineType({
       name: 'email',
       title: 'Contact Email',
       type: 'string',
-      description: 'Botón Escríbenos'
+      description: 'Botón Escríbenos',
+      validation: (Rule) => Rule.required().email(),
     }),
     defineField({
       name: 'address',

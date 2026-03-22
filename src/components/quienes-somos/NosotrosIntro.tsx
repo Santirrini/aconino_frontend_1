@@ -35,8 +35,8 @@ export default function NosotrosIntro({ data }: NosotrosIntroProps) {
     return (
         <section id="nosotros" className="py-12 md:py-32 bg-white relative overflow-hidden">
             {/* Background decorative elements */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gray-50 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl opacity-50 translate-y-1/3 -translate-x-1/3 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[200px] h-[200px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-gray-50 rounded-full blur-[50px] md:blur-[80px] lg:blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[150px] h-[150px] md:w-[300px] md:h-[300px] lg:w-[400px] lg:h-[400px] bg-accent/5 rounded-full blur-[40px] md:blur-[60px] lg:blur-3xl opacity-50 translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
             <div className="max-w-[1400px] mx-auto px-6 sm:px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-24">

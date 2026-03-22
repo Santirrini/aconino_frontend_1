@@ -52,9 +52,9 @@ export default async function ProgramasPage() {
     const heroImage = hero.backgroundImageUrl || "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop";
 
     return (
-        <main className="min-h-screen bg-white">
+        <main className="min-h-screen bg-white overflow-x-hidden">
             {/* Hero Banner */}
-            <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+            <section className="relative h-[50vh] md:h-[60vh] flex items-center justify-center overflow-hidden">
                 <Image
                     src={heroImage}
                     alt={hero.title || "Programas"}
@@ -62,7 +62,7 @@ export default async function ProgramasPage() {
                     className="object-cover brightness-50"
                     priority
                 />
-                <div className="relative z-10 text-center px-4 mt-16">
+                <div className="relative z-10 text-center px-4">
                     <ScrollReveal animation="fade-up" delay={0.1}>
                         <div className="flex justify-center mb-6">
                             <span className="text-yellow-400 text-5xl">♥</span>
@@ -82,7 +82,7 @@ export default async function ProgramasPage() {
             </section>
 
             {/* Programs List */}
-            <section className="py-20">
+            <section className="py-12 md:py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {programs.map((program: Program, index: number) => {
                         const isEven = index % 2 === 0;
@@ -92,13 +92,13 @@ export default async function ProgramasPage() {
                             <div
                                 key={program._key || program.id || index}
                                 id={program.slug}
-                                className={`scroll-mt-40 flex flex-col lg:flex-row items-center gap-12 mb-32 last:mb-0 ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"
+                                className={`scroll-mt-40 flex flex-col lg:flex-row items-center gap-12 mb-16 md:mb-32 last:mb-0 ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"
                                     }`}
                             >
                                 {/* Image Section */}
                                 <div className="w-full lg:w-1/2 relative group">
                                     <ScrollReveal animation={isEven ? "slide-right" : "slide-left"} delay={0.2}>
-                                        <div className={`absolute -inset-4 bg-accent/20 rounded-3xl transition-transform duration-500 group-hover:scale-105 ${isEven ? "translate-x-4 translate-y-4" : "-translate-x-4 translate-y-4"
+                                        <div className={`absolute inset-0 md:-inset-4 bg-accent/20 rounded-3xl transition-transform duration-500 group-hover:scale-105 ${isEven ? "translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4" : "-translate-x-2 translate-y-2 md:-translate-x-4 md:translate-y-4"
                                             }`}></div>
                                         <div className="relative h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
                                             <Image

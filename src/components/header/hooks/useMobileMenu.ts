@@ -1,6 +1,18 @@
 import { useState, useEffect } from "react";
+import { BREAKPOINTS } from "@/constants";
 
-export function useMobileMenu() {
+const MOBILE_BREAKPOINT = BREAKPOINTS.LG;
+
+export interface UseMobileMenuReturn {
+  isOpen: boolean;
+  toggleMenu: () => void;
+  closeMenu: () => void;
+  expandedItem: string | null;
+  toggleExpanded: (item: string | undefined) => void;
+  setExpandedItem: (item: string | null) => void;
+}
+
+export function useMobileMenu(): UseMobileMenuReturn {
   const [isOpen, setIsOpen] = useState(false);
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
@@ -14,7 +26,7 @@ export function useMobileMenu() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024) { // lg breakpoint
+      if (window.innerWidth >= MOBILE_BREAKPOINT) {
         setIsOpen(false);
       }
     };

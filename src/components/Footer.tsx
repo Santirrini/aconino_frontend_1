@@ -133,7 +133,7 @@ export default function Footer({ settings }: FooterProps) {
               </li>
               <li className="flex items-center justify-center md:justify-start gap-4 group">
                 <div className="text-accent/80 group-hover:text-accent transition-colors"><FaEnvelope size={16} /></div>
-                <a href={`mailto:${settings?.email || defaultEmail}`} className="hover:text-white transition-colors break-all">
+                <a href={`mailto:${settings?.email || defaultEmail}`} className="hover:text-white transition-colors break-words">
                   {settings?.email || defaultEmail}
                 </a>
               </li>

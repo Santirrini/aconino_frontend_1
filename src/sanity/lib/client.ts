@@ -8,7 +8,7 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: false, // `false` to ensure fresh data always
+  useCdn: true, // CDN enabled for read queries (performance)
 })
 
 export const writeClient = createClient({

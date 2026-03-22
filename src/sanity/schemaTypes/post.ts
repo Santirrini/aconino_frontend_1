@@ -28,6 +28,7 @@ export default defineType({
       title: 'Author',
       type: 'reference',
       to: { type: 'author' },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'mainImage',

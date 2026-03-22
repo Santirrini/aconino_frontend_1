@@ -8,9 +8,9 @@ export default function ContactHero() {
         <section className="relative w-full bg-gradient-to-br from-primary via-primary to-secondary overflow-hidden">
             {/* Abstract background shapes */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-1/4 -right-20 w-80 h-80 bg-accent/15 rounded-full blur-[100px]" />
-                <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-secondary/30 rounded-full blur-[120px]" />
-                <div className="absolute top-1/2 left-0 w-64 h-64 bg-white/5 rounded-full blur-[80px]" />
+                <div className="absolute top-1/4 -right-10 w-40 h-40 md:-right-20 md:w-80 md:h-80 bg-accent/15 rounded-full blur-[60px] md:blur-[100px]" />
+                <div className="absolute bottom-0 left-1/4 w-48 h-48 md:w-96 md:h-96 bg-secondary/30 rounded-full blur-[80px] md:blur-[120px]" />
+                <div className="absolute top-1/2 left-0 w-32 h-32 md:w-64 md:h-64 bg-white/5 rounded-full blur-[50px] md:blur-[80px]" />
                 {/* Pattern overlay */}
                 <div
                     className="absolute inset-0 opacity-[0.03]"
