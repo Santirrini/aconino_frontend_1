@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useActiveLink } from "@/hooks/useActiveLink";
 import { dropdownStaggerContainer, dropdownStaggerItem } from "@/animations/variants/staggerChildren";
 
 interface SubLink {
@@ -17,29 +16,7 @@ interface DropdownProps {
 }
 
 export default function Dropdown({ subLinks, isOpen }: DropdownProps) {
-  const pathname = usePathname();
-  const [currentHash, setCurrentHash] = useState("");
-
-  useEffect(() => {
-    const handleHashChange = () => setCurrentHash(window.location.hash);
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  const isActive = (href: string | undefined) => {
-    if (!href) return false;
-    try {
-      const urlObj = new URL(href, "http://localhost");
-      const matchesPath = pathname === urlObj.pathname;
-      if (urlObj.hash) {
-        return matchesPath && currentHash === urlObj.hash;
-      }
-      return matchesPath;
-    } catch {
-      return false;
-    }
-  };
+  const { isActive } = useActiveLink();
 
   return (
     <AnimatePresence>

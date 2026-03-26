@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { CurtainReveal, GradientOverlay, ParticleMorph, GoldenTypewriter } from "@/components/animations";
+import HeroBackground from "../hero/HeroBackground";
 
 export interface HeroBaseProps {
   /** Main heading text or node */
@@ -97,9 +97,7 @@ export default function HeroBase({
   children,
   customOverlay,
 }: HeroBaseProps) {
-  const isVideo = backgroundType === 'video' && backgroundVideo;
   const isGradient = backgroundType === 'gradient';
-  const isImage = backgroundType === 'image' || (!isVideo && !isGradient);
 
   return (
     <section 
@@ -119,36 +117,15 @@ export default function HeroBase({
           </div>
         )}
 
-        {/* Video Background */}
-        {isVideo && (
-          <video
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster={videoPoster}
-          >
-            <source src={backgroundVideo} type="video/mp4" />
-          </video>
-        )}
-
-        {/* Image Background */}
-        {isImage && backgroundImage && (
-          <motion.div
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src={backgroundImage}
-              alt={typeof title === 'string' ? title : "Hero Background"}
-              fill
-              className="object-cover"
-              priority
-            />
-          </motion.div>
+        {/* Video or Image Background */}
+        {!isGradient && (
+          <HeroBackground
+            backgroundType={backgroundType === 'video' ? 'video' : 'image'}
+            videoUrl={backgroundVideo}
+            imageUrl={backgroundImage}
+            posterPlaceholder={videoPoster}
+            defaultImage="/images/hero-background-blue.png"
+          />
         )}
         
         {/* Common Overlay */}
