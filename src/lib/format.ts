@@ -32,3 +32,8 @@ export function extractYouTubeId(url: string): string | null {
   const match = url.match(regExp)
   return match && match[2].length === 11 ? match[2] : null
 }
+
+export function calculateImpact(amount: number, impactMultiplier: number, impactUnit: string): string {
+  const result = (amount / impactMultiplier).toFixed(1);
+  return `${result} ${impactUnit}`;
+}

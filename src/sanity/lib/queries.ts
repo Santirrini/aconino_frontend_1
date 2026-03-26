@@ -42,48 +42,6 @@ export const SETTINGS_QUERY = defineQuery(`
   }
 `)
 
-// Query para Home Hero Section (documento separado)
-export const HOME_HERO_QUERY = defineQuery(`
-  *[_type == "homeHero"][0] {
-    backgroundType,
-    "backgroundImageUrl": backgroundImage.asset->url,
-    "backgroundVideoUrl": backgroundVideo.asset->url,
-    slogan,
-    impact
-  }
-`)
-
-// Query para Home Programs Section (documento separado)
-export const HOME_PROGRAMS_QUERY = defineQuery(`
-  *[_type == "homePrograms"][0] {
-    subtitle,
-    clinicalFocus,
-    familySupport,
-    ctaLabel,
-    items[] {
-      _key,
-      title,
-      description,
-      url,
-      "imageUrl": image.asset->url
-    }
-  }
-`)
-
-// Query para Home Recognitions Section (documento separado)
-export const HOME_RECOGNITIONS_QUERY = defineQuery(`
-  *[_type == "homeRecognitions"][0] {
-    title,
-    items[] {
-      _key,
-      title,
-      meta,
-      description,
-      "imageUrl": image.asset->url
-    }
-  }
-`)
-
 // Query para Home Page (documento unificado)
 export const HOME_PAGE_QUERY = defineQuery(`
   *[_type == "homePage"][0] {
@@ -133,27 +91,6 @@ export const HOME_PAGE_QUERY = defineQuery(`
   }
 `)
 
-// Query para Home News Section (documento separado) - DEPRECATED
-export const HOME_NEWS_QUERY = defineQuery(`
-  *[_type == "homeNews"][0] {
-    title,
-    ctaLabel
-  }
-`)
-
-// Query para Cursos Hero (carrusel de imágenes)
-export const CURSOS_HERO_QUERY = defineQuery(`
-  *[_type == "cursosHero"][0] {
-    title,
-    slides[] {
-      _key,
-      "imageUrl": image.asset->url,
-      alt,
-      overlayOpacity
-    }
-  }
-`)
-
 // Query para la sección About (Sobre Nosotros)
 export const ABOUT_SECTION_QUERY = defineQuery(`
   *[_type == "aboutSection"][0] {
@@ -174,22 +111,6 @@ export const CTA_SECTION_QUERY = defineQuery(`
     ctaLabel,
     ctaLink,
     "backgroundImageUrl": backgroundImage.asset->url
-  }
-`)
-
-// Query para la sección Intro de Quienes Somos (Nuestra Identidad)
-export const NOSOTROS_INTRO_QUERY = defineQuery(`
-  *[_type == "nosotrosIntro"][0] {
-    subtitle,
-    title,
-    "imageUrl": image.asset->url,
-    "imageAlt": image.alt,
-    description,
-    stats[] {
-      value,
-      label,
-      color
-    }
   }
 `)
 

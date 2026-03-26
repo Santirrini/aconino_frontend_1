@@ -58,10 +58,3 @@ export const DONATION_OPTIONS: DonationCategory[] = [
     ]
   }
 ];
-
-export const calculateImpact = (amount: number, categoryId: string): string => {
-  const category = DONATION_OPTIONS.find(c => c.id === categoryId);
-  if (!category) return "";
-  const result = (amount / category.impactMultiplier).toFixed(1);
-  return `${result} ${category.impactUnit}`;
-};

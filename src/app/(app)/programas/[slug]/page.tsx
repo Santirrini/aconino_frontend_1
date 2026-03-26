@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ProgramCTA from "../../../../components/programs/ProgramCTA";
 import ScrollReveal from "../../../../components/animations/ScrollReveal";
-import { defaultPrograms } from "@/data/secondaryPages";
+import { defaultPrograms } from "@/data/programs";
 
 interface PageProps {
     params: Promise<{

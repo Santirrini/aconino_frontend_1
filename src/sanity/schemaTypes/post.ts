@@ -67,13 +67,6 @@ export default defineType({
         type: 'text',
         rows: 3,
     }),
-    defineField({
-      name: 'content',
-      title: 'HTML Content (Migration Raw)',
-      type: 'text',
-      description: 'Esto es el contenido HTML original traído de WordPress. Úsalo como referencia antes de convertirlo a Body.',
-      readOnly: true,
-    }),
   ],
   preview: {
     select: {

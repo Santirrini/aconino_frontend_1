@@ -5,7 +5,7 @@ import ScrollReveal from "../../../components/animations/ScrollReveal";
 
 import { client } from "@/sanity/lib/client";
 import { PROGRAMAS_PAGE_QUERY } from "@/sanity/lib/queries";
-import { defaultPrograms } from "@/data/secondaryPages";
+import { defaultPrograms } from "@/data/programs";
 
 interface Program {
     _key?: string;

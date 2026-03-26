@@ -12,10 +12,6 @@ import aboutSection from './aboutSection'
 import nosotrosIntro from './nosotrosIntro'
 import quienesSomos from './quienesSomos'
 import homePage from './homePage'
-import homeHero from './homeHero'
-import homePrograms from './homePrograms'
-import homeRecognitions from './homeRecognitions'
-import homeNews from './homeNews'
 import curso from './curso'
 import cursosPage from './cursosPage'
 import appPage from './appPage'
@@ -35,10 +31,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     nosotrosIntro,
     quienesSomos,
     homePage,
-    homeHero,
-    homePrograms,
-    homeRecognitions,
-    homeNews,
     curso,
     cursosPage,
     appPage,
