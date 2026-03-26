@@ -1,12 +1,5 @@
 import ScrollReveal from "./animations/ScrollReveal";
 import ProgramCard from "./programs/ProgramCard";
-import { 
-    RiHeartPulseLine, 
-    RiWalkLine, 
-    RiBookOpenLine, 
-    RiBrainLine,
-    RiStethoscopeLine
-} from "react-icons/ri";
 
 interface ProgramItem {
     title: string;
@@ -16,24 +9,9 @@ interface ProgramItem {
     category?: string;
 }
 
-interface ProgramsSectionProps {
-    programs?: ProgramItem[];
-}
-
-const getIconForProgram = (slug?: string, defaultIdx: number = 0) => {
-    const s = slug?.toLowerCase() || '';
-    if (s.includes('temprana') || s.includes('estimulacion')) return RiHeartPulseLine;
-    if (s.includes('pediasuit') || s.includes('fisica')) return RiWalkLine;
-    if (s.includes('aprendizaje') || s.includes('lenguaje')) return RiBookOpenLine;
-    if (s.includes('neurodesarrollo') || s.includes('neurologia')) return RiBrainLine;
-    
-    const fallbackIcons = [RiStethoscopeLine, RiHeartPulseLine, RiBrainLine, RiWalkLine];
-    return fallbackIcons[defaultIdx % fallbackIcons.length];
-};
-
 export default function ProgramsSection({ 
     programs
-}: ProgramsSectionProps) {
+}: { programs?: ProgramItem[] }) {
     
     const defaultPrograms = [
         {
@@ -115,7 +93,6 @@ export default function ProgramsSection({
                             slug={prog.slug || ""}
                             imageUrl={prog.imageUrl || "https://placehold.co/600x800?text=Aconino+Program"}
                             category={prog.category || "Programa Aconiño"}
-                            IconComponent={getIconForProgram(prog.slug, idx)}
                             index={idx}
                         />
                     ))}

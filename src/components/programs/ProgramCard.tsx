@@ -3,8 +3,14 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { RiArrowRightUpLine } from "react-icons/ri";
-import { IconType } from "react-icons";
+import { 
+    RiArrowRightUpLine,
+    RiHeartPulseLine, 
+    RiWalkLine, 
+    RiBookOpenLine, 
+    RiBrainLine,
+    RiStethoscopeLine
+} from "react-icons/ri";
 
 interface ProgramCardProps {
   title: string;
@@ -12,9 +18,19 @@ interface ProgramCardProps {
   slug: string;
   imageUrl: string;
   category: string;
-  IconComponent: IconType;
   index: number;
 }
+
+const getIconForProgram = (slug?: string, defaultIdx: number = 0) => {
+    const s = slug?.toLowerCase() || '';
+    if (s.includes('temprana') || s.includes('estimulacion')) return RiHeartPulseLine;
+    if (s.includes('pediasuit') || s.includes('fisica')) return RiWalkLine;
+    if (s.includes('aprendizaje') || s.includes('lenguaje')) return RiBookOpenLine;
+    if (s.includes('neurodesarrollo') || s.includes('neurologia')) return RiBrainLine;
+    
+    const fallbackIcons = [RiStethoscopeLine, RiHeartPulseLine, RiBrainLine, RiWalkLine];
+    return fallbackIcons[defaultIdx % fallbackIcons.length];
+};
 
 export default function ProgramCard({ 
   title, 
@@ -22,9 +38,9 @@ export default function ProgramCard({
   slug, 
   imageUrl, 
   category, 
-  IconComponent, 
   index 
 }: ProgramCardProps) {
+  const IconComponent = getIconForProgram(slug, index);
   return (
     <motion.div
         initial="initial"
