@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { curtainVariants } from "../variants/curtainVariants";
+import { curtainVariants } from "@/animations/variants/curtainVariants";
 
 interface CurtainRevealProps {
   color?: string;

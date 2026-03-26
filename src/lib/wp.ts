@@ -1,4 +1,5 @@
 import { WPPost, WPPage, WPCategory } from "@/types/wp";
+import { PaginatedResponse } from "@/types/navigation";
 
 const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || "https://aconino.org/wp-json/wp/v2";
 const REVALIDATE_INTERVAL = 3600;
@@ -41,11 +42,7 @@ export async function getLatestPosts(limit = 3): Promise<WPPost[]> {
   }
 }
 
-export interface BlogPostsResponse {
-  posts: WPPost[];
-  totalPages: number;
-  total: number;
-}
+export type BlogPostsResponse = PaginatedResponse<WPPost>;
 
 export async function getBlogPosts(
   page = 1,

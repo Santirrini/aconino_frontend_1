@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { dropdownStaggerContainer, dropdownStaggerItem } from "../animations/staggerChildren";
+import { dropdownStaggerContainer, dropdownStaggerItem } from "@/animations/variants/staggerChildren";
 
 interface SubLink {
   name?: string;

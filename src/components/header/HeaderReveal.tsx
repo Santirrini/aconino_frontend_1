@@ -3,7 +3,7 @@
 import React from "react";
 
 import { motion } from "framer-motion";
-import { curtainVariants, shimmerVariants } from "@/components/animations/variants/curtainVariants";
+import { curtainVariants, shimmerVariants } from "@/animations/variants/curtainVariants";
 import ParticleEffect from "./components/ParticleEffect";
 
 interface HeaderRevealProps {

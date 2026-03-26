@@ -1,3 +1,4 @@
+import { PaginatedResponse } from "./navigation"
 import type { PortableTextBlock } from "@portabletext/react"
 
 export interface SanityImageAsset {
@@ -68,8 +69,4 @@ export interface SanityPostDetail {
 export type SanityPost = SanityPostDetail
 export type SanityCategory = SanityCategoryListItem
 
-export interface PostsResponse {
-  posts: SanityPost[]
-  totalPages: number
-  total: number
-}
+export type PostsResponse = PaginatedResponse<SanityPost>;

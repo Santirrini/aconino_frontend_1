@@ -1,61 +1,22 @@
-"use client";
-
+import { useActiveLink } from "@/hooks/useActiveLink";
+import { NavLink } from "@/types/navigation";
 import Link from "next/link";
 import { FaChevronDown } from "react-icons/fa";
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Dropdown from "./Dropdown";
-import { staggerItem } from "../animations/staggerChildren";
-
-interface NavLink {
-  name?: string;
-  href?: string;
-  hasDropdown?: boolean;
-  subLinks?: { name?: string; href?: string }[];
-}
+import { staggerItem } from "@/animations/variants/staggerChildren";
 
 interface NavLinksProps {
   navLinks: NavLink[];
 }
 
 export default function NavLinks({ navLinks }: NavLinksProps) {
-  const pathname = usePathname();
-  const [currentHash, setCurrentHash] = useState("");
+  const { isParentActive } = useActiveLink();
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
-  useEffect(() => {
-    const handleHashChange = () => setCurrentHash(window.location.hash);
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  const isActive = (href: string | undefined) => {
-    if (!href) return false;
-    if (href === "/") return pathname === "/";
-    try {
-      const urlObj = new URL(href, "http://localhost");
-      const matchesPath = pathname === urlObj.pathname;
-      if (urlObj.hash) {
-        return matchesPath && currentHash === urlObj.hash;
-      }
-      if (matchesPath && currentHash !== "") return false;
-      return matchesPath;
-    } catch {
-      return false;
-    }
-  };
-
-  const isParentActive = (link: NavLink) => {
-    if (isActive(link.href)) return true;
-    if (link.subLinks) {
-      return link.subLinks.some(sub => isActive(sub.href));
-    }
-    return false;
-  };
-
   return (
+
     <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[13px] xl:text-[14px] font-bold">
       {navLinks.map((link, idx) => {
         const parentActive = isParentActive(link);

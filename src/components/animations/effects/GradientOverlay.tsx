@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { morphingGradient } from "../variants/curtainVariants";
+import { morphingGradient } from "@/animations/variants/curtainVariants";
 
 interface GradientOverlayProps {
   from?: string;

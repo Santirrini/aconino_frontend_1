@@ -1,4 +1,4 @@
-export const headerContainerVariants = {
+export const glassHeaderVariants = {
   transparent: {
     backgroundColor: "rgba(255, 255, 255, 1)",
     borderBottom: "1px solid rgba(243, 244, 246, 1)", // gray-100

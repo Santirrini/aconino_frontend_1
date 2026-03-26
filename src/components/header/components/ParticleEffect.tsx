@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { generateEntranceParticles } from "../animations/particles";
+import { generateEntranceParticles } from "@/animations/variants/particles";
 import { useEffect, useState } from "react";
 
 interface ParticleEffectProps {

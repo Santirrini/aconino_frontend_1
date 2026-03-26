@@ -1,11 +1,9 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { NavLink } from "../../../types/navigation";
+import { useActiveLink } from "../../../hooks/useActiveLink";
 import { useDonation } from "../../../providers/DonationProvider";
-import { NavItem } from "../../../types/header";
-import { isActive, isParentActive } from "../../../lib/mobile-nav-utils";
 
 import MobileNavLink from "./MobileNavLink";
 import MobileDropdown from "./MobileDropdown";
@@ -20,26 +18,19 @@ interface MobileMenuState {
 
 interface MobileMenuProps {
   mobileMenu: MobileMenuState;
-  navLinks: NavItem[];
+  navLinks: NavLink[];
 }
 
 export default function MobileMenu({ mobileMenu, navLinks }: MobileMenuProps) {
   const { isOpen, closeMenu, expandedItem, toggleExpanded } = mobileMenu;
-  const pathname = usePathname();
-  const [currentHash, setCurrentHash] = useState("");
+  const { isActive, isParentActive } = useActiveLink();
   const { openDonationWidget } = useDonation();
-
-  useEffect(() => {
-    const handleHashChange = () => setCurrentHash(window.location.hash);
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
 
   const simpleLinks = navLinks.filter(link => !link.hasDropdown);
   const dropdownLinks = navLinks.filter(link => link.hasDropdown);
 
-  const checkActive = (href: string | undefined) => isActive(href, pathname, currentHash);
+  const checkActive = (href: string | undefined) => isActive(href);
+
 
   const handleDonationClick = () => {
     closeMenu();
@@ -79,7 +70,7 @@ export default function MobileMenu({ mobileMenu, navLinks }: MobileMenuProps) {
                   key={link.name}
                   name={link.name || ""}
                   isExpanded={expandedItem === link.name}
-                  parentActive={isParentActive(link, pathname, currentHash)}
+                  parentActive={isParentActive(link)}
                   onToggle={() => toggleExpanded(link.name)}
                   subLinks={link.subLinks}
                   activeLinkChecker={checkActive}
