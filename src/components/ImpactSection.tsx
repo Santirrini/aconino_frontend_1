@@ -1,13 +1,9 @@
-"use client";
-
 import React from "react";
 import { ImpactSectionProps, ImpactStat, ImpactStory } from "./impact/types";
 import ImpactHeader from "./impact/ImpactHeader";
 import ImpactStats from "./impact/ImpactStats";
 import ImpactStories from "./impact/ImpactStories";
-import { useDonation } from "../providers/DonationProvider";
-import { FaHeart } from "react-icons/fa";
-import { motion } from "framer-motion";
+import ImpactCta from "./impact/ImpactCta";
 
 const defaultStats = [
   { id: 1, value: 150, suffix: "+", label: "Niños atendidos" },
@@ -22,8 +18,6 @@ const defaultStories = [
 ];
 
 export default function ImpactSection({ title, stats = [], stories = [], ctaButtonText }: ImpactSectionProps) {
-  const { openDonationWidget } = useDonation();
-
   // Process Stats
   const processedStats = stats && stats.length > 0 
     ? stats.map((s: ImpactStat, i: number) => {
@@ -53,28 +47,16 @@ export default function ImpactSection({ title, stats = [], stories = [], ctaButt
       <div className="max-w-[1400px] mx-auto px-6 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Block */}
-        <ImpactHeader title={title} />
+        <ImpactHeader title={title ?? undefined} />
 
         {/* Modular Components */}
         <ImpactStats stats={processedStats} />
         <ImpactStories stories={processedStories} />
 
         {/* CTA Button */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex justify-center px-4"
-        >
-          <button
-            onClick={() => openDonationWidget()}
-            className="w-full sm:w-auto flex items-center justify-center gap-3 bg-accent text-primary px-10 py-4 rounded-full font-black text-lg tracking-widest shadow-xl shadow-accent/20 active:scale-95 transition-all group border-2 border-accent hover:bg-transparent hover:text-accent"
-          >
-            <FaHeart className="group-hover:scale-125 transition-transform duration-300" />
-            {ctaButtonText?.toUpperCase() || "APADRINA UN NIÑO"}
-          </button>
-        </motion.div>
+        <ImpactCta ctaButtonText={ctaButtonText ?? undefined} />
       </div>
     </section>
   );
 }
+

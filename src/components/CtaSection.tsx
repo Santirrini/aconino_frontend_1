@@ -1,8 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import ScrollReveal from "./animations/ScrollReveal";
+import CtaBackground from "./cta/CtaBackground";
 
 interface CtaSectionProps {
     acf?: {
@@ -22,30 +20,13 @@ export default function CtaSection({ acf }: CtaSectionProps) {
     return (
         <section className="relative w-full py-32 md:py-48 flex items-center justify-center overflow-hidden bg-primary">
             {/* Background Image with Dark Blue Overlay */}
-            <motion.div 
-                initial={{ scale: 1.1 }}
-                whileInView={{ scale: 1 }}
-                transition={{ duration: 1.5 }}
-                viewport={{ once: true }}
-                className="absolute inset-0 z-0 opacity-40 mix-blend-overlay"
-            >
-                <Image
-                    src={backgroundImage}
-                    alt="Niños felices"
-                    fill
-                    className="object-cover"
-                    priority
-                />
-            </motion.div>
+            <CtaBackground backgroundImage={backgroundImage} />
 
             <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/80 z-10" />
 
             {/* Content */}
-            <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+            <ScrollReveal 
+                animation="fade-up"
                 className="relative z-20 text-center px-4 max-w-4xl mx-auto"
             >
                 <div className="flex items-center justify-center gap-4 mb-8">
@@ -63,7 +44,8 @@ export default function CtaSection({ acf }: CtaSectionProps) {
                 <Link href={ctaLink} className="inline-block bg-accent text-primary font-black tracking-widest text-sm md:text-base px-12 py-5 rounded-full hover:bg-white hover:text-primary transition-all duration-300 shadow-xl shadow-accent/20 transform hover:-translate-y-1 hover:scale-105">
                     {ctaText}
                 </Link>
-            </motion.div>
+            </ScrollReveal>
         </section>
     );
-}
+}
+

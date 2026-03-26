@@ -53,7 +53,7 @@ export default function PostCard({ title, excerpt, slug, date, imageUrl }: PostC
 
                 <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700">
                     <Link
-                        href={`/noticias/${slug}`}
+                        href={`/blog/${slug}`}
                         className="text-secondary hover:text-accent font-medium inline-flex items-center gap-1 group"
                     >
                         Leer más
