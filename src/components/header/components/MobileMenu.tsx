@@ -48,7 +48,7 @@ export default function MobileMenu({ mobileMenu, navLinks }: MobileMenuProps) {
           className="fixed inset-0 bg-white lg:hidden overflow-y-auto"
           style={{ paddingTop: '80px', zIndex: 45 }}
         >
-          <div className="flex flex-col px-4 sm:px-6 pt-2 pb-24">
+          <div className="flex flex-col px-4 sm:px-6 pt-2" style={{ paddingBottom: 'calc(6rem + env(safe-area-inset-bottom))' }}>
             {/* Grid de enlaces simples - 2 columnas compactas */}
             <div className="grid grid-cols-2 gap-2 mb-3">
               {simpleLinks.map((link, idx) => (
