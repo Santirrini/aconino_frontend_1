@@ -50,6 +50,8 @@ export function ParticleMorph({ subtle = false }: ParticleMorphProps) {
             height: data.height,
             top: data.top,
             left: data.left,
+            transform: "translateZ(0)",
+            willChange: "transform, opacity",
           }}
           animate={{
             y: [0, -30, 0],

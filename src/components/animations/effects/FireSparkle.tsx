@@ -60,7 +60,8 @@ export const FireSparkle = ({
                 boxShadow:
                   "0 0 10px 3px rgba(248, 183, 25, 0.7), 0 0 20px 6px rgba(248, 183, 25, 0.3)",
                 left: "50%",
-                transform: "translateX(-50%)",
+                transform: "translateX(-50%) translateZ(0)",
+                willChange: "transform, opacity",
               }}
             />
 
@@ -87,6 +88,8 @@ export const FireSparkle = ({
                   height: "2px",
                   backgroundColor: i % 2 === 0 ? "#f8b719" : "#ffe066",
                   filter: "blur(0.5px)",
+                  transform: "translateZ(0)",
+                  willChange: "transform, opacity",
                 }}
               />
             ))}
@@ -104,7 +107,8 @@ export const FireSparkle = ({
                   "radial-gradient(circle, rgba(248,183,25,0.4) 0%, transparent 70%)",
                 left: "50%",
                 top: "50%",
-                transform: "translate(-50%, -50%)",
+                transform: "translate(-50%, -50%) translateZ(0)",
+                willChange: "opacity",
                 pointerEvents: "none",
               }}
             />
@@ -128,7 +132,8 @@ export const FireSparkle = ({
                   "radial-gradient(circle, #ffe066 0%, #f8b719 40%, transparent 70%)",
                 left: "50%",
                 top: "50%",
-                transform: "translate(-50%, -50%)",
+                transform: "translate(-50%, -50%) translateZ(0)",
+                willChange: "transform, opacity",
               }}
             />
 
@@ -164,6 +169,8 @@ export const FireSparkle = ({
                     filter: "blur(0.5px)",
                     left: "50%",
                     top: "50%",
+                    transform: "translateZ(0)",
+                    willChange: "transform, opacity",
                   }}
                 />
               );
