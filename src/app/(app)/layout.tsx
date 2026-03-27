@@ -38,8 +38,8 @@ export default async function RootLayout({
     ]);
     
     return (
-        <html lang="es" className={`${manrope.variable}`} suppressHydrationWarning style={{ backgroundColor: '#0c2070' }}>
-            <body className="antialiased min-h-screen flex flex-col font-sans bg-white text-primary" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+        <html lang="es" className={`${manrope.variable}`} suppressHydrationWarning>
+            <body className="antialiased min-h-screen flex flex-col font-sans bg-white text-primary">
                 <div className="w-full max-w-full" style={{ overflowX: 'clip' }}>
                     <DonationProvider>
                         <ComingSoonProvider>

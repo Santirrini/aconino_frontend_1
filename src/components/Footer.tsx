@@ -57,7 +57,7 @@ export default function Footer({ settings }: FooterProps) {
   const controlEntity = settings?.controlEntity || settings?.footerInfo?.controlEntity;
 
   return (
-    <footer className="bg-primary text-gray-300 mt-auto pt-20 md:pt-24 pb-[max(2rem,env(safe-area-inset-bottom))] font-sans relative overflow-hidden">
+    <footer className="bg-primary text-gray-300 mt-auto pt-20 md:pt-24 pb-0 font-sans relative overflow-hidden">
       {/* Subtle Background Glow for depth */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3" />
       

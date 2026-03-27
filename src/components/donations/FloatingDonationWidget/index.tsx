@@ -30,8 +30,7 @@ export default function FloatingDonationWidget() {
 
   return (
     <div 
-      className="fixed z-[90] flex flex-col items-end group floating-widget-container"
-      style={{ bottom: 'calc(1.25rem + env(safe-area-inset-bottom))', right: '1.25rem' }}
+      className="fixed z-[90] flex flex-col items-end group floating-widget-container bottom-5 right-5 md:bottom-8 md:right-8"
     >
       <AnimatePresence>
         {isOpen && (

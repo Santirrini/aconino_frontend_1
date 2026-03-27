@@ -28,7 +28,7 @@ html {
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background: #ffffff;
   font-family: var(--font-sans);
   overflow-x: clip;
 }
@@ -65,7 +65,7 @@ body {
 /* Force position for floating widget to avoid layout shifts or overrides */
 .floating-widget-container {
   position: fixed !important;
-  bottom: calc(1.25rem + env(safe-area-inset-bottom)) !important;
+  bottom: 1.25rem !important;
   right: 1.25rem !important;
   top: auto !important;
   left: auto !important;
@@ -73,7 +73,7 @@ body {
 
 @media (min-width: 768px) {
   .floating-widget-container {
-    bottom: calc(2rem + env(safe-area-inset-bottom)) !important;
+    bottom: 2rem !important;
     right: 2rem !important;
   }
 }
