@@ -1,7 +1,7 @@
 "use client";
 
 import { FaFacebookF, FaInstagram, FaYoutube, FaTwitter, FaLinkedinIn, FaSearch } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 interface TopBarProps {
   isScrolled: boolean;
@@ -11,7 +11,7 @@ export default function TopBar({ isScrolled }: TopBarProps) {
   return (
     <AnimatePresence>
       {!isScrolled && (
-        <motion.div
+        <m.div
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
@@ -52,7 +52,7 @@ export default function TopBar({ isScrolled }: TopBarProps) {
             </div>
 
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

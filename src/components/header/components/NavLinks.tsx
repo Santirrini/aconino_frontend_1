@@ -3,7 +3,7 @@ import { NavLink } from "@/types/navigation";
 import Link from "next/link";
 import { FaChevronDown } from "react-icons/fa";
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Dropdown from "./Dropdown";
 import { staggerItem } from "@/animations/variants/staggerChildren";
 
@@ -27,15 +27,17 @@ export default function NavLinks({ navLinks }: NavLinksProps) {
 
     <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[13px] xl:text-[14px] font-bold">
       {navItems.map(({ link, idx, parentActive, isHovered }) => (
-          <motion.div
+          <m.div
             key={link.name}
             className="relative"
             onMouseEnter={() => setHoveredIdx(idx)}
             onMouseLeave={() => setHoveredIdx(null)}
             variants={staggerItem}
+            initial="hidden"
+            animate="show"
           >
             {/* Glow backdrop on hover */}
-            <motion.div
+            <m.div
               className="absolute inset-0 bg-accent/10 blur-lg rounded-full"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1.2 : 0.8 }}
@@ -56,25 +58,25 @@ export default function NavLinks({ navLinks }: NavLinksProps) {
                 parentActive ? 'text-accent' : 'text-primary hover:text-accent'
               }`}
             >
-              <motion.span
+              <m.span
                 className="relative"
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
               >
                 {link.name}
-              </motion.span>
+              </m.span>
 
               {link.hasDropdown && (
-                <motion.div
+                <m.div
                   animate={{ rotate: isHovered ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
                   <FaChevronDown className={`text-[10px] ${parentActive ? 'text-accent' : 'text-gray-400'}`} />
-                </motion.div>
+                </m.div>
               )}
 
               {/* Animated underline */}
-              <motion.span
+              <m.span
                 className="absolute bottom-0 left-0 h-[3px] rounded-t-full"
                 style={{ backgroundColor: '#f8b719' }}
                 initial={{ width: 0, boxShadow: '0 0 0px rgba(248,183,25,0)' }}
@@ -91,7 +93,7 @@ export default function NavLinks({ navLinks }: NavLinksProps) {
             {link.hasDropdown && link.subLinks && (
               <Dropdown subLinks={link.subLinks} isOpen={isHovered} />
             )}
-          </motion.div>
+          </m.div>
         ))}
     </nav>
   );
