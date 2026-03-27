@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, useMemo, ReactNode } from "react";
 import DonationWidget from "@/components/donations/DonationWidget";
 
 interface DonationContextProps {
@@ -40,16 +40,16 @@ export const DonationProvider = ({ children }: { children: ReactNode }) => {
     window.open(wompiUrl, '_blank', 'noopener,noreferrer');
   };
 
+  const value = useMemo(() => ({
+    isDonationWidgetOpen, 
+    selectedCategory,
+    openDonationWidget, 
+    closeDonationWidget,
+    handleProcessDonation
+  }), [isDonationWidgetOpen, selectedCategory, openDonationWidget, closeDonationWidget, handleProcessDonation]);
+
   return (
-    <DonationContext.Provider 
-      value={{ 
-        isDonationWidgetOpen, 
-        selectedCategory,
-        openDonationWidget, 
-        closeDonationWidget,
-        handleProcessDonation
-      }}
-    >
+    <DonationContext.Provider value={value}>
       {children}
       <DonationWidget isOpen={isDonationWidgetOpen} onClose={closeDonationWidget} />
     </DonationContext.Provider>
