@@ -57,7 +57,7 @@ export const HOME_PAGE_QUERY = defineQuery(`
       clinicalFocus,
       familySupport,
       ctaLabel,
-      items[] {
+      items[0...6] {
         _key,
         title,
         description,
@@ -71,7 +71,7 @@ export const HOME_PAGE_QUERY = defineQuery(`
     },
     recognitions {
       title,
-      items[] {
+      items[0...8] {
         _key,
         title,
         meta,
@@ -81,7 +81,7 @@ export const HOME_PAGE_QUERY = defineQuery(`
     },
     testimonials {
       title,
-      items[] {
+      items[0...4] {
         _key,
         name,
         quote,
@@ -161,13 +161,13 @@ export const QUIENES_SOMOS_QUERY = defineQuery(`
       "imageUrl": image.asset->url,
       "imageAlt": image.alt
     },
-    fundadores[] {
+    fundadores[0...6] {
       name,
       role,
       "imageUrl": image.asset->url,
       "imageAlt": image.alt
     },
-    semillas[] {
+    semillas[0...10] {
       name,
       age,
       "imageUrl": image.asset->url,
@@ -178,11 +178,11 @@ export const QUIENES_SOMOS_QUERY = defineQuery(`
       title,
       "photoUrl": photo.asset->url,
       "photoAlt": photo.alt,
-      roles[] {
+      roles[0...5] {
         position,
         name,
         description,
-        people[] {
+        people[0...3] {
           name,
           description
         }
@@ -197,11 +197,11 @@ export const QUIENES_SOMOS_QUERY = defineQuery(`
     admin {
       subtitle,
       title,
-      roles[] {
+      roles[0...5] {
         position,
         name,
         description,
-        people[] {
+        people[0...3] {
           name,
           description
         }
@@ -212,7 +212,7 @@ export const QUIENES_SOMOS_QUERY = defineQuery(`
 
 // Query para las últimas noticias (solo posts con imagen, ordenados por fecha de creacion)
 export const LATEST_POSTS_QUERY = defineQuery(`
-  *[_type == "post" && defined(mainImage)] | order(_createdAt desc) [0...12] {
+  *[_type == "post" && defined(mainImage)] | order(_createdAt desc) [0...6] {
     _id,
     title,
     "slug": slug.current,
