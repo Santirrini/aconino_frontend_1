@@ -8,7 +8,7 @@ import RecognitionsSection from "../../components/RecognitionsSection";
 
 // Importar cliente y consultas de Sanity
 import { client } from "@/sanity/lib/client";
-import { LATEST_POSTS_QUERY, CTA_SECTION_QUERY, ABOUT_SECTION_QUERY, HOME_PAGE_QUERY } from "@/sanity/lib/queries";
+import { LATEST_POSTS_QUERY, HOME_PAGE_QUERY } from "@/sanity/lib/queries";
 import type { SanityPost } from "@/lib/sanity-posts";
 
 export const revalidate = 60;
@@ -16,22 +16,16 @@ export const revalidate = 60;
 export default async function Home() {
     let sanityHome = null;
     let sanityPosts = [];
-    let sanityCta = null;
-    let sanityAbout = null;
 
     try {
-        // Obtener datos del documento unificado y documentos independientes
-        [sanityHome, sanityPosts, sanityCta, sanityAbout] = await Promise.all([
+        // Obtener datos del documento unificado y posts
+        [sanityHome, sanityPosts] = await Promise.all([
             client.fetch(HOME_PAGE_QUERY).catch(() => null),
-            client.fetch(LATEST_POSTS_QUERY).catch(() => []),
-            client.fetch(CTA_SECTION_QUERY).catch(() => null),
-            client.fetch(ABOUT_SECTION_QUERY).catch(() => null)
+            client.fetch(LATEST_POSTS_QUERY).catch(() => [])
         ]);
     } catch (error) {
         console.error('Error fetching Sanity data:', error);
     }
-
-
 
     // Mapear datos para el Hero desde documento unificado
     const acf = {
@@ -42,30 +36,32 @@ export default async function Home() {
         hero_image: sanityHome?.hero?.backgroundImageUrl || "/images/hero-background-blue.png",
         hero_impact: sanityHome?.hero?.impact,
         hero_cta_text: sanityHome?.programs?.ctaLabel || "CONTÁCTANOS",
-        hero_cta_link: "/contactanos",
-        cta_title: sanityCta?.title || "35 años apoiando la inclusión",
-        cta_label: sanityCta?.ctaLabel || "CONTÁCTANOS",
-        cta_background_image: sanityCta?.backgroundImageUrl || "/images/hero-background-blue.png",
-        about_title: sanityAbout?.title,
-        about_description: sanityAbout?.description,
-        about_image: sanityAbout?.imageUrl,
-        experience_label: sanityAbout?.experienceLabel,
-        experience_value: sanityAbout?.experienceValue,
-        about_cta_text: sanityAbout?.ctaLabel,
-        about_cta_link: sanityAbout?.ctaLink,
+        hero_cta_link: sanityHome?.cta?.ctaLink || "/contactanos",
+        cta_title: sanityHome?.cta?.title || "35 años apoiando la inclusión",
+        cta_label: sanityHome?.cta?.ctaLabel || "CONTÁCTANOS",
+        cta_background_image: sanityHome?.cta?.backgroundImageUrl || "/images/hero-background-blue.png",
+        about_title: sanityHome?.about?.title,
+        about_description: sanityHome?.about?.description,
+        about_image: sanityHome?.about?.imageUrl,
+        experience_label: sanityHome?.about?.experienceLabel,
+        experience_value: sanityHome?.about?.experienceValue,
+        about_cta_text: sanityHome?.about?.ctaLabel,
+        about_cta_link: sanityHome?.about?.ctaLink,
     };
 
     interface SanityProgram {
         title?: string;
         description?: string;
         imageUrl?: string;
+        category?: string;
     }
 
     const mappedPrograms = sanityHome?.programs?.items?.map((p: SanityProgram) => ({
         title: p.title,
         desc: p.description || '',
         slug: p.title?.toLowerCase().replace(/ /g, '-') || '',
-        imageUrl: p.imageUrl || null
+        imageUrl: p.imageUrl || null,
+        category: p.category || "Programa Aconiño"
     })) || [];
 
     const generateSlug = (title?: string, existingSlug?: string | null): string => {
@@ -108,8 +104,6 @@ export default async function Home() {
         image: t.imageUrl || null
     })) || [];
 
-
-
     return (
         <div className="w-full">
             <Hero acf={acf} />
@@ -117,7 +111,9 @@ export default async function Home() {
             <AboutSection acf={acf} />
             
             <ProgramsSection 
-                programs={mappedPrograms} 
+                programs={mappedPrograms}
+                sectionTitle={sanityHome?.programs?.sectionTitle}
+                sectionDescription={sanityHome?.programs?.sectionDescription}
             />
             
             <ImpactSection 

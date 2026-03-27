@@ -10,8 +10,14 @@ interface ProgramItem {
 }
 
 export default function ProgramsSection({ 
-    programs
-}: { programs?: ProgramItem[] }) {
+    programs,
+    sectionTitle,
+    sectionDescription
+}: { 
+    programs?: ProgramItem[];
+    sectionTitle?: string;
+    sectionDescription?: string;
+}) {
     
     const defaultPrograms = [
         {
@@ -69,7 +75,7 @@ export default function ProgramsSection({
                         delay={0.1}
                     >
                         <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight">
-                            Nuestros Programas
+                            {sectionTitle || "Nuestros Programas"}
                         </h2>
                     </ScrollReveal>
                     
@@ -78,7 +84,7 @@ export default function ProgramsSection({
                         delay={0.25}
                     >
                         <p className="mt-4 text-base md:text-lg text-slate-500 max-w-2xl mx-auto">
-                            Programas terapéuticos especializados para el desarrollo integral de niños y jóvenes
+                            {sectionDescription || "Programas terapéuticos especializados para el desarrollo integral de niños y jóvenes"}
                         </p>
                     </ScrollReveal>
                 </div>

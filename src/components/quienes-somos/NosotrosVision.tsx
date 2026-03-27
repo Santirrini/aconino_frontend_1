@@ -50,14 +50,36 @@ export default function NosotrosVision({ data }: Props) {
                             <FaEye className="text-white text-lg md:text-xl" />
                         </div>
                         {visionText || visionTextSecondary ? (
-                            <>
-                                <p className="text-gray-600 leading-relaxed text-base md:text-lg text-justify mb-4">
-                                    {visionText}
-                                </p>
-                                <p className="text-gray-600 leading-relaxed text-base md:text-lg text-justify font-medium">
-                                    {visionTextSecondary}
-                                </p>
-                            </>
+                            <div className="flex flex-col gap-4">
+                                {visionText?.split('\n').filter(line => line.trim()).map((line, idx) => {
+                                    const match = line.match(/^(\d+\.\s+.*?)\s+(?=[A-Z])/);
+                                    if (match) {
+                                        const titlePart = match[1];
+                                        const restPart = line.substring(titlePart.length).trim();
+                                        return (
+                                            <p key={`v1-${idx}`} className="text-gray-600 leading-relaxed text-base md:text-lg text-justify">
+                                                <strong className="font-black text-primary block text-xl mb-2">{titlePart}</strong>
+                                                <span>{restPart}</span>
+                                            </p>
+                                        );
+                                    }
+                                    return <p key={`v1-${idx}`} className="text-gray-600 leading-relaxed text-base md:text-lg text-justify">{line}</p>;
+                                })}
+                                {visionTextSecondary?.split('\n').filter(line => line.trim()).map((line, idx) => {
+                                    const match = line.match(/^(\d+\.\s+.*?)\s+(?=[A-Z])/);
+                                    if (match) {
+                                        const titlePart = match[1];
+                                        const restPart = line.substring(titlePart.length).trim();
+                                        return (
+                                            <p key={`v2-${idx}`} className="text-gray-600 leading-relaxed text-base md:text-lg text-justify font-medium">
+                                                <strong className="font-black text-primary block text-xl mb-2">{titlePart}</strong>
+                                                <span>{restPart}</span>
+                                            </p>
+                                        );
+                                    }
+                                    return <p key={`v2-${idx}`} className="text-gray-600 leading-relaxed text-base md:text-lg text-justify font-medium">{line}</p>;
+                                })}
+                            </div>
                         ) : (
                             <>
                                 <p className="text-gray-600 leading-relaxed text-base md:text-lg text-justify mb-4">

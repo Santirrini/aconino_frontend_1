@@ -7,8 +7,6 @@ import author from './author'
 import page from './page'
 import settings from './settings'
 import navigation from './navigation'
-import ctaSection from './ctaSection'
-import aboutSection from './aboutSection'
 import nosotrosIntro from './nosotrosIntro'
 import quienesSomos from './quienesSomos'
 import homePage from './homePage'
@@ -26,8 +24,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     page,
     settings,
     navigation,
-    ctaSection,
-    aboutSection,
     nosotrosIntro,
     quienesSomos,
     homePage,

@@ -49,7 +49,57 @@ export default defineType({
           name: 'impact',
           title: 'Texto de Impacto',
           type: 'string',
-          description: 'Ej: +35 años apoyando la inclusión!'
+          description: 'Ej: +35 años apoiando la inclusión!'
+        }),
+      ]
+    }),
+    defineField({
+      name: 'about',
+      title: 'Sección About - Sobre Nosotros',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Título de la Sección',
+          type: 'string',
+          initialValue: '35 años trabajando por mejorar la calidad de vida de niños, niñas y jóvenes en condición de discapacidad'
+        }),
+        defineField({
+          name: 'description',
+          title: 'Descripción',
+          type: 'text',
+          initialValue: 'Tratamientos y terapias con el Modelo de práctica contemporáneo de Neurodesarrollo y protocolo intensivo Pediasuit Orientación y apoyo a las familias'
+        }),
+        defineField({
+          name: 'image',
+          title: 'Imagen Principal',
+          type: 'image',
+          options: { hotspot: true },
+          description: 'Imagen que aparecerá al lado de los textos de la sección.'
+        }),
+        defineField({
+          name: 'experienceLabel',
+          title: 'Etiqueta de Experiencia (Ej: Tradición)',
+          type: 'string',
+          initialValue: 'Tradición'
+        }),
+        defineField({
+          name: 'experienceValue',
+          title: 'Valor de Experiencia (Ej: 35 AÑOS)',
+          type: 'string',
+          initialValue: '35 AÑOS'
+        }),
+        defineField({
+          name: 'ctaLabel',
+          title: 'Texto del Botón',
+          type: 'string',
+          initialValue: 'CONTÁCTANOS'
+        }),
+        defineField({
+          name: 'ctaLink',
+          title: 'Enlace del Botón',
+          type: 'string',
+          initialValue: '/contactanos'
         }),
       ]
     }),
@@ -58,6 +108,18 @@ export default defineType({
       title: 'Sección de Programas',
       type: 'object',
       fields: [
+        defineField({
+          name: 'sectionTitle',
+          title: 'Título de la Sección',
+          type: 'string',
+          initialValue: 'Nuestros Programas'
+        }),
+        defineField({
+          name: 'sectionDescription',
+          title: 'Descripción de la Sección',
+          type: 'text',
+          initialValue: 'Programas terapéuticos especializados para el desarrollo integral de niños y jóvenes'
+        }),
         defineField({
           name: 'subtitle',
           title: 'Subtítulo',
@@ -91,6 +153,7 @@ export default defineType({
               type: 'object',
               fields: [
                 { name: 'title', title: 'Título', type: 'string' },
+                { name: 'category', title: 'Categoría/Edad', type: 'string', description: 'Ej: 0 a 3 años, 3 a 14 años' },
                 { name: 'description', title: 'Descripción', type: 'text' },
                 { name: 'image', title: 'Imagen', type: 'image', options: { hotspot: true } },
                 { name: 'url', title: 'URL', type: 'string' }
@@ -173,6 +236,38 @@ export default defineType({
               ]
             })
           ]
+        }),
+      ]
+    }),
+    defineField({
+      name: 'cta',
+      title: 'Sección CTA (Fondo Azul)',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Título CTA',
+          type: 'string',
+          initialValue: '35 años apoiando la inclusión'
+        }),
+        defineField({
+          name: 'ctaLabel',
+          title: 'Texto del Botón',
+          type: 'string',
+          initialValue: 'CONTÁCTANOS'
+        }),
+        defineField({
+          name: 'ctaLink',
+          title: 'Enlace del Botón',
+          type: 'string',
+          initialValue: '/contactanos'
+        }),
+        defineField({
+          name: 'backgroundImage',
+          title: 'Imagen de Fondo',
+          type: 'image',
+          options: { hotspot: true },
+          description: 'Sube aquí la imagen de fondo para esta sección. Se recomienda una imagen azul o con overlay azul.'
         }),
       ]
     }),

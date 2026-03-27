@@ -52,7 +52,19 @@ export const HOME_PAGE_QUERY = defineQuery(`
       slogan,
       impact
     },
+    about {
+      title,
+      description,
+      "imageUrl": image.asset->url,
+      "imageAlt": image.alt,
+      experienceLabel,
+      experienceValue,
+      ctaLabel,
+      ctaLink
+    },
     programs {
+      sectionTitle,
+      sectionDescription,
       subtitle,
       clinicalFocus,
       familySupport,
@@ -60,6 +72,7 @@ export const HOME_PAGE_QUERY = defineQuery(`
       items[0...6] {
         _key,
         title,
+        category,
         description,
         url,
         "imageUrl": image.asset->url
@@ -87,30 +100,13 @@ export const HOME_PAGE_QUERY = defineQuery(`
         quote,
         "imageUrl": image.asset->url
       }
+    },
+    cta {
+      title,
+      ctaLabel,
+      ctaLink,
+      "backgroundImageUrl": backgroundImage.asset->url
     }
-  }
-`)
-
-// Query para la sección About (Sobre Nosotros)
-export const ABOUT_SECTION_QUERY = defineQuery(`
-  *[_type == "aboutSection"][0] {
-    title,
-    description,
-    "imageUrl": image.asset->url,
-    experienceLabel,
-    experienceValue,
-    ctaLabel,
-    ctaLink
-  }
-`)
-
-// Query para la sección de CTA (Fondo Azul)
-export const CTA_SECTION_QUERY = defineQuery(`
-  *[_type == "ctaSection"][0] {
-    title,
-    ctaLabel,
-    ctaLink,
-    "backgroundImageUrl": backgroundImage.asset->url
   }
 `)
 
