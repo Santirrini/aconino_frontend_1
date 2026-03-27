@@ -65,7 +65,7 @@ body {
 /* Force position for floating widget to avoid layout shifts or overrides */
 .floating-widget-container {
   position: fixed !important;
-  bottom: 1.25rem !important;
+  bottom: calc(1.25rem + env(safe-area-inset-bottom)) !important;
   right: 1.25rem !important;
   top: auto !important;
   left: auto !important;
@@ -73,7 +73,7 @@ body {
 
 @media (min-width: 768px) {
   .floating-widget-container {
-    bottom: 2rem !important;
+    bottom: calc(2rem + env(safe-area-inset-bottom)) !important;
     right: 2rem !important;
   }
 }
