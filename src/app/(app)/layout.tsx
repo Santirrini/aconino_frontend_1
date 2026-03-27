@@ -9,6 +9,9 @@ import ComingSoonOverlayWrapper from "@/components/apoyanos/ComingSoonOverlayWra
 import { client } from "@/sanity/lib/client";
 import { SETTINGS_QUERY, NAVIGATION_QUERY } from "@/sanity/lib/queries";
 import FloatingDonationWidget from "@/components/donations/FloatingDonationWidget";
+import { LazyMotion, m } from "framer-motion";
+
+const loadFeatures = () => import("framer-motion").then((mod) => mod.domAnimation);
 
 const manrope = Manrope({
     subsets: ["latin"],
@@ -50,7 +53,9 @@ export default async function RootLayout({
                                 settings={settings}
                             />
                             <main className="flex-1 w-full relative" style={{ overflowX: 'clip' }}>
-                                {children}
+                                <LazyMotion features={loadFeatures}>
+                                    {children}
+                                </LazyMotion>
                             </main>
                             <Footer settings={settings} />
                             <ComingSoonOverlayWrapper />

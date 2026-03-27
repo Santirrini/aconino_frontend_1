@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { generateEntranceParticles } from "@/animations/variants/particles";
 import { useEffect, useState } from "react";
 
@@ -32,7 +32,7 @@ export default function ParticleEffect({ isActive = true, count = 12 }: Particle
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       {particles.map((particle) => (
-        <motion.div
+        <m.div
           key={particle.id}
           className="absolute rounded-full"
           style={{
@@ -62,7 +62,7 @@ export default function ParticleEffect({ isActive = true, count = 12 }: Particle
       ))}
 
       {/* Central glow burst */}
-      <motion.div
+      <m.div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full"
         style={{
           background: "radial-gradient(circle, rgba(248,183,25,0.3) 0%, transparent 70%)",

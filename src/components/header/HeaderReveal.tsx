@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { curtainVariants, shimmerVariants } from "@/animations/variants/curtainVariants";
 import ParticleEffect from "./components/ParticleEffect";
 
@@ -13,7 +13,7 @@ interface HeaderRevealProps {
 
 export default function HeaderReveal({ isRevealed, children }: HeaderRevealProps) {
   return (
-    <motion.div
+    <m.div
       variants={curtainVariants}
       initial="initial"
       animate={isRevealed ? "animate" : "initial"}
@@ -23,7 +23,7 @@ export default function HeaderReveal({ isRevealed, children }: HeaderRevealProps
       <ParticleEffect isActive={isRevealed} />
 
       {/* Shimmer overlay during reveal */}
-      <motion.div
+      <m.div
         variants={shimmerVariants}
         initial="initial"
         animate={isRevealed ? "animate" : "initial"}
@@ -34,6 +34,6 @@ export default function HeaderReveal({ isRevealed, children }: HeaderRevealProps
       />
       
       {children}
-    </motion.div>
+    </m.div>
   );
 }

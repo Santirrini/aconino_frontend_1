@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useHeader } from "./hooks/useHeader";
 import { staggerContainer } from "@/animations/variants/staggerChildren";
@@ -29,13 +29,13 @@ export default function Header({ navData, ctaLabel, ctaHref, settings }: HeaderP
       <HeaderReveal isRevealed={isRevealed}>
         <TopBar isScrolled={isScrolled} />
 
-        <motion.header
+        <m.header
           variants={headerContainerVariants}
           initial="top"
           animate={isScrolled ? "scrolled" : "top"}
           className="transition-all duration-300 relative bg-white"
         >
-          <motion.div
+          <m.div
             variants={staggerContainer}
             initial="hidden"
             animate="show"
@@ -61,16 +61,16 @@ export default function Header({ navData, ctaLabel, ctaHref, settings }: HeaderP
                 {mobileMenu.isOpen ? <FaTimes className="text-lg" /> : <FaBars className="text-lg" />}
               </button>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Animated accent line */}
-          <motion.div
+          <m.div
             className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-primary via-accent to-secondary origin-center"
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: isScrolled ? 1 : 0, opacity: isScrolled ? 1 : 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           />
-        </motion.header>
+        </m.header>
       </HeaderReveal>
 
       <MobileMenu
