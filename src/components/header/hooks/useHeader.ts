@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useScrollDetection } from "./useScrollDetection";
 import { useMobileMenu } from "./useMobileMenu";
 import { useCurtainReveal } from "./useCurtainReveal";
@@ -7,9 +8,9 @@ export function useHeader() {
   const mobile = useMobileMenu();
   const curtain = useCurtainReveal();
 
-  return {
+  return useMemo(() => ({
     isScrolled: scroll.isScrolled,
     mobileMenu: mobile,
     isRevealed: curtain.isRevealed,
-  };
+  }), [scroll.isScrolled, mobile.isOpen, curtain.isRevealed]);
 }

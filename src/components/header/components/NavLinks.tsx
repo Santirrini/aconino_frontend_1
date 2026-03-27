@@ -2,7 +2,7 @@ import { useActiveLink } from "@/hooks/useActiveLink";
 import { NavLink } from "@/types/navigation";
 import Link from "next/link";
 import { FaChevronDown } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import Dropdown from "./Dropdown";
 import { staggerItem } from "@/animations/variants/staggerChildren";
@@ -15,16 +15,20 @@ export default function NavLinks({ navLinks }: NavLinksProps) {
   const { isParentActive } = useActiveLink();
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
+  const navItems = useMemo(() => {
+    return navLinks.map((link, idx) => {
+      const parentActive = isParentActive(link);
+      const isHovered = hoveredIdx === idx;
+      return { link, idx, parentActive, isHovered };
+    });
+  }, [navLinks, hoveredIdx, isParentActive]);
+
   return (
 
     <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[13px] xl:text-[14px] font-bold">
-      {navLinks.map((link, idx) => {
-        const parentActive = isParentActive(link);
-        const isHovered = hoveredIdx === idx;
-
-        return (
+      {navItems.map(({ link, idx, parentActive, isHovered }) => (
           <motion.div
-            key={idx}
+            key={link.name}
             className="relative"
             onMouseEnter={() => setHoveredIdx(idx)}
             onMouseLeave={() => setHoveredIdx(null)}
@@ -88,8 +92,7 @@ export default function NavLinks({ navLinks }: NavLinksProps) {
               <Dropdown subLinks={link.subLinks} isOpen={isHovered} />
             )}
           </motion.div>
-        );
-      })}
+        ))}
     </nav>
   );
 }

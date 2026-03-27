@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useMemo, ReactNode } from "react";
 
 interface ComingSoonContextType {
   showComingSoon: boolean;
@@ -18,17 +18,17 @@ export function ComingSoonProvider({ children }: { children: ReactNode }) {
   const [targetYear, setTargetYear] = useState(2027);
   const [message, setMessage] = useState("Centro Día para Adultos");
 
+  const value = useMemo(() => ({
+    showComingSoon, 
+    setShowComingSoon, 
+    targetYear, 
+    setTargetYear,
+    message,
+    setMessage
+  }), [showComingSoon, targetYear, message]);
+
   return (
-    <ComingSoonContext.Provider 
-      value={{ 
-        showComingSoon, 
-        setShowComingSoon, 
-        targetYear, 
-        setTargetYear,
-        message,
-        setMessage
-      }}
-    >
+    <ComingSoonContext.Provider value={value}>
       {children}
     </ComingSoonContext.Provider>
   );
