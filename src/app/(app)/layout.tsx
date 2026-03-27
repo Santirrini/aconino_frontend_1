@@ -20,6 +20,12 @@ export const metadata: Metadata = {
     description: "35 años apoyando la inclusión y mejorando la calidad de vida.",
 };
 
+export const viewport = {
+    width: "device-width",
+    initialScale: 1,
+    viewportFit: "cover",
+};
+
 export default async function RootLayout({
     children,
 }: Readonly<{
