@@ -4,9 +4,10 @@ import ScrollReveal from "../animations/ScrollReveal";
 
 interface ImpactHeaderProps {
   title?: string | null;
+  description?: string | null;
 }
 
-export default function ImpactHeader({ title }: ImpactHeaderProps) {
+export default function ImpactHeader({ title, description }: ImpactHeaderProps) {
   return (
     <ScrollReveal
       animation="fade-up"
@@ -23,7 +24,7 @@ export default function ImpactHeader({ title }: ImpactHeaderProps) {
         )}
       </h2>
       <p className="text-base md:text-xl text-gray-500 max-w-2xl mx-auto font-medium leading-relaxed">
-        Cada aporte cuenta. Con tu ayuda logramos que más niños reciban la atención terapéutica que necesitan para cumplir sus sueños.
+        {description || "Cada aporte cuenta. Con tu ayuda logramos que más niños reciban la atención terapéutica que necesitan para cumplir sus sueños."}
       </p>
     </ScrollReveal>
   );

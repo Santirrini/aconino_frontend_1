@@ -271,6 +271,47 @@ export default defineType({
         }),
       ]
     }),
+    defineField({
+      name: 'impact',
+      title: 'Sección de Impacto',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'headerTitle',
+          title: 'Título del Header',
+          type: 'string',
+          description: 'Ej: Tu apoyo transforma vidas',
+          initialValue: 'Tu apoyo transforma vidas'
+        }),
+        defineField({
+          name: 'headerDescription',
+          title: 'Descripción del Header',
+          type: 'text',
+          description: 'Texto que aparece debajo del título',
+          initialValue: 'Cada aporte cuenta. Con tu ayuda logramos que más niños reciban la atención terapéutica que necesitan para cumplir sus sueños.'
+        }),
+        defineField({
+          name: 'ctaButtonText',
+          title: 'Texto del Botón CTA',
+          type: 'string',
+          initialValue: 'Ver más'
+        }),
+        defineField({
+          name: 'stats',
+          title: 'Estadísticas',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              type: 'object',
+              fields: [
+                { name: 'value', title: 'Valor (Ej: 150+)', type: 'string' },
+                { name: 'label', title: 'Etiqueta (Ej: Niños atendidos)', type: 'string' }
+              ]
+            })
+          ]
+        }),
+      ]
+    }),
   ],
   preview: {
     prepare() {

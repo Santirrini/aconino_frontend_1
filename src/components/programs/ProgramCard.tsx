@@ -98,7 +98,7 @@ export default function ProgramCard({
             {/* Footer CTA */}
             <div className="pt-4 mt-auto border-t border-slate-100">
                 <Link 
-                    href={`/programas/${slug}`} 
+                    href={`/programas#${slug || 'atencion-temprana'}`} 
                     className="inline-flex items-center gap-2 text-[10px] md:text-[12px] font-bold text-primary uppercase tracking-widest group/btn w-full justify-between"
                 >
                     <span className="relative overflow-hidden h-4 md:h-5 w-full flex-1">

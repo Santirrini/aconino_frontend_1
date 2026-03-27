@@ -149,7 +149,7 @@ export default async function ProgramasPage() {
                                     <ScrollReveal animation="fade-up" delay={0.6}>
                                         <div className="pt-6">
                                             <Link
-                                                href={`/programas/${program.slug}`}
+                                                href={`/programas#${program.slug || 'atencion-temprana'}`}
                                                 className="inline-flex items-center gap-3 bg-primary text-white px-8 py-4 rounded-full font-bold hover:bg-secondary transition-all duration-300 transform hover:-translate-y-1 shadow-lg group"
                                             >
                                                 Más información

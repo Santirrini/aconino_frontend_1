@@ -117,9 +117,11 @@ export default async function Home() {
             />
             
             <ImpactSection 
-                title={sanityHome?.hero?.impact}
+                title={sanityHome?.impact?.headerTitle}
+                description={sanityHome?.impact?.headerDescription}
+                stats={sanityHome?.impact?.stats}
                 stories={mappedTestimonials}
-                ctaButtonText="Ver más"
+                ctaButtonText={sanityHome?.impact?.ctaButtonText}
             />
             
             <CtaSection acf={acf} />

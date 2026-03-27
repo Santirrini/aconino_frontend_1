@@ -17,7 +17,7 @@ const defaultStories = [
   { id: 3, name: "S.", story: "Verlo sonreír y jugar con otros niños es el mayor regalo que pudimos recibir.", img: "https://images.unsplash.com/photo-1542887800-faca0261c9e1?q=80&w=600&auto=format&fit=crop" }
 ];
 
-export default function ImpactSection({ title, stats = [], stories = [], ctaButtonText }: ImpactSectionProps) {
+export default function ImpactSection({ title, description, stats = [], stories = [], ctaButtonText }: ImpactSectionProps) {
   // Process Stats
   const processedStats = stats && stats.length > 0 
     ? stats.map((s: ImpactStat, i: number) => {
@@ -47,7 +47,7 @@ export default function ImpactSection({ title, stats = [], stories = [], ctaButt
       <div className="max-w-[1400px] mx-auto px-6 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Block */}
-        <ImpactHeader title={title ?? undefined} />
+        <ImpactHeader title={title ?? undefined} description={description ?? undefined} />
 
         {/* Modular Components */}
         <ImpactStats stats={processedStats} />

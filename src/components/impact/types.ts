@@ -11,6 +11,7 @@ export interface ImpactStory {
 
 export interface ImpactSectionProps {
   title?: string | null;
+  description?: string | null;
   stats?: ImpactStat[] | null;
   stories?: ImpactStory[] | null;
   ctaButtonText?: string | null;

@@ -106,6 +106,15 @@ export const HOME_PAGE_QUERY = defineQuery(`
       ctaLabel,
       ctaLink,
       "backgroundImageUrl": backgroundImage.asset->url
+    },
+    impact {
+      headerTitle,
+      headerDescription,
+      ctaButtonText,
+      stats[] {
+        value,
+        label
+      }
     }
   }
 `)
