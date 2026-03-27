@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useMemo, ReactNode } from "react";
+import React, { createContext, useContext, useState, useMemo, useCallback, ReactNode } from "react";
 import DonationWidget from "@/components/donations/DonationWidget";
 
 interface DonationContextProps {
@@ -25,20 +25,20 @@ export const DonationProvider = ({ children }: { children: ReactNode }) => {
   const [isDonationWidgetOpen, setIsDonationWidgetOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("general");
 
-  const openDonationWidget = (categoryId?: string) => {
+  const openDonationWidget = useCallback((categoryId?: string) => {
     if (categoryId) {
       setSelectedCategory(categoryId);
     }
     setIsDonationWidgetOpen(true);
-  };
+  }, []);
   
-  const closeDonationWidget = () => setIsDonationWidgetOpen(false);
+  const closeDonationWidget = useCallback(() => setIsDonationWidgetOpen(false), []);
 
-  const handleProcessDonation = (amount: number, categoryId: string) => {
+  const handleProcessDonation = useCallback((amount: number, categoryId: string) => {
     const reference = `${categoryId}_${Date.now()}`;
     const wompiUrl = `https://checkout.wompi.co/p/?amount=${amount}&reference=${reference}`;
     window.open(wompiUrl, '_blank', 'noopener,noreferrer');
-  };
+  }, []);
 
   const value = useMemo(() => ({
     isDonationWidgetOpen, 

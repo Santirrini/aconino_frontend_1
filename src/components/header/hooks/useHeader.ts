@@ -12,5 +12,5 @@ export function useHeader() {
     isScrolled: scroll.isScrolled,
     mobileMenu: mobile,
     isRevealed: curtain.isRevealed,
-  }), [scroll.isScrolled, mobile.isOpen, curtain.isRevealed]);
+  }), [scroll.isScrolled, mobile, curtain.isRevealed]);
 }
