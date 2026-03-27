@@ -61,8 +61,8 @@ export default function ProgramCard({
                 src={imageUrl}
                 alt={title}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover transition-transform duration-700 md:group-hover:scale-105"
-                unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-80" />
             

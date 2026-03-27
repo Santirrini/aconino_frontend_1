@@ -54,8 +54,8 @@ export default function NewsCard({ post, index }: NewsCardProps) {
                   src={featuredImageUrl}
                   alt={postTitle}
                   fill
+                  sizes="(max-width: 300px) 300px, (max-width: 600px) 50vw, 300px"
                   className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                  unoptimized
               />
 
               {/* Date Badge */}

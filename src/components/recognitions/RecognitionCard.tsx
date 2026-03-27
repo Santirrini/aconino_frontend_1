@@ -34,8 +34,8 @@ export default function RecognitionCard({
                   src={imageUrl} 
                   alt={title} 
                   fill 
+                  sizes="(max-width: 144px) 50vw, 144px"
                   className="object-contain p-2 md:p-4 mix-blend-multiply filter group-hover:scale-110 transition-transform duration-700" 
-                  unoptimized
               />
               {/* Internal Shine border matching rest of site */}
               <div className="absolute inset-1.5 md:inset-3 border border-white/40 rounded-[0.6rem] md:rounded-[1.4rem] pointer-events-none" />
