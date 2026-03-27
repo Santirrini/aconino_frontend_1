@@ -1,4 +1,4 @@
-import { getPosts, getCategories } from "@/lib/sanity-posts"
+import { getPosts, getCategories, getRecentPosts } from "@/lib/sanity-posts"
 import BlogHero from "@/components/blog/BlogHero"
 import BlogPostCard from "@/components/blog/BlogPostCard"
 import BlogSidebar from "@/components/blog/BlogSidebar"
@@ -22,7 +22,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     const [{ posts, totalPages }, categories, recentPosts] = await Promise.all([
         getPosts(page, categorySlug),
         getCategories(),
-        getPosts(1, undefined).then(r => r.posts.slice(0, 5))
+        getRecentPosts(5)
     ])
 
     const featuredPost = page === 1 && posts.length > 0 ? posts[0] : null
