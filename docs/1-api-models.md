@@ -158,7 +158,7 @@ export interface AcfHomePage {
 
 ## 5. Metadatos de SEO (Yoast)
 
-Ampliamente utilizado en Aconiño según se observa en los payloads.
+Ampliamente utilizado en Aconiño según se observa en las respuestas de la API.
 
 ```typescript
 export interface YoastHeadJson {
