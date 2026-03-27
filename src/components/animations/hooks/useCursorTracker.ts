@@ -28,11 +28,12 @@ export const useCursorTracker = ({
   }, [cursorPos]);
 
   useEffect(() => {
+    let rafId: number;
+
     const updateCursorPosition = () => {
       if (mounted && containerRef.current) {
         const container = containerRef.current;
         const charSpans = container.querySelectorAll(".golden-typewriter-char");
-
         const targetIndex = Math.min(charIndex, text.length - 1);
         const targetSpan = charSpans[targetIndex];
 
@@ -47,10 +48,18 @@ export const useCursorTracker = ({
       }
     };
 
+    const handleResize = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updateCursorPosition);
+    };
+
     updateCursorPosition();
-    window.addEventListener("resize", updateCursorPosition);
-    return () => window.removeEventListener("resize", updateCursorPosition);
-  }, [charIndex, mounted, text.length, text, containerRef]);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(rafId);
+    };
+  }, [charIndex, mounted, text, containerRef]);
 
   return cursorPos;
 };

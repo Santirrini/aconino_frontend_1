@@ -30,7 +30,7 @@ export default function FooterSocial({ socialLinks, copyright }: FooterSocialPro
       <div className="flex gap-3 items-center justify-center md:justify-start">
         {socialLinks.map((social, idx) => (
           <a 
-            key={idx} 
+            key={social.label || social.url || `social-${idx}`} 
             href={social.url} 
             target="_blank" 
             rel="noopener noreferrer"

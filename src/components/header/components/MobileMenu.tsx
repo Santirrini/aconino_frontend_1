@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLink } from "../../../types/navigation";
 import { useActiveLink } from "../../../hooks/useActiveLink";
@@ -26,10 +27,19 @@ export default function MobileMenu({ mobileMenu, navLinks }: MobileMenuProps) {
   const { isActive, isParentActive } = useActiveLink();
   const { openDonationWidget } = useDonation();
 
-  const simpleLinks = navLinks.filter(link => !link.hasDropdown);
-  const dropdownLinks = navLinks.filter(link => link.hasDropdown);
+  const simpleLinks = useMemo(
+    () => navLinks.filter(link => !link.hasDropdown),
+    [navLinks]
+  );
+  const dropdownLinks = useMemo(
+    () => navLinks.filter(link => link.hasDropdown),
+    [navLinks]
+  );
 
-  const checkActive = (href: string | undefined) => isActive(href);
+  const checkActive = useCallback(
+    (href: string | undefined) => isActive(href),
+    [isActive]
+  );
 
 
   const handleDonationClick = () => {

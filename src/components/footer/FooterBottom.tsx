@@ -11,11 +11,13 @@ interface FooterBottomProps {
   legalLinks: FooterLink[];
 }
 
+const currentYear = new Date().getFullYear();
+
 export default function FooterBottom({ legalLinks }: FooterBottomProps) {
   return (
     <div className="pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
       <p className="text-xs text-gray-500 text-center lg:text-left font-medium tracking-wide">
-        © {new Date().getFullYear()} Asociación Aconiño. Todos los derechos reservados.
+        © {currentYear} Asociación Aconiño. Todos los derechos reservados.
       </p>
       
       <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 text-xs font-medium tracking-wide text-gray-500">
