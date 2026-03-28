@@ -1,11 +1,6 @@
-export interface Program {
-    id: string;
-    title: string;
-    description: string;
-    slug: string;
-    ageRange: string;
-    featuredImage: string;
-}
+import { Program } from '../components/programs/types';
+
+export type { Program } from '../components/programs/types';
 
 export const defaultPrograms: Program[] = [
     {
