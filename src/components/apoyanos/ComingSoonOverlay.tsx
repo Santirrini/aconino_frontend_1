@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { IconBuilding, IconConstruction } from "@/constants/apoyanos-icons";
 
@@ -31,6 +31,16 @@ export default function ComingSoonOverlay({
     total: 0
   });
   const [mounted, setMounted] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(0);
+
+  const measureHeader = useCallback(() => {
+    // The header uses HeaderReveal which is a sticky div wrapping TopBar + header
+    // Find the sticky header element
+    const stickyHeader = document.querySelector('[class*="sticky"]') as HTMLElement;
+    if (stickyHeader) {
+      setHeaderHeight(stickyHeader.offsetHeight);
+    }
+  }, []);
 
   useEffect(() => {
     setMounted(true);
@@ -39,11 +49,17 @@ export default function ComingSoonOverlay({
     if (show) {
       document.body.classList.add("coming-soon-overlay-active");
     }
+
+    // Measure header after a short delay to ensure it's rendered
+    const timer = setTimeout(measureHeader, 100);
+    window.addEventListener('resize', measureHeader);
     
     return () => {
       document.body.classList.remove("coming-soon-overlay-active");
+      clearTimeout(timer);
+      window.removeEventListener('resize', measureHeader);
     };
-  }, [show]);
+  }, [show, measureHeader]);
   
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -90,16 +106,14 @@ export default function ComingSoonOverlay({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
-      className="flex flex-col items-center justify-center overflow-hidden"
+      className="fixed left-0 right-0 bottom-0 z-30 overflow-y-auto overflow-x-hidden"
       style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 40,
+        top: `${headerHeight}px`,
         isolation: 'isolate',
         background: 'linear-gradient(to bottom, #1a2744, #1e3a5f, #1a2744)',
       }}
     >
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ top: `${headerHeight}px` }}>
         <motion.div
           animate={{
             scale: [1, 1.2, 1],
@@ -127,7 +141,8 @@ export default function ComingSoonOverlay({
         />
       </div>
 
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto flex flex-col">
+        <div className="flex flex-col items-center justify-center text-center w-full py-16" style={{ minHeight: `calc(100vh - ${headerHeight}px)` }}>
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
@@ -251,6 +266,68 @@ export default function ComingSoonOverlay({
         >
           Un espacio dedicado a la neurorehabilitación y cuidado integral de adultos.
         </motion.p>
+        
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="mt-12 sm:mt-16 text-white/40 pt-4"
+        >
+          <div className="w-[1px] h-12 bg-gradient-to-b from-white/40 to-transparent mx-auto relative">
+             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-white/80 shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+          </div>
+        </motion.div>
+        </div>
+
+        <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.5 }}
+            className="w-full pb-20 px-4 sm:px-0"
+        >
+            <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-8 sm:p-12 md:p-16 relative overflow-hidden shadow-2xl">
+                <div className="absolute top-0 right-0 w-72 h-72 bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
+                
+                <div className="relative z-10 flex flex-col items-center mb-12 sm:mb-16">
+                  <div className="w-16 h-1 bg-accent/60 rounded-full mb-8" />
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white text-center tracking-tight leading-tight">
+                    Un sueño que comienza a tomar forma:<br className="hidden sm:block"/>
+                    <span className="text-accent mt-2 sm:mt-4 inline-block">“Centro Día”</span>
+                  </h3>
+                </div>
+
+                <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-14 text-white/85 text-base md:text-lg leading-relaxed font-light">
+                  <div className="space-y-6">
+                    <p>
+                      En <strong className="text-white font-medium">Aconiño</strong> creemos profundamente en la dignidad, la autonomía y el derecho a una vida plena de las personas adultas con discapacidad. Hoy, ese compromiso se transforma en un avance concreto que nos llena de emoción.
+                    </p>
+                    <p>
+                      Hemos adquirido un lote ubicado en la calle 127 B, debajo de la autopista, donde construiremos nuestro <strong className="text-white font-medium">Centro Día</strong>: un espacio pensado para acompañar, potenciar habilidades y generar oportunidades reales de participación social.
+                    </p>
+                    <p>
+                      Este proyecto ya cuenta con diseños arquitectónicos y estructurales que contemplan un edificio de tres pisos, con espacios especializados para actividades físicas, desarrollo funcional y una piscina destinada a procesos de hidroterapia.
+                    </p>
+                  </div>
+                  <div className="space-y-6">
+                    <p>
+                      Actualmente, nos encontramos a la espera de la licencia de construcción para iniciar esta nueva etapa.
+                    </p>
+                    <p>
+                      Un <strong className="text-white font-medium">Centro Día</strong> no es solo un lugar: es un entorno de atención integral que promueve la autonomía, el desarrollo personal y la inclusión social a través de actividades ocupacionales y acompañamiento especializado.
+                    </p>
+                    <p>
+                      Este proyecto representa mucho más que infraestructura. Es la construcción de oportunidades, de bienestar y de futuro para muchas personas y sus familias.
+                    </p>
+                    <div className="p-8 mt-10 bg-gradient-to-br from-accent/10 to-accent/5 rounded-2xl border border-accent/20 relative overflow-hidden group hover:bg-accent/15 transition-all duration-500">
+                      <div className="absolute -left-2 top-0 text-accent/20 text-7xl font-serif">"</div>
+                      <p className="text-accent font-medium italic text-center text-sm sm:text-base md:text-lg relative z-10 leading-relaxed px-4">
+                        Seguimos avanzando con ilusión, compromiso y la certeza de que estamos construyendo algo que realmente transforma vidas.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </motion.div>
       </div>
     </motion.div>
   );
