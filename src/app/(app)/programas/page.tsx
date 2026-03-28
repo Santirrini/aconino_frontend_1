@@ -124,7 +124,7 @@ export default async function ProgramasPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAFAFA] overflow-x-hidden selection:bg-primary/20">
+    <main className="min-h-screen bg-gray-50 overflow-x-hidden selection:bg-primary/20">
       
       {/* 1. HERO SECTION */}
       <HeroBase
@@ -215,7 +215,7 @@ export default async function ProgramasPage() {
       <GeneralObjective />
 
       {/* 4. METODOLOGÍA DE TRABAJO (Pillars) */}
-      <section className="py-20 md:py-32 bg-[#FAFAFA] relative">
+      <section className="py-20 md:py-32 bg-gray-50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fade-in-up">
             <span className="text-accent font-bold tracking-widest uppercase text-sm mb-4 block">Nuestros Pilares</span>
@@ -242,7 +242,7 @@ export default async function ProgramasPage() {
       <MaxSatisfaction title={maxSatisfaction.title} items={maxSatisfaction.items} />
 
       {/* 8. QUÉ HACEMOS (Timeline) */}
-      <section className="py-20 md:py-32 bg-[#FAFAFA]">
+      <section className="py-20 md:py-32 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <WhatWeDoTimeline steps={whatWeDo} />
         </div>
@@ -257,7 +257,7 @@ export default async function ProgramasPage() {
       </section>
 
       {/* 10. POR QUÉ ELEGIR ACONIÑO (Checkmarks) */}
-      <section className="py-20 md:py-32 bg-[#FAFAFA] border-t border-gray-100">
+      <section className="py-20 md:py-32 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <WhyChooseUs items={whyChooseUs} />
         </div>
