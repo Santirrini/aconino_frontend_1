@@ -71,7 +71,7 @@ export function WhoForSection({ targetAudience }: WhoForSectionProps) {
         viewport={{ once: true, margin: "-50px" }}
         className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8"
       >
-        {targetAudience.map((target, index) => (
+        {targetAudience.map((target) => (
           <motion.div
             key={target._key}
             variants={itemVariants}

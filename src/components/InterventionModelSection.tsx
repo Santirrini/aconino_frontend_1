@@ -8,7 +8,6 @@ import {
   Target, 
   Scissors, 
   ArrowRight,
-  ChevronRight,
   Baby,
   GraduationCap,
   Home
