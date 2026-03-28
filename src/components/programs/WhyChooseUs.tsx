@@ -1,78 +1,58 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
 
-interface WhyChooseUsItem {
+export interface WhyChooseUsItem {
   _key: string;
   text: string;
 }
 
-interface WhyChooseUsProps {
-  title?: string;
-  items?: WhyChooseUsItem[];
+export interface WhyChooseUsProps {
+  items: WhyChooseUsItem[];
 }
 
-const defaultTitle = "¿Por qué elegir Aconiño?";
+export function WhyChooseUs({ items }: WhyChooseUsProps) {
+  if (!items || items.length === 0) return null;
 
-const defaultItems: WhyChooseUsItem[] = [
-  { _key: '1', text: 'Programas para bebés, niños y jóvenes' },
-  { _key: '2', text: 'Intervención temprana y especializada' },
-  { _key: '3', text: 'Enfoque centrado en el niño y su familia' },
-  { _key: '4', text: 'Trabajo interdisciplinario de alta calidad y humanidad' },
-  { _key: '5', text: 'Seguimiento de productos de apoyo (órtesis y ayudas técnicas)' },
-  { _key: '6', text: 'Orientación a familia y escuela' }
-];
-
-export default function WhyChooseUs({
-  title = defaultTitle,
-  items = defaultItems
-}: WhyChooseUsProps) {
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-slate-800 mb-12 md:mb-16"
-        >
-          {title}
-        </motion.h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {items.map((item, index) => (
-            <motion.div
-              key={item._key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              viewport={{ once: true }}
-              className="flex items-start gap-4 p-5 bg-slate-50/70 rounded-xl border border-slate-100"
-            >
-              <div className="flex-shrink-0 w-6 h-6 mt-0.5">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-full h-full text-accent"
-                >
-                  <path
-                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <p className="text-base md:text-lg text-slate-700 leading-relaxed">
-                {item.text}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+    <div className="w-full max-w-5xl mx-auto py-16">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl lg:text-4xl font-extrabold text-[#1f2937] mb-4">
+          ¿Por qué elegir a Aconiño?
+        </h2>
+        <div className="w-24 h-1.5 bg-primary rounded-full mx-auto" />
       </div>
-    </section>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {items.map((item, index) => (
+          <motion.div
+            key={item._key}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+            whileHover={{ y: -5 }}
+            className="flex items-start gap-4 p-6 bg-white rounded-[1.5rem] border border-gray-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_10px_30px_rgb(0,0,0,0.06)] transition-all group"
+          >
+            <div className="shrink-0 mt-1">
+              {/* Animated checkmark icon */}
+              <motion.div
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
+              >
+                <CheckCircle2 className="w-8 h-8 text-green-500 drop-shadow-sm group-hover:scale-110 transition-transform" strokeWidth={1.5} />
+              </motion.div>
+            </div>
+            <p className="font-semibold text-gray-700 leading-snug pt-1.5">
+              {item.text}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
   );
 }

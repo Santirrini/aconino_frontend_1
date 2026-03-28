@@ -1,110 +1,80 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
-interface Principle {
+export interface Principle {
   _key: string;
   title: string;
   description: string;
 }
 
-interface PrinciplesAccordionProps {
-  principles?: Principle[];
+export interface PrinciplesAccordionProps {
+  principles: Principle[];
 }
 
-const defaultPrinciples: Principle[] = [
-  {
-    _key: "1",
-    title: "Intervención interdisciplinaria",
-    description:
-      "Fisioterapeutas, terapeutas ocupacionales, fonoaudiólogos y psicólogos trabajamos desde un enfoque interdisciplinario coordinado para alcanzar objetivos terapéuticos comunes.",
-  },
-  {
-    _key: "2",
-    title: "Atención centrada en el usuario y su familia",
-    description:
-      "Colaboración entre profesionales, paciente y familia en la valoración, planificación, implementación y seguimiento del proceso terapéutico.",
-  },
-  {
-    _key: "3",
-    title: "Objetivos funcionales",
-    description:
-      "Trabajamos habilidades que permiten una mayor independencia y autonomía en las actividades de la vida diaria.",
-  },
-  {
-    _key: "4",
-    title: "Intervención personalizada",
-    description:
-      "Diseñamos el tratamiento específicamente para cada usuario tras una evaluación individual, considerando sus condiciones, objetivos y evolución.",
-  },
-];
+export function PrinciplesAccordion({ principles }: PrinciplesAccordionProps) {
+  const [openIndex, setOpenIndex] = useState<number | null>(0); // First open by default
 
-export default function PrinciplesAccordion({
-  principles = defaultPrinciples,
-}: PrinciplesAccordionProps) {
-  const [openKey, setOpenKey] = useState<string | null>(null);
-
-  const toggleAccordion = (key: string) => {
-    setOpenKey(openKey === key ? null : key);
+  const toggleAccordion = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
   };
 
+  if (!principles || principles.length === 0) return null;
+
   return (
-    <section className="py-16 md:py-24">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">
-          Nuestros Principios
-        </h2>
+    <div className="w-full max-w-3xl mx-auto space-y-4">
+      {principles.map((principle, index) => {
+        const isOpen = openIndex === index;
 
-        <div className="space-y-4">
-          {principles.map((principle) => {
-            const isOpen = openKey === principle._key;
-
-            return (
-              <div
-                key={principle._key}
-                className="bg-white rounded-2xl border border-slate-200/60 shadow-sm overflow-hidden"
+        return (
+          <div 
+            key={principle._key}
+            className={`border rounded-2xl overflow-hidden transition-colors duration-300 ${isOpen ? 'bg-blue-50/50 border-blue-100 shadow-sm' : 'bg-white border-gray-100 hover:border-gray-200'}`}
+          >
+            <button
+              onClick={() => toggleAccordion(index)}
+              className="w-full text-left px-6 py-5 flex items-center justify-between focus:outline-none"
+              aria-expanded={isOpen}
+            >
+              <span className={`text-lg font-semibold transition-colors duration-300 gap-4 flex items-center ${isOpen ? 'text-primary' : 'text-gray-800'}`}>
+                <span className={`flex items-center justify-center w-8 h-8 rounded-full text-sm shrink-0 ${isOpen ? 'bg-primary text-white' : 'bg-gray-100 text-gray-500'}`}>
+                  {index + 1}
+                </span>
+                {principle.title}
+              </span>
+              <motion.div
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className={`shrink-0 ml-4 ${isOpen ? 'text-primary' : 'text-gray-400'}`}
               >
-                <button
-                  onClick={() => toggleAccordion(principle._key)}
-                  className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-slate-50/50 transition-colors"
-                  aria-expanded={isOpen}
+                <ChevronDown className="w-5 h-5" />
+              </motion.div>
+            </button>
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  initial="collapsed"
+                  animate="open"
+                  exit="collapsed"
+                  variants={{
+                    open: { opacity: 1, height: "auto" },
+                    collapsed: { opacity: 0, height: 0 }
+                  }}
+                  transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
                 >
-                  <span className="text-lg md:text-xl font-semibold text-primary pr-4">
-                    {principle.title}
-                  </span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-300 ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-5 pb-5 md:px-6 md:pb-6 pt-0">
-                        <div className="border-t border-slate-100 pt-4">
-                          <p className="text-slate-600 leading-relaxed">
-                            {principle.description}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+                  <div className="px-6 pb-6 pt-0 ml-12">
+                    <p className="text-gray-600 leading-relaxed text-base">
+                      {principle.description}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      })}
+    </div>
   );
 }

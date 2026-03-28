@@ -1,67 +1,73 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 
-interface TargetAudience {
+export interface TargetAudience {
   _key: string;
   icon: string;
   label: string;
 }
 
-interface WhoForSectionProps {
-  title?: string;
-  items?: TargetAudience[];
+export interface WhoForSectionProps {
+  targetAudience: TargetAudience[];
 }
 
-const defaultTitle = "A quién están dirigidos nuestros programas";
-
-const defaultItems: TargetAudience[] = [
-  { _key: '1', icon: '👶', label: 'Bebés con riesgo en el neurodesarrollo' },
-  { _key: '2', icon: '👧', label: 'Niños con retraso en su desarrollo' },
-  { _key: '3', icon: '🧒', label: 'Niños con discapacidad motora' },
-  { _key: '4', icon: '💬', label: 'Niños con dificultades en comunicación' },
-  { _key: '5', icon: '📚', label: 'Niños con dificultades de aprendizaje' },
-  { _key: '6', icon: '🌟', label: 'Jóvenes que requieren fortalecer su autonomía' }
+const bentoStyles = [
+  "col-span-1 md:col-span-2 row-span-2 bg-gradient-to-br from-blue-50 to-white", // Featured large card
+  "col-span-1 row-span-1 bg-white", 
+  "col-span-1 row-span-1 bg-white",
+  "col-span-1 row-span-1 bg-white",
+  "col-span-1 md:col-span-2 row-span-1 bg-gradient-to-r from-blue-50/50 to-white", // Wide card
+  "col-span-1 row-span-1 bg-primary/5", 
 ];
 
-export default function WhoForSection({
-  title = defaultTitle,
-  items = defaultItems
-}: WhoForSectionProps) {
-  return (
-    <section className="py-16 md:py-24 bg-slate-50/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-slate-800 mb-12 md:mb-16"
-        >
-          {title}
-        </motion.h2>
+export function WhoForSection({ targetAudience }: WhoForSectionProps) {
+  if (!targetAudience || targetAudience.length === 0) return null;
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-          {items.map((item, index) => (
+  return (
+    <div className="w-full max-w-5xl mx-auto">
+      <div className="text-center mb-12">
+        <span className="text-sm font-semibold text-primary uppercase tracking-widest bg-blue-50 px-4 py-1.5 rounded-full inline-block mb-4">
+          Público Objetivo
+        </span>
+        <h2 className="text-3xl lg:text-4xl font-extrabold text-[#1f2937]">
+          ¿A quiénes están dirigidos?
+        </h2>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[minmax(140px,auto)]">
+        {targetAudience.map((item, index) => {
+          // Fallback to standard style if there are more items than mapped styles
+          const style = bentoStyles[index % bentoStyles.length];
+          const isFeatured = index === 0;
+
+          return (
             <motion.div
               key={item._key}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -6 }}
-              className="group flex flex-col items-center text-center p-4 md:p-6 bg-white rounded-2xl border border-slate-200/60 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgb(0,0,0,0.08)] hover:border-accent/30 transition-all duration-300"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className={`rounded-3xl p-6 sm:p-8 flex flex-col justify-center items-center text-center shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden group ${style}`}
             >
-              <div className="text-4xl md:text-5xl mb-3 md:mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                {item.icon}
+              {isFeatured && (
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-[40px] group-hover:bg-primary/20 transition-colors" />
+              )}
+              
+              <div className="relative z-10">
+                <span className={`inline-block drop-shadow-sm transition-transform duration-300 group-hover:scale-110 ${isFeatured ? 'text-6xl mb-6' : 'text-4xl mb-4'}`}>
+                  {item.icon}
+                </span>
+                <h3 className={`font-bold text-gray-800 leading-tight ${isFeatured ? 'text-2xl lg:text-3xl max-w-xs mx-auto' : 'text-lg'}`}>
+                  {item.label}
+                </h3>
               </div>
-              <p className="text-xs md:text-sm text-slate-600 leading-snug font-medium">
-                {item.label}
-              </p>
             </motion.div>
-          ))}
-        </div>
+          );
+        })}
       </div>
-    </section>
+    </div>
   );
 }
