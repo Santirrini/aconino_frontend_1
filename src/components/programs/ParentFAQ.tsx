@@ -104,10 +104,12 @@ export function ParentFAQ() {
              {faqs.map((faq, index) => {
                 const isOpen = openIndex === index;
                 return (
-                  <div 
-                    key={index}
-                    className={`group border rounded-[2rem] md:rounded-[3rem] overflow-hidden transition-all duration-700 ${isOpen ? 'bg-blue-50/40 border-primary/20 shadow-xl' : 'bg-white border-gray-100 hover:border-primary/20 hover:shadow-md'}`}
-                  >
+                   <motion.div 
+                     key={index}
+                     className={`group border rounded-[2rem] md:rounded-[3rem] overflow-hidden ${isOpen ? 'bg-blue-50/40 border-primary/20 shadow-xl' : 'bg-white border-gray-100 hover:border-primary/20 hover:shadow-md'}`}
+                     layout
+                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                   >
                     <button
                       onClick={() => toggleAccordion(index)}
                       className="w-full text-left p-6 md:p-8 flex items-center justify-between focus:outline-none"
@@ -116,31 +118,45 @@ export function ParentFAQ() {
                         {faq.question}
                       </span>
                       
-                      <div className={`shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-500 ${isOpen ? 'bg-primary text-white shadow-md rotate-180' : 'bg-gray-100 text-gray-400 group-hover:bg-primary/10 group-hover:text-primary mt-1'}`}>
-                        <ChevronDown className="w-5 h-5 md:w-6 md:h-6 transition-transform duration-700" />
-                      </div>
+                       <motion.div
+                         className={`shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center ${isOpen ? 'bg-primary text-white shadow-md' : 'bg-gray-100 text-gray-400 group-hover:bg-primary/10 group-hover:text-primary mt-1'}`}
+                         animate={{ rotate: isOpen ? 180 : 0 }}
+                         transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                       >
+                         <ChevronDown className="w-5 h-5 md:w-6 md:h-6" />
+                       </motion.div>
                     </button>
                     
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ 
-                            duration: 0.8, 
-                            ease: [0.22, 1, 0.36, 1] // Quintic ease-out: very smooth and decelerated
-                          }}
-                        >
-                          <div className="px-6 md:px-8 pb-8 pt-0">
-                            <p className="text-base md:text-lg text-slate-500 leading-relaxed font-medium pb-2">
-                              {faq.answer}
-                            </p>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                     <AnimatePresence initial={false}>
+                       {isOpen && (
+                         <motion.div
+                           initial={{ opacity: 0, height: 0 }}
+                           animate={{ opacity: 1, height: "auto" }}
+                           exit={{ opacity: 0, height: 0 }}
+                           transition={{
+                             height: { type: "spring", stiffness: 400, damping: 30 },
+                             opacity: { duration: 0.25, ease: "easeOut" }
+                           }}
+                           style={{ willChange: "height, opacity" }}
+                         >
+                           <motion.div
+                             className="px-6 md:px-8 pb-8 pt-0"
+                             initial={{ opacity: 0, y: 10 }}
+                             animate={{ opacity: 1, y: 0 }}
+                             exit={{ opacity: 0, y: 5 }}
+                             transition={{
+                               y: { type: "spring", stiffness: 500, damping: 30, delay: 0.05 },
+                               opacity: { duration: 0.2, delay: 0.05 }
+                             }}
+                           >
+                             <p className="text-base md:text-lg text-slate-500 leading-relaxed font-medium pb-2">
+                               {faq.answer}
+                             </p>
+                           </motion.div>
+                         </motion.div>
+                       )}
+                      </AnimatePresence>
+                   </motion.div>
                 );
              })}
           </motion.div>
