@@ -249,7 +249,7 @@ export default async function ProgramasPage() {
       </section>
 
       {/* 9. OBJETIVOS POR ÁREA (Tabs) */}
-      <section className="py-20 md:py-32 bg-white border-t border-gray-100 relative">
+      <section className="py-16 md:py-24 bg-white border-t border-gray-100 relative">
         <div className="absolute right-0 top-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[80px] -z-10 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ObjectivesTabs objectives={objectivesByArea} />
@@ -257,14 +257,14 @@ export default async function ProgramasPage() {
       </section>
 
       {/* 10. POR QUÉ ELEGIR ACONIÑO (Checkmarks) */}
-      <section className="py-20 md:py-32 bg-gray-50 border-t border-gray-100">
+      <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <WhyChooseUs items={whyChooseUs} />
         </div>
       </section>
 
       {/* 11. CTA FINAL */}
-      <section className="relative py-24 md:py-32 bg-white overflow-hidden text-center border-t border-gray-100">
+      <section className="relative py-20 md:py-28 bg-white overflow-hidden text-center border-t border-gray-100">
         <div className="absolute top-0 right-0 -mr-32 -mt-32 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
         <div className="absolute bottom-0 left-0 -ml-32 -mb-32 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[80px] -z-10 pointer-events-none" />
         

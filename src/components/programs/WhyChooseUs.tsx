@@ -56,17 +56,20 @@ export function WhyChooseUs({ items }: WhyChooseUsProps) {
             viewport={{ once: true, margin: "-20px" }}
             transition={{ duration: 0.4, delay: index * 0.05 }}
             whileHover={{ y: -5 }}
-            className="flex items-center sm:items-start gap-3 md:gap-5 p-4 md:p-8 bg-white rounded-2xl md:rounded-[2.5rem] border border-gray-100 shadow-[0_4px_15px_rgba(0,0,0,0.02)] hover:shadow-xl transition-all group"
+            className="flex items-center sm:items-start gap-4 md:gap-5 p-5 md:p-8 bg-white rounded-2xl md:rounded-[2.5rem] border border-gray-100 shadow-[0_4px_15px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:border-primary/20 transition-all duration-500 group relative overflow-hidden"
           >
-            <div className="shrink-0">
-              <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-green-50 flex items-center justify-center border border-green-100 group-hover:bg-green-500 group-hover:border-green-500 transition-all duration-500 shadow-sm group-hover:shadow-green-200">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out" />
+            
+            <div className="shrink-0 relative z-10">
+              <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-blue-50/50 flex items-center justify-center border border-primary/10 group-hover:scale-110 group-hover:bg-blue-100 transition-all duration-500 shadow-sm group-hover:shadow-primary/20">
                 <CheckCircle2 
-                  className="w-5 h-5 md:w-7 md:h-7 text-green-600 group-hover:text-white transition-colors duration-500" 
-                  strokeWidth={3} 
+                  className="w-5 h-5 md:w-7 md:h-7 text-primary transition-colors duration-500" 
+                  strokeWidth={2.5} 
                 />
               </div>
             </div>
-            <p className="text-sm md:text-base font-bold text-gray-700 leading-tight md:leading-snug">
+            
+            <p className="text-sm md:text-base font-bold text-gray-700 leading-tight md:leading-snug relative z-10 group-hover:text-primary transition-colors duration-500">
               {item.text}
             </p>
           </motion.div>
