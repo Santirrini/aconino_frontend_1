@@ -1,5 +1,6 @@
 import Hero from "../../components/Hero";
 import AboutSection from "../../components/AboutSection";
+import InterventionModelSection from "@/components/InterventionModelSection";
 import ProgramsSection from "../../components/ProgramsSection";
 import ImpactSection from "../../components/ImpactSection";
 import CtaSection from "../../components/CtaSection";
@@ -109,6 +110,8 @@ export default async function Home() {
             <Hero acf={acf} />
             
             <AboutSection acf={acf} />
+            
+            <InterventionModelSection />
             
             <ProgramsSection 
                 programs={mappedPrograms}
