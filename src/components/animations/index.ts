@@ -11,3 +11,4 @@ export * from "./effects/GoldenTypewriter";
 
 export * from "./hooks/useScrollReveal";
 export * from "./hooks/useStagger";
+export * from "./hooks/useScrollAnimation";
