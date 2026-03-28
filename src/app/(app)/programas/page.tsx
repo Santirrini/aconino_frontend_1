@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import InterventionModelSection from "@/components/InterventionModelSection";
 import PrinciplesAccordion from "@/components/programs/PrinciplesAccordion";
 import WhoForSection from "@/components/programs/WhoForSection";
 import WhatWeDoTimeline from "@/components/programs/WhatWeDoTimeline";
@@ -88,11 +87,28 @@ export default async function ProgramasPage() {
         </div>
       </section>
 
-      {/* Intervention Model Section */}
-      <InterventionModelSection
-        mainTitle={interventionModel.mainTitle}
-        subtitle={interventionModel.subtitle}
-      />
+      {/* Intervention Model Intro */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <ScrollReveal animation="fade-up">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary mb-4">
+              {interventionModel.mainTitle || "Nos centramos más en la actividad y menos en la discapacidad"}
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal animation="fade-up" delay={0.1}>
+            <p className="text-xl md:text-2xl text-accent font-semibold mb-8">
+              {interventionModel.subtitle || "Potenciar habilidades, no solo tratar dificultades"}
+            </p>
+          </ScrollReveal>
+          {interventionModel.introText && (
+            <ScrollReveal animation="fade-up" delay={0.2}>
+              <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+                {interventionModel.introText}
+              </p>
+            </ScrollReveal>
+          )}
+        </div>
+      </section>
 
       {/* Principles Accordion */}
       <PrinciplesAccordion principles={principles} />
