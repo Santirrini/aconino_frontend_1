@@ -319,7 +319,7 @@ export default function ComingSoonOverlay({
                       Este proyecto representa mucho más que infraestructura. Es la construcción de oportunidades, de bienestar y de futuro para muchas personas y sus familias.
                     </p>
                     <div className="p-8 mt-10 bg-gradient-to-br from-accent/10 to-accent/5 rounded-2xl border border-accent/20 relative overflow-hidden group hover:bg-accent/15 transition-all duration-500">
-                      <div className="absolute -left-2 top-0 text-accent/20 text-7xl font-serif">"</div>
+                      <div className="absolute -left-2 top-0 text-accent/20 text-7xl font-serif">&quot;</div>
                       <p className="text-accent font-medium italic text-center text-sm sm:text-base md:text-lg relative z-10 leading-relaxed px-4">
                         Seguimos avanzando con ilusión, compromiso y la certeza de que estamos construyendo algo que realmente transforma vidas.
                       </p>
