@@ -67,13 +67,13 @@ export function SpecificPrograms() {
             )}
 
             {/* Mobile Header (Visible only on mobile) */}
-            <div className="lg:hidden mb-12 pt-8 text-center animate-fade-in-up">
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <div className="h-[2px] w-8 bg-accent"></div>
-                <span className="text-gray-400 font-bold tracking-widest uppercase text-[10px] sm:text-xs">Aconiño</span>
-                <div className="h-[2px] w-8 bg-accent"></div>
+            <div className="lg:hidden mb-12 pt-8 text-center animate-fade-in-up px-4">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="h-[2px] w-6 bg-accent"></div>
+                <span className="text-gray-400 font-bold tracking-widest uppercase text-[9px] sm:text-xs">Aconiño</span>
+                <div className="h-[2px] w-6 bg-accent"></div>
               </div>
-              <h3 className="text-3xl sm:text-4xl font-black text-primary leading-[1.15]">
+              <h3 className="text-2xl sm:text-4xl font-black text-primary leading-[1.15] px-2">
                 {program.title}
               </h3>
             </div>

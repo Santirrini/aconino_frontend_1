@@ -43,15 +43,15 @@ export function ParentFAQ() {
         
         {/* Header Section */}
         <div className="text-center mb-16 md:mb-24 animate-fade-in-up">
-          <div className="flex items-center justify-center gap-4 mb-4">
-             <div className="h-[2px] w-8 md:w-12 bg-accent"></div>
-             <span className="text-gray-400 font-bold tracking-widest uppercase text-xs sm:text-sm">Para Familias</span>
-             <div className="h-[2px] w-8 md:w-12 bg-accent"></div>
+          <div className="flex items-center justify-center gap-3 md:gap-4 mb-4">
+             <div className="h-[2px] w-6 md:w-12 bg-accent"></div>
+             <span className="text-gray-400 font-bold tracking-widest uppercase text-[10px] sm:text-xs md:text-sm">Para Familias</span>
+             <div className="h-[2px] w-6 md:w-12 bg-accent"></div>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary leading-tight mb-6">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-primary leading-tight mb-6 px-4">
             Preguntas Frecuentes
           </h2>
-          <p className="text-lg md:text-xl text-gray-500 font-medium max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-gray-500 font-medium max-w-2xl mx-auto px-6">
             Resolvemos las dudas más comunes de los padres sobre el inicio y desarrollo del proceso terapéutico.
           </p>
         </div>

@@ -37,3 +37,6 @@ yarn-error.log*
 
 # claude
 .claude/worktrees/
+
+# Windows reserved name (nul, con, prn, etc.)
+nul
