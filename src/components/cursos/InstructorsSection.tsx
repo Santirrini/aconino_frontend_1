@@ -56,17 +56,17 @@ export default function InstructorsSection({
             {groups.map((group, idx) => (
               <div
                 key={idx}
-                className={`text-center px-6 py-8 rounded-2xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 ${idx < groups.length - 1 ? "md:border-r-0" : ""}`}
+                className={`text-center px-6 py-10 rounded-[2rem] md:rounded-[2.5rem] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-[0_15px_50px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1 ${idx < groups.length - 1 ? "md:border-r-0" : ""}`}
               >
-                <h3 className="text-sm md:text-base font-bold text-primary uppercase tracking-wider mb-6 leading-tight min-h-[3rem] flex items-center justify-center">
+                <h3 className="text-sm md:text-base font-black text-primary uppercase tracking-widest mb-6 leading-tight min-h-[3rem] flex items-center justify-center px-2">
                   {group.organization}
                 </h3>
-                <div className="w-10 h-0.5 bg-accent mx-auto mb-6 rounded-full" />
-                <ul className="space-y-2">
+                <div className="w-12 h-1 bg-accent/30 mx-auto mb-8 rounded-full" />
+                <ul className="space-y-3">
                   {group.instructors.map((name, i) => (
                     <li
                       key={i}
-                      className="text-gray-600 text-sm md:text-base font-medium hover:text-primary transition-colors duration-200"
+                      className="text-gray-600 text-base font-bold hover:text-primary transition-colors duration-300"
                     >
                       {name}
                     </li>

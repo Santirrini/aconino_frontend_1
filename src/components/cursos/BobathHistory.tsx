@@ -130,20 +130,24 @@ export default function BobathHistory({
                     className={`w-full md:w-1/2 flex ${isEven ? "md:justify-end md:pr-16" : "md:justify-start md:pl-16 md:order-last"} pl-20 md:pl-0`}
                   >
                     <motion.div
-                      initial={{ opacity: 0, x: isEven ? -50 : 50, y: 20 }}
+                      initial={{ opacity: 0, x: isEven ? -30 : 30, y: 20 }}
                       whileInView={{ opacity: 1, x: 0, y: 0 }}
                       viewport={{ once: true, margin: "-100px" }}
-                      transition={{ duration: 0.7, type: "spring", bounce: 0.3 }}
-                      className="bg-white p-8 rounded-2xl shadow-[0 8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0 8px_30px_rgb(0,0,0,0.08)] border border-slate-100 transition-all duration-300 relative overflow-hidden group-hover:-translate-y-1"
+                      transition={{ 
+                        duration: 0.8, 
+                        ease: [0.22, 1, 0.36, 1],
+                        delay: index * 0.1 
+                      }}
+                      className="bg-white p-8 rounded-[2rem] md:rounded-[3rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_15px_45px_rgb(0,0,0,0.08)] border border-slate-100 transition-all duration-700 relative overflow-hidden group-hover:-translate-y-1"
                     >
                       <div
-                        className={`absolute -right-10 -top-10 w-32 h-32 bg-gradient-to-br ${item.color || "from-blue-500 to-indigo-600"} opacity-5 rounded-full blur-2xl group-hover:opacity-10 transition-opacity duration-500`}
+                        className={`absolute -right-10 -top-10 w-32 h-32 bg-gradient-to-br ${item.color || "from-blue-500 to-indigo-600"} opacity-5 rounded-full blur-2xl group-hover:opacity-10 transition-opacity duration-700`}
                       />
-                      <span className="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-sm font-bold tracking-wider mb-4">
+                      <span className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-xs font-bold tracking-widest uppercase mb-4">
                         {item.year}
                       </span>
-                      <h3 className="text-2xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                      <p className="text-slate-600 leading-relaxed">{item.description}</p>
+                      <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 tracking-tight leading-tight">{item.title}</h3>
+                      <p className="text-slate-600 leading-relaxed font-medium md:text-lg">{item.description}</p>
                     </motion.div>
                   </div>
 
