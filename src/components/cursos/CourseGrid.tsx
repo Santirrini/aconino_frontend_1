@@ -1,10 +1,11 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useScroll, useTransform, useSpring } from "framer-motion";
 import CourseCard, { CourseCardData } from "./CourseCard";
 import ScrollReveal from "../animations/ScrollReveal";
 import { Sparkles, Calendar as CalendarIcon, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useRef } from "react";
 
 interface CourseGridProps {
     courses: CourseCardData[];
@@ -61,15 +62,31 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 40, scale: 0.96, rotate: -1 },
     show: { 
         opacity: 1, 
         y: 0, 
-        transition: { type: "spring", stiffness: 50, damping: 15 } 
+        scale: 1,
+        rotate: 0,
+        transition: { 
+            type: "spring", 
+            stiffness: 60, 
+            damping: 15,
+            mass: 0.8
+        } 
     }
 };
 
 export default function CourseGrid({ courses }: CourseGridProps) {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+
+    const xTransform = useTransform(scrollYProgress, [0, 1], [0, -150]);
+    const x = useSpring(xTransform, { stiffness: 100, damping: 30 });
+
     interface CourseWithYear extends CourseCardData {
         year?: number;
     }
@@ -90,11 +107,27 @@ export default function CourseGrid({ courses }: CourseGridProps) {
         .sort((a, b) => b - a);
 
     return (
-        <section className="py-16 md:py-28 bg-[#F8FAFC] relative overflow-hidden">
+        <section ref={containerRef} className="py-20 md:py-32 bg-[#F8FAFC] relative overflow-hidden">
             {/* Elementos Decorativos de Fondo (Glassmorphism blobs) */}
             <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none z-0">
-                <div className="absolute -top-[10%] -right-[15%] w-[400px] h-[400px] rounded-full bg-accent/20 blur-[120px]" />
-                <div className="absolute top-[50%] -left-[10%] w-[500px] h-[500px] rounded-full bg-primary/10 blur-[150px]" />
+                <motion.div 
+                    animate={{ 
+                        y: [0, -40, 0],
+                        scale: [1, 1.1, 1],
+                        opacity: [0.2, 0.3, 0.2]
+                    }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -top-[10%] -right-[15%] w-[400px] h-[400px] rounded-full bg-accent/20 blur-[120px]" 
+                />
+                <motion.div 
+                    animate={{ 
+                        y: [0, 40, 0],
+                        scale: [1, 1.2, 1],
+                        opacity: [0.1, 0.15, 0.1]
+                    }}
+                    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    className="absolute top-[50%] -left-[10%] w-[500px] h-[500px] rounded-full bg-primary/10 blur-[150px]" 
+                />
             </div>
 
             <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 overflow-visible">
@@ -118,20 +151,21 @@ export default function CourseGrid({ courses }: CourseGridProps) {
                     <div key={year} className="mb-24 last:mb-0">
                         {/* Cabecera del Año */}
                         <ScrollReveal animation="fade-up" delay={0.1}>
-                            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16 border-b border-primary/10 pb-6">
-                                <div>
-                                    <div className="flex items-center gap-3 text-accent font-black uppercase tracking-widest text-sm mb-2">
+                            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-20 border-b border-primary/10 pb-8">
+                                <div className="text-center md:text-left">
+                                    <div className="flex items-center justify-center md:justify-start gap-3 text-accent font-black uppercase tracking-widest text-sm mb-4">
+                                        <div className="w-8 h-px bg-accent/30 hidden md:block"></div>
                                         <CalendarIcon className="w-5 h-5" />
                                         Agenda Académica
                                     </div>
-                                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary tracking-tight">
+                                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-primary tracking-tighter leading-none">
                                         {year}
                                     </h2>
                                 </div>
                                 
                                 {/* Decorador dinámico */}
-                                <div className="hidden md:flex items-center gap-2 text-slate-400 font-semibold uppercase text-xs tracking-[0.2em] transform rotate-90 origin-right translate-y-8">
-                                    Explorar <span className="w-12 h-px bg-slate-300"></span>
+                                <div className="hidden lg:flex items-center gap-4 text-slate-400 font-bold uppercase text-[10px] tracking-[0.3em] transform rotate-90 origin-right translate-y-12">
+                                    EXPLORAR CURSOS <span className="w-16 h-px bg-slate-300"></span>
                                 </div>
                             </div>
                         </ScrollReveal>
@@ -142,7 +176,7 @@ export default function CourseGrid({ courses }: CourseGridProps) {
                             initial="hidden"
                             whileInView="show"
                             viewport={{ once: true, margin: "-100px" }}
-                            className="bg-transparent grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12"
+                            className="bg-transparent grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14"
                         >
                             {grouped[year].map((course, idx) => (
                                 <motion.div 
@@ -159,9 +193,13 @@ export default function CourseGrid({ courses }: CourseGridProps) {
                 ))}
             </div>
             
-            {/* Texto decorativo de fondo */}
-            <div className="hidden lg:block absolute bottom-0 right-0 opacity-[0.02] pointer-events-none -mb-16 select-none z-0 overflow-hidden">
-                <span className="text-[20rem] font-black text-[#0a1f44] leading-none tracking-tighter whitespace-nowrap">ACN ACADEMY</span>
+            {/* Texto decorativo de fondo con Parallax */}
+            <div className="hidden lg:block absolute bottom-0 right-0 opacity-[0.03] pointer-events-none -mb-20 select-none z-0 overflow-hidden">
+                <motion.div style={{ x }}>
+                    <span className="text-[24rem] font-black text-[#0a1f44] leading-none tracking-tighter whitespace-nowrap">
+                        ACN ACADEMY
+                    </span>
+                </motion.div>
             </div>
         </section>
     );

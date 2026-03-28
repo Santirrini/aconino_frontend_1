@@ -69,10 +69,12 @@ export default function CourseCard({
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
+            whileHover={{ y: -12 }}
             transition={{
-                duration: 0.6,
+                duration: 0.5,
                 delay: index * 0.1,
-                ease: [0.22, 1, 0.36, 1]
+                ease: [0.22, 1, 0.36, 1],
+                y: { type: "spring", stiffness: 260, damping: 20 }
             }}
             className="group h-full flex flex-col relative"
         >
@@ -81,7 +83,7 @@ export default function CourseCard({
                 <div className="absolute -inset-1 bg-gradient-to-r from-accent/40 to-primary/20 opacity-30 group-hover:opacity-50 rounded-[2.2rem] blur-xl transition duration-500" />
             )}
             
-            <div className={`relative bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border flex flex-col h-full hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-500 z-10 ${course.isFeatured ? 'border-accent/40 ring-1 ring-accent/20' : 'border-slate-100'}`}>
+            <div className={`relative bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border flex flex-col h-full group-hover:shadow-[0_25px_60px_rgba(0,0,0,0.12)] transition-shadow duration-500 z-10 ${course.isFeatured ? 'border-accent/40 ring-1 ring-accent/20' : 'border-slate-100'}`}>
                 
                 {/* Image Section */}
                 <div className="relative w-full overflow-hidden h-52 md:h-60">
@@ -104,10 +106,14 @@ export default function CourseCard({
                                     Finalizado
                                 </span>
                             ) : isActive ? (
-                                <span className="bg-emerald-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg flex items-center gap-1.5">
-                                    <span className="w-1.5 h-1.5 bg-white rounded-full animate-ping" />
+                                <motion.span 
+                                    animate={{ scale: [1, 1.05, 1] }}
+                                    transition={{ duration: 2, repeat: Infinity }}
+                                    className="bg-emerald-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg flex items-center gap-1.5"
+                                >
+                                    <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
                                     Abierto
-                                </span>
+                                </motion.span>
                             ) : isUpcoming ? (
                                 <span className="bg-accent text-primary text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
                                     Próximamente
@@ -128,7 +134,7 @@ export default function CourseCard({
                 <div className="flex flex-col flex-1 p-6 md:p-8">
                     
                     {/* Title */}
-                    <h3 className="text-primary font-black uppercase leading-tight mb-5 group-hover:text-accent transition-colors duration-300 line-clamp-2 text-xl md:text-2xl tracking-tight">
+                    <h3 className="text-primary font-black uppercase leading-tight mb-5 group-hover:text-accent group-hover:translate-x-1 transition-all duration-300 line-clamp-2 text-xl md:text-2xl tracking-tight">
                         {course.title}
                     </h3>
 
