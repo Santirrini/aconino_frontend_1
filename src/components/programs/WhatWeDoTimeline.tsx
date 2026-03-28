@@ -99,8 +99,8 @@ export function WhatWeDoTimeline({ steps }: WhatWeDoTimelineProps) {
       </div>
 
       <div className="relative flex flex-col items-center">
-        {/* Flashcard Stack with SWIPE support */}
-        <div className="w-full max-w-4xl relative min-h-[450px] md:min-h-[550px] flex items-center cursor-grab active:cursor-grabbing">
+        {/* Flashcard Stack with SWIPE support - Optimized Height */}
+        <div className="w-full max-w-4xl relative min-h-[350px] md:min-h-[420px] flex items-center cursor-grab active:cursor-grabbing">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentIndex}
@@ -125,33 +125,33 @@ export function WhatWeDoTimeline({ steps }: WhatWeDoTimelineProps) {
                 x: { type: "spring", stiffness: 300, damping: 30 },
                 opacity: { duration: 0.2 }
               }}
-              className="bg-white p-8 md:p-20 rounded-[3rem] md:rounded-[4rem] shadow-[0_30px_90px_rgba(12,32,112,0.06)] border border-gray-100 flex flex-col md:flex-row items-center gap-10 md:gap-16 relative overflow-hidden w-full select-none"
+              className="bg-white p-8 md:p-14 lg:p-16 rounded-[2.5rem] md:rounded-[3.5rem] shadow-[0_20px_70px_rgba(12,32,112,0.05)] border border-gray-100 flex flex-col md:flex-row items-center gap-8 md:gap-12 relative overflow-hidden w-full select-none"
             >
-              {/* Massive Decorative Number Badge */}
-              <div className="shrink-0 w-20 h-20 md:w-32 md:h-32 rounded-[2rem] md:rounded-[3rem] bg-primary text-white flex items-center justify-center font-black text-3xl md:text-6xl shadow-2xl shadow-primary/20 relative z-10 pointer-events-none">
+              {/* Refined Decorative Number Badge */}
+              <div className="shrink-0 w-16 h-16 md:w-24 md:h-24 rounded-2xl md:rounded-3xl bg-primary text-white flex items-center justify-center font-black text-2xl md:text-5xl shadow-xl shadow-primary/20 relative z-10 pointer-events-none">
                 {currentItem.step}
               </div>
 
               <div className="flex-1 text-center md:text-left relative z-10 pointer-events-none">
-                <h3 className="text-2xl md:text-4xl lg:text-5xl font-black text-primary mb-6 tracking-tight leading-tight">
+                <h3 className="text-xl md:text-3xl lg:text-4xl font-black text-primary mb-4 tracking-tight leading-tight">
                   {currentItem.title}
                 </h3>
-                <p className="text-base md:text-xl lg:text-2xl text-slate-500 leading-relaxed font-medium">
+                <p className="text-sm md:text-lg lg:text-xl text-slate-500 leading-relaxed font-medium">
                   {currentItem.description}
                 </p>
-                <div className="mt-8 lg:hidden text-accent font-black text-[10px] tracking-[0.2em] uppercase opacity-40">
+                <div className="mt-6 lg:hidden text-accent font-black text-[10px] tracking-[0.2em] uppercase opacity-40">
                   Desliza para continuar
                 </div>
               </div>
 
               {/* Decorative Background Element */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-full -mr-24 -mt-24 blur-3xl pointer-events-none" />
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Navigation Control Panel - Integrated at the Bottom */}
-        <div className="flex items-center gap-8 mt-12 md:mt-16 bg-white px-8 py-4 rounded-full shadow-xl shadow-primary/5 border border-gray-100">
+        {/* Navigation Control Panel - Integrated & Compact */}
+        <div className="flex items-center gap-6 mt-10 md:mt-12 bg-white px-6 py-3 md:px-8 md:py-4 rounded-full shadow-xl shadow-primary/5 border border-gray-100">
           <button
             onClick={prevStep}
             disabled={currentIndex === 0}
