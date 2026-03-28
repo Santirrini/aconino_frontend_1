@@ -39,13 +39,13 @@ export default function Header({ navData, ctaLabel, ctaHref, settings }: HeaderP
             variants={staggerContainer}
             initial="hidden"
             animate="show"
-            className={`w-full max-w-[1400px] mx-auto px-5 md:px-8 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-2.5' : 'py-3 md:py-4'}`}
+            className={`w-full max-w-[1400px] mx-auto px-4 md:px-8 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-1 md:py-2.5' : 'py-1.5 md:py-4'}`}
           >
             <Logo />
 
             <NavLinks navLinks={links} />
 
-            <div className="flex items-center gap-4 relative z-50">
+            <div className="flex items-center gap-3 md:gap-4 relative z-50">
               <CTAButton 
                 label={headerCTALabel} 
                 href={headerCTAHref}
@@ -54,11 +54,11 @@ export default function Header({ navData, ctaLabel, ctaHref, settings }: HeaderP
 
               <button
                 onClick={mobileMenu.toggleMenu}
-                className={`lg:hidden p-2.5 rounded-xl transition-colors ${mobileMenu.isOpen ? 'bg-primary text-white' : 'bg-gray-50 text-primary hover:bg-primary hover:text-white'
+                className={`lg:hidden p-2 rounded-xl transition-colors ${mobileMenu.isOpen ? 'bg-primary text-white' : 'bg-gray-50 text-primary hover:bg-primary hover:text-white'
                   }`}
                 aria-label="Toggle menu"
               >
-                {mobileMenu.isOpen ? <FaTimes className="text-lg" /> : <FaBars className="text-lg" />}
+                {mobileMenu.isOpen ? <FaTimes className="text-base" /> : <FaBars className="text-base" />}
               </button>
             </div>
           </m.div>
