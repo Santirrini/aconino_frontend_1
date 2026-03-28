@@ -22,9 +22,12 @@ export const DEFAULT_NAV_LINKS: NavItem[] = [
     href: "/programas",
     hasDropdown: true,
     subLinks: [
+      { name: "Modelo de Intervención", href: "/programas#modelo" },
+      { name: "Nuestros Pilares", href: "/programas#metodologia" },
+      { name: "Objetivos por Área", href: "/programas#objetivos" },
       { name: "Atención Temprana 0-3 Años", href: "/programas#atencion-temprana" },
-      { name: "Atención A Niños Y Jóvenes 3-18 Años", href: "/programas#atencion-ninos-jovenes" },
-      { name: "Apoyo A Dificultades En El Aprendizaje", href: "/programas#apoyo-aprendizaje" },
+      { name: "Atención a Niños y Jóvenes 3-18 Años", href: "/programas#atencion-ninos-jovenes" },
+      { name: "Apoyo al Aprendizaje", href: "/programas#apoyo-aprendizaje" },
       { name: "Protocolo Intensivo Pediasuit", href: "/programas#pediasuit" },
     ]
   },

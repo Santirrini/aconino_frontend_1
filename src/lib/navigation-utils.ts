@@ -14,7 +14,7 @@ export const mapSanityNavData = (navData?: SanityNavItem[]): NavItem[] => {
       subLinks: item.subLinks?.map((sub) => ({
         name: (sub.label || sub.name || sub.title || "Link").trim(),
         href: sub.href || "#"
-      }))
+      })).filter(sub => !/^-+$/.test(sub.name))
     }))
     .filter((link: NavItem) => link.name !== "");
 };
