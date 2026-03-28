@@ -354,7 +354,7 @@ export const PROGRAMAS_PAGE_QUERY = defineQuery(`
       comunicacion[] { _key, description },
       psicologia[] { _key, description }
     },
-    whyChooseUs,
+    whyChooseUs[] { _key, text },
     programs[] {
       _key,
       title,
