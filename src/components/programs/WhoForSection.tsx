@@ -3,71 +3,99 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export interface TargetAudience {
+export interface TargetAudienceItem {
   _key: string;
   icon: string;
   label: string;
 }
 
 export interface WhoForSectionProps {
-  targetAudience: TargetAudience[];
+  targetAudience: TargetAudienceItem[];
 }
 
-const bentoStyles = [
-  "col-span-1 md:col-span-2 row-span-2 bg-gradient-to-br from-blue-50 to-white", // Featured large card
-  "col-span-1 row-span-1 bg-white", 
-  "col-span-1 row-span-1 bg-white",
-  "col-span-1 row-span-1 bg-white",
-  "col-span-1 md:col-span-2 row-span-1 bg-gradient-to-r from-blue-50/50 to-white", // Wide card
-  "col-span-1 row-span-1 bg-primary/5", 
-];
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { type: "spring", stiffness: 100, damping: 20 } 
+  }
+};
 
 export function WhoForSection({ targetAudience }: WhoForSectionProps) {
   if (!targetAudience || targetAudience.length === 0) return null;
 
   return (
-    <div className="w-full max-w-5xl mx-auto">
-      <div className="text-center mb-12">
-        <span className="text-sm font-semibold text-primary uppercase tracking-widest bg-blue-50 px-4 py-1.5 rounded-full inline-block mb-4">
-          Público Objetivo
-        </span>
-        <h2 className="text-3xl lg:text-4xl font-extrabold text-[#1f2937]">
-          ¿A quiénes están dirigidos?
-        </h2>
+    <div className="w-full">
+      {/* Header Optimized for Overview */}
+      <div className="text-center mb-10 md:mb-20">
+        <motion.span 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-accent font-black tracking-[0.3em] uppercase text-[10px] md:text-sm mb-3 md:mb-4 block"
+        >
+          Población de Atención
+        </motion.span>
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-3xl md:text-5xl lg:text-6xl font-black text-primary leading-tight tracking-tight"
+        >
+          ¿A quién está dirigido?
+        </motion.h2>
+        <motion.div 
+          initial={{ width: 0 }}
+          whileInView={{ width: 80 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="h-1.5 bg-accent rounded-full mx-auto mt-6 md:mt-8"
+        />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[minmax(140px,auto)]">
-        {targetAudience.map((item, index) => {
-          // Fallback to standard style if there are more items than mapped styles
-          const style = bentoStyles[index % bentoStyles.length];
-          const isFeatured = index === 0;
+      {/* Grid Optimized: 2 columns on mobile (dense), 3 on desktop */}
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8"
+      >
+        {targetAudience.map((target, index) => (
+          <motion.div
+            key={target._key}
+            variants={itemVariants}
+            whileHover={{ y: -8, scale: 1.02 }}
+            className="group relative bg-white p-4 md:p-10 rounded-[1.5rem] md:rounded-[3rem] border border-gray-100 shadow-[0_4px_15px_rgba(0,0,0,0.02)] hover:shadow-2xl transition-all duration-500 flex flex-col items-center text-center overflow-hidden h-full"
+          >
+            {/* Soft Hover Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            <div className="relative z-10 w-14 h-14 md:w-24 md:h-24 bg-blue-50/50 rounded-2xl md:rounded-[2rem] flex items-center justify-center mb-4 md:mb-8 group-hover:bg-primary group-hover:rotate-3 transition-all duration-500 shadow-sm">
+              <span className="text-3xl md:text-5xl group-hover:scale-110 transition-transform duration-500 select-none">
+                {target.icon}
+              </span>
+            </div>
+            
+            <h3 className="relative z-10 text-xs md:text-xl font-black text-primary uppercase tracking-tight leading-tight group-hover:text-blue-700 transition-colors">
+              {target.label}
+            </h3>
 
-          return (
-            <motion.div
-              key={item._key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className={`rounded-3xl p-6 sm:p-8 flex flex-col justify-center items-center text-center shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden group ${style}`}
-            >
-              {isFeatured && (
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-[40px] group-hover:bg-primary/20 transition-colors" />
-              )}
-              
-              <div className="relative z-10">
-                <span className={`inline-block drop-shadow-sm transition-transform duration-300 group-hover:scale-110 ${isFeatured ? 'text-6xl mb-6' : 'text-4xl mb-4'}`}>
-                  {item.icon}
-                </span>
-                <h3 className={`font-bold text-gray-800 leading-tight ${isFeatured ? 'text-2xl lg:text-3xl max-w-xs mx-auto' : 'text-lg'}`}>
-                  {item.label}
-                </h3>
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
+            {/* Subtle decorative dot */}
+            <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-accent/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-500" />
+          </motion.div>
+        ))}
+      </motion.div>
     </div>
   );
 }

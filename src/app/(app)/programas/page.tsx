@@ -1,170 +1,373 @@
 import Image from "next/image";
 import Link from "next/link";
-import ScrollReveal from "@/components/animations/ScrollReveal";
-import PrinciplesAccordion from "@/components/programs/PrinciplesAccordion";
-import WhoForSection from "@/components/programs/WhoForSection";
-import WhatWeDoTimeline from "@/components/programs/WhatWeDoTimeline";
-import ObjectivesTabs from "@/components/programs/ObjectivesTabs";
-import WhyChooseUs from "@/components/programs/WhyChooseUs";
+import { ArrowRight, Activity, ShieldCheck, HeartPulse } from "lucide-react";
 import { client } from "@/sanity/lib/client";
 import { PROGRAMAS_PAGE_QUERY } from "@/sanity/lib/queries";
 
-interface Hero {
-  title?: string;
-  subtitle?: string;
-  backgroundImageUrl?: string;
-}
+import HeroBase from "@/components/shared/HeroBase";
+import { PrinciplesAccordion } from "@/components/programs/PrinciplesAccordion";
+import { WhoForSection } from "@/components/programs/WhoForSection";
+import { WhatWeDoTimeline } from "@/components/programs/WhatWeDoTimeline";
+import { ObjectivesTabs } from "@/components/programs/ObjectivesTabs";
+import { WhyChooseUs } from "@/components/programs/WhyChooseUs";
+import { InterdisciplinaryTeam } from "@/components/programs/InterdisciplinaryTeam";
+import { GeneralObjective } from "@/components/programs/GeneralObjective";
 
-interface CTA {
-  title?: string;
-  buttonText?: string;
-  buttonLink?: string;
-}
-
-interface MaxSatisfaction {
-  title?: string;
-  items?: string[];
-}
+export const revalidate = 60;
 
 export default async function ProgramasPage() {
-  const data = await client.fetch(PROGRAMAS_PAGE_QUERY);
+  const data = await client.fetch(PROGRAMAS_PAGE_QUERY).catch(() => null);
 
-  const hero: Hero = data?.hero || {
+  // Safely extract and fallback data
+  const hero = data?.hero || {
     title: "Programas",
-    subtitle: "Conoce nuestros programas de habilitación y rehabilitación integral.",
+    subtitle: "Habilitación & Rehabilitación",
     backgroundImageUrl: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop"
   };
 
-  const interventionModel = data?.interventionModel || {};
-  const principles = data?.principles || [];
-  const targetAudience = data?.targetAudience || [];
-  const maxSatisfaction: MaxSatisfaction = data?.maxSatisfaction || {
-    title: "Nuestra máxima satisfacción es cuando:",
-    items: []
+  const interventionModel = data?.interventionModel || {
+    mainTitle: "“Nos centramos más en la actividad y menos en la discapacidad”",
+    subtitle: "“Potenciar habilidades, no solo tratar dificultades”",
+    introText: "En Aconiño trabajamos desde un enfoque interdisciplinario centrado en el niño y su familia, integrando fisioterapia, terapia ocupacional, fonoaudiología y psicología para promover el desarrollo integral, mejorar la funcionalidad, la comunicación, la autonomía y la participación social del usuario."
   };
-  const whatWeDo = data?.whatWeDo || [];
-  const objectivesByArea = data?.objectivesByArea || {};
-  const whyChooseUs = (data?.whyChooseUs || []).map((item: { text: string }, index: number) => ({
-    _key: String(index + 1),
-    text: item.text
-  }));
 
-  const cta: CTA = data?.cta || {
+  const principles = data?.principles || [
+    { _key: "p1", title: "Intervención interdisciplinaria", description: "Fisioterapeutas, terapeutas ocupacionales, fonoaudiólogos y psicólogos trabajamos desde un enfoque interdisciplinario coordinada para alcanzar objetivos terapéuticos comunes." },
+    { _key: "p2", title: "Atención centrada en el usuario y su familia", description: "Colaboración entre profesionales, paciente y familia en la valoración, planificación, implementación y seguimiento del proceso terapéutico." },
+    { _key: "p3", title: "Objetivos funcionales", description: "Trabajamos habilidades que permiten una mayor independencia y autonomía en las actividades de la vida diaria." },
+    { _key: "p4", title: "Intervención personalizada", description: "Diseñamos el tratamiento específicamente para cada usuario tras una evaluación individual, considerando sus condiciones, objetivos y evolución." }
+  ];
+
+  const targetAudience = data?.targetAudience || [
+    { _key: "t1", icon: "👶", label: "Bebés con riesgo en el neurodesarrollo" },
+    { _key: "t2", icon: "🧒", label: "Niños con retraso en su desarrollo" },
+    { _key: "t3", icon: "🚶", label: "Niños con discapacidad motora" },
+    { _key: "t4", icon: "🗣️", label: "Niños con dificultades en comunicación" },
+    { _key: "t5", icon: "📚", label: "Niños con dificultades de aprendizaje" },
+    { _key: "t6", icon: "🚀", label: "Jóvenes que requieren fortalecer su autonomía y participación" }
+  ];
+
+  const maxSatisfaction = data?.maxSatisfaction || {
+    title: "Nuestra máxima satisfacción es cuando cada niño puede:",
+    items: [
+      "Jugar",
+      "Aprender",
+      "Comunicarse",
+      "Relacionarse",
+      "Participar activamente en su entorno"
+    ]
+  };
+
+  const whatWeDo = data?.whatWeDo || [
+    { _key: "w1", step: 1, title: "Valoración inicial interdisciplinaria", description: "Permite identificar el desarrollo que está demorado, inmaduro o bloqueado debido al tono postural atípico u otras deficiencias. Permite establecer un plan de tratamiento adecuado." },
+    { _key: "w2", step: 2, title: "Definición de objetivos personalizados", description: "Establecemos metas claras basadas en las necesidades del niño y las expectativas de su familia." },
+    { _key: "w3", step: 3, title: "Plan terapéutico integral", description: "Diseñamos una ruta de intervención coordinada entre todas las áreas necesarias." },
+    { _key: "w4", step: 4, title: "Trabajo conjunto con las familias", description: "La colaboración es fundamental porque la participación activa del niño y sus cuidadores mejora la motivación y los resultados." },
+    { _key: "w5", step: 5, title: "Seguimiento diario", description: "Se registra la evolución en cada área, siguiendo lineamientos de normatividad de la historia clínica." },
+    { _key: "w6", step: 6, title: "Informe semestral", description: "Evaluación detallada de objetivos mediante escala GAS y planteamiento de un nuevo plan de acción conjunto." },
+    { _key: "w7", step: 7, title: "Egreso o Transición", description: "Se realiza el egreso al lograr objetivos o transición al programa de jóvenes si el niño cumple 3 años y requiere continuidad." }
+  ];
+
+  const objectivesByArea = data?.objectivesByArea || {
+    motorGruesa: [
+      { _key: "mg1", description: "Favorecer el desarrollo y la adquisición de patrones motores funcionales y de calidad." },
+      { _key: "mg2", description: "Estimular la integración sensoriomotora y el control postural durante el movimiento." },
+      { _key: "mg3", description: "Fortalecer la musculatura y mejorar las condiciones osteomusculares, optimizando la movilidad." },
+      { _key: "mg4", description: "Prevenir o disminuir alteraciones musculoesqueléticas y limitaciones en la movilidad." },
+      { _key: "mg5", description: "Desarrollar ajustes posturales y reacciones de enderezamiento y protección." },
+      { _key: "mg6", description: "Evitar compensaciones motoras que interfieran en el desarrollo funcional." },
+      { _key: "mg7", description: "Favorecer la participación en actividades de la vida diaria mediante diferentes actividades." },
+      { _key: "mg8", description: "Diseñar, realizar y sugerir productos de apoyo para favorecer posturas correctas y desplazamiento." }
+    ],
+    motorFina: [
+      { _key: "mf1", description: "Desarrollar habilidades de motricidad fina y coordinación manual (agarre, manipulación, coordinación bilateral y óculo-manual)." },
+      { _key: "mf2", description: "Favorecer la integración sensorial y el procesamiento multisensorial." },
+      { _key: "mf3", description: "Estimular procesos cognitivos y funciones ejecutivas (atención, planificación, resolución de problemas) durante actividades con propósito." },
+      { _key: "mf4", description: "Potenciar habilidades grafomotoras y pre-académicas, facilitando el desempeño escolar." },
+      { _key: "mf5", description: "Promover control postural y posicionamiento adecuado para el desempeño funcional." },
+      { _key: "mf6", description: "Fomentar la autonomía en actividades de la vida diaria, juego, aprendizaje y participación." },
+      { _key: "mf7", description: "Orientar y acompañar a familias y entorno escolar para favorecer la continuidad del proceso terapéutico." }
+    ],
+    comunicacion: [
+      { _key: "c1", description: "Favorecer el desarrollo de la comunicación funcional (habla, lenguaje y comunicación aumentativa o alternativa)." },
+      { _key: "c2", description: "Estimular habilidades cognitivas y lingüísticas que faciliten la comprensión, expresión y razonamiento verbal." },
+      { _key: "c3", description: "Fortalecer las funciones estomatognáticas y orofaciales relacionadas con respiración, alimentación y deglución." },
+      { _key: "c4", description: "Estimular procesos de atención, concentración y motivación que favorezcan el aprendizaje." },
+      { _key: "c5", description: "Promover alineación postural y control corporal que faciliten la producción oral y la alimentación." }
+    ],
+    psicologia: [
+      { _key: "ps1", description: "Fortalecer procesos psicológicos básicos y superiores relacionados con el desarrollo cognitivo, emocional y conductual." },
+      { _key: "ps2", description: "Promover conductas sociales adaptativas y habilidades de interacción en contextos familiares, sociales y escolares." },
+      { _key: "ps3", description: "Desarrollar estrategias de regulación emocional y afrontamiento, incluyendo tolerancia a la frustración." },
+      { _key: "ps4", description: "Estimular habilidades cognitivas relacionadas con el aprendizaje (atención, motivación, resolución de problemas)." },
+      { _key: "ps5", description: "Orientar a las familias en pautas de crianza y manejo comportamental." },
+      { _key: "ps6", description: "Empoderar a padres y cuidadores para acompañar el proceso terapéutico." },
+      { _key: "ps7", description: "Explorar intereses y expectativas del usuario para favorecer su proyecto de vida y desarrollo personal." }
+    ]
+  };
+
+  const whyChooseUs = data?.whyChooseUs || [
+    { _key: "y1", text: "Programas para bebés, niños y jóvenes" },
+    { _key: "y2", text: "Intervención temprana y especializada" },
+    { _key: "y3", text: "Enfoque centrado en el niño y su familia" },
+    { _key: "y4", text: "Trabajo interdisciplinario de alta calidad y humanidad" },
+    { _key: "y5", text: "Seguimiento de productos de apoyo (órtesis y ayudas técnicas)" },
+    { _key: "y6", text: "Orientación a familia y escuela" },
+    { _key: "y7", text: "Equipo profesional actualizado" }
+  ];
+
+  const cta = data?.cta || {
     title: "¿Quieres saber más sobre nuestros programas?",
     buttonText: "CONTÁCTANOS",
     buttonLink: "/contacto"
   };
 
-  const heroImage = hero.backgroundImageUrl || "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop";
-
   return (
-    <main className="min-h-screen bg-white overflow-x-hidden">
-      {/* Hero Banner */}
-      <section className="relative h-[50vh] md:h-[60vh] flex items-center justify-center overflow-hidden">
-        <Image
-          src={heroImage}
-          alt={hero.title || "Programas"}
-          fill
-          className="object-cover brightness-50"
-          priority
-        />
-        <div className="relative z-10 text-center px-4">
-          <ScrollReveal animation="fade-up" delay={0.1}>
-            <div className="flex justify-center mb-6">
-              <span className="text-yellow-400 text-5xl">♥</span>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal animation="zoom-in" delay={0.3}>
-            <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-4">
-              {hero.title}
-            </h1>
-            {hero.subtitle && (
-              <p className="text-xl text-white/90 max-w-2xl mx-auto mt-4 font-medium">
-                {hero.subtitle}
-              </p>
-            )}
-          </ScrollReveal>
-        </div>
-      </section>
+    <main className="min-h-screen bg-[#FAFAFA] overflow-x-hidden selection:bg-primary/20">
+      
+      {/* 1. HERO SECTION */}
+      <HeroBase
+        title={hero.title}
+        subtitle="Habilitación & Rehabilitación"
+        description={hero.subtitle}
+        backgroundImage={hero.backgroundImageUrl}
+        height="h-[60vh] md:h-[70vh]"
+        overlayOpacity={60}
+        showCurtain={true}
+        useTypewriter={true}
+        containerClassName="max-w-5xl mx-auto px-6 md:px-8 mt-20 md:mt-16"
+        customOverlay={
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-transparent to-primary/80 mix-blend-multiply z-10" />
+        }
+      />
 
-      {/* Intervention Model Intro */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <ScrollReveal animation="fade-up">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary mb-4">
-              {interventionModel.mainTitle || "Nos centramos más en la actividad y menos en la discapacidad"}
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal animation="fade-up" delay={0.1}>
-            <p className="text-xl md:text-2xl text-accent font-semibold mb-8">
-              {interventionModel.subtitle || "Potenciar habilidades, no solo tratar dificultades"}
-            </p>
-          </ScrollReveal>
-          {interventionModel.introText && (
-            <ScrollReveal animation="fade-up" delay={0.2}>
-              <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
-                {interventionModel.introText}
-              </p>
-            </ScrollReveal>
-          )}
-        </div>
-      </section>
+      {/* 2. MODELO DE INTERVENCIÓN */}
+      <section className="py-20 md:py-32 bg-white relative overflow-hidden -mt-10 rounded-t-[3rem] z-20 shadow-[0_-20px_40px_rgba(0,0,0,0.02)]">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[80px] opacity-70 -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-yellow-50 rounded-full blur-[60px] opacity-70 translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
-      {/* Principles Accordion */}
-      <PrinciplesAccordion principles={principles} />
-
-      {/* Who For Section */}
-      <WhoForSection items={targetAudience} />
-
-      {/* Max Satisfaction Section */}
-      <section className="py-16 md:py-24 bg-primary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <ScrollReveal animation="fade-up">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 md:mb-12">
-              {maxSatisfaction.title}
-            </h2>
-          </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {maxSatisfaction.items?.map((item, index) => (
-              <ScrollReveal key={index} animation="fade-up" delay={index * 0.1}>
-                <div className="flex items-start gap-4 text-left p-5 bg-white/10 rounded-xl border border-white/20">
-                  <span className="text-accent text-2xl">♥</span>
-                  <p className="text-lg text-white leading-relaxed">{item}</p>
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+            
+            <div className="w-full lg:w-1/2 flex justify-center order-2 lg:order-1 animate-fade-in-up md:animate-slide-in-left">
+              <div className="relative w-full max-w-lg">
+                <div className="relative aspect-video md:aspect-square w-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-2xl md:rounded-[2.5rem] overflow-hidden group">
+                  <Image
+                    src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"
+                    alt="Modelo de Intervención"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-              </ScrollReveal>
-            ))}
+                {/* Floating Badge - Repositioned for better integration */}
+                <div className="absolute -bottom-4 -right-4 md:bottom-10 md:-right-8 transform bg-white p-5 md:p-7 rounded-2xl md:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] flex flex-col items-center justify-center border-b-8 border-accent z-20 animate-bounce-slow">
+                  <Activity className="text-3xl md:text-4xl text-accent mb-2" />
+                  <span className="font-black text-primary text-[10px] md:text-xs tracking-widest uppercase">Cuidado Integral</span>
+                </div>
+
+                
+                <div className="hidden md:block absolute -top-8 -left-8 w-32 h-32 border-8 border-accent/20 rounded-3xl -z-10" />
+              </div>
+            </div>
+
+            <div className="w-full lg:w-1/2 order-1 lg:order-2 animate-fade-in-up md:animate-slide-in-right">
+              <div className="mb-6 flex items-center gap-4">
+                <span className="text-gray-400 font-bold tracking-widest uppercase text-xs md:text-sm">Enfoque Terapéutico</span>
+                <div className="h-[2px] w-12 md:w-16 bg-accent"></div>
+              </div>
+              
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-primary mb-8 tracking-tight leading-[1.15]">
+                {interventionModel.mainTitle}
+              </h2>
+              
+              <div className="prose prose-lg text-gray-600">
+                <p className="text-xl md:text-2xl font-bold text-secondary mb-6 leading-snug">
+                  {interventionModel.subtitle}
+                </p>
+                <p className="text-lg text-gray-600 leading-relaxed font-medium">
+                  {interventionModel.introText}
+                </p>
+              </div>
+              
+              <div className="mt-10 grid grid-cols-2 gap-6">
+                <div className="flex gap-4 items-center">
+                  <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-6 h-6 text-primary" />
+                  </div>
+                  <span className="font-semibold text-gray-800 leading-tight">Enfoque Interdisciplinario</span>
+                </div>
+                <div className="flex gap-4 items-center">
+                  <div className="w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center shrink-0">
+                    <HeartPulse className="w-6 h-6 text-accent" />
+                  </div>
+                  <span className="font-semibold text-gray-800 leading-tight">Centrado en la Familia</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* What We Do Timeline */}
-      <WhatWeDoTimeline steps={whatWeDo} />
+      {/* 3. GENERAL OBJECTIVE */}
+      <GeneralObjective />
 
-      {/* Objectives Tabs */}
-      <ObjectivesTabs
-        motorGruesa={objectivesByArea.motorGruesa}
-        motorFina={objectivesByArea.motorFina}
-        comunicacion={objectivesByArea.comunicacion}
-        psicologia={objectivesByArea.psicologia}
-      />
+      {/* 4. METODOLOGÍA DE TRABAJO (Pillars) */}
+      <section className="py-20 md:py-32 bg-[#FAFAFA] relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-fade-in-up">
+            <span className="text-accent font-bold tracking-widest uppercase text-sm mb-4 block">Nuestros Pilares</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary leading-tight">Metodología de Trabajo</h2>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-primary to-transparent rounded-full mx-auto mt-8" />
+          </div>
+          <PrinciplesAccordion principles={principles} />
+        </div>
+      </section>
 
-      {/* Why Choose Us */}
-      <WhyChooseUs items={whyChooseUs} />
+      {/* 5. INTERDISCIPLINARY TEAM */}
+      <InterdisciplinaryTeam />
 
-      {/* Floating CTA */}
-      <section className="bg-primary py-20 text-center text-white">
-        <ScrollReveal animation="zoom-in" delay={0.2}>
-          <h3 className="text-3xl font-bold mb-8">
+      {/* 6. A QUIÉN ESTÁN DIRIGIDOS */}
+      <section className="py-20 md:py-32 bg-white relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-[100px] -z-10" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <WhoForSection targetAudience={targetAudience} />
+        </div>
+      </section>
+
+      {/* 7. NUESTRA MÁXIMA SATISFACCIÓN - Animated & Emotional */}
+      <section className="py-24 md:py-48 bg-primary text-white relative overflow-hidden flex items-center justify-center">
+        {/* Moving Background Pattern */}
+        <motion.div 
+          initial={{ backgroundPosition: "0% 0%" }}
+          animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 opacity-[0.07]" 
+          style={{ 
+            backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+            backgroundSize: '80px 80px'
+          }} 
+        />
+        
+        {/* Floating Light Particles */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute bg-white/10 rounded-full blur-3xl"
+              initial={{ 
+                width: Math.random() * 200 + 100, 
+                height: Math.random() * 200 + 100,
+                x: Math.random() * 100 + "%", 
+                y: Math.random() * 100 + "%",
+                opacity: 0.1
+              }}
+              animate={{ 
+                x: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                y: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                scale: [1, 1.2, 1],
+                opacity: [0.1, 0.2, 0.1]
+              }}
+              transition={{ 
+                duration: Math.random() * 10 + 10, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+            />
+          ))}
+        </div>
+        
+        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 0.2, scale: 1 }}
+            viewport={{ once: true }}
+            className="text-7xl md:text-9xl text-white font-serif leading-none absolute -top-12 left-1/2 -translate-x-1/2 select-none"
+          >
+            &quot;
+          </motion.span>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-5xl lg:text-6xl font-black mb-12 lg:mb-16 leading-tight relative mt-8 drop-shadow-2xl"
+          >
+            {maxSatisfaction.title}
+          </motion.h2>
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              visible: { transition: { staggerChildren: 0.15 } }
+            }}
+            className="flex flex-wrap justify-center gap-4 md:gap-8"
+          >
+            {maxSatisfaction.items?.map((item: string, index: number) => (
+              <motion.span 
+                key={index} 
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8, y: 20 },
+                  visible: { opacity: 1, scale: 1, y: 0 }
+                }}
+                whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.2)" }}
+                className="px-6 md:px-10 py-4 md:py-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white font-black text-xl md:text-3xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-all cursor-default"
+              >
+                {item}
+              </motion.span>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 8. QUÉ HACEMOS (Timeline) */}
+      <section className="py-20 md:py-32 bg-[#FAFAFA]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <WhatWeDoTimeline steps={whatWeDo} />
+        </div>
+      </section>
+
+      {/* 9. OBJETIVOS POR ÁREA (Tabs) */}
+      <section className="py-20 md:py-32 bg-white border-t border-gray-100 relative">
+        <div className="absolute right-0 top-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[80px] -z-10 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <ObjectivesTabs objectives={objectivesByArea} />
+        </div>
+      </section>
+
+      {/* 10. POR QUÉ ELEGIR ACONIÑO (Checkmarks) */}
+      <section className="py-20 md:py-32 bg-[#FAFAFA] border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <WhyChooseUs items={whyChooseUs} />
+        </div>
+      </section>
+
+      {/* 11. CTA FINAL */}
+      <section className="relative py-24 md:py-32 bg-white overflow-hidden text-center border-t border-gray-100">
+        <div className="absolute top-0 right-0 -mr-32 -mt-32 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 -ml-32 -mb-32 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[80px] -z-10 pointer-events-none" />
+        
+        <div className="relative z-10 max-w-3xl mx-auto px-6 animate-fade-in-up">
+          <h3 className="text-4xl md:text-6xl font-black text-primary mb-8 leading-[1.1]">
             {cta.title}
           </h3>
+          <p className="text-xl text-gray-500 mb-10 font-medium">
+            Déjanos acompañarte y construir juntos el mejor camino para tu hijo.
+          </p>
           <Link
             href={cta.buttonLink || "/contacto"}
-            className="bg-accent text-primary px-10 py-4 rounded-full font-black text-lg hover:bg-white transition-colors uppercase"
+            className="group inline-flex items-center justify-center bg-accent text-primary px-12 py-5 rounded-full font-black text-xl shadow-[0_15px_40px_rgba(251,191,36,0.3)] hover:bg-yellow-400 hover:scale-105 hover:shadow-[0_20px_50px_rgba(251,191,36,0.4)] transition-all duration-300 uppercase tracking-wider"
           >
             {cta.buttonText}
+            <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1.5 transition-transform" />
           </Link>
-        </ScrollReveal>
+        </div>
       </section>
+
     </main>
   );
 }

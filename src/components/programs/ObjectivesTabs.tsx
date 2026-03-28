@@ -37,55 +37,74 @@ export function ObjectivesTabs({ objectives }: ObjectivesTabsProps) {
 
   return (
     <div className="w-full max-w-5xl mx-auto">
-      <div className="text-center mb-10">
-        <h2 className="text-3xl lg:text-4xl font-extrabold text-[#1f2937]">
+      <div className="text-center mb-14">
+        <motion.span 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-sm font-bold text-primary uppercase tracking-[0.2em] bg-blue-50 px-6 py-2 rounded-full inline-block mb-4"
+        >
+          Metas Terapéuticas
+        </motion.span>
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-4xl lg:text-5xl font-black text-primary"
+        >
           Objetivos Terapéuticos
-        </h2>
-        <p className="mt-4 text-gray-600">Disponemos de metas claras focalizadas en áreas específicas</p>
+        </motion.h2>
       </div>
 
       {/* Tabs Layout */}
-      <div className="flex flex-wrap justify-center gap-2 mb-10 bg-slate-50/50 p-2 rounded-3xl mx-auto w-fit border border-gray-100/50 backdrop-blur-sm">
+      <div className="flex flex-wrap justify-center gap-3 mb-14 bg-slate-50 p-3 rounded-[2.5rem] mx-auto w-fit border border-gray-100 shadow-inner">
         {TABS.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`relative px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 z-10 flex items-center gap-2 ${
-              activeTab === tab.id ? 'text-white' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100/50'
+            className={`relative px-8 py-4 rounded-full text-sm font-black transition-all duration-300 z-10 flex items-center gap-3 ${
+              activeTab === tab.id ? 'text-white' : 'text-gray-500 hover:text-primary hover:bg-white/50'
             }`}
           >
             {activeTab === tab.id && (
               <motion.div
                 layoutId="active-pill"
-                className="absolute inset-0 bg-primary rounded-full -z-10 shadow-md"
+                className="absolute inset-0 bg-primary rounded-full -z-10 shadow-lg shadow-primary/20"
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
             )}
-            <span className="text-lg">{tab.icon}</span>
+            <span className="text-xl">{tab.icon}</span>
             {tab.label}
           </button>
         ))}
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-[0_8px_40px_rgb(0,0,0,0.04)] border border-gray-100 overflow-hidden min-h-[300px]">
+      <div className="bg-white rounded-[3rem] p-10 md:p-16 shadow-[0_20px_60px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden min-h-[400px]">
         <motion.div
           key={activeTab} // Using key to trigger re-animation on tab switch
-          initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8"
         >
           {currentObjectives.map((obj, i) => (
-            <div key={obj._key} className="flex items-start gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 text-primary flex items-center justify-center font-bold text-sm mt-0.5">
+            <motion.div 
+              key={obj._key} 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 }}
+              className="flex items-start gap-5 group"
+            >
+              <div className="flex-shrink-0 w-10 h-10 rounded-2xl bg-blue-50 text-primary flex items-center justify-center font-black text-sm mt-0.5 group-hover:bg-primary group-hover:text-white transition-colors duration-300 shadow-sm">
                 {i + 1}
               </div>
-              <p className="text-gray-700 font-medium leading-relaxed">
+              <p className="text-gray-600 font-bold leading-relaxed text-lg">
                 {obj.description}
               </p>
-            </div>
+            </motion.div>
           ))}
           {currentObjectives.length === 0 && (
             <div className="col-span-full text-center text-gray-400 py-10">

@@ -90,7 +90,7 @@ export default function ProgramCard({
 
             {/* Description - Visible on mobile, hover-expand on desktop */}
             <div className="overflow-hidden">
-                <p className="text-slate-600 text-[11px] md:text-sm leading-relaxed mb-4 line-clamp-2 md:line-clamp-none transition-all duration-500">
+                <p className="text-slate-600 text-[11px] md:text-[13px] leading-relaxed mb-4 line-clamp-3 transition-all duration-500 min-h-[3.3rem] md:min-h-[4.5rem]">
                     {desc}
                 </p>
             </div>
