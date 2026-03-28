@@ -14,7 +14,7 @@ import { InterdisciplinaryTeam } from "@/components/programs/InterdisciplinaryTe
 import { GeneralObjective } from "@/components/programs/GeneralObjective";
 import MaxSatisfaction from "@/components/programs/MaxSatisfaction";
 import { SpecificPrograms } from "@/components/programs/SpecificPrograms";
-
+import { ParentFAQ } from "@/components/programs/ParentFAQ";
 export const revalidate = 60;
 
 export default async function ProgramasPage() {
@@ -266,15 +266,18 @@ export default async function ProgramasPage() {
         <SpecificPrograms />
       </section>
 
+      {/* FAQ PARA PADRES */}
+      <ParentFAQ />
+
       {/* 10. POR QUÉ ELEGIR ACONIÑO (Checkmarks) */}
-      <section className="py-16 md:py-24 bg-white border-t border-gray-100">
+      <section className="pt-16 pb-8 md:py-24 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <WhyChooseUs items={whyChooseUs} />
         </div>
       </section>
 
       {/* 11. CTA FINAL */}
-      <section className="relative py-20 md:py-28 bg-white overflow-hidden text-center border-t border-gray-100">
+      <section className="relative pt-8 pb-20 md:py-28 bg-white overflow-hidden text-center">
         <div className="absolute top-0 right-0 -mr-32 -mt-32 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
         <div className="absolute bottom-0 left-0 -ml-32 -mb-32 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[80px] -z-10 pointer-events-none" />
         

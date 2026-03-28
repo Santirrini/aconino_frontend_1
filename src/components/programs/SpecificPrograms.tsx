@@ -51,7 +51,7 @@ const programsData = [
 export function SpecificPrograms() {
   return (
     <div className="flex flex-col gap-32 md:gap-40 w-full">
-      {programsData.map((program, index) => {
+      {programsData.map((program) => {
         const isImageLeft = program.layout === "image-left";
         
         return (
