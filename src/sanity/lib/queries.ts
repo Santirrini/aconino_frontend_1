@@ -323,6 +323,38 @@ export const PROGRAMAS_PAGE_QUERY = defineQuery(`
       subtitle,
       "backgroundImageUrl": backgroundImage.asset->url
     },
+    interventionModel {
+      mainTitle,
+      subtitle,
+      introText
+    },
+    principles[] {
+      _key,
+      title,
+      description
+    },
+    targetAudience[] {
+      _key,
+      icon,
+      label
+    },
+    maxSatisfaction {
+      title,
+      items
+    },
+    whatWeDo[] {
+      _key,
+      step,
+      title,
+      description
+    },
+    objectivesByArea {
+      motorGruesa[] { _key, description },
+      motorFina[] { _key, description },
+      comunicacion[] { _key, description },
+      psicologia[] { _key, description }
+    },
+    whyChooseUs,
     programs[] {
       _key,
       title,
