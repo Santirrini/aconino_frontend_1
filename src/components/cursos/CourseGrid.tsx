@@ -142,14 +142,14 @@ export default function CourseGrid({ courses }: CourseGridProps) {
                             initial="hidden"
                             whileInView="show"
                             viewport={{ once: true, margin: "-100px" }}
-                            className="bg-transparent grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10"
+                            className="bg-transparent grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12"
                         >
                             {grouped[year].map((course, idx) => (
                                 <motion.div 
                                     key={course.id} 
                                     id={course.slug}
                                     variants={itemVariants}
-                                    className={course.isFeatured ? "md:col-span-2 lg:col-span-2" : "col-span-1"}
+                                    className="col-span-1"
                                 >
                                     <CourseCard course={course} index={idx} />
                                 </motion.div>
