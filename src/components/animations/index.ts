@@ -1,11 +1,7 @@
-export * from "@/animations/variants/fadeVariants";
-export * from "@/animations/variants/slideVariants";
-export * from "@/animations/variants/scaleVariants";
-export * from "@/animations/variants/curtainVariants";
-export * from "@/animations/variants/glassEffect";
-export * from "@/animations/variants/particles";
-export * from "@/animations/variants/scrollVariants";
-export * from "@/animations/variants/staggerChildren";
+export * from "./variants/curtainVariants";
+export * from "./variants/particles";
+export * from "./variants/scrollVariants";
+export * from "./variants/staggerChildren";
 
 export * from "./effects/CurtainReveal";
 export * from "./effects/GradientOverlay";

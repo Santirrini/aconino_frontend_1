@@ -3,8 +3,8 @@
 import { m } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useHeader } from "./hooks/useHeader";
-import { staggerContainer } from "@/animations/variants/staggerChildren";
-import { headerContainerVariants } from "@/animations/variants/scrollVariants";
+import { staggerContainer } from "@/components/animations/variants/staggerChildren";
+import { headerContainerVariants } from "@/components/animations/variants/scrollVariants";
 
 import TopBar from "./components/TopBar";
 import Logo from "./components/Logo";

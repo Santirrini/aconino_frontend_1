@@ -1,12 +1,16 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { FaPhone, FaEnvelope, FaHeart, FaCalendarAlt, FaUserMd } from "react-icons/fa";
-import { slideFromRight } from "../animations";
 
 interface ProgramCTAProps {
   programTitle: string;
 }
+
+const slideFromRight: Variants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
+};
 
 export default function ProgramCTA({ programTitle }: ProgramCTAProps) {
   return (

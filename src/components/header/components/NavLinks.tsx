@@ -5,7 +5,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { useState, useMemo } from "react";
 import { m } from "framer-motion";
 import Dropdown from "./Dropdown";
-import { staggerItem } from "@/animations/variants/staggerChildren";
+import { staggerItem } from "@/components/animations/variants/staggerChildren";
 
 interface NavLinksProps {
   navLinks: NavLink[];

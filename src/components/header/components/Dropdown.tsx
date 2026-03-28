@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useActiveLink } from "@/hooks/useActiveLink";
-import { dropdownStaggerContainer, dropdownStaggerItem } from "@/animations/variants/staggerChildren";
+import { dropdownStaggerContainer, dropdownStaggerItem } from "@/components/animations/variants/staggerChildren";
 
 interface SubLink {
   name?: string;
