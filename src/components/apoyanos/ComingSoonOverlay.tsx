@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { IconBuilding, IconConstruction } from "@/constants/apoyanos-icons";
 
@@ -31,35 +31,18 @@ export default function ComingSoonOverlay({
     total: 0
   });
   const [mounted, setMounted] = useState(false);
-  const [headerHeight, setHeaderHeight] = useState(0);
-
-  const measureHeader = useCallback(() => {
-    // The header uses HeaderReveal which is a sticky div wrapping TopBar + header
-    // Find the sticky header element
-    const stickyHeader = document.querySelector('[class*="sticky"]') as HTMLElement;
-    if (stickyHeader) {
-      setHeaderHeight(stickyHeader.offsetHeight);
-    }
-  }, []);
 
   useEffect(() => {
     setMounted(true);
     
-    // Add class to body to hide floating widgets and prevent scroll
     if (show) {
       document.body.classList.add("coming-soon-overlay-active");
     }
 
-    // Measure header after a short delay to ensure it's rendered
-    const timer = setTimeout(measureHeader, 100);
-    window.addEventListener('resize', measureHeader);
-    
     return () => {
       document.body.classList.remove("coming-soon-overlay-active");
-      clearTimeout(timer);
-      window.removeEventListener('resize', measureHeader);
     };
-  }, [show, measureHeader]);
+  }, [show]);
   
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -106,14 +89,14 @@ export default function ComingSoonOverlay({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
-      className="fixed left-0 right-0 bottom-0 z-[80] overflow-y-auto overflow-x-hidden"
+      className="relative w-full overflow-x-hidden"
       style={{
-        top: `${headerHeight}px`,
         isolation: 'isolate',
         background: 'linear-gradient(to bottom, #1a2744, #1e3a5f, #1a2744)',
       }}
     >
-      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ top: `${headerHeight}px` }}>
+      {/* Ambient background effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{
             scale: [1, 1.2, 1],
@@ -142,7 +125,7 @@ export default function ComingSoonOverlay({
       </div>
 
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto flex flex-col">
-        <div className="flex flex-col items-center justify-center text-center w-full py-16" style={{ minHeight: `calc(100vh - ${headerHeight}px)` }}>
+        <div className="flex flex-col items-center justify-center text-center w-full py-16 min-h-[calc(100vh-80px)]">
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
@@ -292,7 +275,7 @@ export default function ComingSoonOverlay({
                   <div className="w-16 h-1 bg-accent/60 rounded-full mb-8" />
                   <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white text-center tracking-tight leading-tight">
                     Un sueño que comienza a tomar forma:<br className="hidden sm:block"/>
-                    <span className="text-accent mt-2 sm:mt-4 inline-block">“Centro Día”</span>
+                    <span className="text-accent mt-2 sm:mt-4 inline-block">&ldquo;Centro Día&rdquo;</span>
                   </h3>
                 </div>
 
