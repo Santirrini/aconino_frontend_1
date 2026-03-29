@@ -153,35 +153,41 @@ export function InterventionModelSection({
           </div>
 
           {/* Target Audience & Footer CTA - Compact Responsive Version */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
-            className="group/cta bg-primary rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-20 relative overflow-hidden shadow-2xl shadow-primary/30 border border-white/5"
+            className="group/cta bg-primary rounded-[2.5rem] md:rounded-[4rem] p-6 sm:p-10 md:p-16 lg:p-20 relative overflow-hidden shadow-2xl shadow-primary/30 border border-white/5"
             whileHover={{ y: -5 }}
           >
-            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12">
-              <div className="text-center lg:text-left w-full lg:flex-1">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+              {/* Targets Grid */}
+              <div className="lg:col-span-8 text-center lg:text-left">
                 <h4 className="text-white/60 font-bold uppercase tracking-[0.2em] text-xs mb-6">¿A quién nos dirigimos?</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-3 lg:flex lg:flex-wrap gap-6 md:gap-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
                   {targetAudience.map((target, idx) => (
-                    <div key={idx} className="flex items-center justify-start gap-4 p-4 bg-white/5 rounded-2xl md:bg-transparent md:p-0">
-                      <div className="w-12 h-12 md:w-20 md:h-20 bg-white/10 rounded-2xl flex items-center justify-center text-white text-3xl shrink-0">
+                    <motion.div
+                      key={idx}
+                      className="flex items-center gap-4 p-4 bg-white/5 rounded-2xl md:bg-transparent md:p-0 md:bg-white/5 md:rounded-2xl md:p-4 hover:bg-white/10 transition-all duration-300"
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <div className="w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-2xl flex items-center justify-center text-white shrink-0">
                         {target.icon}
                       </div>
-                      <div className="text-left">
-                        <span className="text-white font-black text-base md:text-2xl block leading-tight">{target.label}</span>
+                      <div className="text-left flex-1 min-w-0">
+                        <span className="text-white font-bold text-sm md:text-lg lg:text-xl block leading-tight">{target.label}</span>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
 
-              <div className="w-full lg:w-auto">
-                <Link 
+              {/* CTA Button */}
+              <div className="lg:col-span-4 flex justify-center lg:justify-end">
+                <Link
                   href={ctaLink}
-                  className="group/btn relative flex items-center justify-center gap-4 bg-accent text-primary font-black px-8 md:px-12 py-5 md:py-8 rounded-full transition-all hover:scale-105 active:scale-95 shadow-xl shadow-accent/20 w-full lg:w-auto"
+                  className="group/btn relative flex items-center justify-center gap-3 bg-accent text-primary font-bold px-6 md:px-8 py-4 md:py-6 rounded-full transition-all hover:scale-105 active:scale-95 shadow-xl shadow-accent/20 w-full max-w-sm lg:w-auto lg:max-w-none"
                 >
-                  <span className="uppercase tracking-widest text-xs md:text-sm">{ctaLabel}</span>
-                  <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform duration-300" />
+                  <span className="uppercase tracking-widest text-xs md:text-sm whitespace-nowrap">{ctaLabel}</span>
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
                 </Link>
               </div>
             </div>
