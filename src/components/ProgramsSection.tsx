@@ -60,7 +60,7 @@ export default function ProgramsSection({
                 <div className="absolute top-[40%] -left-[5%] w-[150px] h-[150px] sm:w-[250px] sm:h-[250px] md:w-[350px] md:h-[350px] lg:w-[500px] lg:h-[500px] rounded-full bg-accent/5 blur-[50px] sm:blur-[70px] md:blur-[80px] lg:blur-[100px]" />
             </div>
 
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 overflow-x-hidden">
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Título de la Sección */}
                 <div className="text-center mb-16 md:mb-20">
                     <ScrollReveal
