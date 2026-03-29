@@ -90,6 +90,11 @@ body {
 
 
 /* Ensure the overlay covers everything including fixed elements */
-.coming-soon-overlay-active body {
-  overflow: hidden;
+body.coming-soon-overlay-active {
+  overflow: hidden !important;
+}
+
+/* Hide floating widgets when Coming Soon overlay is active */
+body.coming-soon-overlay-active .floating-widget-container {
+  display: none !important;
 }

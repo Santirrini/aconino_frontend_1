@@ -106,7 +106,7 @@ export default function ComingSoonOverlay({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
-      className="fixed left-0 right-0 bottom-0 z-30 overflow-y-auto overflow-x-hidden"
+      className="fixed left-0 right-0 bottom-0 z-[80] overflow-y-auto overflow-x-hidden"
       style={{
         top: `${headerHeight}px`,
         isolation: 'isolate',
