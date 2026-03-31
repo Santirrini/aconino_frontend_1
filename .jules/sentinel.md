@@ -1,0 +1,4 @@
+## 2025-02-12 - Fix XSS Vulnerabilities in dangerouslySetInnerHTML
+**Vulnerability:** Found multiple instances of `dangerouslySetInnerHTML` rendering unsanitized HTML (e.g., WordPress excerpts, manipulated strings) directly into the DOM. This introduces Cross-Site Scripting (XSS) risks.
+**Learning:** These existed because content sourced from a CMS or derived from external data wasn't inherently trusted or sanitized before rendering. The codebase guidelines actually specifically recommended using `isomorphic-dompurify` for this, but it had not been implemented.
+**Prevention:** Any usage of `dangerouslySetInnerHTML` must wrap the dynamic HTML string in `DOMPurify.sanitize()` (using `isomorphic-dompurify`) to ensure malicious scripts are stripped out before rendering on the client or server.

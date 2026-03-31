@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaRegCommentDots } from "react-icons/fa";
 import { motion } from "framer-motion";
+import DOMPurify from "isomorphic-dompurify";
 import ScrollReveal from "../animations/ScrollReveal";
 
 interface NewsCardProps {
@@ -79,7 +80,7 @@ export default function NewsCard({ post, index }: NewsCardProps) {
 
               <div
                   className="text-gray-500 text-base mb-8 line-clamp-3 leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: postExcerpt }}
+                  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(postExcerpt) }}
               />
 
               <div className="mt-auto pt-6 border-t border-gray-100">
