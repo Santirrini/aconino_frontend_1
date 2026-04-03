@@ -1,6 +1,7 @@
 import React from "react";
 import { FaHeart } from "react-icons/fa";
 import ScrollReveal from "../animations/ScrollReveal";
+import { sanitizeHtml } from "@/utils/sanitize";
 
 interface ImpactHeaderProps {
   title?: string | null;
@@ -18,7 +19,7 @@ export default function ImpactHeader({ title, description }: ImpactHeaderProps) 
       </div>
       <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-primary uppercase tracking-tighter mb-4 leading-tight">
         {title ? (
-            <span dangerouslySetInnerHTML={{ __html: title.replace('transforma', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">transforma</span>') }} />
+            <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(title.replace('transforma', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">transforma</span>')) }} />
         ) : (
             <>Tu apoyo <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">transforma</span> vidas</>
         )}
