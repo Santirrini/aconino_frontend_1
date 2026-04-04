@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { sanitizeHtml } from "@/utils/sanitize";
 
 interface PostCardProps {
     title: string;
@@ -48,7 +49,7 @@ export default function PostCard({ title, excerpt, slug, date, imageUrl }: PostC
             Nota: en producción, es mejor sanitizar esto con isomorphic-dompurify si no confiamos plenamente en el origen. */}
                 <div
                     className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3 flex-1 prose dark:prose-invert"
-                    dangerouslySetInnerHTML={{ __html: excerpt }}
+                    dangerouslySetInnerHTML={{ __html: sanitizeHtml(excerpt) }}
                 />
 
                 <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700">
