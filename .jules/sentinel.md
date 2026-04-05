@@ -1,0 +1,4 @@
+## 2024-05-18 - Fix XSS Vulnerability in dangerouslySetInnerHTML
+**Vulnerability:** Several React components (`NewsCard`, `ImpactHeader`, `PostCard`) were rendering user-controlled content directly via `dangerouslySetInnerHTML` without proper sanitization. This allows potential attackers to execute arbitrary JavaScript if the source data (e.g., from WordPress REST API) is compromised or malicious.
+**Learning:** In Next.js SSR apps, using `isomorphic-dompurify` can cause issues due to its dependency on `jsdom` (resulting in ENOENT errors during build).
+**Prevention:** To avoid this build issue while securing the app, we implemented sanitization using the `xss` library. A custom wrapper `sanitizeHtml` was created in `src/utils/sanitize.ts` which extends the default whitelist to explicitly allow styling classes (like Tailwind) for `span` and other tags, preserving design functionality while mitigating XSS risks.
