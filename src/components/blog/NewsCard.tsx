@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FaRegCommentDots } from "react-icons/fa";
 import { motion } from "framer-motion";
 import ScrollReveal from "../animations/ScrollReveal";
+import { sanitizeHtml } from "@/utils/sanitize";
 
 interface NewsCardProps {
   post: {
@@ -38,7 +39,8 @@ export default function NewsCard({ post, index }: NewsCardProps) {
 
   // WP title and excerpt are {rendered: string}, not flat strings
   const postTitle = typeof post.title === 'object' ? post.title.rendered : (post.title || '');
-  const postExcerpt = typeof post.excerpt === 'object' ? post.excerpt.rendered : (post.excerpt || '');
+  const rawPostExcerpt = typeof post.excerpt === 'object' ? post.excerpt.rendered : (post.excerpt || '');
+  const postExcerpt = sanitizeHtml(rawPostExcerpt);
 
   return (
     <ScrollReveal
