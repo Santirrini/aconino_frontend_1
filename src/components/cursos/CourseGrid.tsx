@@ -3,8 +3,8 @@
 import { motion, Variants, useScroll, useTransform, useSpring } from "framer-motion";
 import CourseCard, { CourseCardData } from "./CourseCard";
 import ScrollReveal from "../animations/ScrollReveal";
-import { Sparkles, Calendar as CalendarIcon, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Sparkles, Calendar as CalendarIcon } from "lucide-react";
+
 import { useRef } from "react";
 
 interface CourseGridProps {
@@ -147,7 +147,7 @@ export default function CourseGrid({ courses }: CourseGridProps) {
                     </motion.div>
                 )}
 
-                {sortedYears.map((year, indexYear) => (
+                {sortedYears.map((year) => (
                     <div key={year} className="mb-24 last:mb-0">
                         {/* Cabecera del Año */}
                         <ScrollReveal animation="fade-up" delay={0.1}>
