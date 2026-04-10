@@ -1,0 +1,4 @@
+## 2024-04-10 - [XSS Risk from Keyword Highlighting]
+**Vulnerability:** Found `dangerouslySetInnerHTML` being used to highlight specific keywords (like "transforma") in a title prop within `ImpactHeader.tsx`. If the `title` prop contains unsanitized user input or is fetched from a CMS without proper sanitization, this leads to an XSS vulnerability.
+**Learning:** Developers sometimes resort to `dangerouslySetInnerHTML` combined with string `.replace()` simply to style specific words within dynamic text. This is a common but dangerous pattern when safer alternatives exist.
+**Prevention:** Instead of injecting HTML, use `String.prototype.split(/(keyword)/i)` to break the string into segments and map over them, rendering the keyword dynamically with styled React components (e.g., `<span className="...">`) and the rest of the text as plain string fragments. This completely avoids HTML injection while achieving the same visual result.
