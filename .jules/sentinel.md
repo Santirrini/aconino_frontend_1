@@ -1,0 +1,4 @@
+## 2025-05-18 - XSS via dangerouslySetInnerHTML in Keyword Highlighting
+**Vulnerability:** A cross-site scripting (XSS) vulnerability was found in `ImpactHeader.tsx` where user-provided text (`title`) was processed with a regex replacement to inject styled HTML (`<span>`) and then rendered using `dangerouslySetInnerHTML`.
+**Learning:** Highlighting specific words in dynamic text can easily lead to XSS if `dangerouslySetInnerHTML` is used. This is a common requirement that developers try to solve quickly but unsafely.
+**Prevention:** Instead of generating raw HTML strings, use `String.prototype.split(/(keyword)/i)` with a capturing group to split the string into parts. Then, use a `.map` function to render React elements (e.g., `<span>`) for each part, applying specific classes only to the matched keywords. This completely avoids `dangerouslySetInnerHTML`.
