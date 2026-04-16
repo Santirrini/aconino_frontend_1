@@ -4,11 +4,14 @@ export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'myf1eg8e'
 export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 export const apiVersion = '2024-03-14'
 
+const isDev = process.env.NODE_ENV === 'development'
+
 export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true, // CDN enabled for read queries (performance)
+  useCdn: !isDev,
+  perspective: isDev ? 'previewDrafts' : 'published',
 })
 
 export const writeClient = createClient({
