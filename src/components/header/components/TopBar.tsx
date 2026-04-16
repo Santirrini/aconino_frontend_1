@@ -18,7 +18,7 @@ export default function TopBar({ isScrolled }: TopBarProps) {
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="hidden md:block bg-[#1b2b65] text-white text-[11px] sm:text-xs md:text-sm overflow-hidden"
         >
-          <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-2 md:py-1.5 flex flex-col md:flex-row items-center justify-center md:justify-between gap-1.5 md:gap-0">
+          <div className="w-full max-w-[1200px] mx-auto px-4 md:px-8 py-2 md:py-1.5 flex flex-col md:flex-row items-center justify-center md:justify-between gap-1.5 md:gap-0">
             
             {/* Contenedor de Información (Responsivo: Columna en móvil, Fila en pantallas grandes) */}
             <div className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-6 text-center">

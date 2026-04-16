@@ -24,17 +24,17 @@ export default function FooterSocial({ socialLinks, copyright }: FooterSocialPro
 
   return (
     <div className="flex flex-col items-center md:items-start text-center md:text-left">
-      <p className="text-sm text-gray-400 leading-relaxed mb-8 max-w-[280px]">
+      <p className="text-sm text-gray-400 leading-relaxed mb-8 max-w-[320px] text-pretty">
         {copyright || "Asociación Aconiño: Transformando vidas desde 1990 con amor, ciencia y dedicación integral."}
       </p>
-      <div className="flex gap-3 items-center justify-center md:justify-start">
+      <div className="flex gap-4 items-center justify-center md:justify-start">
         {socialLinks.map((social, idx) => (
           <a 
             key={social.label || social.url || `social-${idx}`} 
             href={social.url} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-accent hover:border-accent hover:text-primary transition-all duration-300 shadow-sm hover:shadow-accent/20"
+            className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:-translate-y-1 shrink-0 hover:bg-accent hover:border-accent hover:text-primary transition-all duration-300 shadow-sm hover:shadow-accent/40"
             aria-label={social.label}
           >
             {renderSocialIcon(social.url)}
