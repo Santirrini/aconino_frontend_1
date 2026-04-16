@@ -5,11 +5,22 @@ import FooterNav from "./footer/FooterNav";
 import FooterContact from "./footer/FooterContact";
 import FooterApps from "./footer/FooterApps";
 import FooterBottom from "./footer/FooterBottom";
+import FooterDocuments from "./footer/FooterDocuments";
 
 interface FooterLink {
   label?: string;
   url?: string;
   href?: string;
+}
+
+interface DocumentoLegal {
+  _id: string;
+  titulo: string;
+  categoria: string;
+  archivoUrl?: string;
+  enlaceExterno?: string;
+  descripcion?: string;
+  orden: number;
 }
 
 interface FooterProps {
@@ -29,9 +40,10 @@ interface FooterProps {
       controlEntity?: string;
     };
   };
+  documentosLegales?: DocumentoLegal[];
 }
 
-export default function Footer({ settings }: FooterProps) {
+export default function Footer({ settings, documentosLegales }: FooterProps) {
   const defaultPhone = "(601) 650 8473";
   const defaultMobile = "313 391 0760";
   const defaultEmail = "apoyoinclusion@aconino.org";
@@ -86,6 +98,8 @@ export default function Footer({ settings }: FooterProps) {
             controlEntity={controlEntity}
           />
         </div>
+
+        <FooterDocuments documentos={documentosLegales || []} />
 
         <FooterBottom legalLinks={legalLinks} />
       </div>

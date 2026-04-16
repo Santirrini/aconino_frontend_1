@@ -447,6 +447,32 @@ export const CURSOS_PAGE_QUERY = defineQuery(`
   }
 `)
 
+// Query para documentos legales del footer (ESAL, Transparencia, Protección de datos)
+export const DOCUMENTOS_LEGALES_QUERY = defineQuery(`
+  *[_type == "documentoLegal"] | order(categoria, orden asc) {
+    _id,
+    titulo,
+    categoria,
+    "archivoUrl": archivo.asset->url,
+    enlaceExterno,
+    descripcion,
+    orden
+  }
+`)
+
+// Query para documentos legales por categoría
+export const DOCUMENTOS_POR_CATEGORIA_QUERY = defineQuery(`
+  *[_type == "documentoLegal" && categoria == $categoria] | order(orden asc) {
+    _id,
+    titulo,
+    categoria,
+    "archivoUrl": archivo.asset->url,
+    enlaceExterno,
+    descripcion,
+    orden
+  }
+`)
+
 // Query for the app page configuration
 export const APP_PAGE_QUERY = defineQuery(`
   *[_type == "appPage"][0] {

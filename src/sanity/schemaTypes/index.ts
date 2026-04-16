@@ -14,6 +14,7 @@ import curso from './curso'
 import cursosPage from './cursosPage'
 import appPage from './appPage'
 import programasPage from './programasPage'
+import documentoLegal from './documentoLegal'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -31,5 +32,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     cursosPage,
     appPage,
     programasPage,
+    documentoLegal,
   ],
 }
