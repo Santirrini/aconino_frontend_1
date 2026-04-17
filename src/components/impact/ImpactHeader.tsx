@@ -17,8 +17,19 @@ export default function ImpactHeader({ title, description }: ImpactHeaderProps) 
         <FaHeart className="text-accent text-3xl md:text-4xl animate-pulse" />
       </div>
       <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-primary uppercase tracking-tighter mb-4 leading-tight">
+        {/* Security enhancement: Avoid dangerouslySetInnerHTML to prevent XSS when highlighting keywords */}
         {title ? (
-            <span dangerouslySetInnerHTML={{ __html: title.replace('transforma', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">transforma</span>') }} />
+            <span>
+              {title.split(/(transforma)/i).map((part, index) =>
+                part.toLowerCase() === 'transforma' ? (
+                  <span key={index} className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">
+                    {part}
+                  </span>
+                ) : (
+                  <span key={index}>{part}</span>
+                )
+              )}
+            </span>
         ) : (
             <>Tu apoyo <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">transforma</span> vidas</>
         )}
