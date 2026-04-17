@@ -1,0 +1,4 @@
+## 2025-04-17 - [HIGH] Fix XSS vulnerability in ImpactHeader
+**Vulnerability:** Cross-Site Scripting (XSS) via unsanitized `title` prop in `src/components/impact/ImpactHeader.tsx` using `dangerouslySetInnerHTML`.
+**Learning:** `dangerouslySetInnerHTML` was used to highlight a specific keyword ("transforma") within a string, allowing any injected HTML from the prop to execute on the client-side. Attempting to sanitize it with `isomorphic-dompurify` causes Next.js build errors (ENOENT for jsdom).
+**Prevention:** Avoid `dangerouslySetInnerHTML` for simple text styling/highlighting. Use `String.prototype.split(/(keyword)/i)` to parse the text and map the resulting array of strings to safe React elements (`<span>`). Avoid using `<React.Fragment>` to prevent 'React is not defined' runtime crashes under Next.js automatic JSX runtime.
