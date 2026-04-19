@@ -1,0 +1,4 @@
+## 2024-04-19 - Fix XSS in ImpactHeader by replacing dangerouslySetInnerHTML
+**Vulnerability:** XSS vulnerability through `dangerouslySetInnerHTML` in `src/components/impact/ImpactHeader.tsx` which allows arbitrary HTML execution if the `title` prop becomes user-controlled or malicious data.
+**Learning:** Highlighting strings with different colors should be done without `dangerouslySetInnerHTML`. React maps safely over strings array but errors out when trying to use JSX within `String.prototype.replace()`. Using `.split()` with capturing regex groups solves this smoothly while retaining HTML entities.
+**Prevention:** Always use safe text transformation like `.split(/(keyword)/i)` mapping to React span elements instead of dumping raw string into `.replace()` -> `dangerouslySetInnerHTML` to avoid XSS.
