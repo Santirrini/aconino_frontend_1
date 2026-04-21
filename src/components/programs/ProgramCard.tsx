@@ -82,7 +82,7 @@ export default function ProgramCard({
             </div>
 
             {/* Expand Indicator Icon (Mobile Only) */}
-            <div className="md:hidden absolute bottom-3 right-3 z-30">
+            <div className="md:hidden absolute bottom-3 left-3 z-30">
                 <motion.div 
                     animate={{ rotate: isExpanded ? 45 : 0 }}
                     className="w-8 h-8 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30"
