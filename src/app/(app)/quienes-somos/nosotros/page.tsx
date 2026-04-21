@@ -157,7 +157,7 @@ export default async function QuienesSomosPage() {
             <NosotrosJuntaRoles data={sanityData?.junta?.roles} />
             <NosotrosEquipo data={sanityData?.equipo} />
             <NosotrosAdmin data={sanityData?.admin} />
-            <div id="asociacion-usuarios">
+            <div id="asociacion-usuarios" className="scroll-mt-32">
                 <AsociacionIntro />
                 <AsociacionBanner />
                 <AsociacionDetails />

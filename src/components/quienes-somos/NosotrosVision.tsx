@@ -26,7 +26,7 @@ export default function NosotrosVision({ data }: Props) {
     const visionTextSecondary = data?.visionTextSecondary;
 
     return (
-        <section id="vision" className="bg-gray-50 flex flex-col-reverse lg:flex-row relative overflow-hidden">
+        <section id="vision" className="bg-gray-50 flex flex-col-reverse lg:flex-row relative overflow-hidden scroll-mt-32">
             
             <motion.div 
                 initial={{ opacity: 0, x: -50 }}

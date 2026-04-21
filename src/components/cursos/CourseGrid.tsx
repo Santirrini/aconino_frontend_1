@@ -182,7 +182,7 @@ export default function CourseGrid({ courses }: CourseGridProps) {
                                     key={course.id} 
                                     id={course.slug}
                                     variants={itemVariants}
-                                    className="col-span-1"
+                                    className="col-span-1 scroll-mt-32"
                                 >
                                     <CourseCard course={course} index={idx} />
                                 </motion.div>

@@ -18,10 +18,10 @@ export default function TopBar({ isScrolled }: TopBarProps) {
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="hidden md:block bg-[#1b2b65] text-white text-[11px] sm:text-xs md:text-sm overflow-hidden"
         >
-          <div className="w-full max-w-[1200px] mx-auto px-4 md:px-8 py-2 md:py-1.5 flex flex-col md:flex-row items-center justify-center md:justify-between gap-1.5 md:gap-0">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-col md:flex-row items-center justify-between gap-4">
             
-            {/* Contenedor de Información (Responsivo: Columna en móvil, Fila en pantallas grandes) */}
-            <div className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-6 text-center">
+            {/* Contenedor de Información */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-center md:text-left">
               <div className="flex items-center gap-1.5">
                 <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-accent" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l3.707 3.707A1 1 0 0018 17.414V4a1 1 0 00-.293-.707z" clipRule="evenodd" />

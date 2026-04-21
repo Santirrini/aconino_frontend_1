@@ -22,7 +22,7 @@ export default function NosotrosEquipo({ data }: Props) {
     const imageAlt = data?.imageAlt || "Equipo de trabajo Aconiño";
 
     return (
-        <section id="equipo-de-trabajo" className="bg-white py-12 md:py-32 relative overflow-hidden">
+        <section id="equipo-de-trabajo" className="bg-white py-12 md:py-32 relative overflow-hidden scroll-mt-32">
             <div className="absolute right-0 top-0 w-[150px] h-[150px] md:w-[300px] md:h-[300px] lg:w-[400px] lg:h-[400px] bg-accent/5 rounded-full blur-[50px] md:blur-[80px] lg:blur-3xl -translate-y-1/2 translate-x-1/3" />
             
             <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 relative z-10">

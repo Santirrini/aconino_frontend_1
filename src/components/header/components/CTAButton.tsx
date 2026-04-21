@@ -21,13 +21,13 @@ export default function CTAButton({ label = "DONAR AHORA", href, isDonation = tr
   }, []);
 
   if (!mounted) {
-    return <div className="relative w-[130px] sm:w-[160px] h-[38px] sm:h-[48px]" />;
+    return <div className="relative w-[120px] sm:w-[150px] h-[36px] sm:h-[44px]" />;
   }
 
   const buttonContent = (
     <motion.button
       onClick={isDonation ? () => openDonationWidget() : undefined}
-      className="flex relative items-center gap-2 sm:gap-3 bg-accent text-primary px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-black text-[11px] sm:text-sm tracking-widest shadow-lg hover:shadow-2xl hover:shadow-accent/40 transition-all duration-300 transform hover:scale-105 active:scale-95 group overflow-hidden"
+      className="flex relative items-center gap-2 sm:gap-3 bg-accent text-primary px-4 sm:px-7 py-2.5 sm:py-3 rounded-full font-black text-[11px] sm:text-sm tracking-widest shadow-lg hover:shadow-2xl hover:shadow-accent/40 transition-all duration-300 transform hover:scale-105 active:scale-95 group overflow-hidden"
     >
       <motion.div
         className="absolute inset-0 bg-white/20"

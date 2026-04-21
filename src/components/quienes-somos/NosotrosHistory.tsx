@@ -45,7 +45,7 @@ export default function NosotrosHistory({ data }: Props) {
     const displayEvents = events && events.length > 0 ? events : defaultEvents;
 
     return (
-        <section id="historia" className="bg-primary flex flex-col md:flex-row relative overflow-hidden">
+        <section id="historia" className="bg-primary flex flex-col md:flex-row relative overflow-hidden scroll-mt-32">
             <motion.div 
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}

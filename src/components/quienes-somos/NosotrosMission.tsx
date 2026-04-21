@@ -24,7 +24,7 @@ export default function NosotrosMission({ data }: Props) {
     const description = data?.description;
 
     return (
-        <section id="mision" className="bg-primary flex flex-col lg:flex-row relative overflow-hidden">
+        <section id="mision" className="bg-primary flex flex-col lg:flex-row relative overflow-hidden scroll-mt-32">
             {/* Background Texture Overlay */}
             <div className="absolute inset-0 z-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
 

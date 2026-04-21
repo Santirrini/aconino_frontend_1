@@ -21,7 +21,7 @@ export default function NosotrosJuntaPhoto({ data }: Props) {
     const photoAlt = data?.photoAlt || "Junta Directiva Aconiño";
 
     return (
-        <section id="junta-directiva" className="bg-gray-50 py-24 md:py-32 relative overflow-hidden">
+        <section id="junta-directiva" className="bg-gray-50 py-24 md:py-32 relative overflow-hidden scroll-mt-32">
             <div className="absolute top-1/2 left-0 w-full h-[300px] bg-primary/5 -skew-y-3 transform -translate-y-1/2" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

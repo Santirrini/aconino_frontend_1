@@ -65,7 +65,7 @@ export default function NosotrosFundadores({ data }: Props) {
     );
 
     return (
-        <section id="fundadores" className="py-16 md:py-32 bg-gray-50 relative overflow-hidden">
+        <section id="fundadores" className="py-16 md:py-32 bg-gray-50 relative overflow-hidden scroll-mt-32">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none" />
             
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

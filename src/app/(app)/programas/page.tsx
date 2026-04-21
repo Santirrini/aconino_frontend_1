@@ -144,7 +144,7 @@ export default async function ProgramasPage() {
       />
 
       {/* 2. MODELO DE INTERVENCIÓN */}
-      <section id="modelo" className="py-20 md:py-32 bg-white relative overflow-hidden -mt-10 rounded-t-[3rem] z-20 shadow-[0_-20px_40px_rgba(0,0,0,0.02)]">
+      <section id="modelo" className="py-20 md:py-32 bg-white relative overflow-hidden -mt-10 rounded-t-[3rem] z-20 shadow-[0_-20px_40px_rgba(0,0,0,0.02)] scroll-mt-32">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[80px] opacity-70 -translate-y-1/2 translate-x-1/3 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-yellow-50 rounded-full blur-[60px] opacity-70 translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
@@ -216,7 +216,7 @@ export default async function ProgramasPage() {
       <GeneralObjective />
 
       {/* 4. METODOLOGÍA DE TRABAJO (Pillars) */}
-      <section id="metodologia" className="py-20 md:py-32 bg-gray-50 relative">
+      <section id="metodologia" className="py-20 md:py-32 bg-gray-50 relative scroll-mt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fade-in-up">
             <span className="text-accent font-bold tracking-widest uppercase text-sm mb-4 block">Nuestros Pilares</span>
@@ -250,7 +250,7 @@ export default async function ProgramasPage() {
       </section>
 
       {/* 9. OBJETIVOS POR ÁREA (Tabs) */}
-      <section id="objetivos" className="py-16 md:py-24 bg-white border-t border-gray-100 relative">
+      <section id="objetivos" className="py-16 md:py-24 bg-white border-t border-gray-100 relative scroll-mt-32">
         <div className="absolute right-0 top-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[80px] -z-10 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ObjectivesTabs objectives={objectivesByArea} />
