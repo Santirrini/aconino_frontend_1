@@ -7,7 +7,7 @@ import { DonationProvider } from "../../providers/DonationProvider";
 import { ComingSoonProvider } from "../../providers/ComingSoonProvider";
 import ComingSoonOverlayWrapper from "@/components/apoyanos/ComingSoonOverlayWrapper";
 import { client } from "@/sanity/lib/client";
-import { SETTINGS_QUERY, NAVIGATION_QUERY, DOCUMENTOS_LEGALES_QUERY } from "@/sanity/lib/queries";
+import { SETTINGS_QUERY, NAVIGATION_QUERY } from "@/sanity/lib/queries";
 import FloatingDonationWidget from "@/components/donations/FloatingDonationWidget";
 import { FramerMotionProvider } from "@/components/animations/FramerMotionProvider";
 
@@ -32,10 +32,9 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const [settings, navigation, documentosLegales] = await Promise.all([
+    const [settings, navigation] = await Promise.all([
         client.fetch(SETTINGS_QUERY),
-        client.fetch(NAVIGATION_QUERY),
-        client.fetch(DOCUMENTOS_LEGALES_QUERY)
+        client.fetch(NAVIGATION_QUERY)
     ]);
     
     return (
@@ -55,7 +54,7 @@ export default async function RootLayout({
                                 <main className="flex-1 w-full relative" style={{ overflowX: 'clip' }}>
                                     {children}
                                 </main>
-                                <Footer settings={settings} documentosLegales={documentosLegales} />
+                                <Footer settings={settings} />
                                 <ComingSoonOverlayWrapper />
                             </FramerMotionProvider>
                         </ComingSoonProvider>

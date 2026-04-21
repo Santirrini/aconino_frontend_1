@@ -42,7 +42,7 @@ interface FooterProps {
   documentosLegales?: DocumentoLegal[];
 }
 
-export default function Footer({ settings, documentosLegales }: FooterProps) {
+export default function Footer({ settings }: FooterProps) {
   const defaultPhone = "(601) 650 8473";
   const defaultMobile = "313 391 0760";
   const defaultEmail = "apoyoinclusion@aconino.org";

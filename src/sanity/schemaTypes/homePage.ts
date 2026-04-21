@@ -75,12 +75,12 @@ export default defineType({
                   title: 'Opacidad del Overlay (0-100)',
                   type: 'number',
                   initialValue: 50,
-                  validation: (Rule: any) => Rule.min(0).max(100),
+                  validation: (Rule) => Rule.min(0).max(100),
                 }),
               ],
               preview: {
                 select: { title: 'alt', media: 'image' },
-                prepare({ title, media }: { title?: string; media?: any }) {
+                prepare({ title, media }: { title?: string; media?: React.ReactNode }) {
                   return { title: title || 'Slide sin descripción', subtitle: 'Imagen del carrusel', media }
                 },
               },

@@ -1,10 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { 
-    RiArrowRightUpLine,
     RiHeartPulseLine, 
     RiWalkLine, 
     RiBookOpenLine, 
@@ -88,27 +86,11 @@ export default function ProgramCard({
                 {category}
             </span>
 
-            {/* Description - Animated expand on hover (desktop) or tap (mobile) */}
-            <div className="relative transition-[max-height] duration-700 ease-in-out overflow-hidden max-h-[3.3rem] md:max-h-[4.5rem] group-hover:max-h-[300px]">
-                <p className="text-slate-600 text-[11px] md:text-[13px] leading-relaxed mb-4 line-clamp-3 group-hover:line-clamp-none">
+            {/* Description */}
+            <div className="relative mt-2">
+                <p className="text-slate-600 text-[11px] md:text-[13px] leading-relaxed">
                     {desc}
                 </p>
-            </div>
-            
-            {/* Footer CTA */}
-            <div className="pt-4 mt-auto border-t border-slate-100">
-                <Link 
-                    href={`/programas#${slug || 'atencion-temprana'}`} 
-                    className="inline-flex items-center gap-2 text-[10px] md:text-[12px] font-bold text-primary uppercase tracking-widest group/btn w-full justify-between"
-                >
-                    <span className="relative overflow-hidden h-4 md:h-5 w-full flex-1">
-                        <span className="absolute top-0 left-0 w-full transition-transform duration-300 md:group-hover/btn:-translate-y-full truncate">Más información</span>
-                        <span className="absolute top-0 left-0 w-full translate-y-full transition-transform duration-300 md:group-hover/btn:translate-y-0 text-accent truncate">Ver detalles</span>
-                    </span>
-                    <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-slate-50 md:bg-slate-50 flex items-center justify-center md:group-hover/btn:bg-accent/10 transition-colors">
-                        <RiArrowRightUpLine className="w-3 h-3 md:w-4 md:h-4 text-slate-400 md:group-hover/btn:text-accent transform transition-all duration-300" />
-                    </div>
-                </Link>
             </div>
         </div>
     </motion.div>
