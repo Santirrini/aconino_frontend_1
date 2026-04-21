@@ -13,6 +13,9 @@ import NosotrosJuntaPhoto from "@/components/quienes-somos/NosotrosJuntaPhoto";
 import NosotrosJuntaRoles from "@/components/quienes-somos/NosotrosJuntaRoles";
 import NosotrosEquipo from "@/components/quienes-somos/NosotrosEquipo";
 import NosotrosAdmin from "@/components/quienes-somos/NosotrosAdmin";
+import AsociacionIntro from "@/components/asociacion-usuarios/AsociacionIntro";
+import AsociacionBanner from "@/components/asociacion-usuarios/AsociacionBanner";
+import AsociacionDetails from "@/components/asociacion-usuarios/AsociacionDetails";
 
 export const revalidate = 10;
 
@@ -154,6 +157,11 @@ export default async function QuienesSomosPage() {
             <NosotrosJuntaRoles data={sanityData?.junta?.roles} />
             <NosotrosEquipo data={sanityData?.equipo} />
             <NosotrosAdmin data={sanityData?.admin} />
+            <div id="asociacion-usuarios">
+                <AsociacionIntro />
+                <AsociacionBanner />
+                <AsociacionDetails />
+            </div>
         </main>
     );
 }

@@ -14,7 +14,7 @@ export const DEFAULT_NAV_LINKS: NavItem[] = [
       { name: "Fundadores", href: "/quienes-somos/nosotros#fundadores" },
       { name: "Junta Directiva", href: "/quienes-somos/nosotros#junta-directiva" },
       { name: "Equipo De Trabajo", href: "/quienes-somos/nosotros#equipo-de-trabajo" },
-      { name: "Asociación De Usuarios", href: "/quienes-somos/asociacion-de-usuarios" },
+      { name: "Asociación De Usuarios", href: "/quienes-somos/nosotros#asociacion-usuarios" },
     ]
   },
   {
