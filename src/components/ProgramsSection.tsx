@@ -90,7 +90,7 @@ export default function ProgramsSection({
                 </div>
 
                 {/* Grid de Tarjetas */}
-                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 items-start">
                     {displayPrograms.map((prog, idx) => (
                         <ProgramCard
                             key={prog.slug || idx}
