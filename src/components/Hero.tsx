@@ -1,6 +1,7 @@
 "use client";
 
 import HeroBase from "./shared/HeroBase";
+import HeroSlider, { HeroSliderSlide } from "./shared/HeroSlider";
 
 const DEFAULT_TITLE = "35 años";
 const DEFAULT_SUBTITLE = "apoyando la inclusión!";
@@ -18,14 +19,29 @@ interface HeroProps {
         hero_cta_text?: string;
         hero_cta_link?: string;
     };
+    slides?: HeroSliderSlide[];
 }
 
-export default function Hero({ acf }: HeroProps) {
+export default function Hero({ acf, slides }: HeroProps) {
     const title = acf?.hero_title || DEFAULT_TITLE;
     const subtitle = acf?.hero_subtitle || DEFAULT_SUBTITLE;
     const backgroundType = (acf?.hero_background_type === "video" ? "video" : "image") as 'video' | 'image';
     const videoUrl = acf?.hero_video_url;
     const imageUrl = acf?.hero_image || DEFAULT_IMAGE;
+
+    if (slides && slides.length > 0) {
+        return (
+            <HeroSlider
+                slides={slides}
+                title={`${title} ${subtitle}`}
+                showCurtain={true}
+                showParticles={true}
+                useTypewriter={true}
+                height="min-h-[600px] md:min-h-[800px] lg:min-h-[100vh]"
+                typewriterProps={{ waitDuration: 4000 }}
+            />
+        );
+    }
 
     return (
         <HeroBase
@@ -44,4 +60,3 @@ export default function Hero({ acf }: HeroProps) {
         />
     );
 }
-

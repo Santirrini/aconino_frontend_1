@@ -51,6 +51,43 @@ export default defineType({
           type: 'string',
           description: 'Ej: +35 años apoiando la inclusión!'
         }),
+        defineField({
+          name: 'heroSlides',
+          title: 'Fotos del Carrusel del Hero',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'image',
+                  title: 'Imagen',
+                  type: 'image',
+                  options: { hotspot: true },
+                }),
+                defineField({
+                  name: 'alt',
+                  title: 'Texto Alternativo',
+                  type: 'string',
+                }),
+                defineField({
+                  name: 'overlayOpacity',
+                  title: 'Opacidad del Overlay (0-100)',
+                  type: 'number',
+                  initialValue: 50,
+                  validation: (Rule: any) => Rule.min(0).max(100),
+                }),
+              ],
+              preview: {
+                select: { title: 'alt', media: 'image' },
+                prepare({ title, media }: { title?: string; media?: any }) {
+                  return { title: title || 'Slide sin descripción', subtitle: 'Imagen del carrusel', media }
+                },
+              },
+            },
+          ],
+          description: 'Agrega hasta 3 fotos para el carrusel del Hero. Si se agregan, se usará el carrusel en vez de la imagen única.',
+        }),
       ]
     }),
     defineField({

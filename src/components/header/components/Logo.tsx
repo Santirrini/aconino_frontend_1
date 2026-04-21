@@ -33,7 +33,7 @@ export default function Logo() {
           alt="Aconiño" 
           width={180} 
           height={180}
-          className="w-16 md:w-20 lg:w-28 h-auto drop-shadow-sm"
+          className="w-16 md:w-20 lg:w-24 h-auto drop-shadow-sm"
           priority
         />
       </motion.div>

@@ -6,13 +6,8 @@ import {
   Handshake, 
   Users, 
   Target, 
-  Scissors, 
-  ArrowRight,
-  Baby,
-  GraduationCap,
-  Home
+  Scissors
 } from "lucide-react";
-import Link from "next/link";
 
 export interface Principle {
   _key: string;
@@ -20,20 +15,11 @@ export interface Principle {
   description: string;
 }
 
-export interface TargetAudience {
-  _key: string;
-  icon: string | React.ReactNode;
-  label: string;
-}
-
 export interface InterventionModelSectionProps {
   mainTitle?: string;
   subtitle?: string;
   introText?: string;
   principles?: Principle[];
-  targetAudience?: TargetAudience[];
-  ctaLabel?: string;
-  ctaLink?: string;
 }
 
 const defaultPrinciples: Principle[] = [
@@ -41,12 +27,6 @@ const defaultPrinciples: Principle[] = [
   { _key: "2", title: "Centrada en el usuario y familia", description: "Trabajo conjunto entre profesionales, paciente y núcleo familiar en todo el proceso." },
   { _key: "3", title: "Objetivos funcionales", description: "Trabajamos habilidades que permiten mayor independencia en actividades diarias." },
   { _key: "4", title: "Atención personalizada", description: "Diseñamos el tratamiento específicamente para cada usuario tras evaluación." }
-];
-
-const defaultTargetAudience: TargetAudience[] = [
-  { _key: "1", icon: <Baby className="w-8 h-8 md:w-10 md:h-10 text-accent/90" />, label: "Bebés con alto riesgo" },
-  { _key: "2", icon: <GraduationCap className="w-8 h-8 md:w-10 md:h-10 text-accent/90" />, label: "Niños y jóvenes" },
-  { _key: "3", icon: <Home className="w-8 h-8 md:w-10 md:h-10 text-accent/90" />, label: "Familias cuidadoras" },
 ];
 
 const getIconForIndex = (index: number) => {
@@ -81,10 +61,7 @@ export function InterventionModelSection({
   mainTitle = "Nos centramos más en la actividad y menos en la discapacidad",
   subtitle = "Nuestro Enfoque",
   introText = "En Aconiño trabajamos desde un enfoque interdisciplinario centrado en el niño y su familia, promoviendo el desarrollo integral, la autonomía y la participación social.",
-  principles = defaultPrinciples,
-  targetAudience = defaultTargetAudience,
-  ctaLabel = "Conoce nuestros programas",
-  ctaLink = "/programas"
+  principles = defaultPrinciples
 }: InterventionModelSectionProps) {
 
   return (
@@ -129,7 +106,7 @@ export function InterventionModelSection({
           </div>
 
           {/* Principles Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-12 md:mb-24">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {principles.map((principle, index) => (
               <motion.div
                 key={principle._key}
@@ -151,47 +128,6 @@ export function InterventionModelSection({
               </motion.div>
             ))}
           </div>
-
-          {/* Target Audience & Footer CTA - Compact Responsive Version */}
-          <motion.div
-            variants={itemVariants}
-            className="group/cta bg-primary rounded-[2.5rem] md:rounded-[4rem] p-6 sm:p-10 md:p-16 lg:p-20 relative overflow-hidden shadow-2xl shadow-primary/30 border border-white/5"
-            whileHover={{ y: -5 }}
-          >
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-              {/* Targets Grid */}
-              <div className="lg:col-span-8 text-center lg:text-left">
-                <h4 className="text-white/60 font-bold uppercase tracking-[0.2em] text-xs mb-6">¿A quién nos dirigimos?</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-                  {targetAudience.map((target, idx) => (
-                    <motion.div
-                      key={idx}
-                      className="flex items-center gap-4 p-4 bg-white/5 rounded-2xl md:bg-transparent md:p-0 md:bg-white/5 md:rounded-2xl md:p-4 hover:bg-white/10 transition-all duration-300"
-                      whileHover={{ scale: 1.02 }}
-                    >
-                      <div className="w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-2xl flex items-center justify-center text-white shrink-0">
-                        {target.icon}
-                      </div>
-                      <div className="text-left flex-1 min-w-0">
-                        <span className="text-white font-bold text-sm md:text-lg lg:text-xl block leading-tight">{target.label}</span>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              {/* CTA Button */}
-              <div className="lg:col-span-4 flex justify-center lg:justify-end">
-                <Link
-                  href={ctaLink}
-                  className="group/btn relative flex items-center justify-center gap-3 bg-accent text-primary font-bold px-6 md:px-8 py-4 md:py-6 rounded-full transition-all hover:scale-105 active:scale-95 shadow-xl shadow-accent/20 w-full max-w-sm lg:w-auto lg:max-w-none"
-                >
-                  <span className="uppercase tracking-widest text-xs md:text-sm whitespace-nowrap">{ctaLabel}</span>
-                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                </Link>
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>

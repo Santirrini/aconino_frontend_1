@@ -1,5 +1,4 @@
 import Hero from "../../components/Hero";
-import AboutSection from "../../components/AboutSection";
 import { InterventionModelSection } from "@/components/InterventionModelSection";
 import ProgramsSection from "../../components/ProgramsSection";
 import ImpactSection from "../../components/ImpactSection";
@@ -7,10 +6,10 @@ import CtaSection from "../../components/CtaSection";
 import NewsSection from "../../components/NewsSection";
 import RecognitionsSection from "../../components/RecognitionsSection";
 
-// Importar cliente y consultas de Sanity
 import { client } from "@/sanity/lib/client";
 import { LATEST_POSTS_QUERY, HOME_PAGE_QUERY } from "@/sanity/lib/queries";
 import type { SanityPost } from "@/lib/sanity-posts";
+import type { HeroSliderSlide } from "@/components/shared/HeroSlider";
 
 export const revalidate = 60;
 
@@ -41,13 +40,6 @@ export default async function Home() {
         cta_title: sanityHome?.cta?.title || "35 años apoiando la inclusión",
         cta_label: sanityHome?.cta?.ctaLabel || "CONTÁCTANOS",
         cta_background_image: sanityHome?.cta?.backgroundImageUrl || "/images/hero-background-blue.png",
-        about_title: sanityHome?.about?.title,
-        about_description: sanityHome?.about?.description,
-        about_image: sanityHome?.about?.imageUrl,
-        experience_label: sanityHome?.about?.experienceLabel,
-        experience_value: sanityHome?.about?.experienceValue,
-        about_cta_text: sanityHome?.about?.ctaLabel,
-        about_cta_link: sanityHome?.about?.ctaLink,
     };
 
     interface SanityProgram {
@@ -105,11 +97,23 @@ export default async function Home() {
         image: t.imageUrl || null
     })) || [];
 
+    interface SanityHeroSlide {
+        imageUrl?: string;
+        alt?: string;
+        overlayOpacity?: number;
+    }
+
+    const heroSlides: HeroSliderSlide[] | undefined = sanityHome?.hero?.heroSlides
+        ?.filter((s: SanityHeroSlide) => s.imageUrl)
+        .map((s: SanityHeroSlide) => ({
+            src: s.imageUrl!,
+            alt: s.alt || '',
+            overlayOpacity: s.overlayOpacity,
+        })) || undefined;
+
     return (
         <div className="w-full">
-            <Hero acf={acf} />
-            
-            <AboutSection acf={acf} />
+            <Hero acf={acf} slides={heroSlides} />
             
             <InterventionModelSection />
             

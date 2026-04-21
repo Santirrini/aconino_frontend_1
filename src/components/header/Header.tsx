@@ -39,7 +39,7 @@ export default function Header({ navData, ctaLabel, ctaHref, settings }: HeaderP
             variants={staggerContainer}
             initial="hidden"
             animate="show"
-            className={`w-full max-w-[1200px] mx-auto px-4 md:px-8 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-1 md:py-1.5' : 'py-1.5 md:py-2'}`}
+            className={`w-full max-w-[1200px] mx-auto px-4 md:px-8 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-1 md:py-1' : 'py-1.5 md:py-1.5'}`}
           >
             <Logo />
 

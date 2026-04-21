@@ -54,7 +54,7 @@ export default function NavLinks({ navLinks }: NavLinksProps) {
                   setHoveredIdx(hoveredIdx === idx ? null : idx);
                 }
               }}
-              className={`relative flex items-center gap-1 py-4 px-2 transition-all duration-300 z-10 ${
+              className={`relative flex items-center gap-1 py-1 lg:py-2 px-2 transition-all duration-300 z-10 ${
                 parentActive ? 'text-accent' : 'text-primary hover:text-accent'
               }`}
             >

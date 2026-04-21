@@ -50,7 +50,13 @@ export const HOME_PAGE_QUERY = defineQuery(`
       "backgroundImageUrl": backgroundImage.asset->url,
       "backgroundVideoUrl": backgroundVideo.asset->url,
       slogan,
-      impact
+      impact,
+      heroSlides[] {
+        _key,
+        "imageUrl": image.asset->url,
+        alt,
+        overlayOpacity
+      }
     },
     about {
       title,

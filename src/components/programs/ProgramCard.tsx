@@ -88,9 +88,9 @@ export default function ProgramCard({
                 {category}
             </span>
 
-            {/* Description - Visible on mobile, hover-expand on desktop */}
-            <div className="overflow-hidden">
-                <p className="text-slate-600 text-[11px] md:text-[13px] leading-relaxed mb-4 line-clamp-3 transition-all duration-500 min-h-[3.3rem] md:min-h-[4.5rem]">
+            {/* Description - Animated expand on hover (desktop) or tap (mobile) */}
+            <div className="relative transition-[max-height] duration-700 ease-in-out overflow-hidden max-h-[3.3rem] md:max-h-[4.5rem] group-hover:max-h-[300px]">
+                <p className="text-slate-600 text-[11px] md:text-[13px] leading-relaxed mb-4 line-clamp-3 group-hover:line-clamp-none">
                     {desc}
                 </p>
             </div>
