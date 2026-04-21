@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import sanitizeHtml from "sanitize-html";
 
 interface PostCardProps {
     title: string;
@@ -15,6 +16,11 @@ export default function PostCard({ title, excerpt, slug, date, imageUrl }: PostC
         year: "numeric",
         month: "long",
         day: "numeric",
+    });
+
+    // Sanitize the excerpt before rendering to prevent XSS attacks
+    const safeExcerpt = sanitizeHtml(excerpt, {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
     });
 
     return (
@@ -44,11 +50,11 @@ export default function PostCard({ title, excerpt, slug, date, imageUrl }: PostC
                     {title}
                 </h3>
 
-                {/* Renderizado peligroso de HTML para el excerpt, común en WordPress. 
-            Nota: en producción, es mejor sanitizar esto con isomorphic-dompurify si no confiamos plenamente en el origen. */}
+                {/* Renderizado peligroso de HTML para el excerpt, común en WordPress.
+            Nota: se utiliza sanitize-html porque isomorphic-dompurify causa errores en Next.js (SSR). */}
                 <div
                     className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3 flex-1 prose dark:prose-invert"
-                    dangerouslySetInnerHTML={{ __html: excerpt }}
+                    dangerouslySetInnerHTML={{ __html: safeExcerpt }}
                 />
 
                 <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700">
