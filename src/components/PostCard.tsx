@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { stripHtml } from "@/lib/format";
 
 interface PostCardProps {
     title: string;
@@ -44,12 +45,10 @@ export default function PostCard({ title, excerpt, slug, date, imageUrl }: PostC
                     {title}
                 </h3>
 
-                {/* Renderizado peligroso de HTML para el excerpt, común en WordPress. 
-            Nota: en producción, es mejor sanitizar esto con isomorphic-dompurify si no confiamos plenamente en el origen. */}
-                <div
-                    className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3 flex-1 prose dark:prose-invert"
-                    dangerouslySetInnerHTML={{ __html: excerpt }}
-                />
+                {/* Sanitized excerpt to prevent XSS */}
+                <div className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3 flex-1 prose dark:prose-invert">
+                    {stripHtml(excerpt)}
+                </div>
 
                 <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700">
                     <Link
