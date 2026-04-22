@@ -37,3 +37,7 @@ export function calculateImpact(amount: number, impactMultiplier: number, impact
   const result = (amount / impactMultiplier).toFixed(1);
   return `${result} ${impactUnit}`;
 }
+
+export function stripHtml(html: string): string {
+    return html.replace(/<[^>]*>/g, "").trim();
+}

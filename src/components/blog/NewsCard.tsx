@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FaRegCommentDots } from "react-icons/fa";
 import { motion } from "framer-motion";
 import ScrollReveal from "../animations/ScrollReveal";
+import { stripHtml } from "@/lib/format";
 
 interface NewsCardProps {
   post: {
@@ -77,10 +78,9 @@ export default function NewsCard({ post, index }: NewsCardProps) {
                   {postTitle}
               </h3>
 
-              <div
-                  className="text-gray-500 text-base mb-8 line-clamp-3 leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: postExcerpt }}
-              />
+              <div className="text-gray-500 text-base mb-8 line-clamp-3 leading-relaxed">
+                  {stripHtml(postExcerpt)}
+              </div>
 
               <div className="mt-auto pt-6 border-t border-gray-100">
                   <Link href={`/blog/${post.slug}`} className="text-sm font-bold text-primary tracking-widest flex items-center gap-2 group/link w-fit">
