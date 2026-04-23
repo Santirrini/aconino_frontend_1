@@ -5,6 +5,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { FaCalendarAlt, FaArrowRight } from "react-icons/fa"
 import type { SanityPostListItem } from "@/types/sanity"
+import { stripHtml } from "@/lib/format"
 
 function formatDate(dateStr?: string | null): string {
     if (!dateStr) return ""
@@ -19,10 +20,6 @@ interface BlogPostCardProps {
     post: SanityPostListItem
     index?: number
     featured?: boolean
-}
-
-function stripHtml(html: string): string {
-    return html.replace(/<[^>]*>/g, "").trim()
 }
 
 function getExcerpt(excerpt?: string | null): string {
