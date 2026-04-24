@@ -34,6 +34,12 @@ export default function HeroBackground({
     );
   }
 
+  const finalImageUrl = imageUrl || defaultImage;
+
+  if (!finalImageUrl) {
+    return null;
+  }
+
   return (
     <motion.div
       initial={{ scale: 1.1 }}
@@ -42,7 +48,7 @@ export default function HeroBackground({
       className="absolute inset-0 w-full h-full z-0"
     >
       <Image
-        src={imageUrl || defaultImage || "/images/hero-background-blue.png"}
+        src={finalImageUrl}
         alt="Hero Background"
         fill
         className="object-cover"
