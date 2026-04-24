@@ -42,9 +42,9 @@ export const SETTINGS_QUERY = defineQuery(`
   }
 `)
 
-// Query para Home Page - soporta documentos tipo home (con pageBuilder) y homePage (estructura nueva)
+// Query para Home Page - usa exclusivamente homePage (no el tipo legacy home)
 export const HOME_PAGE_QUERY = defineQuery(`
-  *[_type == "homePage" || _type == "home"][0] {
+  *[_type == "homePage"][0] {
     title,
     // Para homePage: estructura directa
     hero {
@@ -60,51 +60,7 @@ export const HOME_PAGE_QUERY = defineQuery(`
         overlayOpacity
       }
     },
-    // Para home: extraer del pageBuilder
-    "hero": pageBuilder[_type == "hero"][0] {
-      backgroundType,
-      "backgroundImageUrl": backgroundImage.asset->url,
-      "backgroundVideoUrl": backgroundVideo.asset->url,
-      slogan,
-      impact,
-      heroSlides[] {
-        _key,
-        "imageUrl": image.asset->url,
-        alt,
-        overlayOpacity
-      }
-    },
-    "programs": pageBuilder[_type == "programs"][0] {
-      sectionTitle,
-      sectionDescription,
-      subtitle,
-      clinicalFocus,
-      familySupport,
-      ctaLabel,
-      items[0...6] {
-        _key,
-        title,
-        category,
-        description,
-        url,
-        "imageUrl": image.asset->url
-      }
-    },
-    "news": pageBuilder[_type == "newsSection"][0] {
-      title,
-      ctaLabel
-    },
-    "recognitions": pageBuilder[_type == "recognitions"][0] {
-      text,
-      items[0...8] {
-        _key,
-        title,
-        meta,
-        description,
-        "imageUrl": image.asset->url
-      }
-    },
-    // Fallback para homePage
+    // Seccion About (homePage)
     about {
       title,
       description,
@@ -144,6 +100,29 @@ export const HOME_PAGE_QUERY = defineQuery(`
       stats[] {
         value,
         label
+      }
+    },
+    news {
+      title,
+      ctaLabel
+    },
+    recognitions {
+      title,
+      items[0...8] {
+        _key,
+        title,
+        meta,
+        description,
+        "imageUrl": image.asset->url
+      }
+    },
+    testimonials {
+      title,
+      items[0...6] {
+        _key,
+        name,
+        quote,
+        "imageUrl": image.asset->url
       }
     }
   }

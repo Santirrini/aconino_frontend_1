@@ -27,7 +27,7 @@ export default async function Home() {
         console.error('Error fetching Sanity data:', error);
     }
 
-    // Mapear datos para el Hero - soporta home y homePage
+    // Mapear datos para el Hero - estructura homePage
     const heroData = sanityHome?.hero;
     const acf = {
         hero_title: heroData?.slogan?.split(' ').slice(0, 2).join(' ') || "35 años", 
@@ -42,6 +42,9 @@ export default async function Home() {
         cta_label: sanityHome?.cta?.ctaLabel || "CONTÁCTANOS",
         cta_background_image: sanityHome?.cta?.backgroundImageUrl || "/images/hero-background-blue.png",
     };
+
+    // Debug: verificar datos del Hero
+    console.log('DEBUG heroData:', JSON.stringify(heroData, null, 2));
 
     interface SanityProgram {
         title?: string;
@@ -104,13 +107,24 @@ export default async function Home() {
         overlayOpacity?: number;
     }
 
-    const heroSlides: HeroSliderSlide[] | undefined = heroData?.heroSlides
-        ?.filter((s: SanityHeroSlide) => s.imageUrl)
-        .map((s: SanityHeroSlide) => ({
-            src: s.imageUrl!,
-            alt: s.alt || '',
-            overlayOpacity: s.overlayOpacity,
-        })) || undefined;
+    // Debug: verificar datos del Hero
+    console.log('DEBUG heroData:', JSON.stringify(heroData, null, 2));
+
+    // Determinar si mostrar carrusel o imagen individual
+    // Solo mostrar carrusel si hay slides Y tienen imagen válida
+    const rawSlides = heroData?.heroSlides;
+    const hasValidSlides = Array.isArray(rawSlides) && rawSlides.length > 0 && rawSlides.some((s: any) => s.imageUrl);
+    console.log('DEBUG hasValidSlides:', hasValidSlides, 'rawSlides:', rawSlides);
+
+    const heroSlides: HeroSliderSlide[] | undefined = hasValidSlides
+        ? rawSlides
+            .filter((s: SanityHeroSlide) => s.imageUrl)
+            .map((s: SanityHeroSlide) => ({
+                src: s.imageUrl!,
+                alt: s.alt || '',
+                overlayOpacity: s.overlayOpacity,
+            }))
+        : undefined;
 
     return (
         <div className="w-full">
