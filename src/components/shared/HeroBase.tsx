@@ -68,6 +68,8 @@ export interface HeroBaseProps {
   children?: React.ReactNode;
   /** Custom overlay elements */
   customOverlay?: React.ReactNode;
+  /** Whether to show the default background if no image/video is provided */
+  showDefaultBackground?: boolean;
 }
 
 export default function HeroBase({
@@ -96,6 +98,7 @@ export default function HeroBase({
   descriptionClassName = "",
   children,
   customOverlay,
+  showDefaultBackground = true,
 }: HeroBaseProps) {
   const isGradient = backgroundType === 'gradient';
 
@@ -124,7 +127,7 @@ export default function HeroBase({
             videoUrl={backgroundVideo}
             imageUrl={backgroundImage}
             posterPlaceholder={videoPoster}
-            defaultImage="/images/hero-background-blue.png"
+            defaultImage={showDefaultBackground ? "/images/hero-background-blue.png" : undefined}
           />
         )}
         
@@ -175,7 +178,7 @@ export default function HeroBase({
         >
           <h1
             className={`text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black text-white leading-tight drop-shadow-2xl max-w-4xl mx-auto tracking-tight px-4 ${titleClassName}`}
-            style={{ textShadow: "0 10px 30px rgba(0,0,0,0.8)" }}
+            style={{ textShadow: "0 4px 15px rgba(0,0,0,0.4)" }}
           >
             {useTypewriter && typeof title === 'string' ? (
               <GoldenTypewriter

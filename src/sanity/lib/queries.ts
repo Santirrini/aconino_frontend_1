@@ -42,9 +42,11 @@ export const SETTINGS_QUERY = defineQuery(`
   }
 `)
 
-// Query para Home Page (documento unificado)
+// Query para Home Page - soporta documentos tipo home (con pageBuilder) y homePage (estructura nueva)
 export const HOME_PAGE_QUERY = defineQuery(`
-  *[_type == "homePage"][0] {
+  *[_type == "homePage" || _type == "home"][0] {
+    title,
+    // Para homePage: estructura directa
     hero {
       backgroundType,
       "backgroundImageUrl": backgroundImage.asset->url,
@@ -58,6 +60,51 @@ export const HOME_PAGE_QUERY = defineQuery(`
         overlayOpacity
       }
     },
+    // Para home: extraer del pageBuilder
+    "hero": pageBuilder[_type == "hero"][0] {
+      backgroundType,
+      "backgroundImageUrl": backgroundImage.asset->url,
+      "backgroundVideoUrl": backgroundVideo.asset->url,
+      slogan,
+      impact,
+      heroSlides[] {
+        _key,
+        "imageUrl": image.asset->url,
+        alt,
+        overlayOpacity
+      }
+    },
+    "programs": pageBuilder[_type == "programs"][0] {
+      sectionTitle,
+      sectionDescription,
+      subtitle,
+      clinicalFocus,
+      familySupport,
+      ctaLabel,
+      items[0...6] {
+        _key,
+        title,
+        category,
+        description,
+        url,
+        "imageUrl": image.asset->url
+      }
+    },
+    "news": pageBuilder[_type == "newsSection"][0] {
+      title,
+      ctaLabel
+    },
+    "recognitions": pageBuilder[_type == "recognitions"][0] {
+      text,
+      items[0...8] {
+        _key,
+        title,
+        meta,
+        description,
+        "imageUrl": image.asset->url
+      }
+    },
+    // Fallback para homePage
     about {
       title,
       description,
@@ -81,29 +128,6 @@ export const HOME_PAGE_QUERY = defineQuery(`
         category,
         description,
         url,
-        "imageUrl": image.asset->url
-      }
-    },
-    news {
-      title,
-      ctaLabel
-    },
-    recognitions {
-      title,
-      items[0...8] {
-        _key,
-        title,
-        meta,
-        description,
-        "imageUrl": image.asset->url
-      }
-    },
-    testimonials {
-      title,
-      items[0...4] {
-        _key,
-        name,
-        quote,
         "imageUrl": image.asset->url
       }
     },

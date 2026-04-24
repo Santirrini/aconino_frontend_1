@@ -94,6 +94,7 @@ export default function HeroSlider({
         backgroundImage="" // Empty because we handle it in the slider
         overlayOpacity={0} // Handled in the slider
         customOverlay={null} // Handled in the slider
+        showDefaultBackground={false}
         className={`!py-0 !absolute inset-0 flex items-center justify-center pointer-events-none ${heroBaseProps.className || ""}`}
       >
         <div className="pointer-events-auto">

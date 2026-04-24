@@ -11,8 +11,9 @@
 
 .golden-typewriter-char {
   display: inline-block;
-  color: rgba(255, 255, 255, 0.4);
-  transition: color 0.1s ease-out;
+  color: transparent;
+  opacity: 0;
+  transition: color 0.1s ease-out, opacity 0.1s ease-out;
 }
 
 .golden-typewriter-char.typed {

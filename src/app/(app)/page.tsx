@@ -27,14 +27,15 @@ export default async function Home() {
         console.error('Error fetching Sanity data:', error);
     }
 
-    // Mapear datos para el Hero desde documento unificado
+    // Mapear datos para el Hero - soporta home y homePage
+    const heroData = sanityHome?.hero;
     const acf = {
-        hero_title: sanityHome?.hero?.slogan?.split(' ').slice(0, 2).join(' ') || "35 años", 
-        hero_subtitle: sanityHome?.hero?.slogan?.split(' ').slice(2).join(' ') || "apoyando la inclusión",
-        hero_background_type: sanityHome?.hero?.backgroundType || "image", 
-        hero_video_url: sanityHome?.hero?.backgroundVideoUrl || "",
-        hero_image: sanityHome?.hero?.backgroundImageUrl || "/images/hero-background-blue.png",
-        hero_impact: sanityHome?.hero?.impact,
+        hero_title: heroData?.slogan?.split(' ').slice(0, 2).join(' ') || "35 años", 
+        hero_subtitle: heroData?.slogan?.split(' ').slice(2).join(' ') || "apoyando la inclusión",
+        hero_background_type: heroData?.backgroundType || "image", 
+        hero_video_url: heroData?.backgroundVideoUrl || "",
+        hero_image: heroData?.backgroundImageUrl || "/images/hero-background-blue.png",
+        hero_impact: heroData?.impact,
         hero_cta_text: sanityHome?.programs?.ctaLabel || "CONTÁCTANOS",
         hero_cta_link: sanityHome?.cta?.ctaLink || "/contactanos",
         cta_title: sanityHome?.cta?.title || "35 años apoiando la inclusión",
@@ -103,7 +104,7 @@ export default async function Home() {
         overlayOpacity?: number;
     }
 
-    const heroSlides: HeroSliderSlide[] | undefined = sanityHome?.hero?.heroSlides
+    const heroSlides: HeroSliderSlide[] | undefined = heroData?.heroSlides
         ?.filter((s: SanityHeroSlide) => s.imageUrl)
         .map((s: SanityHeroSlide) => ({
             src: s.imageUrl!,
