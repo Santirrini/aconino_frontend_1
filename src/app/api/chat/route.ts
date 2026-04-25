@@ -50,5 +50,5 @@ Responde siempre en español.
     system: systemPrompt,
   });
 
-  return result.toDataStreamResponse();
+  return result.toTextStreamResponse();
 }
