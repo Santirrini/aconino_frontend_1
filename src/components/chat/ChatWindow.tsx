@@ -4,7 +4,7 @@ import React, { useRef, useEffect } from 'react';
 import { useChat } from 'ai/react';
 import { ChatMessage } from './ChatMessage';
 import { Send, X, Loader2 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface ChatWindowProps {
   onClose: () => void;

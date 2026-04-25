@@ -12,7 +12,7 @@ interface CTAButtonProps {
   isDonation?: boolean;
 }
 
-export default function CTAButton({ label = "DONAR AHORA", href, isDonation = true }: CTAButtonProps) {
+export default function CTAButton({ href, isDonation = true }: CTAButtonProps) {
   const [mounted, setMounted] = useState(false);
   const { openDonationWidget } = useDonation();
 

@@ -5,6 +5,12 @@ import { DONATION_OPTIONS } from '@/data/donation-options';
 
 export const maxDuration = 30;
 
+interface Program {
+  title: string;
+  description: string;
+  ageRange: string;
+}
+
 export async function POST(req: Request) {
   const { messages } = await req.json();
   const context = await getChatContext();
@@ -19,7 +25,7 @@ CONTEXTO DE LA ORGANIZACIÓN:
 - Contacto: Teléfono: ${context?.settings?.phone || 'No disponible'}, Email: ${context?.settings?.email || 'No disponible'}, Dirección: ${context?.settings?.address || 'No disponible'}
 
 PROGRAMAS Y SERVICIOS:
-${context?.programPage?.programs?.map((p: any) => `- ${p.title}: ${p.description} (Rango de edad: ${p.ageRange})`).join('\n') || 'No disponible'}
+${context?.programPage?.programs?.map((p: Program) => `- ${p.title}: ${p.description} (Rango de edad: ${p.ageRange})`).join('\n') || 'No disponible'}
 
 MODELO DE INTERVENCIÓN:
 ${context?.programPage?.interventionModel?.introText || 'No disponible'}
