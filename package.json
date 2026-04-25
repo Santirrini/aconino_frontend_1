@@ -17,7 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@ai-sdk/openai": "^3.0.53",
-    "@ai-sdk/react": "^1.1.25",
+    "@ai-sdk/react": "^3.0.170",
     "@portabletext/block-tools": "^4.1.11",
     "@portabletext/react": "^6.0.0",
     "@portabletext/sanity-bridge": "1.2.14",
@@ -27,7 +27,7 @@
     "@sanity/vision": "^4.22.0",
     "@tailwindcss/postcss": "^4.2.1",
     "aceternity-ui": "^0.2.2",
-    "ai": "^4.1.66",
+    "ai": "^6.0.168",
     "framer-motion": "^12.35.2",
     "graphql": "^16.13.1",
     "groq": "^4.22.0",
