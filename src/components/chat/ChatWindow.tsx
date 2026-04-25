@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect } from 'react';
-import { useChat } from 'ai/react';
+import { useChat } from '@ai-sdk/react';
 import { ChatMessage } from './ChatMessage';
 import { Send, X, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -73,14 +73,14 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ onClose }) => {
       <form onSubmit={handleSubmit} className="p-4 border-t border-gray-100 bg-gray-50/50">
         <div className="relative flex items-center">
           <input
-            value={input}
+            value={input || ''}
             onChange={handleInputChange}
             placeholder="Escribe tu mensaje..."
             className="w-full bg-white border border-gray-200 rounded-2xl px-5 py-3 pr-12 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm"
           />
           <button
             type="submit"
-            disabled={!input.trim() || isLoading}
+            disabled={!input?.trim() || isLoading}
             className="absolute right-2 p-2 bg-primary text-white rounded-xl disabled:opacity-50 disabled:bg-gray-400 hover:bg-primary-dark transition-all"
           >
             <Send className="w-4 h-4" />

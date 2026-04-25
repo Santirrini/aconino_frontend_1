@@ -1,5 +1,5 @@
 import React from 'react';
-import { Message } from 'ai/react';
+import { Message } from 'ai';
 import { motion } from 'framer-motion';
 
 interface ChatMessageProps {
