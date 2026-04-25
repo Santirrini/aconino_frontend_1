@@ -5,7 +5,7 @@ interface FooterAppsProps {
   controlEntity?: string;
 }
 
-export default function FooterApps({ appDownloadUrl, controlEntity: _controlEntity }: FooterAppsProps) {
+export default function FooterApps({ appDownloadUrl }: FooterAppsProps) {
   return (
     <div className="flex flex-col items-center md:items-start w-full">
       <h4 className="text-white font-black text-xs tracking-[0.2em] uppercase mb-8">App Aconiño</h4>
