@@ -8,7 +8,7 @@ import { ComingSoonProvider } from "../../providers/ComingSoonProvider";
 import ComingSoonOverlayWrapper from "@/components/apoyanos/ComingSoonOverlayWrapper";
 import { client } from "@/sanity/lib/client";
 import { SETTINGS_QUERY, NAVIGATION_QUERY } from "@/sanity/lib/queries";
-import FloatingDonationWidget from "@/components/donations/FloatingDonationWidget";
+import ChatWidget from "@/components/chat/ChatWidget";
 import { FramerMotionProvider } from "@/components/animations/FramerMotionProvider";
 
 const manrope = Manrope({
@@ -44,7 +44,7 @@ export default async function RootLayout({
                     <DonationProvider>
                         <ComingSoonProvider>
                             <FramerMotionProvider>
-                                <FloatingDonationWidget />
+                                <ChatWidget />
                                 <Header 
                                     navData={navigation?.navItems} 
                                     ctaLabel={navigation?.ctaButton?.label}
