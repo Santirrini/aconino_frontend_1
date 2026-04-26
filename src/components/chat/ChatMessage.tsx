@@ -1,9 +1,9 @@
 import React from 'react';
-import { Message } from 'ai';
+import { UIMessage } from 'ai';
 import { motion } from 'framer-motion';
 
 interface ChatMessageProps {
-  message: Message;
+  message: UIMessage;
 }
 
 export const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
@@ -22,7 +22,11 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
             : 'bg-gray-100 text-gray-800 rounded-tl-none'
         }`}
       >
-        {message.content}
+        {message.parts
+          .filter((part) => part.type === 'text')
+          .map((part, i) => (
+            <span key={i}>{part.text}</span>
+          ))}
       </div>
     </motion.div>
   );
