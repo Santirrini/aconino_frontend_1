@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useChat } from '@ai-sdk/react';
 import { ChatMessage } from './ChatMessage';
 import { Send, X, Loader2 } from 'lucide-react';
@@ -11,8 +11,11 @@ interface ChatWindowProps {
 }
 
 export const ChatWindow: React.FC<ChatWindowProps> = ({ onClose }) => {
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat();
+  const [input, setInput] = useState('');
+  const { messages, sendMessage, status } = useChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const isLoading = status === 'streaming' || status === 'submitted';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -21,6 +24,14 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ onClose }) => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (input.trim()) {
+      sendMessage({ text: input });
+      setInput('');
+    }
+  };
 
   return (
     <motion.div
@@ -70,17 +81,17 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ onClose }) => {
       </div>
 
       {/* Input */}
-      <form onSubmit={handleSubmit} className="p-4 border-t border-gray-100 bg-gray-50/50">
+      <form onSubmit={onSubmit} className="p-4 border-t border-gray-100 bg-gray-50/50">
         <div className="relative flex items-center">
           <input
-            value={input || ''}
-            onChange={handleInputChange}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
             placeholder="Escribe tu mensaje..."
             className="w-full bg-white border border-gray-200 rounded-2xl px-5 py-3 pr-12 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm"
           />
           <button
             type="submit"
-            disabled={!input?.trim() || isLoading}
+            disabled={!input.trim() || isLoading}
             className="absolute right-2 p-2 bg-primary text-white rounded-xl disabled:opacity-50 disabled:bg-gray-400 hover:bg-primary-dark transition-all"
           >
             <Send className="w-4 h-4" />
