@@ -175,7 +175,7 @@ export const QUIENES_SOMOS_QUERY = defineQuery(`
       "imageUrl": image.asset->url,
       "imageAlt": image.alt
     },
-    fundadores[0...6] {
+    fundadores[0...12] {
       name,
       role,
       "imageUrl": image.asset->url,
