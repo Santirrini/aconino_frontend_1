@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import HeroBase, { HeroBaseProps } from "./HeroBase";
 
 export interface HeroSliderSlide {
@@ -67,25 +66,7 @@ export default function HeroSlider({
         </motion.div>
       </AnimatePresence>
 
-      {/* 2. Navigation Arrows */}
-      {slides.length > 1 && (
-        <>
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 hover:scale-110"
-            aria-label="Imagen anterior"
-          >
-            <FaChevronLeft className="text-sm md:text-base" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 hover:scale-110"
-            aria-label="Siguiente imagen"
-          >
-            <FaChevronRight className="text-sm md:text-base" />
-          </button>
-        </>
-      )}
+      {/* 2. Navigation Arrows - Removed per user request */}
 
       {/* 3. Hero Content Base */}
       <HeroBase 
