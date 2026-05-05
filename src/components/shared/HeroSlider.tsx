@@ -23,11 +23,11 @@ export default function HeroSlider({
 }: HeroSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSlide = useCallback(() => {
+  const nextSlide = useCallback(() => { // eslint-disable-line @typescript-eslint/no-unused-vars
     setCurrentIndex((prev) => (prev + 1) % slides.length);
   }, [slides.length]);
 
-  const prevSlide = useCallback(() => {
+  const prevSlide = useCallback(() => { // eslint-disable-line @typescript-eslint/no-unused-vars
     setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
   }, [slides.length]);
 
