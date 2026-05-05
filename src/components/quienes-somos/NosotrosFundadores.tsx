@@ -81,14 +81,16 @@ export default function NosotrosFundadores({ data }: Props) {
                 </div>
 
                 <div 
-                    className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-y-8 md:gap-y-20 gap-x-2 sm:gap-x-4 md:gap-x-8"
+                    className="flex flex-wrap justify-center gap-y-8 md:gap-y-20 gap-x-2 sm:gap-x-4 md:gap-x-8"
                 >
                     {fundadores.map((founder, idx) => (
-                        <FounderCard 
-                            key={idx} 
-                            founder={founder} 
-                            delay={idx * 0.03} 
-                        />
+                        <div key={idx} className="w-[30%] sm:w-[30%] md:w-[30%] lg:w-[18%] flex-shrink-0">
+                            <FounderCard 
+                                key={idx} 
+                                founder={founder} 
+                                delay={idx * 0.03} 
+                            />
+                        </div>
                     ))}
                 </div>
             </div>
