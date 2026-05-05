@@ -81,7 +81,7 @@ export default function NosotrosFundadores({ data }: Props) {
                 </div>
 
                 <div 
-                    className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-8 md:gap-y-20 gap-x-1 sm:gap-x-3 md:gap-x-10"
+                    className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-y-8 md:gap-y-20 gap-x-2 sm:gap-x-4 md:gap-x-8"
                 >
                     {fundadores.map((founder, idx) => (
                         <FounderCard 
