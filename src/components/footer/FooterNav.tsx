@@ -21,7 +21,7 @@ interface FooterNavProps {
   documentosLegales?: DocumentoLegal[];
 }
 
-export default function FooterNav({ links, documentosLegales }: FooterNavProps) {
+export default function FooterNav({ documentosLegales }: FooterNavProps) {
   // Extraer documentos de la categoría "transparencia" para mostrarlos como enlaces individuales
   const transparenciaDocs = documentosLegales?.filter(
     (doc) => doc.categoria === "transparencia"

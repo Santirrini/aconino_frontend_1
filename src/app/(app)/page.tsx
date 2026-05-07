@@ -7,22 +7,16 @@ import SocialFeedSection from "../../components/SocialFeedSection";
 import RecognitionsSection from "../../components/RecognitionsSection";
 
 import { client } from "@/sanity/lib/client";
-import { LATEST_POSTS_QUERY, HOME_PAGE_QUERY } from "@/sanity/lib/queries";
-import type { SanityPost } from "@/lib/sanity-posts";
+import { HOME_PAGE_QUERY } from "@/sanity/lib/queries";
 import type { HeroSliderSlide } from "@/components/shared/HeroSlider";
 
 export const revalidate = 60;
 
 export default async function Home() {
     let sanityHome = null;
-    let sanityPosts = [];
 
     try {
-        // Obtener datos del documento unificado y posts
-        [sanityHome, sanityPosts] = await Promise.all([
-            client.fetch(HOME_PAGE_QUERY).catch(() => null),
-            client.fetch(LATEST_POSTS_QUERY).catch(() => [])
-        ]);
+        sanityHome = await client.fetch(HOME_PAGE_QUERY).catch(() => null);
     } catch (error) {
         console.error('Error fetching Sanity data:', error);
     }
@@ -60,34 +54,6 @@ export default async function Home() {
         imageUrl: p.imageUrl || null,
         category: p.category || "Programa Aconiño"
     })) || [];
-
-    const generateSlug = (title?: string, existingSlug?: string | null): string => {
-        if (existingSlug && existingSlug.trim() !== '') {
-            return existingSlug;
-        }
-        if (title) {
-            return title
-                .toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .replace(/[^a-z0-9\s-]/g, '')
-                .trim()
-                .replace(/\s+/g, '-')
-                .replace(/-+/g, '-');
-        }
-        return '';
-    };
-
-    const mappedPosts = sanityPosts.map((post: SanityPost) => ({
-        id: post._id,
-        slug: generateSlug(post.title, post.slug),
-        date: post.publishedAt || post._createdAt,
-        title: { rendered: post.title },
-        excerpt: { rendered: post.excerpt || '<p>Leer más...</p>' },
-        _embedded: {
-            'wp:featuredmedia': [{ source_url: post.mainImageUrl || "/images/hero-background-blue.png" }]
-        }
-    }));
 
     interface SanityTestimonial {
         name?: string;
