@@ -34,7 +34,7 @@ export default function FooterNav({ links, documentosLegales }: FooterNavProps) 
       </h4>
 
       {/* Subtítulo de categoría */}
-      <h5 className="text-white/90 font-bold text-sm mb-5 underline decoration-accent/40 underline-offset-4">
+      <h5 className="text-white/70 font-semibold text-sm mb-5">
         Información legal pública
       </h5>
 
