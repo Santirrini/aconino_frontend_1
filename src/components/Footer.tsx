@@ -42,16 +42,18 @@ interface FooterProps {
   documentosLegales?: DocumentoLegal[];
 }
 
-export default function Footer({ settings }: FooterProps) {
+const currentYear = new Date().getFullYear();
+
+export default function Footer({ settings, documentosLegales }: FooterProps) {
   const defaultPhone = "(601) 650 8473";
   const defaultMobile = "313 391 0760";
   const defaultEmail = "apoyoinclusion@aconino.org";
   
+  const dynamicCopyright = `Asociación Aconiño: Transformando vidas desde ${currentYear} con amor, ciencia y dedicación integral.`;
+  
   const defaultLinks: FooterLink[] = [
     { label: "Canales de denuncia", url: "/canales-denuncia" },
     { label: "Trabaja con nosotros", url: "/trabaja-con-nosotros" },
-    { label: "Permanencia ESAL", url: "/permanencia-esal" },
-    { label: "Transparencia", url: "/transparencia" }
   ];
 
   const displayLinks = settings?.footerLinks?.length 
@@ -80,11 +82,11 @@ export default function Footer({ settings }: FooterProps) {
             <FooterHeader />
             <FooterSocial 
               socialLinks={socialLinks} 
-              copyright={settings?.footerInfo?.copyright} 
+              copyright={dynamicCopyright}
             />
           </div>
 
-          <FooterNav links={displayLinks} />
+          <FooterNav links={displayLinks} documentosLegales={documentosLegales} />
 
           <FooterContact 
             address={settings?.address}
