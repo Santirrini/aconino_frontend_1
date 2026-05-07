@@ -29,6 +29,9 @@ export default function FooterSocial({ socialLinks, copyright }: FooterSocialPro
       <p className="text-sm text-gray-400 leading-relaxed mb-8 max-w-[320px] text-pretty">
         {copyright || `Asociación Aconiño: Transformando vidas desde ${currentYear} con amor, ciencia y dedicación integral.`}
       </p>
+      <h4 className="text-white font-black text-xs tracking-[0.2em] uppercase mb-5">
+        Síguenos
+      </h4>
       <div className="flex gap-4 items-center justify-center md:justify-start">
         {socialLinks.map((social, idx) => (
           <a 

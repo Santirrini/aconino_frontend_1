@@ -3,7 +3,7 @@ import { InterventionModelSection } from "@/components/InterventionModelSection"
 import ProgramsSection from "../../components/ProgramsSection";
 import ImpactSection from "../../components/ImpactSection";
 import CtaSection from "../../components/CtaSection";
-import NewsSection from "../../components/NewsSection";
+import SocialFeedSection from "../../components/SocialFeedSection";
 import RecognitionsSection from "../../components/RecognitionsSection";
 
 import { client } from "@/sanity/lib/client";
@@ -148,10 +148,9 @@ export default async function Home() {
             
             <CtaSection acf={acf} />
             
-            <NewsSection 
-                posts={mappedPosts} 
-                title={sanityHome?.news?.title || "Últimas noticias"} 
-                showSection={true} 
+            <SocialFeedSection 
+                title={sanityHome?.news?.title || "Comunidad Aconiño"} 
+                description="Sigue nuestras últimas actividades y noticias en tiempo real a través de nuestras redes sociales."
             />
             
             <RecognitionsSection 

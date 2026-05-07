@@ -45,9 +45,9 @@ export default function ImpactSection({ title, description, stats = [], stories 
       <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-40 h-40 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-secondary/5 rounded-full blur-[50px] md:blur-[70px] lg:blur-[100px] opacity-50 pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto px-6 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header Block */}
-        <ImpactHeader title={title ?? undefined} description={description ?? undefined} />
+        <ImpactHeader />
 
         {/* Modular Components */}
         <ImpactStats stats={processedStats} />

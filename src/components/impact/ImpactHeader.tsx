@@ -1,30 +1,26 @@
 import React from "react";
-import { FaHeart } from "react-icons/fa";
 import ScrollReveal from "../animations/ScrollReveal";
 
-interface ImpactHeaderProps {
-  title?: string | null;
-  description?: string | null;
-}
-
-export default function ImpactHeader({ title, description }: ImpactHeaderProps) {
+export default function ImpactHeader() {
   return (
     <ScrollReveal
       animation="fade-up"
-      className="text-center mb-10 md:mb-12"
+      className="text-center mb-16 md:mb-20"
     >
-      <div className="flex justify-center mb-4">
-        <FaHeart className="text-accent text-3xl md:text-4xl animate-pulse" />
+      <div className="flex flex-col items-center justify-center mb-6">
+        <div className="flex items-center gap-4">
+          <div className="h-[2px] bg-accent w-12 md:w-16"></div>
+          <span className="text-sm font-bold text-gray-400 tracking-[0.2em] uppercase">Comunidad aconiño</span>
+          <div className="h-[2px] bg-accent w-12 md:w-16"></div>
+        </div>
       </div>
-      <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-primary uppercase tracking-tighter mb-4 leading-tight">
-        {title ? (
-            <span dangerouslySetInnerHTML={{ __html: title.replace('transforma', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">transforma</span>') }} />
-        ) : (
-            <>Tu apoyo <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">transforma</span> vidas</>
-        )}
+      
+      <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-primary mb-6 leading-[1.1] tracking-tight">
+        ESTAMOS GENERANDO IMPACTO.
       </h2>
-      <p className="text-base md:text-xl text-gray-500 max-w-2xl mx-auto font-medium leading-relaxed">
-        {description || "Cada aporte cuenta. Con tu ayuda logramos que más niños reciban la atención terapéutica que necesitan para cumplir sus sueños."}
+      
+      <p className="text-lg md:text-xl text-slate-500 max-w-3xl font-medium leading-relaxed text-justify mx-auto">
+        Trabajamos cada día para transformar vidas, generando impacto en nuestra población con discapacidad y demostrando que la verdadera inclusión nace cuando vemos capacidades, no limitaciones
       </p>
     </ScrollReveal>
   );
