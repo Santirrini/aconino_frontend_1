@@ -16,7 +16,7 @@ export default function ImpactHeader() {
       </div>
       
       <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-primary mb-6 leading-[1.1] tracking-tight">
-        ESTAMOS GENERANDO IMPACTO.
+        ESTAMOS GENERANDO IMPACTO
       </h2>
       
       <p className="text-lg md:text-xl text-slate-500 max-w-3xl font-medium leading-relaxed text-justify mx-auto">
