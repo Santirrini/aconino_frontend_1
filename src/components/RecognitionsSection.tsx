@@ -37,10 +37,10 @@ export default function RecognitionsSection({ recognitions, text }: Recognitions
                     animation="fade-up"
                     className="flex flex-col items-center justify-center mb-10 md:mb-20"
                 >
-                    <div className="flex items-center gap-3 mb-3">
-                        <div className="h-[1px] md:h-[2px] bg-accent w-8 md:w-12"></div>
-                        <span className="text-[10px] md:text-sm font-bold text-gray-400 tracking-[0.2em] uppercase">Excelencia Aconiño</span>
-                        <div className="h-[1px] md:h-[2px] bg-accent w-8 md:w-12"></div>
+                    <div className="flex items-center gap-4 mb-4">
+                        <div className="h-0.5 md:h-1 bg-accent w-12 md:w-20"></div>
+                        <span className="text-xl md:text-3xl font-black text-primary tracking-[0.2em] uppercase">Excelencia Aconiño</span>
+                        <div className="h-0.5 md:h-1 bg-accent w-12 md:w-20"></div>
                     </div>
 
                     <h2 className="text-3xl md:text-6xl font-black text-primary mb-4 leading-tight">

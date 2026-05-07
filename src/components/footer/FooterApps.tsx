@@ -7,11 +7,12 @@ interface FooterAppsProps {
 
 export default function FooterApps({ appDownloadUrl }: FooterAppsProps) {
   return (
-    <div className="flex flex-col items-center md:items-start w-full">
-      <h4 className="text-white font-black text-xs tracking-[0.2em] uppercase mb-8">App Aconiño</h4>
-
-      {/* App Buttons */}
-      <div className="mb-12 w-full flex justify-center md:justify-start">
+    <div className="flex flex-col items-center md:items-start w-full gap-12">
+      {/* App Buttons Section */}
+      <div className="w-full flex flex-col items-center md:items-start">
+        <h4 className="text-white font-black text-xs tracking-[0.2em] uppercase mb-6">
+          App Aconiño
+        </h4>
         <div className="relative group inline-block w-fit">
           <div className="absolute -inset-1 bg-gradient-to-r from-white/10 to-transparent rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
           <div className="relative p-3 md:p-4 bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/10 flex justify-center items-center hover:bg-white/[0.06] hover:border-white/20 transition-all duration-300 cursor-pointer">
@@ -41,7 +42,7 @@ export default function FooterApps({ appDownloadUrl }: FooterAppsProps) {
 
       {/* Vigilancia Section */}
       <div className="w-full flex flex-col items-center md:items-start">
-        <h4 className="text-white font-black text-[10px] md:text-xs tracking-[0.2em] uppercase mb-5 opacity-70">
+        <h4 className="text-white font-black text-xs tracking-[0.2em] uppercase mb-6 opacity-70">
           Vigilancia
         </h4>
         <div className="relative group inline-block w-fit">

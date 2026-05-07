@@ -10,6 +10,8 @@ interface FooterSocialProps {
   copyright?: string;
 }
 
+const currentYear = new Date().getFullYear();
+
 export default function FooterSocial({ socialLinks, copyright }: FooterSocialProps) {
   const renderSocialIcon = (url?: string) => {
     if (!url) return <FaFacebook className="w-5 h-5" />;
@@ -25,7 +27,7 @@ export default function FooterSocial({ socialLinks, copyright }: FooterSocialPro
   return (
     <div className="flex flex-col items-center md:items-start text-center md:text-left">
       <p className="text-sm text-gray-400 leading-relaxed mb-8 max-w-[320px] text-pretty">
-        {copyright || "Asociación Aconiño: Transformando vidas desde 1990 con amor, ciencia y dedicación integral."}
+        {copyright || `Asociación Aconiño: Transformando vidas desde ${currentYear} con amor, ciencia y dedicación integral.`}
       </p>
       <div className="flex gap-4 items-center justify-center md:justify-start">
         {socialLinks.map((social, idx) => (

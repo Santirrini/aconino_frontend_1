@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { FaHeart, FaSparkles } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDonation } from "../../providers/DonationProvider";
 
@@ -49,7 +50,7 @@ export default function ImpactCta({ ctaButtonText }: ImpactCtaProps) {
               transition={{ type: "spring", stiffness: 500, damping: 25 }}
               className="absolute -top-14 whitespace-nowrap bg-primary text-accent px-5 py-2.5 rounded-full shadow-[0_10px_25px_rgba(12,32,112,0.3)] pointer-events-none flex items-center gap-2 z-50 border-2 border-primary/90"
             >
-              <FaSparkles className="text-sm animate-pulse" />
+              <Sparkles className="w-4 h-4 animate-pulse" />
               <span className="font-black text-sm uppercase tracking-widest">
                 ¿Quieres donar?
               </span>
