@@ -84,7 +84,7 @@ export function InterventionModelSection({
             <div className="lg:col-span-8">
               <motion.span
                 variants={itemVariants}
-                className="text-accent font-black tracking-[0.2em] md:tracking-[0.3em] uppercase text-xs md:text-sm mb-4 md:mb-6 block"
+                className="text-accent font-black tracking-[0.2em] md:tracking-[0.3em] uppercase text-2xl md:text-4xl mb-4 md:mb-6 block"
               >
                 {subtitle}
               </motion.span>

@@ -80,7 +80,7 @@ export default function HeroBase({
   backgroundVideo,
   videoPoster,
   backgroundType = 'image',
-  overlayOpacity = 40,
+  overlayOpacity = 30,
   showCurtain = false,
   curtainColor = "bg-secondary",
   showParticles = false,
@@ -133,7 +133,7 @@ export default function HeroBase({
         
         {/* Common Overlay */}
         <div 
-          className="absolute inset-0 bg-black z-10" 
+          className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60 z-10" 
           style={{ opacity: overlayOpacity / 100 }}
         />
         

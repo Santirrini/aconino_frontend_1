@@ -99,7 +99,7 @@ export default function ProgramCard({
                 <IconComponent className="w-5 h-5 md:w-8 md:h-8 text-white" />
             </div>
 
-            <span className="text-[9px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 md:mb-3">
+            <span className="text-xl md:text-3xl font-black text-slate-400 uppercase tracking-widest mb-4 md:mb-6">
                 {category}
             </span>
 

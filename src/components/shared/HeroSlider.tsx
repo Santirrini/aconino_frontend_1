@@ -37,7 +37,7 @@ export default function HeroSlider({
   }, [nextSlide, autoPlayInterval]);
 
   const currentSlide = slides[currentIndex];
-  const overlayOpacity = currentSlide?.overlayOpacity ?? 50;
+  const overlayOpacity = currentSlide?.overlayOpacity ?? 30;
 
   return (
     <section className={`relative w-full overflow-hidden ${heroBaseProps.height || "h-[600px] md:h-[700px]"}`}>
@@ -60,7 +60,7 @@ export default function HeroSlider({
             sizes="100vw"
           />
           <div 
-            className="absolute inset-0 bg-black z-10" 
+            className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60 z-10" 
             style={{ opacity: overlayOpacity / 100 }}
           />
         </motion.div>
