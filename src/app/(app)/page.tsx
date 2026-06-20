@@ -2,7 +2,6 @@ import Hero from "../../components/Hero";
 import { InterventionModelSection } from "@/components/InterventionModelSection";
 import ProgramsSection from "../../components/ProgramsSection";
 import ImpactSection from "../../components/ImpactSection";
-import CtaSection from "../../components/CtaSection";
 import SocialFeedSection from "../../components/SocialFeedSection";
 import RecognitionsSection from "../../components/RecognitionsSection";
 
@@ -47,8 +46,15 @@ export default async function Home() {
         category?: string;
     }
 
-    const mappedPrograms = sanityHome?.programs?.items?.map((p: SanityProgram) => ({
-        title: p.title,
+    const programTitles = [
+        "Atención temprana",
+        "Atención a niños y jóvenes",
+        "Apoyo a dificultades en el aprendizaje",
+        "Protocolo Intensivo Pediasuit",
+    ];
+
+    const mappedPrograms = sanityHome?.programs?.items?.map((p: SanityProgram, i: number) => ({
+        title: programTitles[i] ?? p.title,
         desc: p.description || '',
         slug: p.title?.toLowerCase().replace(/ /g, '-') || '',
         imageUrl: p.imageUrl || null,
@@ -111,11 +117,9 @@ export default async function Home() {
                 stories={mappedTestimonials}
                 ctaButtonText={sanityHome?.impact?.ctaButtonText}
             />
-            
-            <CtaSection acf={acf} />
-            
-            <SocialFeedSection 
-                title={sanityHome?.news?.title || "Comunidad Aconiño"} 
+
+            <SocialFeedSection
+                title="Entérate primero"
                 description="Sigue nuestras últimas actividades y noticias en tiempo real a través de nuestras redes sociales."
             />
             

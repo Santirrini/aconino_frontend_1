@@ -1,10 +1,11 @@
 "use client";
 
-import { FaHeart } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { useDonation } from "../../../providers/DonationProvider";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+
+const WHATSAPP_URL = "https://wa.me/573133910760";
 
 interface CTAButtonProps {
   label?: string;
@@ -14,7 +15,6 @@ interface CTAButtonProps {
 
 export default function CTAButton({ href, isDonation = true }: CTAButtonProps) {
   const [mounted, setMounted] = useState(false);
-  const { openDonationWidget } = useDonation();
 
   useEffect(() => {
     setMounted(true);
@@ -25,8 +25,7 @@ export default function CTAButton({ href, isDonation = true }: CTAButtonProps) {
   }
 
   const buttonContent = (
-    <motion.button
-      onClick={isDonation ? () => openDonationWidget() : undefined}
+    <motion.span
       className="flex relative items-center bg-accent text-primary px-3 sm:px-4 py-2.5 sm:py-3 rounded-full font-black shadow-lg hover:shadow-2xl hover:shadow-accent/40 transition-all duration-300 transform hover:scale-105 active:scale-95 group overflow-hidden"
     >
       <motion.div
@@ -40,12 +39,26 @@ export default function CTAButton({ href, isDonation = true }: CTAButtonProps) {
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         className="bg-primary/10 p-1 sm:p-1.5 rounded-full flex-shrink-0"
       >
-        <FaHeart className="text-[14px] sm:text-base text-primary group-hover:text-red-500 transition-colors" />
+        <FaWhatsapp className="text-[14px] sm:text-base text-primary group-hover:text-[#25D366] transition-colors" />
       </motion.div>
-    </motion.button>
+    </motion.span>
   );
 
-  if (!isDonation && href) {
+  // Modo donación → ahora redirige a WhatsApp (en vez de abrir el modal)
+  if (isDonation) {
+    return (
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Escríbenos por WhatsApp"
+      >
+        {buttonContent}
+      </a>
+    );
+  }
+
+  if (href) {
     return <Link href={href}>{buttonContent}</Link>;
   }
 

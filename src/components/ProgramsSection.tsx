@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ScrollReveal from "./animations/ScrollReveal";
 import ProgramCard from "./programs/ProgramCard";
 
@@ -5,6 +6,7 @@ interface ProgramItem {
     title: string;
     desc: string;
     slug?: string;
+    link?: string;
     imageUrl?: string;
     category?: string;
 }
@@ -90,21 +92,32 @@ export default function ProgramsSection({
                 </div>
 
                 {/* Grid de Tarjetas */}
-                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 items-start">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 items-stretch">
                     {displayPrograms.map((prog, idx) => (
                         <ProgramCard
                             key={prog.slug || idx}
                             title={prog.title}
                             desc={prog.desc}
                             slug={prog.slug || ""}
+                            link={prog.link || "/programas"}
                             imageUrl={prog.imageUrl || "https://placehold.co/600x800?text=Aconino+Program"}
                             category={prog.category || "Programa Aconiño"}
                             index={idx}
                         />
                     ))}
                 </div>
+
+                {/* Botón Nuestros Programas */}
+                <ScrollReveal animation="fade-up" delay={0.2} className="mt-12 md:mt-16 text-center">
+                    <Link
+                        href="/programas"
+                        className="inline-block bg-accent text-primary font-black tracking-widest text-sm md:text-base px-12 py-5 rounded-full hover:bg-primary hover:text-white transition-all duration-300 shadow-xl shadow-accent/20 transform hover:-translate-y-1 hover:scale-105"
+                    >
+                        NUESTROS PROGRAMAS
+                    </Link>
+                </ScrollReveal>
             </div>
-            
+
             {/* Elemento de Diseño Abstracto */}
             <div className="hidden lg:block absolute top-1/2 left-0 -translate-y-1/2 opacity-[0.02] pointer-events-none -ml-24 select-none z-0">
                 <span className="text-[28rem] font-black text-[#0a1f44] leading-none tracking-tighter">ACN</span>

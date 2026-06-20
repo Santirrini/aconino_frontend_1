@@ -2,12 +2,13 @@
 
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import { 
-  Handshake, 
-  Users, 
-  Target, 
-  Scissors
+import {
+  Handshake,
+  Users,
+  Target,
+  UserPlus
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export interface Principle {
   _key: string;
@@ -24,9 +25,9 @@ export interface InterventionModelSectionProps {
 
 const defaultPrinciples: Principle[] = [
   { _key: "1", title: "Intervención interdisciplinaria", description: "Coordinación entre fisioterapia, terapia ocupacional, fonoaudiología y psicología." },
-  { _key: "2", title: "Atención a niños y jóvenes", description: "Trabajo conjunto entre profesionales, paciente y núcleo familiar en todo el proceso." },
-  { _key: "3", title: "Apoyo a dificultades en el aprendizaje", description: "Trabajamos habilidades que permiten mayor independencia en actividades diarias." },
-  { _key: "4", title: "Protocolo intensivo pediasuit", description: "Diseñamos el tratamiento específicamente para cada usuario tras evaluación." }
+  { _key: "2", title: "Centrada en el usuario y familia", description: "Trabajo conjunto entre profesionales, paciente y núcleo familiar en todo el proceso." },
+  { _key: "3", title: "Objetivos funcionales", description: "Trabajamos habilidades que permiten mayor independencia en actividades diarias." },
+  { _key: "4", title: "Atención personalizada", description: "Diseñamos el tratamiento específicamente para cada usuario tras evaluación." }
 ];
 
 const getIconForIndex = (index: number) => {
@@ -35,7 +36,7 @@ const getIconForIndex = (index: number) => {
     case 0: return <Handshake {...props} />;
     case 1: return <Users {...props} />;
     case 2: return <Target {...props} />;
-    case 3: return <Scissors {...props} />;
+    case 3: return <UserPlus {...props} />;
     default: return <Target {...props} />;
   }
 };
@@ -128,6 +129,19 @@ export function InterventionModelSection({
               </motion.div>
             ))}
           </div>
+
+          {/* Botón Contáctanos (WhatsApp) */}
+          <motion.div variants={itemVariants} className="mt-12 md:mt-16 text-center">
+            <a
+              href="https://wa.me/573133910760"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-accent text-primary font-black tracking-widest text-sm md:text-base px-12 py-5 rounded-full hover:bg-primary hover:text-white transition-all duration-300 shadow-xl shadow-accent/20 transform hover:-translate-y-1 hover:scale-105"
+            >
+              <FaWhatsapp className="text-xl md:text-2xl" />
+              CONTÁCTANOS
+            </a>
+          </motion.div>
         </motion.div>
       </div>
     </section>

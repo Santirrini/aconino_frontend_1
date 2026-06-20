@@ -14,11 +14,11 @@ export default function TriggerButton({ isOpen, toggle }: TriggerButtonProps) {
     <motion.button
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      transition={{ 
-        delay: 1, 
-        type: "spring", 
-        stiffness: 200, 
-        damping: 20 
+      transition={{
+        delay: 1,
+        type: "spring",
+        stiffness: 200,
+        damping: 20
       }}
       onClick={toggle}
       whileTap={{ scale: 0.9 }}
@@ -46,17 +46,17 @@ export default function TriggerButton({ isOpen, toggle }: TriggerButtonProps) {
           <motion.div
             key="heart"
             initial={{ scale: 0 }}
-            animate={{ 
+            animate={{
               scale: 1,
               // Subtle continuous icon pulse when closed
               y: [0, -2, 0]
             }}
             transition={{
               scale: { duration: 0.2 },
-              y: { 
-                duration: 2, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
+              y: {
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
               }
             }}
             exit={{ scale: 0 }}

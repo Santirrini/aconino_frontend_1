@@ -18,7 +18,7 @@ const programsData = [
   },
   {
     id: 2,
-    title: "Visión a niños y jóvenes de 3 a 18 años",
+    title: "Atención a niños y jóvenes de 3 a 18 años",
     description: "Programa terapéutico integral para apoyar el desarrollo sicomotor y evitar en lo posible la aparición de patrones atípicos, a través de la estimulación de sistemas multisensoriales (musculo-esquelético, neuromotor, vestibular, visual, etc) para mejorar la funcionalidad y propiciar la inclusión social.\n\nCapacitar a la familia en el manejo y conocimiento de la condición de su hijo.",
     image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=2000&auto=format&fit=crop",
     alt: "Visión niños y jóvenes",

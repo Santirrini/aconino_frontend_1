@@ -98,12 +98,6 @@ export default function SocialFeedSection({
                     </ScrollReveal>
 
                 </div>
-
-                <div className="mt-20 text-center">
-                    <p className="text-gray-400 text-sm font-medium tracking-wide">
-                        ÚNETE A NUESTRA COMUNIDAD DIGITAL
-                    </p>
-                </div>
             </div>
         </section>
     );
