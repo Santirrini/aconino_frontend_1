@@ -48,9 +48,7 @@ export default function Footer({ settings, documentosLegales }: FooterProps) {
   const defaultPhone = "(601) 650 8473";
   const defaultMobile = "313 391 0760";
   const defaultEmail = "apoyoinclusion@aconino.org";
-  
-  const dynamicCopyright = `Asociación Aconiño: Transformando vidas desde ${currentYear} con amor, ciencia y dedicación integral.`;
-  
+    
   const defaultLinks: FooterLink[] = [
     { label: "Canales de denuncia", url: "/canales-denuncia" },
     { label: "Trabaja con nosotros", url: "/trabaja-con-nosotros" },
@@ -76,27 +74,23 @@ export default function Footer({ settings, documentosLegales }: FooterProps) {
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] pointer-events-none translate-y-1/3 -translate-x-1/3" />
       
       <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12 mb-24">
-          
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12 mb-6">
           <div className="space-y-8">
             <FooterHeader />
-            <FooterSocial 
-              socialLinks={socialLinks} 
-              copyright={dynamicCopyright}
-            />
           </div>
 
           <FooterNav links={displayLinks} documentosLegales={documentosLegales} />
 
-          <FooterContact 
+          <FooterContact
             address={settings?.address}
             phone={settings?.phoneNumber || defaultPhone}
             mobile={settings?.mobilePhone || defaultMobile}
             email={settings?.email || defaultEmail}
           />
 
-          <FooterApps 
+          <FooterApps
             appDownloadUrl={settings?.appDownloadUrl}
+            socialLinks={socialLinks}
             controlEntity={controlEntity}
           />
         </div>

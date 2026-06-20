@@ -64,6 +64,10 @@ export interface HeroBaseProps {
   descriptionClassName?: string;
   /** Width class for accent lines around subtitle (e.g. "w-16") */
   accentLineWidth?: string;
+  /** Horizontal alignment of the content block */
+  horizontalAlign?: 'left' | 'center' | 'right';
+  /** Vertical alignment of the content block within the hero */
+  verticalAlign?: 'top' | 'center' | 'bottom';
   /** Extra content to render (e.g. floating icons) */
   children?: React.ReactNode;
   /** Custom overlay elements */
@@ -96,15 +100,23 @@ export default function HeroBase({
   titleClassName = "",
   subtitleClassName = "",
   descriptionClassName = "",
+  horizontalAlign = 'center',
+  verticalAlign = 'center',
   children,
   customOverlay,
   showDefaultBackground = true,
 }: HeroBaseProps) {
   const isGradient = backgroundType === 'gradient';
 
+  // Alignment helpers (defaults preserve the original centered layout)
+  const vAlignClass = { top: 'items-start', center: 'items-center', bottom: 'items-end' }[verticalAlign];
+  const hAlignClass = { left: 'items-start text-left', center: 'items-center text-center', right: 'items-end text-right' }[horizontalAlign];
+  const titleAlignClass = { left: 'mr-auto ml-0', center: 'mx-auto', right: 'ml-auto mr-0' }[horizontalAlign];
+  const subtitleJustifyClass = { left: 'justify-start', center: 'justify-center', right: 'justify-end' }[horizontalAlign];
+
   return (
     <section 
-      className={`relative w-full flex items-center justify-center overflow-hidden py-24 ${height} ${className}`}
+      className={`relative w-full flex ${vAlignClass} justify-center overflow-hidden py-24 ${height} ${className}`}
     >
       {/* 1. Curtain Reveal */}
       {showCurtain && <CurtainReveal color={curtainColor} />}
@@ -151,7 +163,7 @@ export default function HeroBase({
       </div>
 
       {/* 3. Content Layer */}
-      <div className={`relative z-20 w-full text-center flex flex-col items-center mt-12 md:mt-0 ${containerClassName}`}>
+      <div className={`relative z-20 w-full flex flex-col ${hAlignClass} mt-12 md:mt-0 ${containerClassName}`}>
         
         {/* Subtitle / Label */}
         {subtitle && (
@@ -159,7 +171,7 @@ export default function HeroBase({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className={`mb-4 md:mb-6 flex items-center justify-center gap-3 md:gap-4 ${subtitleClassName}`}
+            className={`mb-4 md:mb-6 flex items-center ${subtitleJustifyClass} gap-3 md:gap-4 ${subtitleClassName}`}
           >
             <div className={`h-[1px] md:h-[2px] bg-accent ${accentLineWidth}`}></div>
             <span className="text-gray-200 font-bold tracking-[0.3em] uppercase text-[10px] md:text-sm">
@@ -177,7 +189,7 @@ export default function HeroBase({
           className="relative w-full"
         >
           <h1
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black text-white leading-tight drop-shadow-2xl max-w-4xl mx-auto tracking-tight px-4 ${titleClassName}`}
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black text-white leading-tight drop-shadow-2xl max-w-4xl ${titleAlignClass} tracking-tight px-4 ${titleClassName}`}
             style={{ textShadow: "0 4px 15px rgba(0,0,0,0.4)" }}
           >
             {useTypewriter && typeof title === 'string' ? (

@@ -24,9 +24,9 @@ export interface InterventionModelSectionProps {
 
 const defaultPrinciples: Principle[] = [
   { _key: "1", title: "Intervención interdisciplinaria", description: "Coordinación entre fisioterapia, terapia ocupacional, fonoaudiología y psicología." },
-  { _key: "2", title: "Centrada en el usuario y familia", description: "Trabajo conjunto entre profesionales, paciente y núcleo familiar en todo el proceso." },
-  { _key: "3", title: "Objetivos funcionales", description: "Trabajamos habilidades que permiten mayor independencia en actividades diarias." },
-  { _key: "4", title: "Atención personalizada", description: "Diseñamos el tratamiento específicamente para cada usuario tras evaluación." }
+  { _key: "2", title: "Atención a niños y jóvenes", description: "Trabajo conjunto entre profesionales, paciente y núcleo familiar en todo el proceso." },
+  { _key: "3", title: "Apoyo a dificultades en el aprendizaje", description: "Trabajamos habilidades que permiten mayor independencia en actividades diarias." },
+  { _key: "4", title: "Protocolo intensivo pediasuit", description: "Diseñamos el tratamiento específicamente para cada usuario tras evaluación." }
 ];
 
 const getIconForIndex = (index: number) => {
@@ -90,7 +90,7 @@ export function InterventionModelSection({
               </motion.span>
               <motion.h2
                 variants={itemVariants}
-                className="text-3xl md:text-6xl lg:text-7xl font-black text-primary leading-[1.1] md:leading-[1.05] tracking-tight"
+                className="text-2xl md:text-4xl lg:text-5xl font-black text-primary leading-[1.1] md:leading-[1.05] tracking-tight"
               >
                 {mainTitle}
               </motion.h2>

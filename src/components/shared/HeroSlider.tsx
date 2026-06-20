@@ -56,6 +56,7 @@ export default function HeroSlider({
             alt={currentSlide.alt}
             fill
             className="object-cover object-center"
+            style={currentIndex === 1 ? { transform: "scaleX(-1)" } : undefined}
             priority={currentIndex === 0}
             sizes="100vw"
           />
@@ -76,7 +77,7 @@ export default function HeroSlider({
         overlayOpacity={0} // Handled in the slider
         customOverlay={null} // Handled in the slider
         showDefaultBackground={false}
-        className={`!py-0 !absolute inset-0 flex items-center justify-center pointer-events-none ${heroBaseProps.className || ""}`}
+        className={`!absolute inset-0 flex pointer-events-none ${heroBaseProps.className || ""}`}
       >
         <div className="pointer-events-auto">
             {heroBaseProps.children}

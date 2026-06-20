@@ -52,7 +52,7 @@ export default function SocialFeedSection({
                                 <p className="text-white/80 text-lg mb-8 font-medium">@asociacion_aconino</p>
                                 
                                 <a 
-                                    href="https://instagram.com/asociacion_aconino" 
+                                    href="https://www.instagram.com/aconinoacn/" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     className="w-full max-w-[240px] bg-white text-primary font-bold py-4 px-8 rounded-2xl hover:bg-accent transition-colors duration-300 shadow-xl flex items-center justify-center gap-3 group/btn"

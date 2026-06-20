@@ -16,7 +16,7 @@ const currentYear = new Date().getFullYear();
 export default function FooterBottom({ legalLinks }: FooterBottomProps) {
   return (
     <div className="pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
-      <p className="text-xs text-gray-500 text-center lg:text-left font-medium tracking-wide">
+      <p className="text-xs text-gray-500 text-center lg:text-left font-medium tracking-wide mb-4">
         © {currentYear} Asociación Aconiño. Todos los derechos reservados.
       </p>
       

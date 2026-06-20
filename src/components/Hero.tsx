@@ -37,6 +37,9 @@ export default function Hero({ acf, slides }: HeroProps) {
                 showCurtain={true}
                 showParticles={true}
                 useTypewriter={true}
+                horizontalAlign="left"
+                verticalAlign="center"
+                containerClassName="w-full ml-14 md:ml-24 lg:ml-40 pb-20 md:pb-28"
                 height="min-h-[600px] md:min-h-[800px] lg:min-h-[100vh]"
                 typewriterProps={{ waitDuration: 4000 }}
             />
@@ -53,6 +56,8 @@ export default function Hero({ acf, slides }: HeroProps) {
             showCurtain={true}
             showParticles={true}
             useTypewriter={true}
+            horizontalAlign="left"
+            verticalAlign="bottom"
             height="min-h-[600px] md:min-h-[800px] lg:min-h-[100vh]"
             typewriterProps={{
                 waitDuration: 4000
