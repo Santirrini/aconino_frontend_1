@@ -64,10 +64,10 @@ export function WhatWeDoTimeline({ steps }: WhatWeDoTimelineProps) {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto py-12 md:py-24 px-4 overflow-hidden">
+    <div className="w-full max-w-5xl mx-auto py-10 md:py-20 px-4 overflow-hidden">
       {/* Header Section */}
       <div className="text-center mb-12 md:mb-20">
-        <motion.span 
+        <motion.span
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -75,7 +75,7 @@ export function WhatWeDoTimeline({ steps }: WhatWeDoTimelineProps) {
         >
           Nuestra Metodología
         </motion.span>
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -83,10 +83,10 @@ export function WhatWeDoTimeline({ steps }: WhatWeDoTimelineProps) {
         >
           ¿Cómo lo hacemos?
         </motion.h2>
-        
+
         {/* Progress Tracker */}
-        <div className="mt-12 max-w-md mx-auto relative h-1 bg-gray-100 rounded-full overflow-hidden">
-          <motion.div 
+        <div className="mt-6 max-w-md mx-auto relative h-1 bg-gray-100 rounded-full overflow-hidden">
+          <motion.div
             className="absolute left-0 top-0 h-full bg-accent"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
@@ -100,7 +100,7 @@ export function WhatWeDoTimeline({ steps }: WhatWeDoTimelineProps) {
 
       <div className="relative flex flex-col items-center">
         {/* Flashcard Stack with SWIPE support - Optimized Height */}
-        <div className="w-full max-w-4xl relative min-h-[350px] md:min-h-[420px] flex items-center cursor-grab active:cursor-grabbing">
+        <div className="w-full max-w-4xl relative min-h-[200px] md:min-h-[250px] flex items-center cursor-grab active:cursor-grabbing">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentIndex}
@@ -125,7 +125,7 @@ export function WhatWeDoTimeline({ steps }: WhatWeDoTimelineProps) {
                 x: { type: "spring", stiffness: 300, damping: 30 },
                 opacity: { duration: 0.2 }
               }}
-              className="bg-white p-8 md:p-14 lg:p-16 rounded-[2.5rem] md:rounded-[3.5rem] shadow-[0_20px_70px_rgba(12,32,112,0.05)] border border-gray-100 flex flex-col md:flex-row items-center gap-8 md:gap-12 relative overflow-hidden w-full select-none"
+              className="bg-white px-8 py-6 md:px-14 md:py-8 lg:px-16 lg:py-10 rounded-[2.5rem] md:rounded-[3.5rem] shadow-[0_20px_70px_rgba(12,32,112,0.05)] border border-gray-100 flex flex-col md:flex-row items-center gap-8 md:gap-12 relative overflow-hidden w-full select-none"
             >
               {/* Refined Decorative Number Badge */}
               <div className="shrink-0 w-16 h-16 md:w-24 md:h-24 rounded-2xl md:rounded-3xl bg-primary text-white flex items-center justify-center font-black text-2xl md:text-5xl shadow-xl shadow-primary/20 relative z-10 pointer-events-none">
@@ -155,9 +155,8 @@ export function WhatWeDoTimeline({ steps }: WhatWeDoTimelineProps) {
           <button
             onClick={prevStep}
             disabled={currentIndex === 0}
-            className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all ${
-              currentIndex === 0 ? "text-gray-200 cursor-not-allowed" : "bg-gray-50 text-primary hover:bg-primary hover:text-white hover:scale-110 active:scale-95 shadow-sm"
-            }`}
+            className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all ${currentIndex === 0 ? "text-gray-200 cursor-not-allowed" : "bg-gray-50 text-primary hover:bg-primary hover:text-white hover:scale-110 active:scale-95 shadow-sm"
+              }`}
           >
             <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
           </button>
@@ -171,9 +170,8 @@ export function WhatWeDoTimeline({ steps }: WhatWeDoTimelineProps) {
                   setDirection(idx > currentIndex ? 1 : -1);
                   setCurrentIndex(idx);
                 }}
-                className={`h-2 rounded-full transition-all duration-500 ${
-                  idx === currentIndex ? "w-10 bg-primary" : "w-2 bg-gray-200 hover:bg-gray-300"
-                }`}
+                className={`h-2 rounded-full transition-all duration-500 ${idx === currentIndex ? "w-10 bg-primary" : "w-2 bg-gray-200 hover:bg-gray-300"
+                  }`}
               />
             ))}
           </div>
@@ -181,9 +179,8 @@ export function WhatWeDoTimeline({ steps }: WhatWeDoTimelineProps) {
           <button
             onClick={nextStep}
             disabled={currentIndex === steps.length - 1}
-            className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all ${
-              currentIndex === steps.length - 1 ? "text-gray-200 cursor-not-allowed" : "bg-gray-50 text-primary hover:bg-primary hover:text-white hover:scale-110 active:scale-95 shadow-sm"
-            }`}
+            className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all ${currentIndex === steps.length - 1 ? "text-gray-200 cursor-not-allowed" : "bg-gray-50 text-primary hover:bg-primary hover:text-white hover:scale-110 active:scale-95 shadow-sm"
+              }`}
           >
             <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
           </button>

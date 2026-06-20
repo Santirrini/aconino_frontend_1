@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Activity, ShieldCheck, HeartPulse } from "lucide-react";
+import { Activity, ShieldCheck, HeartPulse } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { client } from "@/sanity/lib/client";
 import { PROGRAMAS_PAGE_QUERY } from "@/sanity/lib/queries";
 
@@ -126,7 +127,7 @@ export default async function ProgramasPage() {
 
   return (
     <main className="min-h-screen bg-gray-50 overflow-x-hidden selection:bg-primary/20">
-      
+
       {/* 1. HERO SECTION */}
       <HeroBase
         title={hero.title}
@@ -150,7 +151,7 @@ export default async function ProgramasPage() {
 
         <div className="max-w-[1400px] mx-auto px-6 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
-            
+
             <div className="w-full lg:w-1/2 flex justify-center order-2 lg:order-1 animate-fade-in-up md:animate-slide-in-left">
               <div className="relative w-full max-w-lg">
                 <div className="relative aspect-video md:aspect-square w-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-2xl md:rounded-[2.5rem] overflow-hidden group">
@@ -168,7 +169,7 @@ export default async function ProgramasPage() {
                   <span className="font-black text-primary text-[10px] md:text-xs tracking-widest uppercase">Cuidado Integral</span>
                 </div>
 
-                
+
                 <div className="hidden md:block absolute -top-8 -left-8 w-32 h-32 border-8 border-accent/20 rounded-3xl -z-10" />
               </div>
             </div>
@@ -178,11 +179,11 @@ export default async function ProgramasPage() {
                 <span className="text-gray-400 font-bold tracking-widest uppercase text-xs md:text-sm">Enfoque Terapéutico</span>
                 <div className="h-[2px] w-12 md:w-16 bg-accent"></div>
               </div>
-              
+
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-primary mb-8 tracking-tight leading-[1.15]">
                 {interventionModel.mainTitle}
               </h2>
-              
+
               <div className="prose prose-lg text-gray-600">
                 <p className="text-xl md:text-2xl font-bold text-secondary mb-6 leading-snug">
                   {interventionModel.subtitle}
@@ -190,21 +191,6 @@ export default async function ProgramasPage() {
                 <p className="text-lg text-gray-600 leading-relaxed font-medium">
                   {interventionModel.introText}
                 </p>
-              </div>
-              
-              <div className="mt-10 grid grid-cols-2 gap-6">
-                <div className="flex gap-4 items-center">
-                  <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                    <ShieldCheck className="w-6 h-6 text-primary" />
-                  </div>
-                  <span className="font-semibold text-gray-800 leading-tight">Enfoque Interdisciplinario</span>
-                </div>
-                <div className="flex gap-4 items-center">
-                  <div className="w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center shrink-0">
-                    <HeartPulse className="w-6 h-6 text-accent" />
-                  </div>
-                  <span className="font-semibold text-gray-800 leading-tight">Centrado en la Familia</span>
-                </div>
               </div>
             </div>
 
@@ -233,7 +219,7 @@ export default async function ProgramasPage() {
       {/* 6. A QUIÉN ESTÁN DIRIGIDOS */}
       <section className="py-20 md:py-32 bg-white relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-[100px] -z-10" />
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <WhoForSection targetAudience={targetAudience} />
         </div>
@@ -243,7 +229,7 @@ export default async function ProgramasPage() {
       <MaxSatisfaction title={maxSatisfaction.title} items={maxSatisfaction.items} />
 
       {/* 8. QUÉ HACEMOS (Timeline) */}
-      <section className="py-20 md:py-32 bg-gray-50">
+      <section className="py-18 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <WhatWeDoTimeline steps={whatWeDo} />
         </div>
@@ -262,7 +248,7 @@ export default async function ProgramasPage() {
         {/* Background elements for depth */}
         <div className="absolute left-0 top-1/4 w-[300px] h-[300px] bg-yellow-100/50 rounded-full blur-[100px] -z-10" />
         <div className="absolute right-0 bottom-1/4 w-[400px] h-[400px] bg-blue-100/50 rounded-full blur-[120px] -z-10" />
-        
+
         <SpecificPrograms />
       </section>
 
@@ -270,17 +256,17 @@ export default async function ProgramasPage() {
       <ParentFAQ />
 
       {/* 10. POR QUÉ ELEGIR ACONIÑO (Checkmarks) */}
-      <section className="pt-16 pb-8 md:py-24 bg-white border-t border-gray-100">
+      <section className="pt-16 pb-4 md:pt-24 md:pb-4 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <WhyChooseUs items={whyChooseUs} />
         </div>
       </section>
 
       {/* 11. CTA FINAL */}
-      <section className="relative pt-8 pb-20 md:py-28 bg-white overflow-hidden text-center">
+      <section className="relative pt-2 pb-16 md:pt-2 md:pb-16 bg-white overflow-hidden text-center">
         <div className="absolute top-0 right-0 -mr-32 -mt-32 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
         <div className="absolute bottom-0 left-0 -ml-32 -mb-32 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[80px] -z-10 pointer-events-none" />
-        
+
         <div className="relative z-10 max-w-3xl mx-auto px-6 animate-fade-in-up">
           <h3 className="text-4xl md:text-6xl font-black text-primary mb-8 leading-[1.1]">
             {cta.title}
@@ -288,13 +274,15 @@ export default async function ProgramasPage() {
           <p className="text-xl text-gray-500 mb-10 font-medium">
             Déjanos acompañarte y construir juntos el mejor camino para tu hijo.
           </p>
-          <Link
-            href={cta.buttonLink || "/contacto"}
-            className="group inline-flex items-center justify-center bg-accent text-primary px-12 py-5 rounded-full font-black text-xl shadow-[0_15px_40px_rgba(251,191,36,0.3)] hover:bg-yellow-400 hover:scale-105 hover:shadow-[0_20px_50px_rgba(251,191,36,0.4)] transition-all duration-300 uppercase tracking-wider"
+          <a
+            href="https://wa.me/573133910760"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center justify-center gap-3 bg-accent text-primary px-12 py-5 rounded-full font-black text-xl shadow-[0_15px_40px_rgba(251,191,36,0.3)] hover:bg-yellow-400 hover:scale-105 hover:shadow-[0_20px_50px_rgba(251,191,36,0.4)] transition-all duration-300 uppercase tracking-wider"
           >
+            <FaWhatsapp className="w-6 h-6 group-hover:scale-110 transition-transform" />
             {cta.buttonText}
-            <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1.5 transition-transform" />
-          </Link>
+          </a>
         </div>
       </section>
 

@@ -9,6 +9,7 @@ import DonationCatalog from '@/components/apoyanos/DonationCatalog';
 import DonationImpact from '@/components/apoyanos/DonationImpact';
 import FAQ from '@/components/apoyanos/FAQ';
 import FinalCTA from '@/components/apoyanos/FinalCTA';
+import ImpactCta from '@/components/impact/ImpactCta';
 import { initialProgress } from '@/data/centro-dia-needs';
 import { CenterZone } from '@/types/centro-dia';
 
@@ -37,7 +38,12 @@ export default function ApoyanosPageClient() {
             <DonationImpact />
             <FAQ />
             <FinalCTA />
-            
+
+            {/* Botón de donar por WhatsApp (igual al del inicio) */}
+            <div className="bg-white pb-16 md:pb-24">
+                <ImpactCta />
+            </div>
+
             <ZoneDetailModal 
                 zone={selectedZone}
                 isOpen={isModalOpen}

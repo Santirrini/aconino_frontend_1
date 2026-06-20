@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { IconBuilding, IconConstruction } from "@/constants/apoyanos-icons";
+import ImpactCta from "@/components/impact/ImpactCta";
 
 interface TimeLeft {
   years: number;
@@ -311,6 +312,11 @@ export default function ComingSoonOverlay({
                 </div>
             </div>
         </motion.div>
+
+        {/* Botón de donar por WhatsApp (igual al del inicio) */}
+        <div className="w-full pb-20">
+            <ImpactCta />
+        </div>
       </div>
     </motion.div>
   );
