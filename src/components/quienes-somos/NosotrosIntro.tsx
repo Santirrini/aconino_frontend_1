@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaHeart } from "react-icons/fa";
-import { PortableText, PortableTextBlock } from "@portabletext/react";
 
 interface NosotrosIntroProps {
     data?: {
@@ -25,7 +24,7 @@ export default function NosotrosIntro({ data }: NosotrosIntroProps) {
     const title = data?.title || "Nuestra Identidad";
     const imageUrl = data?.imageUrl || "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1968&auto=format&fit=crop";
     const imageAlt = data?.imageAlt || "Niña en terapia";
-    
+
     const defaultStats = [
         { value: "+30", label: "Años de Exp.", color: "secondary" },
         { value: "+5k", label: "Familias Apoyadas", color: "accent" }
@@ -40,9 +39,9 @@ export default function NosotrosIntro({ data }: NosotrosIntroProps) {
 
             <div className="max-w-[1400px] mx-auto px-6 sm:px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-24">
-                    
+
                     {/* Left side Image with Framer Motion */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
@@ -60,9 +59,9 @@ export default function NosotrosIntro({ data }: NosotrosIntroProps) {
                                 {/* Inner overlay gradient */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             </div>
-                            
+
                             {/* Decorative Accent Elements - Half-in, Half-out of the Image Corner */}
-                            <motion.div 
+                            <motion.div
                                 initial={{ scale: 0 }}
                                 whileInView={{ scale: 1 }}
                                 viewport={{ once: true }}
@@ -71,13 +70,13 @@ export default function NosotrosIntro({ data }: NosotrosIntroProps) {
                             >
                                 <FaHeart className="text-2xl md:text-4xl text-accent animate-pulse" />
                             </motion.div>
-                            
+
                             <div className="hidden md:block absolute -top-6 -left-6 w-32 h-32 border-8 border-gray-100 rounded-3xl -z-10" />
                         </div>
                     </motion.div>
 
                     {/* Right side Content */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
@@ -88,32 +87,26 @@ export default function NosotrosIntro({ data }: NosotrosIntroProps) {
                             <span className="text-gray-400 font-bold tracking-widest uppercase text-[10px] md:text-sm">{subtitle}</span>
                             <div className="h-[1px] md:h-[2px] w-12 md:w-16 bg-accent"></div>
                         </div>
-                        
+
                         <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-primary mb-6 md:mb-8 tracking-tight leading-tight">
                             {title}
                         </h2>
-                        
-                        <div className="prose prose-base md:prose-lg text-gray-600 prose-p:leading-relaxed max-w-none">
-                            {data?.description && typeof data.description === 'object' ? (
-                                <PortableText value={data.description as PortableTextBlock[]} />
-                            ) : data?.description && typeof data.description === 'string' ? (
-                                <p className="mb-4 md:mb-6 text-lg md:text-xl font-medium text-gray-700 leading-snug">{data.description}</p>
-                            ) : (
-                                <>
-                                    <p className="mb-4 md:mb-6 text-lg md:text-xl font-medium text-gray-700 leading-snug">
-                                        Somos una entidad privada sin ánimo de lucro, creada en 1990, con el propósito fundamental de apoyar a las familias.
-                                    </p>
-                                    <p className="text-justify text-sm md:text-lg">
-                                        Brindamos un servicio de atención integral basado en el modelo de práctica contemporáneo de Neurodesarrollo NDT, que contempla diagnósticos como Parálisis Cerebral, Retraso en el Desarrollo Psicomotor, Síndrome de West e Hipotonía, entre otros.
-                                    </p>
-                                    <p className="text-justify text-sm md:text-lg mt-3 md:mt-4">
-                                        A lo largo de estos más de 30 años, hemos construido un espacio seguro donde el amor, la ciencia y la dedicación se unen para impulsar el potencial máximo de cada niño y joven que cruza nuestras puertas.
-                                    </p>
-                                </>
-                            )}
+
+                        <div className="prose prose-base md:prose-lg text-gray-600 prose-p:leading-relaxed max-w-none space-y-4 md:space-y-6">
+                            <p className="text-justify text-sm md:text-lg">
+                                Somos una entidad privada sin ánimo de lucro fundada en 1990, nacida con el propósito de acompañar y apoyar a las familias de niños y jóvenes con discapacidad en su proceso de desarrollo y rehabilitación para que puedan participar plenamente en su vida familiar, escolar y social.
+                            </p>
+                            <p className="text-justify text-sm md:text-lg">
+                                En Aconiño brindamos atención integral basada en el Neurodesarrollo, abordando condiciones como parálisis cerebral, retraso en el desarrollo psicomotor, síndrome de West, hipotonía, entre otras.
+                            </p>
+                            <p className="text-justify text-sm md:text-lg">
+                                Durante más de tres décadas de trabajo, hemos construido un espacio seguro y humano donde la ciencia, el compromiso profesional y el amor por lo que hacemos se unen para acompañar a cada niño y joven en el desarrollo de su máximo potencial.                            </p>
+                            <p className="text-justify text-sm md:text-lg font-bold text-primary">
+                                Aconiño es, ante todo, un lugar donde las familias encuentran apoyo, esperanza y oportunidades para el futuro.
+                            </p>
                         </div>
-                        
-                        <motion.div 
+
+                        <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -123,9 +116,6 @@ export default function NosotrosIntro({ data }: NosotrosIntroProps) {
                             {stats.map((stat, idx) => (
                                 <div key={idx} className="flex gap-4 md:gap-6 items-center">
                                     <div className="flex flex-col">
-                                        <span className={`text-3xl md:text-4xl font-black ${stat.color === 'secondary' ? 'text-secondary' : 'text-accent'}`}>
-                                            {stat.value}
-                                        </span>
                                         <span className="text-[10px] md:text-sm font-bold text-gray-400 uppercase tracking-wider">{stat.label}</span>
                                     </div>
                                     {idx < stats.length - 1 && <div className="hidden lg:block w-[1px] h-12 bg-gray-200" />}

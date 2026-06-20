@@ -49,6 +49,14 @@ const defaultRoles: JuntaRoleData[] = [
     },
 ];
 
+// Orden de los cargos de la junta (los no listados van al final)
+const POSITION_ORDER = ["PRESIDENTE", "VICEPRESIDENTE", "SECRETARIA", "VOCAL"];
+
+function rolePriority(position: string): number {
+    const idx = POSITION_ORDER.indexOf((position || "").trim().toUpperCase());
+    return idx === -1 ? POSITION_ORDER.length : idx;
+}
+
 function normalizeRole(role: JuntaRoleData): { position: string; people: JuntaPersonData[] } {
     if (role.people && Array.isArray(role.people) && role.people.length > 0) {
         return {
@@ -154,7 +162,9 @@ export default function NosotrosJuntaRoles({ data }: Props) {
     const roles = data && data.length > 0 ? data : defaultRoles;
     
     const normalizedRoles = useMemo(() => {
-        return roles.map(role => normalizeRole(role));
+        return roles
+            .map(role => normalizeRole(role))
+            .sort((a, b) => rolePriority(a.position) - rolePriority(b.position));
     }, [roles]);
     
     const [expandedPerson, setExpandedPerson] = useState<string | null>(null);

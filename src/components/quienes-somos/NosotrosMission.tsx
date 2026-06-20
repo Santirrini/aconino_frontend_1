@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { PortableText, PortableTextBlock } from "@portabletext/react";
+import { PortableTextBlock } from "@portabletext/react";
 
 interface MissionData {
     subtitle?: string;
@@ -21,7 +21,6 @@ export default function NosotrosMission({ data }: Props) {
     const title = data?.title || "Misión";
     const imageUrl = data?.imageUrl || "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop";
     const imageAlt = data?.imageAlt || "Terapeuta con niño";
-    const description = data?.description;
 
     return (
         <section id="mision" className="bg-primary flex flex-col lg:flex-row relative overflow-hidden scroll-mt-32">
@@ -48,20 +47,17 @@ export default function NosotrosMission({ data }: Props) {
                     
                     <div className="relative">
                         <span className="absolute -top-8 md:-top-10 -left-6 md:-left-8 text-7xl md:text-8xl text-white/10 font-serif leading-none select-none">&quot;</span>
-                        {description ? (
-                            <div className="prose prose-base md:prose-lg text-gray-200 prose-p:leading-relaxed max-w-none">
-                                <PortableText value={description} />
-                            </div>
-                        ) : (
-                            <>
-                                <p className="text-gray-200 leading-relaxed text-base md:text-xl text-justify relative z-10 font-medium">
-                                    Somos una asociación innovadora, que ofrece programas de prevención y atención integral a niños, niñas y jóvenes con alteraciones sensoriomotoras, así como capacitación y orientación a profesionales e instituciones.
-                                </p>
-                                <p className="text-gray-300 leading-relaxed text-sm md:text-lg text-justify mt-4 md:mt-6 relative z-10">
-                                    Aplicamos el enfoque de Neurodesarrollo - Bobath y otras técnicas relacionadas, para el mejoramiento de la calidad de vida e Inclusión social de la población objetivo.
-                                </p>
-                            </>
-                        )}
+                        <div className="space-y-4 md:space-y-6 relative z-10">
+                            <p className="text-gray-200 leading-relaxed text-base md:text-lg text-justify font-medium">
+                                Impulsar el desarrollo y la participación plena de bebés, niños y jóvenes con alteraciones del neurodesarrollo mediante programas terapéuticos interdisciplinarios.
+                            </p>
+                            <p className="text-gray-200 leading-relaxed text-base md:text-lg text-justify font-medium">
+                                Acompañar y orientar a las familias, fortaleciendo su participación activa en el proceso de desarrollo y rehabilitación.
+                            </p>
+                            <p className="text-gray-200 leading-relaxed text-base md:text-lg text-justify font-medium">
+                                Impulsar la formación continua de profesionales mediante programas de capacitación, cursos y seminarios especializados, incorporando instructores y expertos de Europa, Estados Unidos y otros países, para fortalecer el intercambio de conocimiento y elevar la calidad de la atención a nivel nacional e internacional.
+                            </p>
+                        </div>
                     </div>
                 </div>
 

@@ -24,11 +24,15 @@ const defaultSemillas: SemillaData[] = [
     { name: "Daniel Domínguez", age: "11", imageUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=200&auto=format&fit=crop" },
 ];
 
+// Nombres que NO se renderizan (aunque estén en el default o vengan de Sanity)
+const HIDDEN_SEMILLAS = ["Daniel Domínguez"];
+
 export default function NosotrosSemillas({ data }: Props) {
-    const semillas = data && data.length > 0 ? data : defaultSemillas;
+    const semillas = (data && data.length > 0 ? data : defaultSemillas)
+        .filter((child) => !HIDDEN_SEMILLAS.includes(child.name || ""));
 
     const SemillaCard = ({ child, delay }: { child: SemillaData, delay: number }) => (
-        <motion.div 
+        <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -58,8 +62,8 @@ export default function NosotrosSemillas({ data }: Props) {
         <section className="bg-white">
             <div className="relative bg-gradient-to-r from-primary via-primary to-secondary py-12 md:py-24 overflow-hidden shadow-inner">
                 <div className="absolute inset-0 z-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/always-grey.png')] mix-blend-overlay" />
-                
-                <motion.div 
+
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -71,18 +75,21 @@ export default function NosotrosSemillas({ data }: Props) {
                         Semillas de amor <br className="hidden md:block" />
                         <span className="text-accent italic font-light tracking-normal text-xl md:text-5xl block mt-1">donde ahora crecen otros sueños</span>
                     </h2>
+                    <p className="text-white/80 font-bold uppercase tracking-[0.2em] text-sm md:text-lg mt-4 md:mt-6">
+                        Hijos de Fundadores
+                    </p>
                 </motion.div>
             </div>
 
             <div className="py-12 md:py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div 
+                <div
                     className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-10 md:gap-y-20 gap-x-1 sm:gap-x-3 md:gap-x-10"
                 >
                     {semillas.map((child, idx) => (
-                        <SemillaCard 
-                            key={idx} 
-                            child={child} 
-                            delay={idx * 0.05} 
+                        <SemillaCard
+                            key={idx}
+                            child={child}
+                            delay={idx * 0.05}
                         />
                     ))}
                 </div>

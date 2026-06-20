@@ -25,33 +25,33 @@ interface Props {
 }
 
 const defaultAdminRoles = [
-    { 
-        position: "DIRECTORA EJECUTIVA", 
+    {
+        position: "DIRECTORA EJECUTIVA",
         people: [
             { name: "Bertha Brunal Soto", description: "Lidera la gestión operativa de la asociación." }
         ]
     },
-    { 
-        position: "SUBDIRECTORA ADMINISTRATIVA Y FINANCIERA", 
+    {
+        position: "SUBDIRECTORA ADMINISTRATIVA Y FINANCIERA",
         people: [
             { name: "Zuleima Leonor Beltrán García", description: "Gestiona recursos financieros y presupuestos." }
         ]
     },
-    { 
-        position: "COORDINADORA DE ATENCIÓN INTEGRAL", 
+    {
+        position: "COORDINADORA DE ATENCIÓN INTEGRAL",
         people: [
             { name: "María Claudia Rosas Mesa", description: "Coordina servicios de atención a beneficiarios." },
-            { name: "Alexandra Paz Ortega", description: "Administra citas y evaluaciones de pacientes." }
+            { name: "Alexandra Paz Ortega", description: "" }
         ]
     },
-    { 
-        position: "CONTADORA", 
+    {
+        position: "CONTADOR PÚBLICO",
         people: [
-            { name: "Rocío Rodríguez Piraquive", description: "Gestiona estados financieros y reportes contables." }
+            { name: "Yuber Ferney Lamprea", description: "Contador Público, egresado de la Universidad Central, con más de 15 años de experiencia en el ejercicio profesional, especializado en el acompañamiento contable, tributario y financiero de entidades sin ánimo de lucro (ESAL). Cuento con experiencia en presentación de información financiera, ejecución presupuestal, cumplimiento tributario, análisis financiero y administración contable de recursos de cooperación nacional e internacional. Certificado en Información Financiera Internacional (IFRS) por ACCA y Especialista en Ciencias Tributarias." }
         ]
     },
-    { 
-        position: "REVISOR FISCAL", 
+    {
+        position: "REVISOR FISCAL",
         people: [
             { name: "Hernan Yepes Castro", description: "Audita estados financieros y verifica cumplimiento." },
             { name: "Mauricio López Soto", description: "Suplente del revisor fiscal principal." }
@@ -66,33 +66,33 @@ function normalizeRole(role: AdminRoleData): { position: string; people: AdminPe
             people: role.people
         };
     }
-    
+
     if (role.name) {
         return {
             position: role.position || "",
             people: [{ name: role.name, description: role.description }]
         };
     }
-    
+
     return {
         position: role.position || "",
         people: []
     };
 }
 
-function PersonCard({ person, isExpanded, onToggle }: { 
-    person: AdminPersonData; 
-    isExpanded: boolean; 
+function PersonCard({ person, isExpanded, onToggle }: {
+    person: AdminPersonData;
+    isExpanded: boolean;
     onToggle: () => void;
 }) {
     if (!person.name) return null;
-    
+
     return (
-        <motion.div 
+        <motion.div
             whileTap={person.description ? { scale: 0.98 } : {}}
             className={`group rounded-xl transition-all duration-300 ${isExpanded ? 'bg-primary/[0.03]' : ''}`}
         >
-            <div 
+            <div
                 className={`flex items-center justify-between py-3 px-2 ${person.description ? 'cursor-pointer' : ''}`}
                 onClick={person.description ? onToggle : undefined}
             >
@@ -124,18 +124,18 @@ function PersonCard({ person, isExpanded, onToggle }: {
     );
 }
 
-function RoleCard({ role, roleIndex, expandedPerson, onTogglePerson }: { 
+function RoleCard({ role, roleIndex, expandedPerson, onTogglePerson }: {
     role: { position: string; people: AdminPersonData[] };
     roleIndex: number;
     expandedPerson: string | null;
     onTogglePerson: (id: string) => void;
 }) {
     if (!role.position) return null;
-    
+
     const people = role.people || [];
-    
+
     return (
-        <motion.div 
+        <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -148,12 +148,12 @@ function RoleCard({ role, roleIndex, expandedPerson, onTogglePerson }: {
                 </div>
                 <h4 className="text-gray-400 font-black text-[10px] md:text-sm tracking-[0.2em] uppercase">{role.position}</h4>
             </div>
-            
+
             <div className="space-y-2 md:space-y-4">
                 {people.map((person, personIdx) => {
                     const personId = `${roleIndex}-${personIdx}`;
                     return (
-                        <PersonCard 
+                        <PersonCard
                             key={personIdx}
                             person={person}
                             isExpanded={expandedPerson === personId}
@@ -169,12 +169,13 @@ function RoleCard({ role, roleIndex, expandedPerson, onTogglePerson }: {
 export default function NosotrosAdmin({ data }: Props) {
     const subtitle = data?.subtitle || "Gestión y Liderazgo";
     const title = data?.title || "Equipo Administrativo";
-    const adminRoles = data?.roles && data.roles.length > 0 ? data.roles : defaultAdminRoles;
-    
+    // Info fijada en código (NO se usa la de Sanity)
+    const adminRoles = defaultAdminRoles;
+
     const normalizedRoles = useMemo(() => {
         return adminRoles.map(role => normalizeRole(role));
     }, [adminRoles]);
-    
+
     const [expandedPerson, setExpandedPerson] = useState<string | null>(null);
 
     const togglePerson = (id: string) => {
@@ -192,7 +193,7 @@ export default function NosotrosAdmin({ data }: Props) {
             <div className="absolute bottom-20 right-0 w-[250px] h-[250px] md:w-[400px] md:h-[400px] lg:w-[600px] lg:h-[600px] bg-accent/5 rounded-full blur-[60px] md:blur-[80px] lg:blur-[100px] translate-y-1/2 translate-x-1/4 pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 relative z-10">
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -209,7 +210,7 @@ export default function NosotrosAdmin({ data }: Props) {
                     </h2>
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                     variants={{
                         hidden: { opacity: 0 },
                         visible: {
@@ -226,8 +227,8 @@ export default function NosotrosAdmin({ data }: Props) {
                 >
                     <div className="flex flex-col gap-6">
                         {leftColumn.map((role, idx) => (
-                            <RoleCard 
-                                key={idx} 
+                            <RoleCard
+                                key={idx}
                                 role={role}
                                 roleIndex={idx}
                                 expandedPerson={expandedPerson}
@@ -238,8 +239,8 @@ export default function NosotrosAdmin({ data }: Props) {
 
                     <div className="flex flex-col gap-6">
                         {rightColumn.map((role, idx) => (
-                            <RoleCard 
-                                key={idx + midPoint} 
+                            <RoleCard
+                                key={idx + midPoint}
                                 role={role}
                                 roleIndex={idx + midPoint}
                                 expandedPerson={expandedPerson}
@@ -252,9 +253,9 @@ export default function NosotrosAdmin({ data }: Props) {
 
             <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0 pointer-events-none">
                 <svg className="relative block w-full h-[60px] md:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path 
-                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.26,192.4,103.5,237.93,91.68,280.9,74.5,321.39,56.44Z" 
-                        className="fill-[#1b2b65]" 
+                    <path
+                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.26,192.4,103.5,237.93,91.68,280.9,74.5,321.39,56.44Z"
+                        className="fill-[#1b2b65]"
                     />
                 </svg>
             </div>

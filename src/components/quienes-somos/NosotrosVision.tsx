@@ -22,8 +22,6 @@ export default function NosotrosVision({ data }: Props) {
     const title = data?.title || "Visión";
     const imageUrl = data?.imageUrl || "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=2127&auto=format&fit=crop";
     const imageAlt = data?.imageAlt || "Terapeuta ayudando a niña";
-    const visionText = data?.visionText;
-    const visionTextSecondary = data?.visionTextSecondary;
 
     return (
         <section id="vision" className="bg-gray-50 flex flex-col-reverse lg:flex-row relative overflow-hidden scroll-mt-32">
@@ -49,47 +47,20 @@ export default function NosotrosVision({ data }: Props) {
                         <div className="absolute -top-4 md:-top-6 -right-2 md:-right-6 bg-accent w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg">
                             <FaEye className="text-white text-lg md:text-xl" />
                         </div>
-                        {visionText || visionTextSecondary ? (
-                            <div className="flex flex-col gap-4">
-                                {visionText?.split('\n').filter(line => line.trim()).map((line, idx) => {
-                                    const match = line.match(/^(\d+\.\s+.*?)\s+(?=[A-Z])/);
-                                    if (match) {
-                                        const titlePart = match[1];
-                                        const restPart = line.substring(titlePart.length).trim();
-                                        return (
-                                            <p key={`v1-${idx}`} className="text-gray-600 leading-relaxed text-base md:text-lg text-justify">
-                                                <strong className="font-black text-primary block text-xl mb-2">{titlePart}</strong>
-                                                <span>{restPart}</span>
-                                            </p>
-                                        );
-                                    }
-                                    return <p key={`v1-${idx}`} className="text-gray-600 leading-relaxed text-base md:text-lg text-justify">{line}</p>;
-                                })}
-                                {visionTextSecondary?.split('\n').filter(line => line.trim()).map((line, idx) => {
-                                    const match = line.match(/^(\d+\.\s+.*?)\s+(?=[A-Z])/);
-                                    if (match) {
-                                        const titlePart = match[1];
-                                        const restPart = line.substring(titlePart.length).trim();
-                                        return (
-                                            <p key={`v2-${idx}`} className="text-gray-600 leading-relaxed text-base md:text-lg text-justify font-medium">
-                                                <strong className="font-black text-primary block text-xl mb-2">{titlePart}</strong>
-                                                <span>{restPart}</span>
-                                            </p>
-                                        );
-                                    }
-                                    return <p key={`v2-${idx}`} className="text-gray-600 leading-relaxed text-base md:text-lg text-justify font-medium">{line}</p>;
-                                })}
+                        <div className="flex flex-col gap-5 md:gap-6">
+                            <div>
+                                <strong className="font-black text-primary block text-lg md:text-xl mb-1.5">1. Liderazgo y referencia</strong>
+                                <p className="text-gray-600 leading-relaxed text-base md:text-lg text-justify">
+                                    Ser una organización sostenible y referente nacional e internacional en la atención de alteraciones sensoriomotoras, reconocida por la innovación, el uso de nuevas tecnologías y la excelencia en el acompañamiento a personas con discapacidad y sus familias.
+                                </p>
                             </div>
-                        ) : (
-                            <>
-                                <p className="text-gray-600 leading-relaxed text-base md:text-lg text-justify mb-4">
-                                    Seremos una organización sostenible, referente tanto nacional como internacional en innovación y generación de servicios orientados a la promoción, prevención y tratamiento de alteraciones sensoriomotoras.
+                            <div>
+                                <strong className="font-black text-primary block text-lg md:text-xl mb-1.5">2. Desarrollo y expansión institucional</strong>
+                                <p className="text-gray-600 leading-relaxed text-base md:text-lg text-justify">
+                                    Para el año 2027, consolidar la creación de un Centro Día que brinde apoyo, desarrollo, autonomía e inclusión social a adultos con discapacidad, ampliando el impacto de la asociación a lo largo del ciclo de vida.
                                 </p>
-                                <p className="text-gray-600 leading-relaxed text-base md:text-lg text-justify font-medium">
-                                    Lograremos esto por medio de la aplicación de nuevas tecnologías, capacitación continua y un compromiso inquebrantable con la excelencia y el bienestar de nuestras familias.
-                                </p>
-                            </>
-                        )}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </motion.div>

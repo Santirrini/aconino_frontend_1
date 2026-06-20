@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AsociacionBanner() {
     return (
-        <section className="relative w-full h-[40vh] min-h-[300px] flex items-center justify-center overflow-hidden">
+        <section className="relative w-full py-12 md:py-20 flex items-center justify-center overflow-hidden">
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image
@@ -15,10 +15,9 @@ export default function AsociacionBanner() {
                 <div className="absolute inset-0 bg-[#0f1f6a]/90"></div> {/* Color matching the screenshot */}
             </div>
 
-            <div className="relative z-10 text-center max-w-4xl mx-auto px-4 flex flex-col items-center">
-                <span className="text-white/80 text-sm font-medium mb-4">Aconiño</span>
-                <h2 className="text-3xl md:text-5xl font-bold text-white leading-snug drop-shadow-md">
-                    Con el fin de velar por la calidad<br />del servicio y la defensa de los<br />usuarios
+            <div className="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center">
+                <h2 className="text-2xl md:text-4xl font-bold text-white leading-snug drop-shadow-md">
+                    Con el fin de velar por la calidad del servicio y la defensa de los usuarios
                 </h2>
             </div>
         </section>

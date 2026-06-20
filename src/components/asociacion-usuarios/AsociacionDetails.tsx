@@ -26,13 +26,9 @@ export default function AsociacionDetails() {
     return (
         <section className="bg-gray-50/30">
             {/* Objetivos Section */}
-            <div className="py-16 md:py-24 border-b border-gray-100">
+            <div className="py-12 border-b border-gray-100">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col items-center mb-16">
-                        <div className="flex items-center gap-4 mb-6">
-                            <span className="text-sm text-gray-500 font-medium">Aconiño</span>
-                            <div className="h-[1px] w-12 bg-accent"></div>
-                        </div>
                         <h2 className="text-4xl text-primary font-bold">Objetivos</h2>
                     </div>
 
@@ -58,13 +54,9 @@ export default function AsociacionDetails() {
             </div>
 
             {/* Conformación Section */}
-            <div className="py-16 md:py-24">
+            <div className="py-2 md:py-20">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col items-center mb-16">
-                        <div className="flex items-center gap-4 mb-6">
-                            <span className="text-sm text-gray-500 font-medium">Aconiño</span>
-                            <div className="h-[1px] w-12 bg-accent"></div>
-                        </div>
                         <h2 className="text-4xl text-primary font-bold">Conformación</h2>
                     </div>
 

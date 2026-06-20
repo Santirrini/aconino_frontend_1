@@ -27,22 +27,6 @@ export default function NosotrosHistory({ data }: Props) {
     const title = data?.title || "Historia";
     const imageUrl = data?.imageUrl || "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop";
     const imageAlt = data?.imageAlt || "Terapia grupal con niños";
-    const events = data?.events;
-
-    const defaultEvents = [
-        {
-            year: "1990",
-            title: "Noviembre de 1990",
-            description: "Un grupo de siete padres y dos fisioterapeutas fundaron esta organización privada sin ánimo de lucro, con el objetivo de brindar atención interdisciplinaria a niños, niñas y jóvenes con alteraciones sensoriomotoras ocasionadas por lesiones del sistema nervioso central."
-        },
-        {
-            year: "",
-            title: "Nuestra Evolución",
-            description: "Con el tiempo se impuso la necesidad de ir más allá y capacitar a familias, profesionales y entidades tanto públicas como privadas en relación con el desarrollo integral del niño, sus alteraciones y los tratamientos idóneos que deben brindarse."
-        }
-    ];
-
-    const displayEvents = events && events.length > 0 ? events : defaultEvents;
 
     return (
         <section id="historia" className="bg-primary flex flex-col md:flex-row relative overflow-hidden scroll-mt-32">
@@ -70,41 +54,20 @@ export default function NosotrosHistory({ data }: Props) {
                         </h2>
                     </div>
                     
-                    <motion.div 
-                        variants={{
-                            hidden: { opacity: 0 },
-                            visible: {
-                                opacity: 1,
-                                transition: {
-                                    staggerChildren: 0.3
-                                }
-                            }
-                        }}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        className="space-y-6 md:space-y-8 relative border-l border-white/20 pl-4 md:pl-6"
-                    >
-                        {displayEvents.map((event, idx) => (
-                            <motion.div 
-                                key={idx}
-                                variants={{
-                                    hidden: { opacity: 0, x: -20 },
-                                    visible: { opacity: 1, x: 0 }
-                                }}
-                                transition={{ duration: 0.5, ease: "easeOut" }}
-                                className="relative"
-                            >
-                                <span className={`absolute -left-[21px] md:-left-[31px] top-1 md:top-2 w-2.5 h-2.5 md:w-3 md:h-3 rounded-full ring-4 ring-primary ${idx === 0 ? 'bg-accent' : 'bg-white/50'}`} />
-                                <h3 className={`font-bold text-lg md:text-xl mb-1 md:mb-2 ${idx === 0 ? 'text-accent' : 'text-white/80'}`}>
-                                    {event.year ? `${event.year} - ` : ''}{event.title}
-                                </h3>
-                                <p className="text-gray-300 leading-relaxed text-sm md:text-lg text-justify font-medium">
-                                    {event.description}
-                                </p>
-                            </motion.div>
-                        ))}
-                    </motion.div>
+                    <div className="space-y-4 md:space-y-5">
+                        <p className="text-gray-300 leading-relaxed text-sm md:text-lg text-justify font-medium">
+                            <span className="bg-accent text-primary px-1 rounded-sm">En noviembre de 1990,</span> siete padres y dos fisioterapeutas, movidos por la necesidad de encontrar mejores oportunidades de atención y desarrollo para sus hijos con discapacidad, decidieron unir esfuerzos y crear esta organización privada sin ánimo de lucro.
+                        </p>
+                        <p className="text-gray-300 leading-relaxed text-sm md:text-lg text-justify font-medium">
+                            Su propósito no era solo brindar apoyo a sus propios hijos, sino generar un espacio de atención y acompañamiento para todas las familias de la comunidad que enfrentaban la misma realidad: la falta de servicios especializados para niños, niñas y jóvenes con alteraciones sensoriomotoras derivadas de lesiones del sistema nervioso central.
+                        </p>
+                        <p className="text-gray-300 leading-relaxed text-sm md:text-lg text-justify font-medium">
+                            Desde su origen, la organización se construyó con una convicción clara: las familias son un pilar fundamental en el proceso de rehabilitación y desarrollo de las personas con discapacidad. Por ello, la participación activa, el acompañamiento y el fortalecimiento de las familias se convirtieron en el eje central de nuestro trabajo.
+                        </p>
+                        <p className="text-gray-300 leading-relaxed text-sm md:text-lg text-justify font-medium">
+                            Así nació Aconiño: como una iniciativa de familias para familias, comprometida con ofrecer atención interdisciplinaria, apoyo humano y oportunidades de desarrollo para cada niño, niña y joven que lo requiera.
+                        </p>
+                    </div>
                 </div>
             </motion.div>
 

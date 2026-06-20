@@ -4,15 +4,6 @@ export default function AsociacionIntro() {
     return (
         <section className="bg-white py-16 md:py-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Title Section */}
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl text-gray-500 font-light mb-1">
-                        Asociación
-                    </h2>
-                    <h3 className="text-5xl md:text-6xl font-black text-gray-500 inline-block relative border-b-2 border-secondary/50 pb-2">
-                        de Usuarios
-                    </h3>
-                </div>
 
                 <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
@@ -24,7 +15,7 @@ export default function AsociacionIntro() {
                         </div>
 
                         <h4 className="text-3xl md:text-4xl text-primary font-black mb-8 leading-tight">
-                            ¿Qué es la Asociación<br />de Usuarios?
+                            Asociación de Usuarios
                         </h4>
 
                         <p className="text-gray-500 leading-relaxed text-justify mb-6 font-light">
