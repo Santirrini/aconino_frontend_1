@@ -51,15 +51,17 @@ export default function HeroSlider({
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="absolute inset-0 w-full h-full z-0"
         >
-          <Image
-            src={currentSlide.src}
-            alt={currentSlide.alt}
-            fill
-            className="object-cover object-center"
-            style={currentIndex === 1 ? { transform: "scaleX(-1)" } : undefined}
-            priority={currentIndex === 0}
-            sizes="100vw"
-          />
+          {currentSlide.src && (
+            <Image
+              src={currentSlide.src}
+              alt={currentSlide.alt}
+              fill
+              className="object-cover object-center"
+              style={currentIndex === 1 ? { transform: "scaleX(-1)" } : undefined}
+              priority={currentIndex === 0}
+              sizes="100vw"
+            />
+          )}
           <div 
             className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60 z-10" 
             style={{ opacity: overlayOpacity / 100 }}

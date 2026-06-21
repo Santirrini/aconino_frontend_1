@@ -1,14 +1,15 @@
 "use client";
 
 import ScrollReveal from "../animations/ScrollReveal";
-import { FaFacebookF, FaInstagram, FaYoutube, FaTwitter, FaLinkedinIn, FaPaperPlane } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaPaperPlane } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const socialLinks = [
-    { icon: <FaFacebookF />, href: "https://facebook.com/aconino", color: "hover:bg-blue-600" },
-    { icon: <FaInstagram />, href: "https://instagram.com/aconino", color: "hover:bg-pink-600" },
-    { icon: <FaYoutube />, href: "https://youtube.com/aconino", color: "hover:bg-red-600" },
-    { icon: <FaTwitter />, href: "https://twitter.com/aconino", color: "hover:bg-sky-500" },
-    { icon: <FaLinkedinIn />, href: "https://linkedin.com/company/aconino", color: "hover:bg-blue-700" },
+    { icon: <FaFacebookF />, href: "https://web.facebook.com/AsociacionAconino/", color: "hover:bg-blue-600" },
+    { icon: <FaInstagram />, href: "https://www.instagram.com/aconinoacn/", color: "hover:bg-pink-600" },
+    { icon: <FaYoutube />, href: "https://www.youtube.com/@asociacionaconino1526", color: "hover:bg-red-600" },
+    { icon: <FaXTwitter />, href: "https://twitter.com/aconino", color: "hover:bg-black" },
+    { icon: <FaLinkedinIn />, href: "https://co.linkedin.com/company/aconinoacn", color: "hover:bg-blue-700" },
 ];
 
 export default function ContactForm() {

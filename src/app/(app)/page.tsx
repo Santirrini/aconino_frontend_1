@@ -110,7 +110,7 @@ export default async function Home() {
                 sectionDescription={sanityHome?.programs?.sectionDescription}
             />
             
-            <ImpactSection 
+            <ImpactSection
                 title={sanityHome?.impact?.headerTitle}
                 description={sanityHome?.impact?.headerDescription}
                 stats={sanityHome?.impact?.stats}

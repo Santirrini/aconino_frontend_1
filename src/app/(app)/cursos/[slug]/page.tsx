@@ -196,7 +196,7 @@ export default async function CoursePage({ params }: PageProps) {
                   </div>
                 ) : (
                   <a
-                    href={curso.detailUrl || "https://wa.me/573001234567"}
+                    href="https://wa.me/573133910760"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full inline-block text-center bg-primary text-white font-black py-5 rounded-2xl hover:bg-secondary transition-all shadow-xl shadow-primary/20 hover:shadow-2xl hover:-translate-y-0.5"

@@ -131,21 +131,6 @@ export default function CourseGrid({ courses }: CourseGridProps) {
 
             <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 overflow-visible">
                 
-                {/* Opcional: Si usamos data de Sanity, podemos mostrar un mensaje sutil si hay mock data */}
-                {!hasRealCourses && (
-                    <motion.div 
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="mb-12 max-w-4xl mx-auto text-center bg-white/60 backdrop-blur-md border border-accent/20 rounded-2xl p-6 shadow-sm"
-                    >
-                        <Sparkles className="w-8 h-8 text-accent mx-auto mb-3" />
-                        <h3 className="text-primary font-black text-xl mb-2">¡Nuevos Cursos Pronto!</h3>
-                        <p className="text-slate-500">
-                            Actualmente estamos preparando nuestra próxima oferta académica. Aquí puedes ver ejemplos de las formaciones de alta calidad que ofrecemos en Aconiño.
-                        </p>
-                    </motion.div>
-                )}
-
                 {sortedYears.map((year) => (
                     <div key={year} className="mb-24 last:mb-0">
                         {/* Cabecera del Año */}
@@ -161,11 +146,7 @@ export default function CourseGrid({ courses }: CourseGridProps) {
                                         {year}
                                     </h2>
                                 </div>
-                                
-                                {/* Decorador dinámico */}
-                                <div className="hidden lg:flex items-center gap-4 text-slate-400 font-bold uppercase text-[10px] tracking-[0.3em] transform rotate-90 origin-right translate-y-12">
-                                    EXPLORAR CURSOS <span className="w-16 h-px bg-slate-300"></span>
-                                </div>
+                            
                             </div>
                         </ScrollReveal>
 
@@ -190,8 +171,24 @@ export default function CourseGrid({ courses }: CourseGridProps) {
                         </motion.div>
                     </div>
                 ))}
+
+                {/* Aviso: Nuevos cursos pronto (debajo de los ejemplos) */}
+                {!hasRealCourses && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="mt-16 max-w-4xl mx-auto text-center bg-white/60 backdrop-blur-md border border-accent/20 rounded-2xl p-6 shadow-sm"
+                    >
+                        <Sparkles className="w-8 h-8 text-accent mx-auto mb-3" />
+                        <h3 className="text-primary font-black text-xl mb-2">¡Nuevos Cursos Pronto!</h3>
+                        <p className="text-slate-500">
+                            Actualmente estamos preparando nuestra próxima oferta académica. Aquí puedes ver ejemplos de las formaciones de alta calidad que ofrecemos en Aconiño.
+                        </p>
+                    </motion.div>
+                )}
             </div>
-            
+
             {/* Texto decorativo de fondo con Parallax */}
             <div className="hidden lg:block absolute bottom-0 right-0 opacity-[0.03] pointer-events-none -mb-20 select-none z-0 overflow-hidden">
                 <motion.div style={{ x }}>

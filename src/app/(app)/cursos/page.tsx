@@ -90,12 +90,6 @@ export default async function CursosPage() {
         events={historyEvents}
       />
 
-      <InstructorsSection
-        title={instructorsTitle}
-        intro={instructorsIntro}
-        groups={instructorGroups}
-      />
-
       <CourseGrid courses={courses} />
 
       <section className="bg-gradient-to-br from-primary to-secondary py-20 text-center text-white relative overflow-hidden">
@@ -119,6 +113,12 @@ export default async function CursosPage() {
           </a>
         </div>
       </section>
+
+      <InstructorsSection
+        title={instructorsTitle}
+        intro={instructorsIntro}
+        groups={instructorGroups}
+      />
     </main>
   );
 }

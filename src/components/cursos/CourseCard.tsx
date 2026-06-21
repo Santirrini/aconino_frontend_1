@@ -181,24 +181,36 @@ export default function CourseCard({
 
                     {/* CTA Button */}
                     <div className="mt-auto">
-                        {isExternal ? (
+                        {isFinished ? (
+                            isExternal ? (
+                                <a
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group/btn flex items-center justify-center gap-3 w-full text-center font-black text-xs uppercase tracking-widest py-5 px-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl bg-slate-100 text-slate-400"
+                                >
+                                    Ver Histórico
+                                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                                </a>
+                            ) : (
+                                <Link
+                                    href={href}
+                                    className="group/btn flex items-center justify-center gap-3 w-full text-center font-black text-xs uppercase tracking-widest py-5 px-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl bg-slate-100 text-slate-400"
+                                >
+                                    Ver Histórico
+                                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                                </Link>
+                            )
+                        ) : (
                             <a
-                                href={href}
+                                href="https://wa.me/573133910760"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`group/btn flex items-center justify-center gap-3 w-full text-center font-black text-xs uppercase tracking-widest py-5 px-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl ${isFinished ? 'bg-slate-100 text-slate-400' : 'bg-primary text-white hover:bg-secondary hover:-translate-y-1'}`}
+                                className="group/btn flex items-center justify-center gap-3 w-full text-center font-black text-xs uppercase tracking-widest py-5 px-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl bg-primary text-white hover:bg-secondary hover:-translate-y-1"
                             >
-                                {isFinished ? 'Ver Histórico' : 'Inscribirse Ahora'}
+                                Inscribirse Ahora
                                 <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                             </a>
-                        ) : (
-                            <Link
-                                href={href}
-                                className={`group/btn flex items-center justify-center gap-3 w-full text-center font-black text-xs uppercase tracking-widest py-5 px-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl ${isFinished ? 'bg-slate-100 text-slate-400' : 'bg-primary text-white hover:bg-secondary hover:-translate-y-1'}`}
-                            >
-                                {isFinished ? 'Ver Histórico' : 'Inscribirse Ahora'}
-                                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                            </Link>
                         )}
                     </div>
                 </div>
