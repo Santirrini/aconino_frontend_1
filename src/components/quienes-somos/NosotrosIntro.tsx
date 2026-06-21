@@ -113,14 +113,6 @@ export default function NosotrosIntro({ data }: NosotrosIntroProps) {
                             transition={{ delay: 0.6 }}
                             className="mt-8 md:mt-10 grid grid-cols-2 lg:flex gap-6 md:gap-10"
                         >
-                            {stats.map((stat, idx) => (
-                                <div key={idx} className="flex gap-4 md:gap-6 items-center">
-                                    <div className="flex flex-col">
-                                        <span className="text-[10px] md:text-sm font-bold text-gray-400 uppercase tracking-wider">{stat.label}</span>
-                                    </div>
-                                    {idx < stats.length - 1 && <div className="hidden lg:block w-[1px] h-12 bg-gray-200" />}
-                                </div>
-                            ))}
                         </motion.div>
                     </motion.div>
                 </div>
