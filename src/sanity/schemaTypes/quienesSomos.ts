@@ -380,6 +380,19 @@ export default defineType({
             }
           ]
         }),
+        defineField({
+          name: 'secondImage',
+          title: 'Segunda Foto del Equipo',
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Texto Alternativo',
+            }
+          ]
+        }),
       ]
     }),
     defineField({

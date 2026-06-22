@@ -28,10 +28,13 @@ export default async function ProgramasPage() {
     backgroundImageUrl: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop"
   };
 
-  const interventionModel = data?.interventionModel || {
-    mainTitle: "“Nos centramos más en la actividad y menos en la discapacidad”",
-    subtitle: "“Potenciar habilidades, no solo tratar dificultades”",
-    introText: "En Aconiño trabajamos desde un enfoque interdisciplinario centrado en el niño y su familia, integrando fisioterapia, terapia ocupacional, fonoaudiología y psicología para promover el desarrollo integral, mejorar la funcionalidad, la comunicación, la autonomía y la participación social del usuario."
+  const im = data?.interventionModel;
+  const interventionModel = {
+    mainTitle: im?.mainTitle || "“Nos centramos más en la actividad y menos en la discapacidad”",
+    subtitle: im?.subtitle || "“Potenciar habilidades, no solo tratar dificultades”",
+    introText: im?.introText || "En Aconiño trabajamos desde un enfoque interdisciplinario centrado en el niño y su familia, integrando fisioterapia, terapia ocupacional, fonoaudiología y psicología para promover el desarrollo integral, mejorar la funcionalidad, la comunicación, la autonomía y la participación social del usuario.",
+    imageUrl: im?.imageUrl,
+    imageAlt: im?.imageAlt,
   };
 
   const principles = data?.principles || [
@@ -156,8 +159,8 @@ export default async function ProgramasPage() {
               <div className="relative w-full max-w-lg">
                 <div className="relative aspect-video md:aspect-square w-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-2xl md:rounded-[2.5rem] overflow-hidden group">
                   <Image
-                    src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"
-                    alt="Modelo de Intervención"
+                    src={interventionModel.imageUrl || "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"}
+                    alt={interventionModel.imageAlt || "Modelo de Intervención"}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -253,7 +256,7 @@ export default async function ProgramasPage() {
       </section>
 
       {/* FAQ PARA PADRES */}
-      <ParentFAQ />
+      <ParentFAQ imageUrl={data?.faqImageUrl} imageAlt={data?.faqImageAlt} />
 
       {/* 10. POR QUÉ ELEGIR ACONIÑO (Checkmarks) */}
       <section className="pt-16 pb-4 md:pt-24 md:pb-4 bg-white border-t border-gray-100">

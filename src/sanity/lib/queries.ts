@@ -206,7 +206,9 @@ export const QUIENES_SOMOS_QUERY = defineQuery(`
       subtitle,
       title,
       "imageUrl": image.asset->url,
-      "imageAlt": image.alt
+      "imageAlt": image.alt,
+      "secondImageUrl": secondImage.asset->url,
+      "secondImageAlt": secondImage.alt
     },
     admin {
       subtitle,
@@ -332,10 +334,14 @@ export const PROGRAMAS_PAGE_QUERY = defineQuery(`
       subtitle,
       "backgroundImageUrl": backgroundImage.asset->url
     },
+    "faqImageUrl": faqImage.asset->url,
+    "faqImageAlt": faqImage.alt,
     interventionModel {
       mainTitle,
       subtitle,
-      introText
+      introText,
+      "imageUrl": image.asset->url,
+      "imageAlt": image.alt
     },
     principles[] {
       _key,

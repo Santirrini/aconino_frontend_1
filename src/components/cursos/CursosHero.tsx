@@ -26,7 +26,8 @@ export default function CursosHero({
     title = "Cursos",
     slides: providedSlides
 }: CursosHeroProps) {
-    const slides = providedSlides && providedSlides.length > 0 ? providedSlides : defaultSlides;
+    // Solo una imagen en el banner (sin carrusel)
+    const slides = (providedSlides && providedSlides.length > 0 ? providedSlides : defaultSlides).slice(0, 1);
 
     return (
         <HeroSlider

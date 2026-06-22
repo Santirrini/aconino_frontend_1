@@ -27,7 +27,7 @@ const faqs = [
   }
 ];
 
-export function ParentFAQ() {
+export function ParentFAQ({ imageUrl, imageAlt }: { imageUrl?: string; imageAlt?: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleAccordion = (index: number) => {
@@ -68,8 +68,8 @@ export function ParentFAQ() {
               className="relative w-full h-[400px] md:h-[500px] rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-xl group"
             >
               <Image
-                src={therapyImage}
-                alt="Niños en diferentes tratamientos"
+                src={imageUrl || therapyImage}
+                alt={imageAlt || "Niños en diferentes tratamientos"}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"

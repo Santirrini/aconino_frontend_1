@@ -9,6 +9,8 @@ interface EquipoData {
     title?: string;
     imageUrl?: string;
     imageAlt?: string;
+    secondImageUrl?: string;
+    secondImageAlt?: string;
 }
 
 interface Props {
@@ -20,6 +22,9 @@ export default function NosotrosEquipo({ data }: Props) {
     const title = data?.title || "Nuestro equipo de trabajo";
     const imageUrl = data?.imageUrl || "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop";
     const imageAlt = data?.imageAlt || "Equipo de trabajo Aconiño";
+    // Segunda imagen del equipo (mismo tamaño, debajo) — editable desde Sanity, con respaldo en código
+    const secondImageUrl = data?.secondImageUrl || "https://cdn.sanity.io/images/myf1eg8e/production/20544914d0ddb0c312757887980ccaaaf872934e-1600x1200.jpg";
+    const secondImageAlt = data?.secondImageAlt || imageAlt;
 
     return (
         <section id="equipo-de-trabajo" className="bg-white py-12 md:py-32 relative overflow-hidden scroll-mt-32">
@@ -68,6 +73,32 @@ export default function NosotrosEquipo({ data }: Props) {
                     {/* Internal Shine border */}
                     <div className="absolute inset-2 md:inset-4 border border-white/20 rounded-xl md:rounded-2xl pointer-events-none" />
                     
+                    {/* Brand Accent bar */}
+                    <div className="absolute bottom-0 left-0 w-full h-1.5 md:h-2 bg-gradient-to-r from-primary via-accent to-secondary" />
+                </motion.div>
+
+                {/* Segunda imagen (mismo tamaño, debajo) */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="relative w-full aspect-video md:aspect-[21/9] lg:aspect-[3/1.2] max-w-6xl mx-auto mt-8 md:mt-12 shadow-[0_20px_50px_rgba(8,112,184,0.15)] rounded-2xl md:rounded-3xl overflow-hidden group bg-gray-50 border border-white"
+                >
+                    <Image
+                        src={secondImageUrl}
+                        alt={secondImageAlt}
+                        fill
+                        className="object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+                    />
+
+                    {/* Elegant Overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent opacity-60" />
+
+                    {/* Internal Shine border */}
+                    <div className="absolute inset-2 md:inset-4 border border-white/20 rounded-xl md:rounded-2xl pointer-events-none" />
+
                     {/* Brand Accent bar */}
                     <div className="absolute bottom-0 left-0 w-full h-1.5 md:h-2 bg-gradient-to-r from-primary via-accent to-secondary" />
                 </motion.div>

@@ -32,6 +32,15 @@ export default defineType({
       ]
     }),
     defineField({
+      name: 'faqImage',
+      title: 'Imagen de Preguntas Frecuentes',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        { name: 'alt', type: 'string', title: 'Texto Alternativo' }
+      ]
+    }),
+    defineField({
       name: 'programs',
       title: 'Programas',
       type: 'array',
@@ -104,6 +113,15 @@ export default defineType({
           type: 'text',
           rows: 4,
           initialValue: 'En Aconiño trabajamos desde un enfoque interdisciplinario centrado en el niño y su familia, integrando fisioterapia, terapia ocupacional, fonoaudiología y psicología para promover el desarrollo integral, mejorar la funcionalidad, la comunicación, la autonomía y la participación social del usuario.'
+        }),
+        defineField({
+          name: 'image',
+          title: 'Imagen',
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            { name: 'alt', type: 'string', title: 'Texto Alternativo' }
+          ]
         })
       ]
     }),
