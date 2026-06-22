@@ -4,11 +4,11 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface VideoItem {
-  id: string;   // ID del video/short de YouTube (lo que va después de watch?v=)
+  id: string;   // ID del video de YouTube (lo que va después de watch?v=)
   title?: string;
 }
 
-// Shorts del canal de Aconiño: https://www.youtube.com/@asociacionaconino1526
+// Videos del canal de Aconiño: https://www.youtube.com/@asociacionaconino1526
 const DEFAULT_VIDEOS: VideoItem[] = [
   { id: "td61eQYrs6k" },
   { id: "5O4WLYNtt_k" },
@@ -52,7 +52,7 @@ export default function YoutubeCarousel({
           </h2>
         </div>
 
-        {/* Carrusel: un short a la vez */}
+        {/* Carrusel: un video a la vez */}
         <div className="flex items-center justify-center gap-3 sm:gap-6 md:gap-10">
           {/* Flecha anterior */}
           <button
@@ -63,9 +63,12 @@ export default function YoutubeCarousel({
             <ChevronLeft className="w-6 h-6 md:w-7 md:h-7" />
           </button>
 
-          {/* Short vertical (9:16) */}
-          <div className="relative w-full max-w-[300px] sm:max-w-[330px] md:max-w-[360px]">
-            <div className="relative aspect-[9/16] rounded-[28px] overflow-hidden shadow-2xl bg-gray-900 border-4 border-white">
+          {/* Video horizontal (16:9) */}
+          <div className="relative w-full max-w-3xl">
+            <div
+              className="relative w-full overflow-hidden shadow-2xl bg-gray-900 border-4 border-white"
+              style={{ aspectRatio: "16 / 9", borderRadius: "20px" }}
+            >
               <iframe
                 key={current.id}
                 className="absolute inset-0 w-full h-full"

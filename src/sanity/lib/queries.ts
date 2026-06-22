@@ -133,6 +133,11 @@ export const HOME_PAGE_QUERY = defineQuery(`
       text,
       "videoUrl": video.asset->url,
       "posterUrl": poster.asset->url
+    },
+    youtubeVideos[] {
+      _key,
+      url,
+      title
     }
   }
 `)

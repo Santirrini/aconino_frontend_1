@@ -310,6 +310,21 @@ export default defineType({
       ]
     }),
     defineField({
+      name: 'youtubeVideos',
+      title: 'Carrusel de Videos de YouTube',
+      description: 'Pega las URLs de los videos de YouTube. Se muestran en el carrusel "Aconiño en video".',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            { name: 'url', title: 'URL del video de YouTube', type: 'url' },
+            { name: 'title', title: 'Título (opcional)', type: 'string' },
+          ],
+        })
+      ]
+    }),
+    defineField({
       name: 'cta',
       title: 'Sección CTA (Fondo Azul)',
       type: 'object',
