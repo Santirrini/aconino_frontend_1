@@ -1,13 +1,29 @@
 "use client";
 
-import { FaFacebookF, FaInstagram, FaYoutube, FaTwitter, FaLinkedinIn, FaSearch } from "react-icons/fa";
+import { useState } from "react";
+import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaRegCopy, FaCheck } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { m, AnimatePresence } from "framer-motion";
 
 interface TopBarProps {
   isScrolled: boolean;
 }
 
+const EMAIL = "asistentenorte@aconino.org";
+
 export default function TopBar({ isScrolled }: TopBarProps) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard no disponible; ignorar
+    }
+  };
+
   return (
     <AnimatePresence>
       {!isScrolled && (
@@ -33,22 +49,28 @@ export default function TopBar({ isScrolled }: TopBarProps) {
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
-                <a href="mailto:asistentenorte@aconino.org" className="font-medium hover:text-accent transition-colors">
-                  asistentenorte@aconino.org
+                <a href={`mailto:${EMAIL}`} className="font-medium hover:text-accent transition-colors">
+                  {EMAIL}
                 </a>
+                <button
+                  onClick={handleCopyEmail}
+                  aria-label="Copiar correo"
+                  title={copied ? "¡Copiado!" : "Copiar correo"}
+                  className="ml-1 inline-flex items-center gap-1 text-white/70 hover:text-accent transition-colors"
+                >
+                  {copied ? <FaCheck className="w-3 h-3 text-accent" /> : <FaRegCopy className="w-3 h-3" />}
+                  {copied && <span className="text-[10px] font-bold text-accent">¡Copiado!</span>}
+                </button>
               </div>
             </div>
 
             {/* Redes Sociales (Ocultas en móvil para priorizar información de contacto, visibles en PC) */}
             <div className="hidden md:flex items-center gap-4 border-l border-white/20 pl-4 h-full">
-              <a href="#" className="hover:text-accent transition-colors"><FaFacebookF /></a>
-              <a href="#" className="hover:text-accent transition-colors"><FaInstagram /></a>
-              <a href="#" className="hover:text-accent transition-colors"><FaYoutube /></a>
-              <a href="#" className="hover:text-accent transition-colors"><FaTwitter /></a>
-              <a href="#" className="hover:text-accent transition-colors"><FaLinkedinIn /></a>
-              <button className="hover:text-accent ml-2 transition-colors">
-                <FaSearch />
-              </button>
+              <a href="https://web.facebook.com/AsociacionAconino/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-accent transition-colors"><FaFacebookF /></a>
+              <a href="https://www.instagram.com/aconinoacn/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-accent transition-colors"><FaInstagram /></a>
+              <a href="https://www.youtube.com/@asociacionaconino1526" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-accent transition-colors"><FaYoutube /></a>
+              <a href="https://twitter.com/aconino" target="_blank" rel="noopener noreferrer" aria-label="X" className="hover:text-accent transition-colors"><FaXTwitter /></a>
+              <a href="https://co.linkedin.com/company/aconinoacn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-accent transition-colors"><FaLinkedinIn /></a>
             </div>
 
           </div>

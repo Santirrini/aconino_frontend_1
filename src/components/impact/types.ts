@@ -9,11 +9,20 @@ export interface ImpactStory {
   image?: { url?: string } | string | number | null;
 }
 
+export interface ImpactVideo {
+  _key?: string;
+  name?: string;
+  text?: string;
+  videoUrl?: string;
+  posterUrl?: string;
+}
+
 export interface ImpactSectionProps {
   title?: string | null;
   description?: string | null;
   stats?: ImpactStat[] | null;
   stories?: ImpactStory[] | null;
+  videos?: ImpactVideo[] | null;
   ctaButtonText?: string | null;
 }
 

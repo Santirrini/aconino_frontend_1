@@ -115,12 +115,15 @@ export default async function Home() {
                 description={sanityHome?.impact?.headerDescription}
                 stats={sanityHome?.impact?.stats}
                 stories={mappedTestimonials}
+                videos={sanityHome?.impactVideos}
                 ctaButtonText={sanityHome?.impact?.ctaButtonText}
             />
 
             <SocialFeedSection
                 title="Entérate primero"
                 description="Sigue nuestras últimas actividades y noticias en tiempo real a través de nuestras redes sociales."
+                instagramImageUrl={sanityHome?.news?.instagramImageUrl}
+                facebookImageUrl={sanityHome?.news?.facebookImageUrl}
             />
             
             <RecognitionsSection 

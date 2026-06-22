@@ -104,7 +104,9 @@ export const HOME_PAGE_QUERY = defineQuery(`
     },
     news {
       title,
-      ctaLabel
+      ctaLabel,
+      "instagramImageUrl": instagramImage.asset->url,
+      "facebookImageUrl": facebookImage.asset->url
     },
     recognitions {
       title,
@@ -124,6 +126,13 @@ export const HOME_PAGE_QUERY = defineQuery(`
         quote,
         "imageUrl": image.asset->url
       }
+    },
+    impactVideos[0...4] {
+      _key,
+      name,
+      text,
+      "videoUrl": video.asset->url,
+      "posterUrl": poster.asset->url
     }
   }
 `)

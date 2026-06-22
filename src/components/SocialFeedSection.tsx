@@ -6,12 +6,21 @@ import ScrollReveal from "./animations/ScrollReveal";
 interface SocialFeedSectionProps {
     title?: string;
     description?: string;
+    instagramImageUrl?: string;
+    facebookImageUrl?: string;
 }
 
-export default function SocialFeedSection({ 
-    title = "Conéctate con Nosotros", 
-    description = "Sigue nuestras últimas actividades y noticias en tiempo real a través de nuestras redes sociales." 
+const DEFAULT_INSTAGRAM_IMG = "https://images.unsplash.com/photo-1551854838-212c20b5c09a?q=80&w=1200&auto=format&fit=crop";
+const DEFAULT_FACEBOOK_IMG = "https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=1200&auto=format&fit=crop";
+
+export default function SocialFeedSection({
+    title = "Conéctate con Nosotros",
+    description = "Sigue nuestras últimas actividades y noticias en tiempo real a través de nuestras redes sociales.",
+    instagramImageUrl,
+    facebookImageUrl
 }: SocialFeedSectionProps) {
+    const instagramImg = instagramImageUrl || DEFAULT_INSTAGRAM_IMG;
+    const facebookImg = facebookImageUrl || DEFAULT_FACEBOOK_IMG;
     return (
         <section className="w-full py-20 md:py-32 bg-gray-50 overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,7 +46,7 @@ export default function SocialFeedSection({
                             {/* Background Image */}
                             <div 
                                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
-                                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1551854838-212c20b5c09a?q=80&w=1200&auto=format&fit=crop')" }}
+                                style={{ backgroundImage: `url('${instagramImg}')` }}
                             ></div>
                             
                             {/* Glassmorphism Overlay */}
@@ -70,7 +79,7 @@ export default function SocialFeedSection({
                             {/* Background Image */}
                             <div 
                                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
-                                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=1200&auto=format&fit=crop')" }}
+                                style={{ backgroundImage: `url('${facebookImg}')` }}
                             ></div>
                             
                             {/* Glassmorphism Overlay */}

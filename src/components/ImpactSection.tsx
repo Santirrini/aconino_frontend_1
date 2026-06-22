@@ -3,6 +3,7 @@ import { ImpactSectionProps, ImpactStat, ImpactStory } from "./impact/types";
 import ImpactHeader from "./impact/ImpactHeader";
 import ImpactStats from "./impact/ImpactStats";
 import ImpactStories from "./impact/ImpactStories";
+import ImpactVideos from "./impact/ImpactVideos";
 import ImpactCta from "./impact/ImpactCta";
 
 const defaultStats = [
@@ -17,7 +18,7 @@ const defaultStories = [
   { id: 3, name: "S.", story: "Verlo sonreír y jugar con otros niños es el mayor regalo que pudimos recibir.", img: "https://images.unsplash.com/photo-1542887800-faca0261c9e1?q=80&w=600&auto=format&fit=crop" }
 ];
 
-export default function ImpactSection({ stats = [], stories = [], ctaButtonText }: ImpactSectionProps) {
+export default function ImpactSection({ stats = [], stories = [], videos = [], ctaButtonText }: ImpactSectionProps) {
   // Process Stats
   const processedStats = stats && stats.length > 0 
     ? stats.map((s: ImpactStat, i: number) => {
@@ -51,7 +52,13 @@ export default function ImpactSection({ stats = [], stories = [], ctaButtonText 
 
         {/* Modular Components */}
         <ImpactStats stats={processedStats} />
-        <ImpactStories stories={processedStories} />
+
+        {/* Si hay videos, muestra los reels; si no, los testimonios en tarjeta */}
+        {videos && videos.length > 0 ? (
+          <ImpactVideos videos={videos} />
+        ) : (
+          <ImpactStories stories={processedStories} />
+        )}
 
         {/* CTA Button */}
         <ImpactCta ctaButtonText={ctaButtonText ?? undefined} />

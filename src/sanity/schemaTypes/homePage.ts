@@ -217,6 +217,18 @@ export default defineType({
           type: 'string',
           description: 'Ej: VER TODO'
         }),
+        defineField({
+          name: 'instagramImage',
+          title: 'Imagen tarjeta Instagram',
+          type: 'image',
+          options: { hotspot: true },
+        }),
+        defineField({
+          name: 'facebookImage',
+          title: 'Imagen tarjeta Facebook',
+          type: 'image',
+          options: { hotspot: true },
+        }),
       ]
     }),
     defineField({
@@ -274,6 +286,27 @@ export default defineType({
             })
           ]
         }),
+      ]
+    }),
+    defineField({
+      name: 'impactVideos',
+      title: 'Videos de Impacto (Reels)',
+      description: 'Hasta 4 videos verticales tipo reel. El texto va debajo de cada video.',
+      type: 'array',
+      validation: (Rule) => Rule.max(4),
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            { name: 'video', title: 'Video (vertical / reel)', type: 'file', options: { accept: 'video/*' } },
+            { name: 'poster', title: 'Miniatura (opcional)', type: 'image', options: { hotspot: true } },
+            { name: 'name', title: 'Nombre / Título', type: 'string', description: 'Ej: María, mamá de Sofía' },
+            { name: 'text', title: 'Texto', type: 'text', description: 'Texto que va debajo del video' },
+          ],
+          preview: {
+            select: { title: 'name', media: 'poster' },
+          },
+        })
       ]
     }),
     defineField({
