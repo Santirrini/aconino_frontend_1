@@ -19,5 +19,5 @@ export const mapSanityNavData = (navData?: SanityNavItem[]): NavItem[] => {
         }))
         .filter((link: NavItem) => link.name !== "");
 
-  return links.filter((link) => !HIDDEN_HREFS.includes(link.href));
+  return links.filter((link) => !HIDDEN_HREFS.includes(link.href || ""));
 };

@@ -21,7 +21,7 @@ export default function ProgramsSection({
     sectionDescription?: string;
 }) {
     
-    const defaultPrograms = [
+    const defaultPrograms: ProgramItem[] = [
         {
             title: "Atención Temprana",
             category: "0 a 3 años",
