@@ -22,7 +22,7 @@ const defaultSlides: HeroSliderSlide[] = [
     },
 ];
 
-export default function CursosHero({ 
+export default function CursosHero({
     title = "Cursos",
     slides: providedSlides
 }: CursosHeroProps) {
@@ -34,10 +34,10 @@ export default function CursosHero({
             slides={slides}
             title={title}
             height="h-[400px] md:h-[500px] lg:h-[600px]"
-            titleClassName="text-6xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter"
+            titleClassName="text-6xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter mt-10"
         >
             <div className="absolute -top-8 left-1/2 -translate-x-1/2 md:-top-12 z-20">
-                <span className="text-accent text-4xl md:text-5xl drop-shadow-lg">♥</span>
+                <span className="text-accent text-4xl md:text-5xl drop-shadow-lg mt-10">♥</span>
             </div>
         </HeroSlider>
     );

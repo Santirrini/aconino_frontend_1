@@ -41,6 +41,8 @@ export default function InstructorsSection({
   intro = defaultIntro,
   groups = defaultGroups,
 }: InstructorsSectionProps) {
+  // Cubre null o arreglo vacío desde Sanity
+  const safeGroups = Array.isArray(groups) && groups.length > 0 ? groups : defaultGroups;
   return (
     <section className="py-16 md:py-24 bg-gray-50/80">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,17 +55,17 @@ export default function InstructorsSection({
 
         <ScrollReveal animation="fade-up" delay={0.3}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
-            {groups.map((group, idx) => (
+            {safeGroups.map((group, idx) => (
               <div
                 key={idx}
-                className={`text-center px-6 py-10 rounded-[2rem] md:rounded-[2.5rem] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-[0_15px_50px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1 ${idx < groups.length - 1 ? "md:border-r-0" : ""}`}
+                className={`text-center px-6 py-10 rounded-[2rem] md:rounded-[2.5rem] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-[0_15px_50px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1 ${idx < safeGroups.length - 1 ? "md:border-r-0" : ""}`}
               >
                 <h3 className="text-sm md:text-base font-black text-primary uppercase tracking-widest mb-6 leading-tight min-h-[3rem] flex items-center justify-center px-2">
                   {group.organization}
                 </h3>
                 <div className="w-12 h-1 bg-accent/30 mx-auto mb-8 rounded-full" />
                 <ul className="space-y-3">
-                  {group.instructors.map((name, i) => (
+                  {(group.instructors || []).map((name, i) => (
                     <li
                       key={i}
                       className="text-gray-600 text-base font-bold hover:text-primary transition-colors duration-300"

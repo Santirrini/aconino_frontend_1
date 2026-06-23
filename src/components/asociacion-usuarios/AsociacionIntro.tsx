@@ -1,6 +1,13 @@
 import Image from "next/image";
 
-export default function AsociacionIntro() {
+interface AsociacionIntroProps {
+    imageUrl?: string;
+    imageAlt?: string;
+}
+
+const DEFAULT_IMG = "https://images.unsplash.com/photo-1594801127027-1422abfacd0b?q=80&w=2070&auto=format&fit=crop";
+
+export default function AsociacionIntro({ imageUrl, imageAlt }: AsociacionIntroProps) {
     return (
         <section className="bg-white py-16 md:py-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,8 +34,8 @@ export default function AsociacionIntro() {
                     <div className="flex-1 w-full flex justify-center lg:justify-end">
                         <div className="relative w-full max-w-lg aspect-[4/3] shadow-lg rounded-sm overflow-hidden border-b-8 border-secondary">
                             <Image
-                                src="https://images.unsplash.com/photo-1594801127027-1422abfacd0b?q=80&w=2070&auto=format&fit=crop"
-                                alt="Manos protegiendo recortes de familia"
+                                src={imageUrl || DEFAULT_IMG}
+                                alt={imageAlt || "Manos protegiendo recortes de familia"}
                                 fill
                                 className="object-cover"
                             />

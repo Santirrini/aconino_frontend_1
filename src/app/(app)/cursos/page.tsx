@@ -34,6 +34,7 @@ export default async function CursosPage() {
       featuredImage: string | null;
       year: number;
       detailUrl?: string | null;
+      instructor?: string | null;
     }) => ({
       id: c._id,
       title: c.title,
@@ -46,6 +47,7 @@ export default async function CursosPage() {
       featuredImage: c.featuredImage,
       year: c.year,
       detailUrl: c.detailUrl,
+      instructor: c.instructor,
     })
   );
 

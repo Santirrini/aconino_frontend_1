@@ -61,6 +61,8 @@ export default function BobathHistory({
   subtitle = "Un recorrido de innovación y esperanza en la neurorehabilitación",
   events = defaultEvents,
 }: BobathHistoryProps) {
+  // Cubre los casos en que Sanity envíe null o un arreglo vacío
+  const safeEvents = Array.isArray(events) && events.length > 0 ? events : defaultEvents;
   const containerRef = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -120,7 +122,7 @@ export default function BobathHistory({
           </div>
 
           <div className="space-y-12 md:space-y-24 relative">
-            {events.map((item, index) => {
+            {safeEvents.map((item, index) => {
               const isEven = index % 2 === 0
               const IconComponent = iconMap[item.icon || "FaBrain"] || iconMap.FaBrain
 

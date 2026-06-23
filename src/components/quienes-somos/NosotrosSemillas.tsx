@@ -73,7 +73,7 @@ export default function NosotrosSemillas({ data }: Props) {
                     <FaHeart className="text-accent text-3xl md:text-5xl mb-4 md:mb-6 drop-shadow-md animate-pulse" />
                     <h2 className="text-white text-2xl md:text-6xl font-black leading-tight drop-shadow-xl tracking-tight">
                         Semillas de amor <br className="hidden md:block" />
-                        <span className="text-accent italic font-light tracking-normal text-xl md:text-5xl block mt-1">donde ahora crecen otros sueños</span>
+                        <span className="text-accent italic font-light tracking-normal text-xl md:text-2xl block mt-1">Estos cinco niños no solo son parte de nuestra historia; son la razón por la que seguimos creyendo que cada infancia merece ser acompañada, valorada y celebrada como un regalo para el mundo</span>
                     </h2>
                     <p className="text-white/80 font-bold uppercase tracking-[0.2em] text-sm md:text-lg mt-4 md:mt-6">
                         Hijos de Fundadores

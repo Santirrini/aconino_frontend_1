@@ -236,7 +236,9 @@ export const QUIENES_SOMOS_QUERY = defineQuery(`
           description
         }
       }
-    }
+    },
+    "asociacionImageUrl": asociacionImage.asset->url,
+    "asociacionImageAlt": asociacionImage.alt
   }
 `)
 

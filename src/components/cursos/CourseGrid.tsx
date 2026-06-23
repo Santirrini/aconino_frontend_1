@@ -158,7 +158,7 @@ export default function CourseGrid({ courses }: CourseGridProps) {
                             viewport={{ once: true, margin: "-100px" }}
                             className="bg-transparent grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14"
                         >
-                            {grouped[year].map((course, idx) => (
+                            {[...grouped[year]].reverse().map((course, idx) => (
                                 <motion.div 
                                     key={course.id} 
                                     id={course.slug}

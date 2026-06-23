@@ -139,6 +139,8 @@ interface QuienesSomosData {
     junta?: JuntaData;
     equipo?: EquipoData;
     admin?: AdminData;
+    asociacionImageUrl?: string;
+    asociacionImageAlt?: string;
 }
 
 export default async function QuienesSomosPage() {
@@ -158,7 +160,7 @@ export default async function QuienesSomosPage() {
             <NosotrosEquipo data={sanityData?.equipo} />
             <NosotrosAdmin data={sanityData?.admin} />
             <div id="asociacion-usuarios" className="scroll-mt-32">
-                <AsociacionIntro />
+                <AsociacionIntro imageUrl={sanityData?.asociacionImageUrl} imageAlt={sanityData?.asociacionImageAlt} />
                 <AsociacionBanner />
                 <AsociacionDetails />
             </div>

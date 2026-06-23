@@ -441,5 +441,14 @@ export default defineType({
         }),
       ]
     }),
+    defineField({
+      name: 'asociacionImage',
+      title: 'Imagen Asociación de Usuarios',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        { name: 'alt', type: 'string', title: 'Texto Alternativo' }
+      ]
+    }),
   ],
 })
