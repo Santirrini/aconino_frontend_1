@@ -1,6 +1,5 @@
 import React from "react";
 import FooterHeader from "./footer/FooterHeader";
-import FooterSocial from "./footer/FooterSocial";
 import FooterNav from "./footer/FooterNav";
 import FooterContact from "./footer/FooterContact";
 import FooterApps from "./footer/FooterApps";
@@ -41,8 +40,6 @@ interface FooterProps {
   };
   documentosLegales?: DocumentoLegal[];
 }
-
-const currentYear = new Date().getFullYear();
 
 export default function Footer({ settings, documentosLegales }: FooterProps) {
   const defaultPhone = "(601) 650 8473";

@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import { Activity, ShieldCheck, HeartPulse } from "lucide-react";
+import { Activity } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { client } from "@/sanity/lib/client";
 import { PROGRAMAS_PAGE_QUERY } from "@/sanity/lib/queries";

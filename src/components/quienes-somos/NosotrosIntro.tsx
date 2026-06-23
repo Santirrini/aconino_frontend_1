@@ -25,12 +25,6 @@ export default function NosotrosIntro({ data }: NosotrosIntroProps) {
     const imageUrl = data?.imageUrl || "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1968&auto=format&fit=crop";
     const imageAlt = data?.imageAlt || "Niña en terapia";
 
-    const defaultStats = [
-        { value: "+30", label: "Años de Exp.", color: "secondary" },
-        { value: "+5k", label: "Familias Apoyadas", color: "accent" }
-    ];
-    const stats = data?.stats && data.stats.length > 0 ? data.stats : defaultStats;
-
     return (
         <section id="nosotros" className="py-12 md:py-32 bg-white relative overflow-hidden">
             {/* Background decorative elements */}

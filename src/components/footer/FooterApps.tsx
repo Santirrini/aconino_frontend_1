@@ -12,7 +12,7 @@ interface FooterLink {
   url?: string;
 }
 
-export default function FooterApps({ appDownloadUrl, socialLinks }: FooterAppsProps) {
+export default function FooterApps({ socialLinks }: FooterAppsProps) {
   
   return (
     <div className="flex flex-col items-center md:items-start w-full gap-12">
