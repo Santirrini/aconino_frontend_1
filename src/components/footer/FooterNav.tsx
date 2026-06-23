@@ -22,9 +22,14 @@ interface FooterNavProps {
 }
 
 export default function FooterNav({ documentosLegales }: FooterNavProps) {
+  // Documentos ocultados manualmente (por título, sin importar mayúsculas)
+  const HIDDEN_DOCS = ["rendicion-de-cuentas-cong-2023"];
+
   // Extraer documentos de la categoría "transparencia" para mostrarlos como enlaces individuales
   const transparenciaDocs = documentosLegales?.filter(
-    (doc) => doc.categoria === "transparencia"
+    (doc) =>
+      doc.categoria === "transparencia" &&
+      !HIDDEN_DOCS.some((h) => (doc.titulo || "").toLowerCase().includes(h))
   ) || [];
 
   return (
