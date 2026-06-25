@@ -52,13 +52,15 @@ export default function YoutubeCarousel({
         {/* Carrusel: un video a la vez */}
         <div className="flex items-center justify-center gap-3 sm:gap-6 md:gap-10">
           {/* Flecha anterior */}
-          <button
-            onClick={() => goTo(index - 1)}
-            aria-label="Anterior"
-            className="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border border-gray-200 shadow-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-110 transition-all duration-300"
-          >
-            <ChevronLeft className="w-6 h-6 md:w-7 md:h-7" />
-          </button>
+          {videos.length > 1 && (
+            <button
+              onClick={() => goTo(index - 1)}
+              aria-label="Anterior"
+              className="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border border-gray-200 shadow-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-110 transition-all duration-300"
+            >
+              <ChevronLeft className="w-6 h-6 md:w-7 md:h-7" />
+            </button>
+          )}
 
           {/* Video horizontal (16:9) */}
           <div className="relative w-full max-w-3xl">
@@ -78,27 +80,31 @@ export default function YoutubeCarousel({
           </div>
 
           {/* Flecha siguiente */}
-          <button
-            onClick={() => goTo(index + 1)}
-            aria-label="Siguiente"
-            className="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border border-gray-200 shadow-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-110 transition-all duration-300"
-          >
-            <ChevronRight className="w-6 h-6 md:w-7 md:h-7" />
-          </button>
+          {videos.length > 1 && (
+            <button
+              onClick={() => goTo(index + 1)}
+              aria-label="Siguiente"
+              className="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border border-gray-200 shadow-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-110 transition-all duration-300"
+            >
+              <ChevronRight className="w-6 h-6 md:w-7 md:h-7" />
+            </button>
+          )}
         </div>
 
         {/* Indicadores (puntos) */}
-        <div className="flex justify-center gap-3 mt-8">
-          {videos.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i)}
-              aria-label={`Ir al video ${i + 1}`}
-              className={`h-2 rounded-full transition-all duration-300 ${i === index ? "w-8 bg-primary" : "w-2 bg-gray-300 hover:bg-gray-400"
-                }`}
-            />
-          ))}
-        </div>
+        {videos.length > 1 && (
+          <div className="flex justify-center gap-3 mt-8">
+            {videos.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                aria-label={`Ir al video ${i + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${i === index ? "w-8 bg-primary" : "w-2 bg-gray-300 hover:bg-gray-400"
+                  }`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
