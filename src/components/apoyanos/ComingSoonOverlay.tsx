@@ -314,13 +314,13 @@ export default function ComingSoonOverlay({
             </div>
         </motion.div>
 
+        {/* Carrusel de videos de YouTube */}
+        <YoutubeCarousel />
+
         {/* Botón de donar por WhatsApp (igual al del inicio) */}
         <div className="w-full pb-20">
             <ImpactCta />
         </div>
-
-        {/* Carrusel de videos de YouTube */}
-        <YoutubeCarousel />
       </div>
     </motion.div>
   );

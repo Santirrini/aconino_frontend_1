@@ -20,7 +20,6 @@ interface YoutubeCarouselProps {
 }
 
 export default function YoutubeCarousel({
-  title = "Centro Día",
   subtitle = "Nuestro canal",
   videos = DEFAULT_VIDEOS,
 }: YoutubeCarouselProps) {
@@ -44,9 +43,6 @@ export default function YoutubeCarousel({
             <span className="text-sm font-bold text-gray-400 tracking-widest uppercase">{subtitle}</span>
             <div className="h-[2px] bg-accent w-10"></div>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight drop-shadow-lg">
-            {title}
-          </h2>
         </div>
 
         {/* Carrusel: un video a la vez */}
