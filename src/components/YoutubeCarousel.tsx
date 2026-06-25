@@ -10,10 +10,7 @@ interface VideoItem {
 
 // Videos del canal de Aconiño: https://www.youtube.com/@asociacionaconino1526
 const DEFAULT_VIDEOS: VideoItem[] = [
-  { id: "td61eQYrs6k" },
-  { id: "5O4WLYNtt_k" },
   { id: "Bh_OaEmq-_w" },
-  { id: "sYFxwrq2no8" },
 ];
 
 interface YoutubeCarouselProps {
@@ -23,7 +20,7 @@ interface YoutubeCarouselProps {
 }
 
 export default function YoutubeCarousel({
-  title = "Aconiño en video",
+  title = "Centro Día",
   subtitle = "Nuestro canal",
   videos = DEFAULT_VIDEOS,
 }: YoutubeCarouselProps) {
@@ -97,9 +94,8 @@ export default function YoutubeCarousel({
               key={i}
               onClick={() => goTo(i)}
               aria-label={`Ir al video ${i + 1}`}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === index ? "w-8 bg-primary" : "w-2 bg-gray-300 hover:bg-gray-400"
-              }`}
+              className={`h-2 rounded-full transition-all duration-300 ${i === index ? "w-8 bg-primary" : "w-2 bg-gray-300 hover:bg-gray-400"
+                }`}
             />
           ))}
         </div>
