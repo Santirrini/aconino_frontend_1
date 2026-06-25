@@ -20,7 +20,7 @@ export default function ApoyanosClient() {
         <main className="min-h-screen">
             <ComingSoonOverlay 
                 show={true} 
-                targetYear={2027} 
+                targetYear={2028}
                 message="Centro Día para Adultos" 
             />
         </main>

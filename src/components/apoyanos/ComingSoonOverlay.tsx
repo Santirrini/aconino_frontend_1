@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { IconBuilding, IconConstruction } from "@/constants/apoyanos-icons";
 import ImpactCta from "@/components/impact/ImpactCta";
+import YoutubeCarousel from "@/components/YoutubeCarousel";
 
 interface TimeLeft {
   years: number;
@@ -317,6 +318,9 @@ export default function ComingSoonOverlay({
         <div className="w-full pb-20">
             <ImpactCta />
         </div>
+
+        {/* Carrusel de videos de YouTube */}
+        <YoutubeCarousel />
       </div>
     </motion.div>
   );

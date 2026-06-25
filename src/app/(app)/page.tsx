@@ -2,7 +2,6 @@ import Hero from "../../components/Hero";
 import { InterventionModelSection } from "@/components/InterventionModelSection";
 import ProgramsSection from "../../components/ProgramsSection";
 import ImpactSection from "../../components/ImpactSection";
-import YoutubeCarousel from "../../components/YoutubeCarousel";
 import SocialFeedSection from "../../components/SocialFeedSection";
 import RecognitionsSection from "../../components/RecognitionsSection";
 
@@ -11,18 +10,6 @@ import { HOME_PAGE_QUERY } from "@/sanity/lib/queries";
 import type { HeroSliderSlide } from "@/components/shared/HeroSlider";
 
 export const revalidate = 60;
-
-// Extrae el ID de un video de YouTube desde cualquier formato de URL
-function getYoutubeId(url?: string): string | null {
-    if (!url) return null;
-    const m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
-    return m ? m[1] : null;
-}
-
-interface SanityYoutubeVideo {
-    url?: string;
-    title?: string;
-}
 
 export default async function Home() {
     let sanityHome = null;
@@ -86,11 +73,6 @@ export default async function Home() {
         image: t.imageUrl || null
     })) || [];
 
-    // Videos de YouTube para el carrusel (desde Sanity → extrae el ID de cada URL)
-    const youtubeVideos = (sanityHome?.youtubeVideos || [])
-        .map((v: SanityYoutubeVideo) => ({ id: getYoutubeId(v?.url), title: v?.title }))
-        .filter((v: { id: string | null }) => !!v.id) as { id: string; title?: string }[];
-
     interface SanityHeroSlide {
         imageUrl?: string;
         alt?: string;
@@ -128,8 +110,6 @@ export default async function Home() {
                 sectionDescription={sanityHome?.programs?.sectionDescription}
             />
             
-            <YoutubeCarousel videos={youtubeVideos.length > 0 ? youtubeVideos : undefined} />
-
             <ImpactSection
                 title={sanityHome?.impact?.headerTitle}
                 description={sanityHome?.impact?.headerDescription}

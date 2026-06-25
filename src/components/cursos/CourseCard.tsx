@@ -86,7 +86,7 @@ export default function CourseCard({
             <div className={`relative bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border flex flex-col h-full group-hover:shadow-[0_25px_60px_rgba(0,0,0,0.12)] transition-shadow duration-500 z-10 ${course.isFeatured ? 'border-accent/40 ring-1 ring-accent/20' : 'border-slate-100'}`}>
                 
                 {/* Image Section */}
-                <div className="relative w-full overflow-hidden h-52 md:h-60">
+                <div className="relative w-full overflow-hidden h-72 md:h-96">
                     <Image
                         src={imageUrl}
                         alt={imageAlt}

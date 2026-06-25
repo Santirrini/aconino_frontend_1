@@ -89,7 +89,8 @@ export default function NosotrosEquipo({ data }: Props) {
                         src={secondImageUrl}
                         alt={secondImageAlt}
                         fill
-                        className="object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+                        style={{ objectPosition: "center 25%" }}
+                        className="object-cover transition-transform duration-1000 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                     />
 

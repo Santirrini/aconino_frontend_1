@@ -38,7 +38,7 @@ export default function YoutubeCarousel({
   const current = videos[index];
 
   return (
-    <section className="w-full bg-gray-50 py-16 md:py-24 overflow-hidden">
+    <section className="w-full bg-transparent py-16 md:py-24 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10 md:mb-14 flex flex-col items-center">
@@ -47,7 +47,7 @@ export default function YoutubeCarousel({
             <span className="text-sm font-bold text-gray-400 tracking-widest uppercase">{subtitle}</span>
             <div className="h-[2px] bg-accent w-10"></div>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight drop-shadow-lg">
             {title}
           </h2>
         </div>
