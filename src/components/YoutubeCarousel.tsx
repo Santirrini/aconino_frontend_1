@@ -10,6 +10,7 @@ interface VideoItem {
 
 // Videos del canal de Aconiño: https://www.youtube.com/@asociacionaconino1526
 const DEFAULT_VIDEOS: VideoItem[] = [
+  { id: "sUQlJzGlNTE" },
   { id: "Bh_OaEmq-_w" },
 ];
 
