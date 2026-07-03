@@ -8,7 +8,7 @@ export const DEFAULT_NAV_LINKS: NavItem[] = [
     hasDropdown: true,
     subLinks: [
       { name: "Nosotros", href: "/quienes-somos/nosotros" },
-      { name: "Misión", href: "/quienes-somos/nosotros#mision" },
+      { name: "Aspiración Estratégica", href: "/quienes-somos/nosotros#mision" },
       { name: "Historia", href: "/quienes-somos/nosotros#historia" },
       { name: "Fundadores", href: "/quienes-somos/nosotros#fundadores" },
       { name: "Junta Directiva", href: "/quienes-somos/nosotros#junta-directiva" },
