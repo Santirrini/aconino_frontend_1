@@ -10,6 +10,28 @@ interface CourseGridProps {
     courses: CourseCardData[];
 }
 
+// Mapa de meses en español para ordenar por fecha
+const MONTHS: Record<string, number> = {
+    enero: 1, febrero: 2, marzo: 3, abril: 4, mayo: 5, junio: 6,
+    julio: 7, agosto: 8, septiembre: 9, setiembre: 9, octubre: 10,
+    noviembre: 11, diciembre: 12,
+};
+
+// Extrae una clave ordenable (mes*100 + día) del texto de fechas. Sin fecha → al final.
+function dateSortKey(dates?: string | null): number {
+    if (!dates) return 999999;
+    const lower = dates.toLowerCase();
+    let bestIdx = Infinity;
+    let month = 13;
+    for (const [name, num] of Object.entries(MONTHS)) {
+        const idx = lower.indexOf(name);
+        if (idx !== -1 && idx < bestIdx) { bestIdx = idx; month = num; }
+    }
+    const dayMatch = lower.match(/\b(\d{1,2})\b/);
+    const day = dayMatch ? parseInt(dayMatch[1], 10) : 0;
+    return month * 100 + day;
+}
+
 // Datos dummy coherentes con Aconiño en caso de que Sanity no retorne nada
 const fallbackCourses: CourseCardData[] = [
     {
@@ -158,7 +180,9 @@ export default function CourseGrid({ courses }: CourseGridProps) {
                             viewport={{ once: true, margin: "-100px" }}
                             className="bg-transparent grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14"
                         >
-                            {[...grouped[year]].reverse().map((course, idx) => (
+                            {[...grouped[year]]
+                                .sort((a, b) => dateSortKey(a.dates) - dateSortKey(b.dates))
+                                .map((course, idx) => (
                                 <motion.div 
                                     key={course.id} 
                                     id={course.slug}

@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { IconBuilding, IconConstruction } from "@/constants/apoyanos-icons";
 import ImpactCta from "@/components/impact/ImpactCta";
 import YoutubeCarousel from "@/components/YoutubeCarousel";
+import DonationAccount from "@/components/apoyanos/DonationAccount";
+import { FaWhatsapp } from "react-icons/fa";
 
 interface TimeLeft {
   years: number;
@@ -251,7 +253,20 @@ export default function ComingSoonOverlay({
         >
           Un espacio dedicado a la neurorehabilitación y cuidado integral de adultos.
         </motion.p>
-        
+
+        {/* Botón CONTÁCTANOS (mismo del inicio) */}
+        <div className="mt-8 sm:mt-10 flex justify-center">
+          <a
+            href="https://wa.me/573133910760"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-accent text-primary font-black tracking-widest text-sm md:text-base px-12 py-5 rounded-full hover:bg-white transition-all duration-300 shadow-xl shadow-accent/20 transform hover:-translate-y-1 hover:scale-105"
+          >
+            <FaWhatsapp className="text-xl md:text-2xl" />
+            CONTÁCTANOS
+          </a>
+        </div>
+
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -316,6 +331,9 @@ export default function ComingSoonOverlay({
 
         {/* Carrusel de videos de YouTube */}
         <YoutubeCarousel />
+
+        {/* Cuenta bancaria para donaciones (número pendiente) */}
+        <DonationAccount />
 
         {/* Botón de donar por WhatsApp (igual al del inicio) */}
         <div className="w-full pb-20">

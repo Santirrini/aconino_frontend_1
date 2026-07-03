@@ -9,7 +9,6 @@ export const DEFAULT_NAV_LINKS: NavItem[] = [
     subLinks: [
       { name: "Nosotros", href: "/quienes-somos/nosotros" },
       { name: "Misión", href: "/quienes-somos/nosotros#mision" },
-      { name: "Visión", href: "/quienes-somos/nosotros#vision" },
       { name: "Historia", href: "/quienes-somos/nosotros#historia" },
       { name: "Fundadores", href: "/quienes-somos/nosotros#fundadores" },
       { name: "Junta Directiva", href: "/quienes-somos/nosotros#junta-directiva" },
@@ -22,8 +21,8 @@ export const DEFAULT_NAV_LINKS: NavItem[] = [
     href: "/programas",
     hasDropdown: true,
     subLinks: [
-      { name: "Modelo de Intervención", href: "/programas#modelo" },
-      { name: "Nuestros Pilares", href: "/programas#metodologia" },
+      { name: "Enfoque Terapéutico", href: "/programas#modelo" },
+      { name: "Metodología de Trabajo", href: "/programas#metodologia" },
       { name: "Objetivos por Área", href: "/programas#objetivos" },
       { name: "Atención Temprana 0-3 Años", href: "/programas#atencion-temprana" },
       { name: "Atención a Niños y Jóvenes 3-18 Años", href: "/programas#atencion-ninos-jovenes" },

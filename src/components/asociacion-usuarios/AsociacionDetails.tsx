@@ -66,13 +66,18 @@ export default function AsociacionDetails() {
                             <h4 className="text-secondary font-bold text-lg mb-6">Representantes de Asopadres Aconiño</h4>
 
                             <div className="mb-6">
-                                <p className="text-gray-700 font-bold mb-1">Karina Lara Villar</p>
+                                <p className="text-gray-700 font-bold mb-1">Luis Fernando Benitez</p>
                                 <p className="text-gray-400 font-light text-sm">Presidente</p>
                             </div>
 
+                            <div className="mb-6">
+                                <p className="text-gray-700 font-bold mb-1">Sandra Antivar</p>
+                                <p className="text-gray-400 font-light text-sm">Vicepresidente</p>
+                            </div>
+
                             <div>
-                                <p className="text-gray-700 font-bold mb-1">Laura Carreño</p>
-                                <p className="text-gray-400 font-light text-sm">Secretaria</p>
+                                <p className="text-gray-700 font-bold mb-1">Sandra Santiago y Yessica Hurtado</p>
+                                <p className="text-gray-400 font-light text-sm">Vocales</p>
                             </div>
                         </div>
 

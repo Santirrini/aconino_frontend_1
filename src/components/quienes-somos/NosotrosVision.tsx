@@ -19,14 +19,14 @@ interface Props {
 
 export default function NosotrosVision({ data }: Props) {
     const subtitle = data?.subtitle || "Nuestro Futuro";
-    const title = data?.title || "Visión";
+    const title = data?.title || "Ser el ecosistema referente y preferido por las personas con discapacidad y sus familias en el acompañamiento efectivo a lo largo de su ciclo de vida en Colombia y por lo menos dos países de Latinoamérica.";
     const imageUrl = data?.imageUrl || "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=2127&auto=format&fit=crop";
     const imageAlt = data?.imageAlt || "Terapeuta ayudando a niña";
 
     return (
         <section id="vision" className="bg-gray-50 flex flex-col-reverse lg:flex-row relative overflow-hidden scroll-mt-32">
-            
-            <motion.div 
+
+            <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -38,11 +38,11 @@ export default function NosotrosVision({ data }: Props) {
                         <span className="text-gray-400 font-bold tracking-widest uppercase text-[10px] md:text-sm">{subtitle}</span>
                         <div className="h-[1px] md:h-[2px] w-12 md:w-16 bg-accent"></div>
                     </div>
-                    
-                    <h2 className="text-4xl md:text-6xl font-black text-primary mb-6 md:mb-8 tracking-tight leading-tight">
+
+                    <h2 className="text-xl md:text-3xl font-black text-primary mb-6 md:mb-8 tracking-tight leading-tight">
                         {title}
                     </h2>
-                    
+
                     <div className="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-xl relative border-t-4 border-accent">
                         <div className="absolute -top-4 md:-top-6 -right-2 md:-right-6 bg-accent w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg">
                             <FaEye className="text-white text-lg md:text-xl" />
@@ -66,13 +66,13 @@ export default function NosotrosVision({ data }: Props) {
             </motion.div>
 
             <div className="w-full lg:w-1/2 relative bg-accent/10 md:bg-accent min-h-[350px] md:min-h-[500px] flex items-center justify-center p-6 md:p-12 lg:p-20 z-10 overflow-hidden">
-                <motion.div 
+                <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
                     className="absolute inset-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent opacity-50 pointer-events-none"
                 />
 
-                <motion.div 
+                <motion.div
                     initial={{ scaleY: 0 }}
                     whileInView={{ scaleY: 1 }}
                     viewport={{ once: true }}
@@ -80,7 +80,7 @@ export default function NosotrosVision({ data }: Props) {
                     className="absolute left-0 top-1/4 h-1/2 w-3 bg-primary hidden lg:block rounded-r-full origin-top z-20"
                 />
 
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
@@ -95,7 +95,7 @@ export default function NosotrosVision({ data }: Props) {
                         sizes="(max-width: 768px) 100vw, 50vw"
                     />
                     <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500" />
-                    
+
                     {/* Internal Shine border matching Mission */}
                     <div className="absolute inset-2 md:inset-4 border border-white/20 rounded-xl md:rounded-2xl pointer-events-none" />
                 </motion.div>
