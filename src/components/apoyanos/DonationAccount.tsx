@@ -3,11 +3,6 @@
 import { useState } from "react";
 import { FaRegCopy, FaCheck, FaUniversity } from "react-icons/fa";
 
-/**
- * 🔧 CUENTA PARA DONACIONES
- * Cuando tengas los datos, rellena este objeto y el botón se activa solo.
- * Mientras `numero` esté vacío, se muestra "Datos próximamente".
- */
 const DONATION_ACCOUNT = {
   banco: "Bancolombia",
   tipo: "Cuenta de ahorros",
