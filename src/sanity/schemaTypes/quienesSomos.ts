@@ -140,6 +140,15 @@ export default defineType({
           type: 'text',
           rows: 4,
         }),
+        defineField({
+          name: 'cardImage',
+          title: 'Imagen de Visión (reemplaza el texto de los puntos)',
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            { name: 'alt', type: 'string', title: 'Texto Alternativo' }
+          ]
+        }),
       ]
     }),
     defineField({

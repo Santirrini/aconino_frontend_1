@@ -9,6 +9,8 @@ interface VisionData {
     title?: string;
     imageUrl?: string;
     imageAlt?: string;
+    cardImageUrl?: string;
+    cardImageAlt?: string;
     visionText?: string;
     visionTextSecondary?: string;
 }
@@ -19,7 +21,6 @@ interface Props {
 
 export default function NosotrosVision({ data }: Props) {
     const subtitle = data?.subtitle || "Nuestro Futuro";
-    const title = data?.title || "Ser el ecosistema referente y preferido por las personas con discapacidad y sus familias en el acompañamiento efectivo a lo largo de su ciclo de vida en Colombia y por lo menos dos países de Latinoamérica.";
     const imageUrl = data?.imageUrl || "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=2127&auto=format&fit=crop";
     const imageAlt = data?.imageAlt || "Terapeuta ayudando a niña";
 
@@ -39,27 +40,18 @@ export default function NosotrosVision({ data }: Props) {
                         <div className="h-[1px] md:h-[2px] w-12 md:w-16 bg-accent"></div>
                     </div>
 
-                    <h2 className="text-xl md:text-3xl font-black text-primary mb-6 md:mb-8 tracking-tight leading-tight">
-                        {title}
-                    </h2>
-
-                    <div className="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-xl relative border-t-4 border-accent">
-                        <div className="absolute -top-4 md:-top-6 -right-2 md:-right-6 bg-accent w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg">
+                    <div className="bg-white p-3 md:p-4 rounded-2xl md:rounded-3xl shadow-xl relative border-t-4 border-accent">
+                        <div className="absolute -top-4 md:-top-6 -right-2 md:-right-6 bg-accent w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg z-10">
                             <FaEye className="text-white text-lg md:text-xl" />
                         </div>
-                        <div className="flex flex-col gap-5 md:gap-6">
-                            <div>
-                                <strong className="font-black text-primary block text-lg md:text-xl mb-1.5">1. Liderazgo y referencia</strong>
-                                <p className="text-gray-600 leading-relaxed text-base md:text-lg text-justify">
-                                    Ser una organización sostenible y referente nacional e internacional en la atención de alteraciones sensoriomotoras, reconocida por la innovación, el uso de nuevas tecnologías y la excelencia en el acompañamiento a personas con discapacidad y sus familias.
-                                </p>
-                            </div>
-                            <div>
-                                <strong className="font-black text-primary block text-lg md:text-xl mb-1.5">2. Desarrollo y expansión institucional</strong>
-                                <p className="text-gray-600 leading-relaxed text-base md:text-lg text-justify">
-                                    Para el año 2027, consolidar la creación de un Centro Día que brinde apoyo, desarrollo, autonomía e inclusión social a adultos con discapacidad, ampliando el impacto de la asociación a lo largo del ciclo de vida.
-                                </p>
-                            </div>
+                        <div className="relative w-full overflow-hidden rounded-xl md:rounded-2xl" style={{ aspectRatio: "4 / 3" }}>
+                            <Image
+                                src={data?.cardImageUrl || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2000&auto=format&fit=crop"}
+                                alt={data?.cardImageAlt || "Visión Aconiño"}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                            />
                         </div>
                     </div>
                 </div>

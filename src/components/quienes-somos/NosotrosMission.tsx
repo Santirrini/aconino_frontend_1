@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { PortableTextBlock } from "@portabletext/react";
+import { PortableText, PortableTextBlock } from "@portabletext/react";
 
 interface MissionData {
     subtitle?: string;
@@ -28,7 +28,7 @@ export default function NosotrosMission({ data }: Props) {
             <div className="absolute inset-0 z-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
 
             {/* Left side Content */}
-            <motion.div 
+            <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -40,28 +40,43 @@ export default function NosotrosMission({ data }: Props) {
                         <span className="text-accent font-bold tracking-widest uppercase text-[10px] md:text-sm">{subtitle}</span>
                         <div className="h-[1px] md:h-[2px] w-12 md:w-16 bg-white/20"></div>
                     </div>
-                    
+
                     <h2 className="text-4xl md:text-6xl font-black mb-6 md:mb-8 tracking-tight drop-shadow-md leading-tight">
                         {title}
                     </h2>
-                    
+
                     <div className="relative">
                         <span className="absolute -top-8 md:-top-10 -left-6 md:-left-8 text-7xl md:text-8xl text-white/10 font-serif leading-none select-none">&quot;</span>
-                        <div className="space-y-4 md:space-y-6 relative z-10">
-                            <p className="text-gray-200 leading-relaxed text-base md:text-lg text-justify font-medium">
-                                Impulsar el desarrollo y la participación plena de bebés, niños y jóvenes con alteraciones del neurodesarrollo mediante programas terapéuticos interdisciplinarios.
-                            </p>
-                            <p className="text-gray-200 leading-relaxed text-base md:text-lg text-justify font-medium">
-                                Acompañar y orientar a las familias, fortaleciendo su participación activa en el proceso de desarrollo y rehabilitación.
-                            </p>
-                            <p className="text-gray-200 leading-relaxed text-base md:text-lg text-justify font-medium">
-                                Impulsar la formación continua de profesionales mediante programas de capacitación, cursos y seminarios especializados, incorporando instructores y expertos de Europa, Estados Unidos y otros países, para fortalecer el intercambio de conocimiento y elevar la calidad de la atención a nivel nacional e internacional.
-                            </p>
-                        </div>
+                        {data?.description ? (
+                            <div className="space-y-4 md:space-y-6 relative z-10">
+                                <PortableText
+                                    value={data.description}
+                                    components={{
+                                        block: {
+                                            normal: ({ children }) => (
+                                                <p className="text-gray-200 leading-relaxed text-lg md:text-xl text-justify font-medium">{children}</p>
+                                            ),
+                                        },
+                                    }}
+                                />
+                            </div>
+                        ) : (
+                            <div className="space-y-4 md:space-y-6 relative z-10">
+                                <p className="text-gray-200 leading-relaxed text-lg md:text-2xl text-justify font-medium">
+                                    Impulsar el desarrollo y la participación plena de bebés, niños y jóvenes con alteraciones del neurodesarrollo mediante programas terapéuticos interdisciplinarios.
+                                </p>
+                                <p className="text-gray-200 leading-relaxed text-lg md:text-2xl text-justify font-medium">
+                                    Acompañar y orientar a las familias, fortaleciendo su participación activa en el proceso de desarrollo y rehabilitación.
+                                </p>
+                                <p className="text-gray-200 leading-relaxed text-lg md:text-2xl text-justify font-medium">
+                                    Impulsar la formación continua de profesionales mediante programas de capacitación, cursos y seminarios especializados, incorporando instructores y expertos de Europa, Estados Unidos y otros países, para fortalecer el intercambio de conocimiento y elevar la calidad de la atención a nivel nacional e internacional.
+                                </p>
+                            </div>
+                        )}
                     </div>
                 </div>
 
-                <motion.div 
+                <motion.div
                     initial={{ scaleY: 0 }}
                     whileInView={{ scaleY: 1 }}
                     viewport={{ once: true }}
@@ -72,7 +87,7 @@ export default function NosotrosMission({ data }: Props) {
 
             {/* Right side Image with Frame */}
             <div className="w-full lg:w-1/2 relative bg-primary/20 flex items-center justify-center p-6 md:p-12 lg:p-20 z-10 overflow-hidden">
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
@@ -89,7 +104,7 @@ export default function NosotrosMission({ data }: Props) {
                     />
                     {/* Minimalist Overlay for depth */}
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-40 group-hover:opacity-10 transition-opacity duration-500" />
-                    
+
                     {/* Internal Shine border */}
                     <div className="absolute inset-2 md:inset-4 border border-white/20 rounded-xl md:rounded-2xl pointer-events-none" />
                 </motion.div>

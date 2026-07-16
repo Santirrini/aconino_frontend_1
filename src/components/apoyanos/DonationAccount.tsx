@@ -9,10 +9,10 @@ import { FaRegCopy, FaCheck, FaUniversity } from "react-icons/fa";
  * Mientras `numero` esté vacío, se muestra "Datos próximamente".
  */
 const DONATION_ACCOUNT = {
-  banco: "",     // ej. "Bancolombia"
-  tipo: "",      // ej. "Cuenta de ahorros"
-  numero: "",    // ej. "123-456789-00"  ← cuando lo tengas, ponlo aquí
-  titular: "Asociación Aconiño",
+  banco: "Bancolombia",
+  tipo: "Cuenta de ahorros",
+  numero: "6990010357",
+  titular: "Asociación Centro de Atención para Niños TR",
 };
 
 export default function DonationAccount() {
@@ -41,7 +41,7 @@ export default function DonationAccount() {
         {hasData ? (
           <>
             <p className="text-white/70 text-sm mb-4">
-              {DONATION_ACCOUNT.banco} · {DONATION_ACCOUNT.tipo}
+              {[DONATION_ACCOUNT.banco, DONATION_ACCOUNT.tipo].filter(Boolean).join(" · ")}
             </p>
             <button
               onClick={handleCopy}

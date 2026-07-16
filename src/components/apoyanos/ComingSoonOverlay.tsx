@@ -18,12 +18,14 @@ interface TimeLeft {
 
 interface ComingSoonOverlayProps {
   targetYear?: number;
+  targetMonth?: number; // 0 = enero, 7 = agosto
   message?: string;
   show?: boolean;
 }
 
-export default function ComingSoonOverlay({ 
+export default function ComingSoonOverlay({
   targetYear = 2027,
+  targetMonth = 0,
   message = "Centro Día para Adultos",
   show = true
 }: ComingSoonOverlayProps) {
@@ -50,7 +52,7 @@ export default function ComingSoonOverlay({
   
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const targetDate = new Date(targetYear, 0, 1);
+      const targetDate = new Date(targetYear, targetMonth, 1);
       const now = new Date();
       const difference = targetDate.getTime() - now.getTime();
 
@@ -76,7 +78,7 @@ export default function ComingSoonOverlay({
     const timer = setInterval(calculateTimeLeft, 60000);
 
     return () => clearInterval(timer);
-  }, [targetYear]);
+  }, [targetYear, targetMonth]);
 
   if (!mounted || !show) return null;
 

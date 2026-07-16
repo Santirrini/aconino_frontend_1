@@ -18,10 +18,11 @@ export default function ApoyanosClient() {
     // not rendered while the Coming Soon state is active.
     return (
         <main className="min-h-screen">
-            <ComingSoonOverlay 
-                show={true} 
-                targetYear={2028}
-                message="Centro Día para Adultos" 
+            <ComingSoonOverlay
+                show={true}
+                targetYear={2027}
+                targetMonth={8}
+                message="Centro Día para Adultos"
             />
         </main>
     );

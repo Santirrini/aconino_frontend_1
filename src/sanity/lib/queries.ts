@@ -169,6 +169,8 @@ export const QUIENES_SOMOS_QUERY = defineQuery(`
       title,
       "imageUrl": image.asset->url,
       "imageAlt": image.alt,
+      "cardImageUrl": cardImage.asset->url,
+      "cardImageAlt": cardImage.alt,
       visionText,
       visionTextSecondary
     },
