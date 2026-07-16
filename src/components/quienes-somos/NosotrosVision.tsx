@@ -30,9 +30,9 @@ export default function NosotrosVision({ data }: Props) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="w-full lg:w-1/2 relative min-h-[350px] md:min-h-[500px] flex items-center justify-center p-6 md:p-12 lg:p-20 z-10 overflow-hidden"
+                className="w-full lg:w-1/2 relative min-h-[420px] md:min-h-[620px] flex items-center justify-center p-6 md:p-10 lg:p-12 z-10 overflow-hidden"
             >
-                <div className="relative w-full aspect-video md:aspect-square lg:h-full min-h-[280px] shadow-2xl rounded-2xl md:rounded-3xl overflow-hidden group border border-white/20">
+                <div className="relative w-full aspect-video md:aspect-square lg:h-full min-h-[320px] shadow-2xl rounded-2xl md:rounded-3xl overflow-hidden group border border-white/20">
                     <Image
                         src={data?.cardImageUrl || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2000&auto=format&fit=crop"}
                         alt={data?.cardImageAlt || "Visión Aconiño"}
@@ -45,7 +45,7 @@ export default function NosotrosVision({ data }: Props) {
                 </div>
             </motion.div>
 
-            <div className="w-full lg:w-1/2 relative bg-accent/10 md:bg-accent min-h-[350px] md:min-h-[500px] flex items-center justify-center p-6 md:p-12 lg:p-20 z-10 overflow-hidden">
+            <div className="w-full lg:w-1/2 relative bg-accent/10 md:bg-accent min-h-[420px] md:min-h-[620px] flex items-center justify-center p-6 md:p-10 lg:p-12 z-10 overflow-hidden">
                 <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
@@ -65,7 +65,7 @@ export default function NosotrosVision({ data }: Props) {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="relative w-full aspect-video md:aspect-square lg:h-full min-h-[280px] shadow-2xl rounded-2xl md:rounded-3xl overflow-hidden group border border-white/20"
+                    className="relative w-full aspect-video md:aspect-square lg:h-full min-h-[320px] shadow-2xl rounded-2xl md:rounded-3xl overflow-hidden group border border-white/20"
                 >
                     <Image
                         src={imageUrl}
