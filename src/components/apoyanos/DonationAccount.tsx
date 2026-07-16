@@ -11,7 +11,7 @@ import { FaRegCopy, FaCheck, FaUniversity } from "react-icons/fa";
 const DONATION_ACCOUNT = {
   banco: "Bancolombia",
   tipo: "Cuenta de ahorros",
-  numero: "6990010357",
+  numero: "69900010357",
   titular: "Asociación Centro de Atención para Niños TR",
 };
 
